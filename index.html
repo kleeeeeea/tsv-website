@@ -45,25 +45,6 @@
               <div class="hero-actions">
                 <a class="button" href="sportangebot.html">Sportangebot</a>
                 <a class="button-secondary" href="kontakt.html">Kontakt</a>
-                <a
-                  class="song-button"
-                  href="https://open.spotify.com/intl-de/track/7aWjE3G6DYAVhBTSQJFmW5?si=a564551062374ab1"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="TSV-Song auf Spotify öffnen"
-                >
-                  <span class="song-ball" aria-hidden="true"></span>
-                  <span class="song-copy">
-                    <strong>TSV-Song</strong>
-                    <span>Auf Spotify abspielen</span>
-                  </span>
-                </a>
-              </div>
-              <div class="music-panel">
-                <p class="music-label">Weiß Blau Weiß Blau TSV</p>
-                <p class="music-note">
-                  Der Song wird direkt auf Spotify geoeffnet. So funktioniert er auf allen Browsern zuverlaessig.
-                </p>
               </div>
               <div class="stat-grid">
                 <div class="stat">
@@ -277,6 +258,12 @@
       </div>
     </footer>
   </div>
+  <audio preload="auto" data-club-audio>
+    <source src="tsv-song.mp3" type="audio/mpeg">
+  </audio>
+  <button class="floating-audio-button" type="button" aria-label="TSV-Song abspielen oder pausieren" data-audio-toggle>
+    <span class="floating-audio-ball" aria-hidden="true"></span>
+  </button>
   <script>
     const registeredHosts = new Set([
       "tsv-hainsfarth.de",
