@@ -220,6 +220,27 @@ h3 {
   margin-top: 24px;
 }
 
+.music-panel {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(17, 130, 198, 0.08);
+  border: 1px solid rgba(17, 130, 198, 0.16);
+}
+
+.music-label {
+  margin: 0 0 10px;
+  color: var(--primary-dark);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.music-toggle {
+  cursor: pointer;
+}
+
 .button,
 .button-secondary {
   display: inline-flex;
