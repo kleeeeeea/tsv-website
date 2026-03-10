@@ -6,6 +6,7 @@
   <meta name="description" content="TSV Hainsfarth 1949 e.V. mit Infos zu Verein, Sportangebot, Mitgliedschaft und Kontakt.">
   <title>TSV Hainsfarth | Start</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://widget-prod.bfv.de/widget/widgetresource/widgetjs"></script>
 </head>
 <body>
   <div class="site-shell">
@@ -79,6 +80,77 @@
               </div>
               <img class="hero-logo" src="logo.png" alt="TSV Hainsfarth Vereinslogo">
             </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Matchcenter</span>
+            <h2>Spiele und Tabellen</h2>
+            <p>
+              Die Daten werden direkt über den BFV geladen und aktualisieren sich automatisch.
+            </p>
+          </div>
+          <div class="matchcenter-overview">
+            <div class="panel widget-panel">
+              <div class="panel-topline">
+                <div>
+                  <span class="eyebrow">Vereinsübersicht</span>
+                  <h3>Nächste Spiele des TSV</h3>
+                </div>
+              </div>
+              <div class="widget-frame">
+                <div id="bfv-club-games">Laden...</div>
+              </div>
+            </div>
+          </div>
+          <div class="matchcenter-grid">
+            <section class="panel widget-panel">
+              <div class="panel-topline">
+                <div>
+                  <span class="eyebrow">Herren I</span>
+                  <h3>Spielplan</h3>
+                </div>
+              </div>
+              <div class="widget-frame">
+                <div id="bfv-team1-games">Laden...</div>
+              </div>
+            </section>
+            <section class="panel widget-panel">
+              <div class="panel-topline">
+                <div>
+                  <span class="eyebrow">Herren I</span>
+                  <h3>Tabelle</h3>
+                </div>
+              </div>
+              <div class="widget-frame">
+                <div id="bfv-team1-table">Laden...</div>
+              </div>
+            </section>
+            <section class="panel widget-panel">
+              <div class="panel-topline">
+                <div>
+                  <span class="eyebrow">Herren II</span>
+                  <h3>Spielplan</h3>
+                </div>
+              </div>
+              <div class="widget-frame">
+                <div id="bfv-team2-games">Laden...</div>
+              </div>
+            </section>
+            <section class="panel widget-panel">
+              <div class="panel-topline">
+                <div>
+                  <span class="eyebrow">Herren II</span>
+                  <h3>Tabelle</h3>
+                </div>
+              </div>
+              <div class="widget-frame">
+                <div id="bfv-team2-table">Laden...</div>
+              </div>
+            </section>
           </div>
         </div>
       </section>
@@ -186,6 +258,39 @@
       </div>
     </footer>
   </div>
+  <script>
+    if (window.BFVWidget && BFVWidget.HTML5) {
+      BFVWidget.HTML5.zeigeVereinSpiele("00ES8GNJGK00000SVV0AG08LVUPGND5I", "bfv-club-games", {
+        height: "550",
+        width: "300",
+        selectedTab: BFVWidget.HTML5.vereinTabs.spiele
+      });
+
+      BFVWidget.HTML5.zeigeMannschaftKomplett("016PHCS5TO000000VV0AG80NVUT1FLRU", "bfv-team1-games", {
+        height: "600",
+        width: "350",
+        selectedTab: BFVWidget.HTML5.mannschaftTabs.spiele
+      });
+
+      BFVWidget.HTML5.zeigeMannschaftKomplett("016PHCS5TO000000VV0AG80NVUT1FLRU", "bfv-team1-table", {
+        height: "600",
+        width: "350",
+        selectedTab: BFVWidget.HTML5.mannschaftTabs.wettbewerbTabelle
+      });
+
+      BFVWidget.HTML5.zeigeMannschaftKomplett("027B5UKMIC000000VS5489B1VU8ROJMK", "bfv-team2-games", {
+        height: "600",
+        width: "350",
+        selectedTab: BFVWidget.HTML5.mannschaftTabs.spiele
+      });
+
+      BFVWidget.HTML5.zeigeMannschaftKomplett("027B5UKMIC000000VS5489B1VU8ROJMK", "bfv-team2-table", {
+        height: "600",
+        width: "350",
+        selectedTab: BFVWidget.HTML5.mannschaftTabs.wettbewerbTabelle
+      });
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
