@@ -90,7 +90,7 @@
             <span class="eyebrow">Matchcenter</span>
             <h2>Spiele und Tabellen</h2>
             <p>
-              Die Daten werden direkt über den BFV geladen und aktualisieren sich automatisch.
+              Auf der offiziellen Vereinsdomain werden die Daten direkt über den BFV geladen und automatisch aktualisiert.
             </p>
           </div>
           <div class="matchcenter-overview">
@@ -259,7 +259,28 @@
     </footer>
   </div>
   <script>
-    if (window.BFVWidget && BFVWidget.HTML5) {
+    const registeredHosts = new Set([
+      "tsv-hainsfarth.de",
+      "www.tsv-hainsfarth.de",
+      "localhost",
+      "127.0.0.1"
+    ]);
+
+    function renderWidgetFallback(targetId, title, href) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      target.innerHTML = `
+        <div class="widget-fallback">
+          <p>${title}</p>
+          <a class="button-secondary" href="${href}" target="_blank" rel="noreferrer">Beim BFV ansehen</a>
+        </div>
+      `;
+    }
+
+    const canLoadBfvWidgets = registeredHosts.has(window.location.hostname);
+
+    if (canLoadBfvWidgets && window.BFVWidget && BFVWidget.HTML5) {
       BFVWidget.HTML5.zeigeVereinSpiele("00ES8GNJGK00000SVV0AG08LVUPGND5I", "bfv-club-games", {
         height: "550",
         width: "300",
@@ -289,6 +310,32 @@
         width: "350",
         selectedTab: BFVWidget.HTML5.mannschaftTabs.wettbewerbTabelle
       });
+    } else {
+      renderWidgetFallback(
+        "bfv-club-games",
+        "Die BFV-Widgets laufen nur auf der beim BFV registrierten Vereinsdomain.",
+        "https://www.bfv.de/vereine/tsv-hainsfarth/00ES8GNJGK00000SVV0AG08LVUPGND5I"
+      );
+      renderWidgetFallback(
+        "bfv-team1-games",
+        "Spielplan Herren I",
+        "https://www.bfv.de/mannschaften/tsv-hainsfarth/016PHCS5TO000000VV0AG80NVUT1FLRU"
+      );
+      renderWidgetFallback(
+        "bfv-team1-table",
+        "Tabelle Herren I",
+        "https://www.bfv.de/mannschaften/tsv-hainsfarth/016PHCS5TO000000VV0AG80NVUT1FLRU"
+      );
+      renderWidgetFallback(
+        "bfv-team2-games",
+        "Spielplan Herren II",
+        "https://www.bfv.de/mannschaften/tsv-hainsfarth-2/027B5UKMIC000000VS5489B1VU8ROJMK"
+      );
+      renderWidgetFallback(
+        "bfv-team2-table",
+        "Tabelle Herren II",
+        "https://www.bfv.de/mannschaften/tsv-hainsfarth-2/027B5UKMIC000000VS5489B1VU8ROJMK"
+      );
     }
   </script>
   <script src="script.js"></script>

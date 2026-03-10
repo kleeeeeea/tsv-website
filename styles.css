@@ -430,6 +430,24 @@ h3 {
   min-width: 300px;
 }
 
+.widget-fallback {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.6;
+  padding: 22px;
+}
+
+.widget-fallback p {
+  margin: 0;
+  max-width: 34ch;
+}
+
 .list {
   margin: 16px 0 0;
   padding-left: 18px;
