@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 558" role="img" aria-labelledby="title desc">
+  <title id="title">TSV Hainsfarth Logo</title>
+  <desc id="desc">Blaues Vereinswappen mit stilisiertem Segelboot und dem Schriftzug 1949 e.V.</desc>
+  <path fill="#1182c6" d="M62 30c105 21 191 28 273 20 31-3 58-9 88-20l38 96-96 49c-71 36-145 72-219 108-40 19-79 39-119 59-5-10-10-20-14-30 35-18 71-36 106-54-4-63-23-103-58-123Z"/>
+  <path fill="#1182c6" d="M85 434c129-62 247-122 372-184l14 10c-31 115-105 216-220 273-67-23-121-58-166-99Z"/>
+  <path fill="#fff" d="M100 80c34 5 66 8 99 9l-3 26-56-4-11 9h17l-3 33h-32l-5 9h36l-4 36h-31l5 8c14 1 28 1 42 1 4 13 9 27 14 40-25-2-48-7-69-14 9-50 11-101 5-153Z"/>
+  <path fill="#fff" d="M166 99h95l-7 7h-10c-9 0-16 8-18 17l-8 34h62l-5 7h-59l-10 42c-4 18-17 32-34 38-19 7-40 7-60 1 27-4 49-23 55-50l20-85c1-4 1-7-1-11h-20Z"/>
+  <path fill="#fff" d="M131 217c16-5 32-7 49-7 31 0 61 7 90 21-38 1-75 3-113 4l-26-18Zm11 25 137-6 16 10-135 4-18-8Zm24 18 141-3 13 10-132 3-22-10Zm35 18 125-3 11 8-103 4-33-9Z"/>
+  <path fill="#fff" d="M214 211c6 18 10 37 13 56h-10c-2-18-5-36-10-53l7-3Zm29 5c2 17 3 34 2 51h-10c1-18 0-35-2-52l10 1Z"/>
+  <path fill="#fff" d="M186 455l32-16 13 40-17 8-28-32Zm50-24 21-10 12 58-18 8-15-56Zm60-30 21-10 12 58-18 8-15-56Zm61-30 21-10 11 58-17 8-15-56Z"/>
+  <text x="182" y="488" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="45" font-weight="700" transform="rotate(-26 182 488)">1949 e.V.</text>
+</svg>
