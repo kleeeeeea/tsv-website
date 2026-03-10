@@ -1,12 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-  <title>Meine Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TSV Hainsfarth</title>
+  <style>
+    :root {
+      --bg: #f4f1e8;
+      --text: #1d2a38;
+      --accent: #0c5a3d;
+      --card: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(180deg, #e9efe8 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    main {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 20px;
+    }
+
+    .hero {
+      width: min(720px, 100%);
+      background: var(--card);
+      border-radius: 20px;
+      padding: 40px 32px;
+      box-shadow: 0 18px 50px rgba(29, 42, 56, 0.12);
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+    }
+
+    p {
+      margin: 18px auto 0;
+      max-width: 42ch;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Meine erste Website</h1>
-  <p>Website läuft 🚀</p>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Willkommen</p>
+      <h1>TSV Hainsfarth</h1>
+      <p>
+        Herzlich willkommen auf der Website des TSV Hainsfarth.
+        Hier finden Sie Informationen rund um unseren Verein, unsere Mannschaften
+        und das Vereinsleben.
+      </p>
+    </section>
+  </main>
 </body>
 
 </html>
