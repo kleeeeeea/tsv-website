@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Fussball</title>
+  <circle cx="64" cy="64" r="60" fill="#fff" stroke="#d8d8d8" stroke-width="4"/>
+  <polygon points="64,30 80,42 74,61 54,61 48,42" fill="#1f1f1f"/>
+  <polygon points="48,42 33,49 31,66 46,77 54,61" fill="#1f1f1f"/>
+  <polygon points="80,42 95,49 97,66 82,77 74,61" fill="#1f1f1f"/>
+  <polygon points="46,77 56,95 72,95 82,77 64,66" fill="#1f1f1f"/>
+  <path d="M64 30 L64 14 M48 42 L35 30 M80 42 L93 30 M33 49 L18 45 M95 49 L110 45 M31 66 L18 76 M97 66 L110 76 M46 77 L37 93 M82 77 L91 93 M56 95 L53 112 M72 95 L75 112" stroke="#1f1f1f" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="44" cy="26" r="10" fill="none" stroke="#1f1f1f" stroke-width="3"/>
+  <circle cx="84" cy="26" r="10" fill="none" stroke="#1f1f1f" stroke-width="3"/>
+  <circle cx="24" cy="58" r="10" fill="none" stroke="#1f1f1f" stroke-width="3"/>
+  <circle cx="104" cy="58" r="10" fill="none" stroke="#1f1f1f" stroke-width="3"/>
+  <circle cx="47" cy="104" r="10" fill="none" stroke="#1f1f1f" stroke-width="3"/>
+  <circle cx="81" cy="104" r="10" fill="none" stroke="#1f1f1f" stroke-width="3"/>
+</svg>
