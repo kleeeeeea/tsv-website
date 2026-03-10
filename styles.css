@@ -244,19 +244,18 @@ h3 {
 }
 
 .floating-audio-button.is-playing {
+}
+
+.floating-audio-button.is-playing .floating-audio-emoji {
   animation: audio-ball-bounce 1.6s ease-in-out infinite;
 }
 
-.floating-audio-button.is-kicking {
-  animation: audio-ball-curve 780ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
 .floating-audio-button.is-kicking .floating-audio-emoji {
-  animation: audio-ball-spin 780ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: audio-ball-flight 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .floating-audio-button.is-kicking .floating-audio-trail {
-  animation: audio-ball-trail 780ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: audio-ball-trail 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .floating-audio-trail {
@@ -283,43 +282,33 @@ h3 {
 @keyframes audio-ball-bounce {
   0%,
   100% {
-    transform: scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 
   50% {
-    transform: scale(1.06);
+    transform: translate3d(0, 0, 0) scale(1.06);
   }
 }
 
-@keyframes audio-ball-curve {
+@keyframes audio-ball-flight {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
   }
 
   18% {
-    transform: translate(-10px, 4px) scale(0.96);
+    transform: translate3d(-10px, 6px, 0) rotate(-18deg) scale(0.95);
   }
 
   52% {
-    transform: translate(-48px, -118px) scale(1.04);
+    transform: translate3d(-44px, -132px, 0) rotate(-180deg) scale(1.02);
   }
 
   74% {
-    transform: translate(-10px, -218px) scale(0.94);
+    transform: translate3d(18px, -248px, 0) rotate(-320deg) scale(0.9);
   }
 
   100% {
-    transform: translate(0, 0) scale(1);
-  }
-}
-
-@keyframes audio-ball-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(540deg);
+    transform: translate3d(0, 0, 0) rotate(-360deg) scale(1);
   }
 }
 
@@ -327,21 +316,25 @@ h3 {
   0% {
     opacity: 0;
     height: 16px;
+    transform: rotate(-32deg) scaleY(0.3);
   }
 
   20% {
     opacity: 0.85;
     height: 72px;
+    transform: rotate(-32deg) scaleY(1);
   }
 
   68% {
     opacity: 0.65;
     height: 150px;
+    transform: rotate(-20deg) scaleY(1);
   }
 
   100% {
     opacity: 0;
     height: 16px;
+    transform: rotate(-14deg) scaleY(0.2);
   }
 }
 
