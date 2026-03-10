@@ -477,6 +477,18 @@ h3 {
   min-width: 300px;
 }
 
+.shop-panel {
+  overflow: hidden;
+}
+
+.shop-frame {
+  width: 100%;
+  min-height: 980px;
+  border: 0;
+  border-radius: 14px;
+  background: #fff;
+}
+
 .widget-fallback {
   min-height: 180px;
   display: flex;
