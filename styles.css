@@ -253,34 +253,45 @@ h3 {
   height: 62px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at center, #ffffff 0 34%, transparent 35%),
-    linear-gradient(135deg, var(--primary) 0 50%, #ffffff 50% 100%);
-  border: 4px solid var(--primary);
-  box-shadow: inset 0 0 0 4px #ffffff;
+    radial-gradient(circle at 50% 50%, #1c1c1c 0 12%, transparent 13%),
+    radial-gradient(circle at 50% 18%, #1c1c1c 0 8%, transparent 9%),
+    radial-gradient(circle at 22% 34%, #1c1c1c 0 8%, transparent 9%),
+    radial-gradient(circle at 78% 34%, #1c1c1c 0 8%, transparent 9%),
+    radial-gradient(circle at 32% 74%, #1c1c1c 0 8%, transparent 9%),
+    radial-gradient(circle at 68% 74%, #1c1c1c 0 8%, transparent 9%),
+    radial-gradient(circle at 50% 50%, #ffffff 0 100%);
+  border: 3px solid #d8d8d8;
+  box-shadow:
+    inset 0 -8px 14px rgba(0, 0, 0, 0.12),
+    inset 0 8px 12px rgba(255, 255, 255, 0.7);
   position: relative;
+  overflow: hidden;
 }
 
 .floating-audio-ball::before,
 .floating-audio-ball::after {
   content: "";
   position: absolute;
-  background: var(--primary);
+  border: 2px solid #1c1c1c;
+  border-color: #1c1c1c transparent transparent transparent;
+  border-radius: 50%;
+  opacity: 0.9;
 }
 
 .floating-audio-ball::before {
-  width: 4px;
-  height: 100%;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
+  width: 56px;
+  height: 24px;
+  left: 3px;
+  top: 20px;
+  transform: rotate(8deg);
 }
 
 .floating-audio-ball::after {
-  width: 100%;
-  height: 4px;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 48px;
+  height: 22px;
+  left: 7px;
+  top: 28px;
+  transform: rotate(-12deg);
 }
 
 .button,
