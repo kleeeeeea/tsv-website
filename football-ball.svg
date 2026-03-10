@@ -1,49 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
   <title id="title">Fussball</title>
   <defs>
-    <radialGradient id="ballShade" cx="34%" cy="28%" r="72%">
+    <radialGradient id="ball" cx="35%" cy="28%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="68%" stop-color="#f4f4f4"/>
-      <stop offset="100%" stop-color="#d7d7d7"/>
+      <stop offset="78%" stop-color="#f3f3f3"/>
+      <stop offset="100%" stop-color="#d9d9d9"/>
     </radialGradient>
-    <radialGradient id="darkPanel" cx="38%" cy="30%" r="80%">
-      <stop offset="0%" stop-color="#575757"/>
-      <stop offset="100%" stop-color="#1d1d1d"/>
-    </radialGradient>
-    <filter id="ballShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity="0.22"/>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.22"/>
     </filter>
   </defs>
 
-  <circle cx="64" cy="64" r="56" fill="url(#ballShade)" stroke="#d0d0d0" stroke-width="2" filter="url(#ballShadow)"/>
+  <circle cx="64" cy="64" r="56" fill="url(#ball)" stroke="#cfcfcf" stroke-width="2" filter="url(#shadow)"/>
 
-  <polygon points="64,38 80,49 74,67 54,67 48,49" fill="url(#darkPanel)"/>
-  <polygon points="48,49 31,58 30,76 46,88 54,67" fill="url(#darkPanel)"/>
-  <polygon points="80,49 97,58 98,76 82,88 74,67" fill="url(#darkPanel)"/>
-  <polygon points="46,88 58,106 70,106 82,88 64,76" fill="url(#darkPanel)"/>
+  <polygon points="64,40 79,50 73,68 55,68 49,50" fill="#1f1f1f"/>
+  <polygon points="49,50 33,59 32,77 47,87 55,68" fill="#1f1f1f"/>
+  <polygon points="79,50 95,59 96,77 81,87 73,68" fill="#1f1f1f"/>
+  <polygon points="47,87 58,103 70,103 81,87 64,76" fill="#1f1f1f"/>
 
-  <g fill="#fafafa" stroke="#bdbdbd" stroke-width="1.4" stroke-linejoin="round">
-    <polygon points="40,31 57,24 64,38 48,49 35,44"/>
-    <polygon points="88,31 71,24 64,38 80,49 93,44"/>
-    <polygon points="27,56 19,72 30,76 31,58"/>
-    <polygon points="101,56 109,72 98,76 97,58"/>
-    <polygon points="38,98 52,111 58,106 46,88"/>
-    <polygon points="90,98 76,111 70,106 82,88"/>
-    <polygon points="58,106 64,118 70,106"/>
+  <g fill="none" stroke="#7d7d7d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 40 54 24 39 31 33 59 19 67 23 86 36 96 44 110 64 118 84 110 92 96 105 86 109 67 95 59 89 31 74 24Z"/>
+    <path d="M49 50 39 31"/>
+    <path d="M79 50 89 31"/>
+    <path d="M33 59 19 67"/>
+    <path d="M95 59 109 67"/>
+    <path d="M47 87 36 96"/>
+    <path d="M81 87 92 96"/>
+    <path d="M58 103 64 118 70 103"/>
   </g>
 
-  <g fill="none" stroke="#6c6c6c" stroke-width="1.8" stroke-linecap="round" opacity="0.6">
-    <path d="M64 38L57 24"/>
-    <path d="M64 38L71 24"/>
-    <path d="M48 49L35 44"/>
-    <path d="M80 49L93 44"/>
-    <path d="M31 58L19 72"/>
-    <path d="M97 58L109 72"/>
-    <path d="M46 88L38 98"/>
-    <path d="M82 88L90 98"/>
-    <path d="M58 106L52 111"/>
-    <path d="M70 106L76 111"/>
-  </g>
-
-  <ellipse cx="48" cy="40" rx="22" ry="10" fill="#fff" opacity="0.24" transform="rotate(-20 48 40)"/>
+  <ellipse cx="46" cy="39" rx="18" ry="9" fill="#ffffff" opacity="0.35" transform="rotate(-20 46 39)"/>
 </svg>
