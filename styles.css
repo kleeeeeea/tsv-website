@@ -76,8 +76,8 @@ img {
 }
 
 .brand-mark {
-  width: 58px;
-  height: 64px;
+  width: 54px;
+  height: 58px;
   flex: 0 0 auto;
   object-fit: contain;
 }
@@ -237,7 +237,7 @@ h3 {
 }
 
 .hero-logo {
-  width: min(180px, 48%);
+  width: min(220px, 52%);
   height: auto;
   align-self: flex-end;
   filter: drop-shadow(0 10px 24px rgba(2, 18, 38, 0.2));
