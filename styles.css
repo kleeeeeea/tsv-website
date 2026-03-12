@@ -763,6 +763,55 @@ h3 {
   color: var(--muted);
 }
 
+.legal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 24px 0 28px;
+}
+
+.legal-grid .card h3,
+.legal-grid .card p {
+  margin: 0;
+}
+
+.legal-grid .card {
+  display: grid;
+  gap: 12px;
+}
+
+.legal-accordion {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-strong);
+  padding: 0 22px;
+}
+
+.legal-accordion + .legal-accordion {
+  margin-top: 14px;
+}
+
+.legal-accordion summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 20px 0;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+.legal-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.legal-accordion[open] summary {
+  padding-bottom: 12px;
+}
+
+.legal-accordion p:last-child {
+  margin-bottom: 22px;
+}
+
 @media (max-width: 960px) {
   .hero-card,
   .card-grid,
@@ -770,7 +819,8 @@ h3 {
   .info-grid,
   .contact-grid,
   .matchcenter-grid,
-  .social-grid {
+  .social-grid,
+  .legal-grid {
     grid-template-columns: 1fr;
   }
 
