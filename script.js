@@ -320,78 +320,133 @@ if (countdownRoot) {
     }
   };
 
-  const fetchMatchWeather = (event) => {
+  const getLocationQueries = (event) => {
+    const normalizedLocation = (event.location || "").replace(/\s+/g, " ").trim();
+    const queries = [];
+    const pushQuery = (value) => {
+      const nextValue = value?.trim();
+
+      if (nextValue && !queries.includes(nextValue)) {
+        queries.push(nextValue);
+      }
+    };
+
+    pushQuery(normalizedLocation);
+
+    const locationParts = normalizedLocation.split(",").map((part) => part.trim()).filter(Boolean);
+    const postalPart = locationParts.find((part) => /\b\d{5}\b/.test(part));
+    const postalMatch = postalPart?.match(/\b(\d{5})\b\s*(.+)?/);
+
+    if (postalMatch) {
+      const [, postalCode, cityName = ""] = postalMatch;
+      pushQuery(`${cityName.trim()}, ${postalCode}, Deutschland`);
+      pushQuery(`${cityName.trim()}, Deutschland`);
+      pushQuery(cityName.trim());
+    }
+
+    const trailingCity = locationParts[locationParts.length - 1];
+    pushQuery(trailingCity);
+
+    if (event.isHome) {
+      pushQuery("Hainsfarth, Deutschland");
+      pushQuery("86744 Hainsfarth, Deutschland");
+    }
+
+    return queries;
+  };
+
+  const fetchGeocode = async (query) => {
+    const geoUrl = new URL("https://geocoding-api.open-meteo.com/v1/search");
+    geoUrl.searchParams.set("name", query);
+    geoUrl.searchParams.set("count", "5");
+    geoUrl.searchParams.set("language", "de");
+    geoUrl.searchParams.set("format", "json");
+    geoUrl.searchParams.set("countryCode", "DE");
+
+    const response = await fetch(geoUrl);
+
+    if (!response.ok) {
+      throw new Error("Geocoding unavailable");
+    }
+
+    const geoData = await response.json();
+    return geoData?.results?.[0] || null;
+  };
+
+  const fetchMatchWeather = async (event) => {
     if (!weatherRoot) {
       return;
     }
 
-    const geoQuery = encodeURIComponent(event.location || event.opponent || "Hainsfarth");
+    if (weatherTimeNode) {
+      weatherTimeNode.textContent = new Intl.DateTimeFormat("de-DE", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(event.start);
+    }
 
-    fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${geoQuery}&count=1&language=de&format=json`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Geocoding unavailable");
+    try {
+      const locationQueries = getLocationQueries(event);
+      let place = null;
+
+      for (const query of locationQueries) {
+        place = await fetchGeocode(query);
+
+        if (place) {
+          break;
         }
+      }
 
-        return response.json();
-      })
-      .then((geoData) => {
-        const place = geoData?.results?.[0];
+      if (!place) {
+        throw new Error("Location not found");
+      }
 
-        if (!place) {
-          throw new Error("Location not found");
+      const forecastUrl = new URL("https://api.open-meteo.com/v1/forecast");
+      forecastUrl.searchParams.set("latitude", place.latitude);
+      forecastUrl.searchParams.set("longitude", place.longitude);
+      forecastUrl.searchParams.set("hourly", "temperature_2m,precipitation_probability,weather_code,wind_speed_10m");
+      forecastUrl.searchParams.set("timezone", "auto");
+      forecastUrl.searchParams.set("forecast_days", "16");
+
+      const response = await fetch(forecastUrl);
+
+      if (!response.ok) {
+        throw new Error("Forecast unavailable");
+      }
+
+      const forecastData = await response.json();
+      const hourly = forecastData?.hourly;
+
+      if (!hourly?.time?.length) {
+        throw new Error("Hourly forecast missing");
+      }
+
+      const targetTime = event.start.getTime();
+      let bestIndex = 0;
+      let bestDiff = Number.POSITIVE_INFINITY;
+
+      hourly.time.forEach((timeValue, index) => {
+        const candidateTime = new Date(timeValue).getTime();
+        const diff = Math.abs(candidateTime - targetTime);
+
+        if (diff < bestDiff) {
+          bestDiff = diff;
+          bestIndex = index;
         }
-
-        const forecastUrl = new URL("https://api.open-meteo.com/v1/forecast");
-        forecastUrl.searchParams.set("latitude", place.latitude);
-        forecastUrl.searchParams.set("longitude", place.longitude);
-        forecastUrl.searchParams.set("hourly", "temperature_2m,precipitation_probability,weather_code,wind_speed_10m");
-        forecastUrl.searchParams.set("timezone", "auto");
-        forecastUrl.searchParams.set("forecast_days", "16");
-
-        return fetch(forecastUrl)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Forecast unavailable");
-            }
-
-            return response.json();
-          })
-          .then((forecastData) => {
-            const hourly = forecastData?.hourly;
-
-            if (!hourly?.time?.length) {
-              throw new Error("Hourly forecast missing");
-            }
-
-            const targetTime = event.start.getTime();
-            let bestIndex = 0;
-            let bestDiff = Number.POSITIVE_INFINITY;
-
-            hourly.time.forEach((timeValue, index) => {
-              const candidateTime = new Date(timeValue).getTime();
-              const diff = Math.abs(candidateTime - targetTime);
-
-              if (diff < bestDiff) {
-                bestDiff = diff;
-                bestIndex = index;
-              }
-            });
-
-            renderWeather(
-              {
-                temperature_2m: hourly.temperature_2m?.[bestIndex],
-                precipitation_probability: hourly.precipitation_probability?.[bestIndex],
-                weather_code: hourly.weather_code?.[bestIndex],
-                wind_speed_10m: hourly.wind_speed_10m?.[bestIndex],
-              },
-              event.start
-            );
-          });
-      })
-      .catch(() => {
-        renderWeatherFallback();
       });
+
+      renderWeather(
+        {
+          temperature_2m: hourly.temperature_2m?.[bestIndex],
+          precipitation_probability: hourly.precipitation_probability?.[bestIndex],
+          weather_code: hourly.weather_code?.[bestIndex],
+          wind_speed_10m: hourly.wind_speed_10m?.[bestIndex],
+        },
+        event.start
+      );
+    } catch {
+      renderWeatherFallback();
+    }
   };
 
   const startCountdown = (targetDate) => {
@@ -447,7 +502,7 @@ if (countdownRoot) {
         dateNode.textContent = formatDate(nextEvent.start);
         locationNode.textContent = nextEvent.location;
         renderSpotlight(nextEvent);
-        fetchMatchWeather(nextEvent);
+        void fetchMatchWeather(nextEvent);
         startCountdown(nextEvent.start);
       })
       .catch(() => {
