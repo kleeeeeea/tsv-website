@@ -111,6 +111,32 @@ if (countdownRoot) {
     };
   };
 
+  const getRouteAddress = (location) => {
+    const normalizedLocation = (location || "").replace(/\s+/g, " ").trim();
+
+    if (!normalizedLocation) {
+      return "Hainsfarth";
+    }
+
+    const parts = normalizedLocation
+      .split(",")
+      .map((part) => part.trim())
+      .filter(Boolean);
+
+    if (parts.length >= 3) {
+      const streetPart = parts.find((part) => /\d/.test(part) && !/\b\d{5}\b/.test(part));
+      const postalCityPart = parts.find((part) => /\b\d{5}\b/.test(part));
+
+      if (streetPart && postalCityPart) {
+        return `${streetPart}, ${postalCityPart}`;
+      }
+
+      return parts.slice(-2).join(", ");
+    }
+
+    return normalizedLocation;
+  };
+
   const weatherCodeMap = {
     0: "Klar",
     1: "Meist klar",
@@ -190,7 +216,7 @@ if (countdownRoot) {
     }
 
     if (spotlightRouteNode) {
-      const routeQuery = encodeURIComponent(event.location || event.opponent || "Hainsfarth");
+      const routeQuery = encodeURIComponent(getRouteAddress(event.location));
       spotlightRouteNode.href = `https://www.google.com/maps/search/?api=1&query=${routeQuery}`;
     }
   };
