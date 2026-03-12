@@ -368,7 +368,7 @@ h3 {
 }
 
 .hero-side {
-  min-height: 320px;
+  min-height: 380px;
   border-radius: 22px;
   padding: 26px;
   background: linear-gradient(180deg, #0f6399 0%, var(--primary) 100%);
@@ -432,7 +432,8 @@ h3 {
 }
 
 .stat-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
   margin-top: 22px;
 }
 
@@ -468,8 +469,8 @@ h3 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 156px;
-  padding: 28px 20px;
+  min-height: 140px;
+  padding: 20px 10px;
 }
 
 .card,
@@ -497,13 +498,14 @@ h3 {
 
 .stat strong {
   display: block;
-  font-size: clamp(1.55rem, 2vw, 1.9rem);
+  font-size: clamp(1.2rem, 1.5vw, 1.55rem);
   color: var(--primary-dark);
   text-align: center;
   line-height: 1.1;
   margin: 0;
   max-width: 100%;
   width: 100%;
+  letter-spacing: -0.02em;
 }
 
 .stat span,
@@ -517,8 +519,9 @@ h3 {
 
 .stat span {
   text-align: center;
-  margin-top: 8px;
+  margin-top: 6px;
   width: 100%;
+  font-size: 0.95rem;
 }
 
 .section {
