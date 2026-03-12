@@ -432,7 +432,7 @@ h3 {
 }
 
 .stat-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
   margin-top: 22px;
 }
 
@@ -468,8 +468,8 @@ h3 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 168px;
-  padding: 24px 16px;
+  min-height: 182px;
+  padding: 28px 20px;
 }
 
 .card,
@@ -497,12 +497,13 @@ h3 {
 
 .stat strong {
   display: block;
-  font-size: clamp(1.65rem, 2.2vw, 1.9rem);
+  font-size: clamp(1.5rem, 2vw, 1.85rem);
   color: var(--primary-dark);
   text-align: center;
   line-height: 1.1;
   margin: 0;
   max-width: 100%;
+  width: 100%;
   text-wrap: balance;
 }
 
@@ -518,6 +519,7 @@ h3 {
 .stat span {
   text-align: center;
   margin-top: 8px;
+  width: 100%;
   text-wrap: balance;
 }
 
