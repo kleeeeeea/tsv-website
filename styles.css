@@ -531,6 +531,12 @@ h3 {
   flex: 0 0 auto;
 }
 
+.panel-action-calendar {
+  min-height: 52px;
+  padding: 0 22px;
+  box-shadow: 0 14px 28px rgba(17, 130, 198, 0.24);
+}
+
 .panel-note {
   margin: -4px 0 16px;
   color: var(--muted);
