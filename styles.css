@@ -598,16 +598,6 @@ h3 {
   position: relative;
 }
 
-.matchday-spotlight::after {
-  content: "";
-  position: absolute;
-  inset: auto -48px -54px auto;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-}
-
 .matchday-copy {
   position: relative;
   z-index: 1;
