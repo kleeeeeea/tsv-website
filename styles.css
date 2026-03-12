@@ -581,6 +581,33 @@ h3 {
   max-width: 34ch;
 }
 
+.membership-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.membership-panel h2,
+.membership-panel p {
+  margin: 0;
+}
+
+.pdf-frame {
+  overflow: hidden;
+  min-height: 760px;
+  border-radius: 16px;
+  border: 1px solid rgba(17, 130, 198, 0.12);
+  background:
+    linear-gradient(180deg, rgba(17, 130, 198, 0.05), rgba(17, 130, 198, 0.02)),
+    #fff;
+}
+
+.pdf-frame iframe {
+  width: 100%;
+  min-height: 760px;
+  border: 0;
+  background: #fff;
+}
+
 .list {
   margin: 16px 0 0;
   padding-left: 18px;
@@ -704,6 +731,11 @@ h3 {
   .panel,
   .cta-band {
     padding: 24px;
+  }
+
+  .pdf-frame,
+  .pdf-frame iframe {
+    min-height: 520px;
   }
 
   .floating-audio-button {
