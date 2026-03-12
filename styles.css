@@ -608,6 +608,42 @@ h3 {
   background: #fff;
 }
 
+.social-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.social-card {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.social-card h3,
+.social-card p {
+  margin: 0;
+}
+
+.social-icon {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.social-icon-instagram {
+  color: #fff;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d 55%, #fcb045);
+}
+
+.social-icon-facebook {
+  color: #fff;
+  background: #1877f2;
+}
+
 .list {
   margin: 16px 0 0;
   padding-left: 18px;
@@ -689,7 +725,8 @@ h3 {
   .stat-grid,
   .info-grid,
   .contact-grid,
-  .matchcenter-grid {
+  .matchcenter-grid,
+  .social-grid {
     grid-template-columns: 1fr;
   }
 
