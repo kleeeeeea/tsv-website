@@ -155,7 +155,7 @@ img {
   border-radius: var(--radius-lg);
   padding: 42px;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: minmax(0, 1.42fr) minmax(320px, 0.78fr);
   gap: 28px;
   align-items: center;
   position: relative;
@@ -433,7 +433,7 @@ h3 {
 
 .stat-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 12px;
   margin-top: 22px;
 }
 
@@ -469,8 +469,8 @@ h3 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 140px;
-  padding: 20px 10px;
+  min-height: 138px;
+  padding: 18px 8px;
 }
 
 .card,
@@ -498,7 +498,7 @@ h3 {
 
 .stat strong {
   display: block;
-  font-size: clamp(1.2rem, 1.5vw, 1.55rem);
+  font-size: clamp(1.05rem, 1.25vw, 1.4rem);
   color: var(--primary-dark);
   text-align: center;
   line-height: 1.1;
@@ -506,6 +506,7 @@ h3 {
   max-width: 100%;
   width: 100%;
   letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
 }
 
 .stat span,
@@ -521,7 +522,8 @@ h3 {
   text-align: center;
   margin-top: 6px;
   width: 100%;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  line-height: 1.35;
 }
 
 .section {
