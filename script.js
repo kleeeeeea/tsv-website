@@ -55,6 +55,12 @@ if (countdownRoot) {
   const locationNode = countdownRoot.querySelector("[data-countdown-location]");
   const timerNode = countdownRoot.querySelector("[data-countdown-timer]");
   const countdownSrc = countdownRoot.getAttribute("data-countdown-src");
+  const spotlightRoot = document.querySelector("[data-matchday-spotlight]");
+  const spotlightBadgeNode = spotlightRoot?.querySelector("[data-matchday-badge]");
+  const spotlightCompetitionNode = spotlightRoot?.querySelector("[data-matchday-competition]");
+  const spotlightOpponentNode = spotlightRoot?.querySelector("[data-matchday-opponent]");
+  const spotlightFixtureNode = spotlightRoot?.querySelector("[data-matchday-fixture]");
+  const spotlightStatusNode = spotlightRoot?.querySelector("[data-matchday-status]");
 
   const formatDate = (date) =>
     new Intl.DateTimeFormat("de-DE", {
@@ -77,6 +83,29 @@ if (countdownRoot) {
     return new Date(Date.UTC(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(second)));
   };
 
+  const parseSummary = (summary) => {
+    const [fixturePart = "", competition = "", league = ""] = summary.split(",").map((part) => part.trim());
+    const clubName = "TSV Hainsfarth";
+    let opponent = fixturePart || clubName;
+    let isHome = fixturePart.startsWith(`${clubName}-`);
+
+    if (fixturePart.startsWith(`${clubName}-`)) {
+      opponent = fixturePart.slice(`${clubName}-`.length);
+      isHome = true;
+    } else if (fixturePart.endsWith(`-${clubName}`)) {
+      opponent = fixturePart.slice(0, fixturePart.length - `-${clubName}`.length);
+      isHome = false;
+    }
+
+    return {
+      fixture: fixturePart || clubName,
+      competition,
+      league,
+      opponent: opponent.trim() || clubName,
+      isHome,
+    };
+  };
+
   const parseEvents = (icsText) => {
     const normalized = icsText.replace(/\r\n[ \t]/g, "").replace(/\r/g, "");
 
@@ -95,8 +124,68 @@ if (countdownRoot) {
           location: getField("LOCATION").replace(/\\,/g, ","),
         };
       })
+      .map((event) => ({
+        ...event,
+        ...parseSummary(event.summary),
+      }))
       .filter((event) => event.start instanceof Date && !Number.isNaN(event.start.getTime()))
       .sort((a, b) => a.start - b.start);
+  };
+
+  const getMatchStatus = (targetDate) => {
+    const diff = targetDate.getTime() - Date.now();
+    const hoursDiff = diff / 3600000;
+    const dayDiff = Math.ceil(diff / 86400000);
+
+    if (diff <= 0) {
+      return "Jetzt";
+    }
+
+    if (hoursDiff <= 24) {
+      return "Heute";
+    }
+
+    if (dayDiff <= 1) {
+      return "Morgen";
+    }
+
+    if (dayDiff <= 3) {
+      return "Bald";
+    }
+
+    if (dayDiff <= 7) {
+      return "Diese Woche";
+    }
+
+    return "Demnaechst";
+  };
+
+  const renderSpotlight = (event) => {
+    if (!spotlightRoot) {
+      return;
+    }
+
+    if (spotlightBadgeNode) {
+      spotlightBadgeNode.textContent = event.isHome ? "Heimspiel" : "Auswaertsspiel";
+    }
+
+    if (spotlightCompetitionNode) {
+      spotlightCompetitionNode.textContent = [event.competition, event.league].filter(Boolean).join(" · ") || "Pflichtspiel";
+    }
+
+    if (spotlightOpponentNode) {
+      spotlightOpponentNode.textContent = event.opponent;
+    }
+
+    if (spotlightFixtureNode) {
+      spotlightFixtureNode.textContent = event.isHome
+        ? `TSV Hainsfarth empfaengt ${event.opponent}.`
+        : `TSV Hainsfarth reist zu ${event.opponent}.`;
+    }
+
+    if (spotlightStatusNode) {
+      spotlightStatusNode.textContent = getMatchStatus(event.start);
+    }
   };
 
   const renderFallback = () => {
@@ -115,6 +204,26 @@ if (countdownRoot) {
     if (timerNode) {
       timerNode.innerHTML = "<span>Kein Countdown verfuegbar</span>";
     }
+
+    if (spotlightBadgeNode) {
+      spotlightBadgeNode.textContent = "Matchday";
+    }
+
+    if (spotlightCompetitionNode) {
+      spotlightCompetitionNode.textContent = "Kalender";
+    }
+
+    if (spotlightOpponentNode) {
+      spotlightOpponentNode.textContent = "Naechster Gegner";
+    }
+
+    if (spotlightFixtureNode) {
+      spotlightFixtureNode.textContent = "Bitte Spielplan pruefen.";
+    }
+
+    if (spotlightStatusNode) {
+      spotlightStatusNode.textContent = "Bald";
+    }
   };
 
   const startCountdown = (targetDate) => {
@@ -123,6 +232,9 @@ if (countdownRoot) {
 
       if (diff <= 0) {
         timerNode.innerHTML = "<span>Laeuft jetzt</span>";
+        if (spotlightStatusNode) {
+          spotlightStatusNode.textContent = "Jetzt";
+        }
         return;
       }
 
@@ -136,6 +248,10 @@ if (countdownRoot) {
         <span>${hours} Stunden</span>
         <span>${minutes} Minuten</span>
       `;
+
+      if (spotlightStatusNode) {
+        spotlightStatusNode.textContent = getMatchStatus(targetDate);
+      }
     };
 
     render();
@@ -162,6 +278,7 @@ if (countdownRoot) {
         matchNode.textContent = nextEvent.summary;
         dateNode.textContent = formatDate(nextEvent.start);
         locationNode.textContent = nextEvent.location;
+        renderSpotlight(nextEvent);
         startCountdown(nextEvent.start);
       })
       .catch(() => {
