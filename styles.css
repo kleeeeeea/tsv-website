@@ -1,7 +1,7 @@
 :root {
   --bg: #f3f0e8;
-  --surface: #f6f1e7;
-  --surface-strong: #f6f1e7;
+  --surface: #f8f5ee;
+  --surface-strong: #f8f5ee;
   --text: #16253a;
   --muted: #566476;
   --line: rgba(22, 37, 58, 0.12);
@@ -63,7 +63,7 @@ img {
   top: 0;
   z-index: 20;
   backdrop-filter: blur(8px);
-  background: rgba(246, 241, 231, 0.94);
+  background: rgba(248, 245, 238, 0.94);
   border-bottom: 1px solid rgba(22, 37, 58, 0.1);
 }
 
