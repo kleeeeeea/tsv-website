@@ -375,7 +375,8 @@ h3 {
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 24px;
+  justify-content: flex-start;
   position: relative;
   overflow: hidden;
 }
@@ -383,6 +384,7 @@ h3 {
 .hero-logo {
   width: min(220px, 52%);
   height: auto;
+  margin-top: auto;
   align-self: flex-end;
   filter: drop-shadow(0 10px 24px rgba(2, 18, 38, 0.2));
 }
@@ -392,15 +394,20 @@ h3 {
   color: #fff;
 }
 
+.hero-side h3 {
+  margin: 0 0 12px;
+  line-height: 1.15;
+}
+
 .hero-side p {
-  margin: 10px 0 0;
-  line-height: 1.65;
+  margin: 0;
+  line-height: 1.6;
 }
 
 .hero-badge {
   width: fit-content;
   padding: 8px 12px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.18);
   font-weight: 700;
