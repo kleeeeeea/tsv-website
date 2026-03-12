@@ -588,9 +588,7 @@ h3 {
 }
 
 .matchday-spotlight {
-  display: grid;
-  grid-template-columns: minmax(0, 1.45fr) 180px;
-  gap: 22px;
+  display: block;
   min-height: 100%;
   padding: 14px 18px 14px 14px;
   border-radius: 18px;
@@ -657,50 +655,13 @@ h3 {
   line-height: 1.45;
 }
 
-.matchday-orbit {
-  position: relative;
-  z-index: 1;
-  min-height: 160px;
-  display: grid;
-  place-items: center;
+.matchday-actions {
+  margin-top: 18px;
 }
 
-.matchday-orbit strong {
-  width: 104px;
-  height: 104px;
-  display: grid;
-  place-items: center;
-  padding: 14px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  text-align: center;
-  font-size: 1rem;
-  line-height: 1.2;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 16px 34px rgba(5, 27, 49, 0.24);
-}
-
-.matchday-orbit-ring,
-.matchday-orbit-ball {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.matchday-orbit-ring {
-  inset: 8px;
-  border: 1px dashed rgba(255, 255, 255, 0.32);
-}
-
-.matchday-orbit-ball {
-  top: 22px;
-  right: 20px;
-  width: 18px;
-  height: 18px;
-  background: #fff;
-  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.14);
-  animation: matchday-orbit 8s linear infinite;
-  transform-origin: -48px 68px;
+.matchday-route-button {
+  min-width: 150px;
+  justify-content: center;
 }
 
 .countdown-grid {
@@ -820,16 +781,6 @@ h3 {
   justify-items: end;
   text-align: right;
   font-weight: 700;
-}
-
-@keyframes matchday-orbit {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .widget-panel {

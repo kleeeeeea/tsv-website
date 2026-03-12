@@ -59,7 +59,7 @@ if (countdownRoot) {
   const spotlightCompetitionNode = spotlightRoot?.querySelector("[data-matchday-competition]");
   const spotlightOpponentNode = spotlightRoot?.querySelector("[data-matchday-opponent]");
   const spotlightFixtureNode = spotlightRoot?.querySelector("[data-matchday-fixture]");
-  const spotlightStatusNode = spotlightRoot?.querySelector("[data-matchday-status]");
+  const spotlightRouteNode = spotlightRoot?.querySelector("[data-matchday-route]");
   const weatherRoot = countdownRoot.querySelector("[data-match-weather]");
   const weatherTempNode = weatherRoot?.querySelector("[data-weather-temp]");
   const weatherLabelNode = weatherRoot?.querySelector("[data-weather-label]");
@@ -166,34 +166,6 @@ if (countdownRoot) {
       .sort((a, b) => a.start - b.start);
   };
 
-  const getMatchStatus = (targetDate) => {
-    const diff = targetDate.getTime() - Date.now();
-    const hoursDiff = diff / 3600000;
-    const dayDiff = Math.ceil(diff / 86400000);
-
-    if (diff <= 0) {
-      return "Jetzt";
-    }
-
-    if (hoursDiff <= 24) {
-      return "Heute";
-    }
-
-    if (dayDiff <= 1) {
-      return "Morgen";
-    }
-
-    if (dayDiff <= 3) {
-      return "Bald";
-    }
-
-    if (dayDiff <= 7) {
-      return "Diese Woche";
-    }
-
-    return "Demnaechst";
-  };
-
   const renderSpotlight = (event) => {
     if (!spotlightRoot) {
       return;
@@ -217,8 +189,9 @@ if (countdownRoot) {
         : `TSV Hainsfarth reist zu ${event.opponent}.`;
     }
 
-    if (spotlightStatusNode) {
-      spotlightStatusNode.textContent = getMatchStatus(event.start);
+    if (spotlightRouteNode) {
+      const routeQuery = encodeURIComponent(event.location || event.opponent || "Hainsfarth");
+      spotlightRouteNode.href = `https://www.google.com/maps/search/?api=1&query=${routeQuery}`;
     }
   };
 
@@ -251,8 +224,8 @@ if (countdownRoot) {
       spotlightFixtureNode.textContent = "Bitte Spielplan pruefen.";
     }
 
-    if (spotlightStatusNode) {
-      spotlightStatusNode.textContent = "Bald";
+    if (spotlightRouteNode) {
+      spotlightRouteNode.href = "https://www.google.com/maps/search/?api=1&query=Hainsfarth";
     }
 
     if (weatherTempNode) {
@@ -450,9 +423,6 @@ if (countdownRoot) {
 
       if (diff <= 0) {
         timerNode.innerHTML = "<span>Laeuft jetzt</span>";
-        if (spotlightStatusNode) {
-          spotlightStatusNode.textContent = "Jetzt";
-        }
         return;
       }
 
@@ -466,10 +436,6 @@ if (countdownRoot) {
         <span>${hours} Stunden</span>
         <span>${minutes} Minuten</span>
       `;
-
-      if (spotlightStatusNode) {
-        spotlightStatusNode.textContent = getMatchStatus(targetDate);
-      }
     };
 
     render();
