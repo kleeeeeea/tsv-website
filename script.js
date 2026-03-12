@@ -50,7 +50,6 @@ if (audioToggle && clubAudio) {
 const countdownRoot = document.querySelector("[data-countdown]");
 
 if (countdownRoot) {
-  const matchNode = countdownRoot.querySelector("[data-countdown-match]");
   const dateNode = countdownRoot.querySelector("[data-countdown-date]");
   const locationNode = countdownRoot.querySelector("[data-countdown-location]");
   const timerNode = countdownRoot.querySelector("[data-countdown-timer]");
@@ -224,10 +223,6 @@ if (countdownRoot) {
   };
 
   const renderFallback = () => {
-    if (matchNode) {
-      matchNode.textContent = "Naechster Termin";
-    }
-
     if (dateNode) {
       dateNode.textContent = "Kalender nicht verfuegbar";
     }
@@ -481,7 +476,7 @@ if (countdownRoot) {
     window.setInterval(render, 60000);
   };
 
-  if (countdownSrc && matchNode && dateNode && locationNode && timerNode) {
+  if (countdownSrc && dateNode && locationNode && timerNode) {
     fetch(countdownSrc)
       .then((response) => {
         if (!response.ok) {
@@ -498,7 +493,6 @@ if (countdownRoot) {
           return;
         }
 
-        matchNode.textContent = nextEvent.summary;
         dateNode.textContent = formatDate(nextEvent.start);
         locationNode.textContent = nextEvent.location;
         renderSpotlight(nextEvent);

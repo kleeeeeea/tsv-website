@@ -578,12 +578,13 @@ h3 {
 .matchday-shell {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: 18px;
-  padding: 20px;
+  gap: 0;
+  padding: 16px;
   border-radius: 24px;
   background:
     radial-gradient(circle at right center, rgba(255, 255, 255, 0.14), transparent 32%),
     linear-gradient(135deg, #0c5f9b 0%, #1182c6 62%, #21a2ea 100%);
+  overflow: hidden;
 }
 
 .matchday-spotlight {
@@ -591,9 +592,9 @@ h3 {
   grid-template-columns: minmax(0, 1.45fr) 180px;
   gap: 22px;
   min-height: 100%;
-  padding: 8px;
-  border-radius: 22px;
-  background: rgba(7, 34, 58, 0.16);
+  padding: 14px 18px 14px 14px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(7, 34, 58, 0.28), rgba(7, 34, 58, 0.08));
   color: #fff;
   overflow: hidden;
   position: relative;
@@ -609,26 +610,16 @@ h3 {
   background: rgba(255, 255, 255, 0.1);
 }
 
-.matchday-copy,
-.matchday-orbit {
-  padding: 16px;
-}
-
 .matchday-copy {
   position: relative;
   z-index: 1;
-}
-
-.matchday-spotlight .countdown-label {
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 10px;
 }
 
 .matchday-status-row {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .matchday-chip {
@@ -659,17 +650,17 @@ h3 {
 }
 
 .matchday-fixture {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   max-width: 28ch;
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(255, 255, 255, 0.96);
   font-size: 1rem;
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
 .matchday-orbit {
   position: relative;
   z-index: 1;
-  min-height: 180px;
+  min-height: 160px;
   display: grid;
   place-items: center;
 }
@@ -715,37 +706,36 @@ h3 {
 .countdown-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 12px;
   align-content: start;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(250, 247, 242, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  padding: 14px 14px 14px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(250, 247, 242, 0.97), rgba(245, 241, 233, 0.97));
+  border-left: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .countdown-label {
   margin: 0 0 8px;
-  color: var(--muted);
+  color: rgba(22, 37, 58, 0.72);
   font-size: 0.84rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-.countdown-match,
 .countdown-meta {
   display: block;
   line-height: 1.35;
 }
 
-.countdown-match {
-  font-size: 1.28rem;
-  color: var(--primary-dark);
-}
-
 .countdown-meta {
   font-size: 1rem;
-  color: var(--text);
+  color: #18273a;
+  font-weight: 700;
+}
+
+.countdown-meta-card {
+  padding: 2px 0;
 }
 
 .countdown-timer {
@@ -753,13 +743,13 @@ h3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .countdown-timer span {
-  padding: 14px 16px;
+  padding: 12px 14px;
   border-radius: 14px;
-  background: linear-gradient(180deg, rgba(17, 130, 198, 0.09), rgba(17, 130, 198, 0.03));
+  background: linear-gradient(180deg, rgba(17, 130, 198, 0.1), rgba(17, 130, 198, 0.04));
   border: 1px solid rgba(17, 130, 198, 0.12);
   color: var(--primary-dark);
   font-weight: 800;
@@ -768,9 +758,9 @@ h3 {
 
 .match-weather {
   grid-column: 1 / -1;
-  padding: 16px 18px;
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(17, 130, 198, 0.08), rgba(17, 130, 198, 0.03));
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(17, 130, 198, 0.06), rgba(17, 130, 198, 0.02));
   border: 1px solid rgba(17, 130, 198, 0.12);
 }
 
@@ -821,7 +811,7 @@ h3 {
 
 .match-weather-main span,
 .match-weather-meta span {
-  color: var(--muted);
+  color: #30445a;
 }
 
 .match-weather-meta {
