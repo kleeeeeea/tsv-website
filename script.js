@@ -58,7 +58,6 @@ if (countdownRoot) {
   const spotlightBadgeNode = spotlightRoot?.querySelector("[data-matchday-badge]");
   const spotlightCompetitionNode = spotlightRoot?.querySelector("[data-matchday-competition]");
   const spotlightOpponentNode = spotlightRoot?.querySelector("[data-matchday-opponent]");
-  const spotlightFixtureNode = spotlightRoot?.querySelector("[data-matchday-fixture]");
   const spotlightRouteNode = spotlightRoot?.querySelector("[data-matchday-route]");
   const weatherRoot = countdownRoot.querySelector("[data-match-weather]");
   const weatherTempNode = weatherRoot?.querySelector("[data-weather-temp]");
@@ -192,6 +191,11 @@ if (countdownRoot) {
       .sort((a, b) => a.start - b.start);
   };
 
+  const buildFixtureText = (event) =>
+    event.isHome
+      ? `TSV Hainsfarth vs. ${event.opponent}`
+      : `${event.opponent} vs. TSV Hainsfarth`;
+
   const renderSpotlight = (event) => {
     if (!spotlightRoot) {
       return;
@@ -205,16 +209,10 @@ if (countdownRoot) {
       spotlightCompetitionNode.textContent = [event.competition, event.league].filter(Boolean).join(" · ") || "Pflichtspiel";
     }
 
-    const fixtureText = event.isHome
-        ? `TSV Hainsfarth vs. ${event.opponent}`
-        : `${event.opponent} vs. TSV Hainsfarth`;
+    const fixtureText = buildFixtureText(event);
 
     if (spotlightOpponentNode) {
       spotlightOpponentNode.textContent = fixtureText;
-    }
-
-    if (spotlightFixtureNode) {
-      spotlightFixtureNode.textContent = fixtureText;
     }
 
     if (spotlightRouteNode) {
@@ -246,10 +244,6 @@ if (countdownRoot) {
 
     if (spotlightOpponentNode) {
       spotlightOpponentNode.textContent = "TSV Hainsfarth vs. Gegner";
-    }
-
-    if (spotlightFixtureNode) {
-      spotlightFixtureNode.textContent = "Bitte Spielplan pruefen.";
     }
 
     if (spotlightRouteNode) {
