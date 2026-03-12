@@ -464,6 +464,7 @@ h3 {
 
 .stat {
   display: grid;
+  gap: 8px;
   align-content: center;
   justify-items: center;
   text-align: center;
@@ -498,6 +499,8 @@ h3 {
   font-size: 1.9rem;
   color: var(--primary-dark);
   text-align: center;
+  line-height: 1.1;
+  width: 100%;
 }
 
 .stat span,
@@ -511,6 +514,7 @@ h3 {
 
 .stat span {
   text-align: center;
+  width: 100%;
 }
 
 .section {
