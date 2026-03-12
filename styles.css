@@ -462,6 +462,14 @@ h3 {
   border: 1px solid var(--line);
 }
 
+.stat {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  min-height: 168px;
+}
+
 .card,
 .stat,
 .panel {
@@ -489,6 +497,7 @@ h3 {
   display: block;
   font-size: 1.9rem;
   color: var(--primary-dark);
+  text-align: center;
 }
 
 .stat span,
@@ -498,6 +507,10 @@ h3 {
 .mini-note {
   color: var(--muted);
   line-height: 1.7;
+}
+
+.stat span {
+  text-align: center;
 }
 
 .section {
