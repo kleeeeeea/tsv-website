@@ -602,10 +602,11 @@ h3 {
   content: "⚽️";
   position: absolute;
   left: -40px;
-  bottom: 22px;
-  font-size: 1.8rem;
+  bottom: 92px;
+  z-index: 2;
+  font-size: 2.1rem;
   line-height: 1;
-  opacity: 0.82;
+  opacity: 0.95;
   filter: drop-shadow(0 8px 14px rgba(7, 34, 58, 0.28));
   animation: matchday-ball-run 8.5s linear infinite;
   pointer-events: none;
@@ -675,19 +676,19 @@ h3 {
   }
 
   20% {
-    transform: translateX(120px) translateY(-6px) rotate(90deg);
+    transform: translateX(120px) translateY(-10px) rotate(90deg);
   }
 
   45% {
-    transform: translateX(260px) translateY(2px) rotate(210deg);
+    transform: translateX(260px) translateY(4px) rotate(210deg);
   }
 
   70% {
-    transform: translateX(420px) translateY(-4px) rotate(320deg);
+    transform: translateX(420px) translateY(-8px) rotate(320deg);
   }
 
   100% {
-    transform: translateX(620px) translateY(0) rotate(480deg);
+    transform: translateX(640px) translateY(0) rotate(480deg);
   }
 }
 
