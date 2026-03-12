@@ -527,6 +527,16 @@ h3 {
   margin-bottom: 16px;
 }
 
+.panel-action {
+  flex: 0 0 auto;
+}
+
+.panel-note {
+  margin: -4px 0 16px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
 .matchcenter-overview {
   margin-bottom: 18px;
 }
