@@ -765,6 +765,9 @@ h3 {
 
 .legal-copy h1 {
   max-width: none;
+  font-size: clamp(2.3rem, 4vw, 3.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
 }
 
 .legal-grid {
