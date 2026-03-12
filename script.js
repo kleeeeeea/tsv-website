@@ -205,14 +205,16 @@ if (countdownRoot) {
       spotlightCompetitionNode.textContent = [event.competition, event.league].filter(Boolean).join(" · ") || "Pflichtspiel";
     }
 
+    const fixtureText = event.isHome
+        ? `TSV Hainsfarth vs. ${event.opponent}`
+        : `${event.opponent} vs. TSV Hainsfarth`;
+
     if (spotlightOpponentNode) {
-      spotlightOpponentNode.textContent = event.opponent;
+      spotlightOpponentNode.textContent = fixtureText;
     }
 
     if (spotlightFixtureNode) {
-      spotlightFixtureNode.textContent = event.isHome
-        ? `TSV Hainsfarth vs. ${event.opponent}`
-        : `${event.opponent} vs. TSV Hainsfarth`;
+      spotlightFixtureNode.textContent = fixtureText;
     }
 
     if (spotlightRouteNode) {
@@ -243,7 +245,7 @@ if (countdownRoot) {
     }
 
     if (spotlightOpponentNode) {
-      spotlightOpponentNode.textContent = "Naechster Gegner";
+      spotlightOpponentNode.textContent = "TSV Hainsfarth vs. Gegner";
     }
 
     if (spotlightFixtureNode) {
