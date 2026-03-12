@@ -598,6 +598,19 @@ h3 {
   position: relative;
 }
 
+.matchday-spotlight::after {
+  content: "⚽️";
+  position: absolute;
+  left: -40px;
+  bottom: 22px;
+  font-size: 1.8rem;
+  line-height: 1;
+  opacity: 0.82;
+  filter: drop-shadow(0 8px 14px rgba(7, 34, 58, 0.28));
+  animation: matchday-ball-run 8.5s linear infinite;
+  pointer-events: none;
+}
+
 .matchday-copy {
   position: relative;
   z-index: 1;
@@ -654,6 +667,28 @@ h3 {
 .matchday-route-button {
   min-width: 150px;
   justify-content: center;
+}
+
+@keyframes matchday-ball-run {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+
+  20% {
+    transform: translateX(120px) translateY(-6px) rotate(90deg);
+  }
+
+  45% {
+    transform: translateX(260px) translateY(2px) rotate(210deg);
+  }
+
+  70% {
+    transform: translateX(420px) translateY(-4px) rotate(320deg);
+  }
+
+  100% {
+    transform: translateX(620px) translateY(0) rotate(480deg);
+  }
 }
 
 .countdown-grid {
