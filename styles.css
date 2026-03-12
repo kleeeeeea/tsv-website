@@ -468,9 +468,9 @@ h3 {
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
+  height: 6px;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--primary) 0%, rgba(17, 130, 198, 0.16) 100%);
+  background: var(--primary);
 }
 
 .stat strong {
