@@ -623,25 +623,69 @@ h3 {
   margin: 0;
 }
 
-.social-icon {
-  width: 64px;
-  height: 64px;
-  display: grid;
-  place-items: center;
+.social-preview {
   border-radius: 18px;
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1;
+  overflow: hidden;
+  border: 1px solid rgba(17, 130, 198, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
-.social-icon-instagram {
-  color: #fff;
-  background: linear-gradient(135deg, #833ab4, #fd1d1d 55%, #fcb045);
+.social-preview-instagram {
+  background: linear-gradient(135deg, #833ab4 0%, #e1306c 48%, #fcb045 100%);
 }
 
-.social-icon-facebook {
+.social-preview-facebook {
+  background: linear-gradient(180deg, #1d4fa3 0%, #1877f2 100%);
+}
+
+.social-preview-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
   color: #fff;
-  background: #1877f2;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.social-preview-body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 160px;
+  padding: 22px 18px 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+}
+
+.social-preview-body img {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  padding: 8px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14px 26px rgba(10, 22, 41, 0.16);
+}
+
+.social-preview-copy {
+  display: grid;
+  gap: 8px;
+  color: #fff;
+}
+
+.social-preview-copy strong,
+.social-preview-copy span {
+  display: block;
+}
+
+.social-preview-copy strong {
+  font-size: 1.05rem;
+}
+
+.social-preview-copy span {
+  line-height: 1.5;
+  opacity: 0.95;
 }
 
 .list {
