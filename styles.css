@@ -380,16 +380,6 @@ h3 {
   overflow: hidden;
 }
 
-.hero-side::after {
-  content: "";
-  position: absolute;
-  inset: auto -60px -70px auto;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-}
-
 .hero-logo {
   width: min(220px, 52%);
   height: auto;
@@ -410,6 +400,7 @@ h3 {
 .hero-badge {
   width: fit-content;
   padding: 8px 12px;
+  margin-bottom: 18px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.18);
   font-weight: 700;
