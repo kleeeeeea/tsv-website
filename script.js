@@ -211,8 +211,8 @@ if (countdownRoot) {
 
     if (spotlightFixtureNode) {
       spotlightFixtureNode.textContent = event.isHome
-        ? `TSV Hainsfarth empfaengt ${event.opponent}.`
-        : `TSV Hainsfarth reist zu ${event.opponent}.`;
+        ? `TSV Hainsfarth vs. ${event.opponent}`
+        : `${event.opponent} vs. TSV Hainsfarth`;
     }
 
     if (spotlightRouteNode) {
