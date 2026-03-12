@@ -766,6 +766,72 @@ h3 {
   text-align: center;
 }
 
+.match-weather {
+  grid-column: 1 / -1;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(17, 130, 198, 0.08), rgba(17, 130, 198, 0.03));
+  border: 1px solid rgba(17, 130, 198, 0.12);
+}
+
+.match-weather-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.match-weather-head .countdown-label {
+  margin-bottom: 0;
+}
+
+.match-weather-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(17, 130, 198, 0.12);
+  color: var(--primary-dark);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.match-weather-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+}
+
+.match-weather-main {
+  display: grid;
+  gap: 4px;
+}
+
+.match-weather-main strong {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1;
+  color: var(--primary-dark);
+  letter-spacing: -0.03em;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.match-weather-main span,
+.match-weather-meta span {
+  color: var(--muted);
+}
+
+.match-weather-meta {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+  text-align: right;
+  font-weight: 700;
+}
+
 @keyframes matchday-orbit {
   from {
     transform: rotate(0deg);
@@ -1078,7 +1144,8 @@ h3 {
   }
 
   .countdown-grid,
-  .countdown-timer {
+  .countdown-timer,
+  .match-weather-grid {
     grid-template-columns: 1fr;
   }
 

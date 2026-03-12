@@ -61,6 +61,12 @@ if (countdownRoot) {
   const spotlightOpponentNode = spotlightRoot?.querySelector("[data-matchday-opponent]");
   const spotlightFixtureNode = spotlightRoot?.querySelector("[data-matchday-fixture]");
   const spotlightStatusNode = spotlightRoot?.querySelector("[data-matchday-status]");
+  const weatherRoot = countdownRoot.querySelector("[data-match-weather]");
+  const weatherTempNode = weatherRoot?.querySelector("[data-weather-temp]");
+  const weatherLabelNode = weatherRoot?.querySelector("[data-weather-label]");
+  const weatherRainNode = weatherRoot?.querySelector("[data-weather-rain]");
+  const weatherWindNode = weatherRoot?.querySelector("[data-weather-wind]");
+  const weatherTimeNode = weatherRoot?.querySelector("[data-weather-time]");
 
   const formatDate = (date) =>
     new Intl.DateTimeFormat("de-DE", {
@@ -104,6 +110,35 @@ if (countdownRoot) {
       opponent: opponent.trim() || clubName,
       isHome,
     };
+  };
+
+  const weatherCodeMap = {
+    0: "Klar",
+    1: "Meist klar",
+    2: "Leicht bewoelkt",
+    3: "Bedeckt",
+    45: "Neblig",
+    48: "Raureif",
+    51: "Leichter Niesel",
+    53: "Niesel",
+    55: "Starker Niesel",
+    61: "Leichter Regen",
+    63: "Regen",
+    65: "Starker Regen",
+    66: "Leichter Eisregen",
+    67: "Eisregen",
+    71: "Leichter Schnee",
+    73: "Schnee",
+    75: "Starker Schnee",
+    77: "Schneekoerner",
+    80: "Regenschauer",
+    81: "Schauer",
+    82: "Starke Schauer",
+    85: "Schneeschauer",
+    86: "Starke Schneeschauer",
+    95: "Gewitter",
+    96: "Gewitter mit Hagel",
+    99: "Starkes Gewitter",
   };
 
   const parseEvents = (icsText) => {
@@ -224,6 +259,139 @@ if (countdownRoot) {
     if (spotlightStatusNode) {
       spotlightStatusNode.textContent = "Bald";
     }
+
+    if (weatherTempNode) {
+      weatherTempNode.textContent = "--°";
+    }
+
+    if (weatherLabelNode) {
+      weatherLabelNode.textContent = "Wetter nicht verfuegbar";
+    }
+
+    if (weatherRainNode) {
+      weatherRainNode.textContent = "Regenrisiko: --";
+    }
+
+    if (weatherWindNode) {
+      weatherWindNode.textContent = "Wind: --";
+    }
+  };
+
+  const renderWeatherFallback = () => {
+    if (weatherTempNode) {
+      weatherTempNode.textContent = "--°";
+    }
+
+    if (weatherLabelNode) {
+      weatherLabelNode.textContent = "Wetter folgt";
+    }
+
+    if (weatherRainNode) {
+      weatherRainNode.textContent = "Regenrisiko: --";
+    }
+
+    if (weatherWindNode) {
+      weatherWindNode.textContent = "Wind: --";
+    }
+  };
+
+  const renderWeather = (hourlyPoint, eventDate) => {
+    if (weatherTempNode) {
+      weatherTempNode.textContent = `${Math.round(hourlyPoint.temperature_2m)}°`;
+    }
+
+    if (weatherLabelNode) {
+      weatherLabelNode.textContent = weatherCodeMap[hourlyPoint.weather_code] || "Spielwetter";
+    }
+
+    if (weatherRainNode) {
+      weatherRainNode.textContent = `Regenrisiko: ${Math.round(hourlyPoint.precipitation_probability ?? 0)}%`;
+    }
+
+    if (weatherWindNode) {
+      weatherWindNode.textContent = `Wind: ${Math.round(hourlyPoint.wind_speed_10m ?? 0)} km/h`;
+    }
+
+    if (weatherTimeNode) {
+      weatherTimeNode.textContent = new Intl.DateTimeFormat("de-DE", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(eventDate);
+    }
+  };
+
+  const fetchMatchWeather = (event) => {
+    if (!weatherRoot) {
+      return;
+    }
+
+    const geoQuery = encodeURIComponent(event.location || event.opponent || "Hainsfarth");
+
+    fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${geoQuery}&count=1&language=de&format=json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Geocoding unavailable");
+        }
+
+        return response.json();
+      })
+      .then((geoData) => {
+        const place = geoData?.results?.[0];
+
+        if (!place) {
+          throw new Error("Location not found");
+        }
+
+        const forecastUrl = new URL("https://api.open-meteo.com/v1/forecast");
+        forecastUrl.searchParams.set("latitude", place.latitude);
+        forecastUrl.searchParams.set("longitude", place.longitude);
+        forecastUrl.searchParams.set("hourly", "temperature_2m,precipitation_probability,weather_code,wind_speed_10m");
+        forecastUrl.searchParams.set("timezone", "auto");
+        forecastUrl.searchParams.set("forecast_days", "16");
+
+        return fetch(forecastUrl)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Forecast unavailable");
+            }
+
+            return response.json();
+          })
+          .then((forecastData) => {
+            const hourly = forecastData?.hourly;
+
+            if (!hourly?.time?.length) {
+              throw new Error("Hourly forecast missing");
+            }
+
+            const targetTime = event.start.getTime();
+            let bestIndex = 0;
+            let bestDiff = Number.POSITIVE_INFINITY;
+
+            hourly.time.forEach((timeValue, index) => {
+              const candidateTime = new Date(timeValue).getTime();
+              const diff = Math.abs(candidateTime - targetTime);
+
+              if (diff < bestDiff) {
+                bestDiff = diff;
+                bestIndex = index;
+              }
+            });
+
+            renderWeather(
+              {
+                temperature_2m: hourly.temperature_2m?.[bestIndex],
+                precipitation_probability: hourly.precipitation_probability?.[bestIndex],
+                weather_code: hourly.weather_code?.[bestIndex],
+                wind_speed_10m: hourly.wind_speed_10m?.[bestIndex],
+              },
+              event.start
+            );
+          });
+      })
+      .catch(() => {
+        renderWeatherFallback();
+      });
   };
 
   const startCountdown = (targetDate) => {
@@ -279,6 +447,7 @@ if (countdownRoot) {
         dateNode.textContent = formatDate(nextEvent.start);
         locationNode.textContent = nextEvent.location;
         renderSpotlight(nextEvent);
+        fetchMatchWeather(nextEvent);
         startCountdown(nextEvent.start);
       })
       .catch(() => {
