@@ -115,7 +115,7 @@ if (countdownRoot) {
     const normalizedLocation = (location || "").replace(/\s+/g, " ").trim();
 
     if (!normalizedLocation) {
-      return "Hainsfarth";
+      return "86744 Hainsfarth, Deutschland";
     }
 
     const parts = normalizedLocation
@@ -124,17 +124,17 @@ if (countdownRoot) {
       .filter(Boolean);
 
     if (parts.length >= 3) {
-      const streetPart = parts.find((part) => /\d/.test(part) && !/\b\d{5}\b/.test(part));
+      const streetPart = parts.find((part) => /(?:str\.|straße|weg|gasse|platz|ring|allee|ufer)\b/i.test(part) || (/\d/.test(part) && !/\b\d{5}\b/.test(part)));
       const postalCityPart = parts.find((part) => /\b\d{5}\b/.test(part));
 
       if (streetPart && postalCityPart) {
-        return `${streetPart}, ${postalCityPart}`;
+        return `${streetPart}, ${postalCityPart}, Deutschland`;
       }
 
-      return parts.slice(-2).join(", ");
+      return `${parts.slice(-2).join(", ")}, Deutschland`;
     }
 
-    return normalizedLocation;
+    return `${normalizedLocation}, Deutschland`;
   };
 
   const weatherCodeMap = {
@@ -217,7 +217,7 @@ if (countdownRoot) {
 
     if (spotlightRouteNode) {
       const routeQuery = encodeURIComponent(getRouteAddress(event.location));
-      spotlightRouteNode.href = `https://www.google.com/maps/search/?api=1&query=${routeQuery}`;
+      spotlightRouteNode.href = `https://www.google.com/maps/dir/?api=1&destination=${routeQuery}`;
     }
   };
 
@@ -251,7 +251,7 @@ if (countdownRoot) {
     }
 
     if (spotlightRouteNode) {
-      spotlightRouteNode.href = "https://www.google.com/maps/search/?api=1&query=Hainsfarth";
+      spotlightRouteNode.href = "https://www.google.com/maps/dir/?api=1&destination=86744%20Hainsfarth%2C%20Deutschland";
     }
 
     if (weatherTempNode) {
