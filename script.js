@@ -59,12 +59,17 @@ if (countdownRoot) {
   const spotlightCompetitionNode = spotlightRoot?.querySelector("[data-matchday-competition]");
   const spotlightOpponentNode = spotlightRoot?.querySelector("[data-matchday-opponent]");
   const spotlightRouteNode = spotlightRoot?.querySelector("[data-matchday-route]");
+  const matchResultRoot = spotlightRoot?.querySelector("[data-match-result]");
+  const matchResultLabelNode = spotlightRoot?.querySelector("[data-match-result-label]");
+  const matchResultTextNode = spotlightRoot?.querySelector("[data-match-result-text]");
+  const matchResultNoteNode = spotlightRoot?.querySelector("[data-match-result-note]");
   const weatherRoot = countdownRoot.querySelector("[data-match-weather]");
   const weatherTempNode = weatherRoot?.querySelector("[data-weather-temp]");
   const weatherLabelNode = weatherRoot?.querySelector("[data-weather-label]");
   const weatherRainNode = weatherRoot?.querySelector("[data-weather-rain]");
   const weatherWindNode = weatherRoot?.querySelector("[data-weather-wind]");
   const weatherTimeNode = weatherRoot?.querySelector("[data-weather-time]");
+  const activeMatchWindowMs = 4 * 60 * 60 * 1000;
 
   const formatDate = (date) =>
     new Intl.DateTimeFormat("de-DE", {
@@ -181,6 +186,7 @@ if (countdownRoot) {
           start: parseIcsDate(getField("DTSTART")),
           summary: getField("SUMMARY").replace(/\\,/g, ","),
           location: getField("LOCATION").replace(/\\,/g, ","),
+          uid: getField("UID"),
         };
       })
       .map((event) => ({
@@ -189,6 +195,20 @@ if (countdownRoot) {
       }))
       .filter((event) => event.start instanceof Date && !Number.isNaN(event.start.getTime()))
       .sort((a, b) => a.start - b.start);
+  };
+
+  const getCurrentOrNextEvent = (events) => {
+    const now = Date.now();
+    const currentEvent = events.find((event) => {
+      const startTime = event.start.getTime();
+      return now >= startTime && now <= startTime + activeMatchWindowMs;
+    });
+
+    if (currentEvent) {
+      return currentEvent;
+    }
+
+    return events.find((event) => event.start.getTime() > now) || null;
   };
 
   const buildFixtureText = (event) =>
@@ -221,6 +241,76 @@ if (countdownRoot) {
     }
   };
 
+  const hideMatchResult = () => {
+    if (!matchResultRoot) {
+      return;
+    }
+
+    matchResultRoot.hidden = true;
+    matchResultRoot.classList.remove("is-live");
+
+    if (matchResultLabelNode) {
+      matchResultLabelNode.textContent = "Live-Ergebnis";
+    }
+
+    if (matchResultTextNode) {
+      matchResultTextNode.textContent = "--:--";
+      matchResultTextNode.style.fontFamily = "";
+    }
+
+    if (matchResultNoteNode) {
+      matchResultNoteNode.textContent = "BFV";
+    }
+  };
+
+  const ensureBfvFont = (fontId) => {
+    if (!fontId) {
+      return null;
+    }
+
+    const fontName = `bfv-obfuscated-${fontId}`;
+    const styleId = `bfv-font-${fontId}`;
+
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.textContent = `
+        @font-face {
+          font-family: "${fontName}";
+          src: url("https://app.bfv.de/export.fontface/-/format/woff/id/${fontId}/type/font") format("woff");
+          font-display: swap;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    return fontName;
+  };
+
+  const renderMatchResult = (resultData) => {
+    if (!matchResultRoot || !matchResultTextNode || !resultData?.available || !resultData?.text) {
+      hideMatchResult();
+      return;
+    }
+
+    matchResultRoot.hidden = false;
+    matchResultRoot.classList.toggle("is-live", Boolean(resultData.live));
+
+    if (matchResultLabelNode) {
+      matchResultLabelNode.textContent = resultData.label || "BFV-Ergebnis";
+    }
+
+    if (matchResultTextNode) {
+      matchResultTextNode.textContent = resultData.text;
+      const fontName = ensureBfvFont(resultData.fontId);
+      matchResultTextNode.style.fontFamily = fontName ? `"${fontName}"` : "";
+    }
+
+    if (matchResultNoteNode) {
+      matchResultNoteNode.textContent = resultData.note || "BFV";
+    }
+  };
+
   const renderFallback = () => {
     if (dateNode) {
       dateNode.textContent = "Kalender nicht verfuegbar";
@@ -249,6 +339,8 @@ if (countdownRoot) {
     if (spotlightRouteNode) {
       spotlightRouteNode.href = "https://www.google.com/maps/dir/?api=1&destination=86744%20Hainsfarth%2C%20Deutschland";
     }
+
+    hideMatchResult();
 
     if (weatherTempNode) {
       weatherTempNode.textContent = "--°";
@@ -282,6 +374,33 @@ if (countdownRoot) {
 
     if (weatherWindNode) {
       weatherWindNode.textContent = "Wind: --";
+    }
+  };
+
+  const fetchMatchResult = async (event) => {
+    if (!event?.uid) {
+      hideMatchResult();
+      return;
+    }
+
+    try {
+      const response = await fetch(`matchday-live.json?t=${Date.now()}`, { cache: "no-store" });
+
+      if (!response.ok) {
+        throw new Error("Match result unavailable");
+      }
+
+      const data = await response.json();
+      const liveMatch = data?.match;
+
+      if (!liveMatch || liveMatch.uid !== event.uid) {
+        hideMatchResult();
+        return;
+      }
+
+      renderMatchResult(liveMatch.result);
+    } catch {
+      hideMatchResult();
     }
   };
 
@@ -465,7 +584,7 @@ if (countdownRoot) {
   };
 
   if (countdownSrc && dateNode && locationNode && timerNode) {
-    fetch(countdownSrc)
+    fetch(`${countdownSrc}?t=${Date.now()}`, { cache: "no-store" })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Countdown source unavailable");
@@ -474,7 +593,7 @@ if (countdownRoot) {
         return response.text();
       })
       .then((icsText) => {
-        const nextEvent = parseEvents(icsText).find((event) => event.start.getTime() > Date.now());
+        const nextEvent = getCurrentOrNextEvent(parseEvents(icsText));
 
         if (!nextEvent) {
           renderFallback();
@@ -484,6 +603,7 @@ if (countdownRoot) {
         dateNode.textContent = formatDate(nextEvent.start);
         locationNode.textContent = nextEvent.location;
         renderSpotlight(nextEvent);
+        void fetchMatchResult(nextEvent);
         void fetchMatchWeather(nextEvent);
         startCountdown(nextEvent.start);
       })

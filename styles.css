@@ -649,6 +649,43 @@ h3 {
   font-family: Georgia, "Times New Roman", serif;
 }
 
+.matchday-live {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 14px;
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(7, 34, 58, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.matchday-live[hidden] {
+  display: none;
+}
+
+.matchday-live-label,
+.matchday-live-note {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.matchday-live-score {
+  color: #fff;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.matchday-live.is-live .matchday-live-label {
+  color: #d8f0ff;
+}
+
 .matchday-fixture {
   margin: 8px 0 0;
   max-width: 28ch;

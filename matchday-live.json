@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-03-12T00:00:00.000Z",
+  "match": {
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P60C000000VS5489BTVTHCTAHT",
+    "competition": "Meisterschaften",
+    "fixtureText": "TSV 1895 Monheim vs. TSV Hainsfarth",
+    "isHome": false,
+    "league": "KL Nord",
+    "location": "Hauptplatz TSV 1895 Monheim,Kölburger Str. 35,86653 Monheim",
+    "opponent": "TSV 1895 Monheim",
+    "result": {
+      "available": false,
+      "fontId": "",
+      "label": "BFV-Ergebnis",
+      "live": false,
+      "note": "BFV",
+      "specialResult": false,
+      "status": "scheduled",
+      "text": ""
+    },
+    "start": "2026-03-15T14:00:00.000Z",
+    "uid": "02TUN9P60C000000VS5489BTVTHCTAHT"
+  }
+}

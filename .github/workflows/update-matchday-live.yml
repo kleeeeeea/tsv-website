@@ -1,0 +1,38 @@
+name: Update Matchday Live
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-matchday-live:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update local BFV match snapshot
+        run: node scripts/update-matchday-live.mjs
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- matchday-live.json; then
+            echo "No matchday changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add matchday-live.json
+          git commit -m "chore: update matchday live data"
+          git push
