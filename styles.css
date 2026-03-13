@@ -600,7 +600,7 @@ h3 {
   content: "⚽️";
   position: absolute;
   left: -40px;
-  bottom: 26px;
+  bottom: 14px;
   z-index: 2;
   font-size: 2.1rem;
   line-height: 1;
@@ -711,15 +711,15 @@ h3 {
   }
 
   20% {
-    transform: translateX(120px) translateY(-1px) rotate(90deg);
+    transform: translateX(120px) translateY(2px) rotate(90deg);
   }
 
   45% {
-    transform: translateX(260px) translateY(11px) rotate(210deg);
+    transform: translateX(260px) translateY(15px) rotate(210deg);
   }
 
   70% {
-    transform: translateX(420px) translateY(2px) rotate(320deg);
+    transform: translateX(420px) translateY(6px) rotate(320deg);
   }
 
   100% {
