@@ -717,11 +717,16 @@ if (penaltyGameRoot) {
 
     const fieldRect = fieldNode.getBoundingClientRect();
     const goalRect = goalNode.getBoundingClientRect();
+    const ballRect = ballNode.getBoundingClientRect();
+    const ballStartX = ballRect.left - fieldRect.left + ballRect.width / 2;
+    const ballStartY = ballRect.top - fieldRect.top + ballRect.height / 2;
     const targetX = goalRect.left - fieldRect.left + (goalRect.width * selectedTarget.xPercent) / 100;
-    const targetY = fieldRect.bottom - (goalRect.top - fieldRect.top + (goalRect.height * selectedTarget.yPercent) / 100);
+    const targetY = goalRect.top - fieldRect.top + (goalRect.height * selectedTarget.yPercent) / 100;
+    const deltaX = targetX - ballStartX;
+    const deltaY = targetY - ballStartY;
 
-    ballNode.style.setProperty("--shot-x", `${targetX}px`);
-    ballNode.style.setProperty("--shot-y", `${targetY}px`);
+    ballNode.style.setProperty("--shot-x", `${deltaX}px`);
+    ballNode.style.setProperty("--shot-y", `${deltaY}px`);
     ballNode.classList.add("is-shot");
 
     const sideBucket = selectedTarget.xPercent < 38 ? "is-left" : selectedTarget.xPercent > 62 ? "is-right" : "";

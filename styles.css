@@ -900,25 +900,18 @@ h3 {
   z-index: 4;
   font-size: 2.9rem;
   line-height: 1;
-  transform: translate(-50%, 0) scale(1);
+  transform: translate(-50%, 0) translate(0, 0) scale(1);
   transform-origin: center;
 }
 
 .penalty-ball.is-shot {
   transition:
-    left 650ms cubic-bezier(0.2, 0.86, 0.24, 1),
-    bottom 650ms cubic-bezier(0.2, 0.86, 0.24, 1),
     transform 650ms cubic-bezier(0.2, 0.86, 0.24, 1);
-  left: var(--shot-x, 50%);
-  bottom: var(--shot-y, 300px);
-  transform: translate(-50%, 0) scale(0.56) rotate(540deg);
+  transform: translate(-50%, 0) translate(var(--shot-x, 0), var(--shot-y, 0)) scale(0.56) rotate(540deg);
 }
 
 .penalty-ball.is-resetting {
-  transition:
-    left 260ms ease,
-    bottom 260ms ease,
-    transform 260ms ease;
+  transition: transform 260ms ease;
 }
 
 .penalty-spot {
