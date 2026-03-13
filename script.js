@@ -69,11 +69,6 @@ if (countdownRoot) {
   const weatherRainNode = weatherRoot?.querySelector("[data-weather-rain]");
   const weatherWindNode = weatherRoot?.querySelector("[data-weather-wind]");
   const weatherTimeNode = weatherRoot?.querySelector("[data-weather-time]");
-  const aiRoot = countdownRoot.querySelector("[data-match-ai]");
-  const aiScoreNode = aiRoot?.querySelector("[data-ai-score]");
-  const aiOutlookNode = aiRoot?.querySelector("[data-ai-outlook]");
-  const aiConfidenceNode = aiRoot?.querySelector("[data-ai-confidence]");
-  const aiNoteNode = aiRoot?.querySelector("[data-ai-note]");
   const activeMatchWindowMs = 4 * 60 * 60 * 1000;
 
   const formatDate = (date) =>
@@ -240,65 +235,6 @@ if (countdownRoot) {
       ? `TSV Hainsfarth vs. ${event.opponent}`
       : `${event.opponent} vs. TSV Hainsfarth`;
 
-  const renderAiPrediction = (event, weatherPoint = null) => {
-    if (!aiRoot || !aiScoreNode || !aiOutlookNode || !aiConfidenceNode || !aiNoteNode) {
-      return;
-    }
-
-    let hainsfarthStrength = event.isHome ? 1.2 : 0.95;
-    let opponentStrength = event.isHome ? 0.95 : 1.15;
-    const notes = [];
-
-    if (event.isHome) {
-      notes.push("Heimvorteil für den TSV");
-    } else {
-      notes.push("Auswärtsspiel macht die Aufgabe enger");
-    }
-
-    if (/meisterschaften/i.test(event.competition)) {
-      hainsfarthStrength += 0.1;
-      opponentStrength += 0.1;
-      notes.push("Pflichtspiel mit offenem Verlauf");
-    }
-
-    if (weatherPoint) {
-      const rain = Number(weatherPoint.precipitation_probability ?? 0);
-      const wind = Number(weatherPoint.wind_speed_10m ?? 0);
-
-      if (rain >= 50) {
-        hainsfarthStrength -= 0.05;
-        opponentStrength -= 0.05;
-        notes.push("Nasses Wetter spricht eher für ein enges Spiel");
-      }
-
-      if (wind >= 20) {
-        hainsfarthStrength -= 0.05;
-        opponentStrength -= 0.05;
-        notes.push("Wind kann den Spielfluss brechen");
-      }
-    }
-
-    const hainsfarthGoals = Math.max(0, Math.min(4, Math.round(hainsfarthStrength + (weatherPoint ? 0 : 0.1))));
-    const opponentGoals = Math.max(0, Math.min(4, Math.round(opponentStrength)));
-    const goalDiff = hainsfarthGoals - opponentGoals;
-    const confidenceBase = Math.max(Math.abs(goalDiff), 1);
-    const confidence = Math.min(82, 52 + confidenceBase * 9 + (event.isHome ? 4 : 0));
-
-    let outlook = "Ausgeglichenes Spiel";
-    if (goalDiff > 0) {
-      outlook = "Leichter Vorteil TSV";
-    } else if (goalDiff < 0) {
-      outlook = "Schwere Auswärtsaufgabe";
-    }
-
-    aiScoreNode.textContent = event.isHome
-      ? `${hainsfarthGoals}:${opponentGoals}`
-      : `${opponentGoals}:${hainsfarthGoals}`;
-    aiOutlookNode.textContent = outlook;
-    aiConfidenceNode.textContent = `Wahrscheinlichkeit: ${confidence}%`;
-    aiNoteNode.textContent = notes[0] || "Datenbasierte Tendenz";
-  };
-
   const renderSpotlight = (event) => {
     if (!spotlightRoot) {
       return;
@@ -441,12 +377,6 @@ if (countdownRoot) {
     if (weatherWindNode) {
       weatherWindNode.textContent = "Wind: --";
     }
-
-    renderAiPrediction({
-      isHome: true,
-      competition: "",
-      opponent: "Gegner",
-    });
   };
 
   const renderWeatherFallback = () => {
@@ -465,12 +395,6 @@ if (countdownRoot) {
     if (weatherWindNode) {
       weatherWindNode.textContent = "Wind: --";
     }
-
-    renderAiPrediction({
-      isHome: true,
-      competition: "",
-      opponent: "Gegner",
-    });
   };
 
   const fetchMatchResult = async (event) => {
@@ -649,18 +573,8 @@ if (countdownRoot) {
         },
         event.start
       );
-      renderAiPrediction(
-        event,
-        {
-          temperature_2m: hourly.temperature_2m?.[bestIndex],
-          precipitation_probability: hourly.precipitation_probability?.[bestIndex],
-          weather_code: hourly.weather_code?.[bestIndex],
-          wind_speed_10m: hourly.wind_speed_10m?.[bestIndex],
-        }
-      );
     } catch {
       renderWeatherFallback();
-      renderAiPrediction(event);
     }
   };
 
@@ -709,7 +623,6 @@ if (countdownRoot) {
         dateNode.textContent = formatDate(nextEvent.start);
         locationNode.textContent = nextEvent.location;
         renderSpotlight(nextEvent);
-        renderAiPrediction(nextEvent);
         void fetchMatchResult(nextEvent);
         void fetchMatchWeather(nextEvent);
         startCountdown(nextEvent.start);
