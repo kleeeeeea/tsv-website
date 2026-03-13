@@ -128,11 +128,15 @@ if (countdownRoot) {
       .filter(Boolean);
 
     if (parts.length >= 3) {
-      const streetPart = parts.find((part) => /(?:str\.|straße|weg|gasse|platz|ring|allee|ufer)\b/i.test(part) || (/\d/.test(part) && !/\b\d{5}\b/.test(part)));
+      const streetPart = parts.find((part) => /(?:str\.|straße|weg|gasse|platz|ring|allee|ufer)\b/i.test(part));
       const postalCityPart = parts.find((part) => /\b\d{5}\b/.test(part));
 
       if (streetPart && postalCityPart) {
         return `${streetPart}, ${postalCityPart}, Deutschland`;
+      }
+
+      if (parts[1] && postalCityPart) {
+        return `${parts[1]}, ${postalCityPart}, Deutschland`;
       }
 
       return `${parts.slice(-2).join(", ")}, Deutschland`;
