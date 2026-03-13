@@ -74,6 +74,7 @@ if (countdownRoot) {
   const aiOutlookNode = aiRoot?.querySelector("[data-ai-outlook]");
   const aiConfidenceNode = aiRoot?.querySelector("[data-ai-confidence]");
   const aiNoteNode = aiRoot?.querySelector("[data-ai-note]");
+  let matchHistory = null;
   const activeMatchWindowMs = 4 * 60 * 60 * 1000;
 
   const formatDate = (date) =>
@@ -245,20 +246,40 @@ if (countdownRoot) {
       return;
     }
 
-    let hainsfarthStrength = event.isHome ? 1.2 : 0.95;
-    let opponentStrength = event.isHome ? 0.95 : 1.15;
+    let hainsfarthStrength = event.isHome ? 1.15 : 0.95;
+    let opponentStrength = event.isHome ? 0.95 : 1.1;
     const notes = [];
+    let confidence = 54;
 
-    if (event.isHome) {
-      notes.push("Heimvorteil für den TSV");
+    if (matchHistory?.entries?.length) {
+      const formCount = matchHistory.entries.length;
+      const balance = matchHistory.goalsFor - matchHistory.goalsAgainst;
+
+      hainsfarthStrength += Math.max(-0.25, Math.min(0.35, (matchHistory.points - formCount) * 0.08));
+      opponentStrength -= Math.max(-0.18, Math.min(0.18, balance * 0.04));
+      confidence += Math.min(20, formCount * 3);
+
+      aiConfidenceNode.textContent = `${matchHistory.points} Punkte aus den letzten ${formCount} Spielen`;
+      notes.push(
+        `${matchHistory.wins}S ${matchHistory.draws}U ${matchHistory.losses}N bei ${matchHistory.goalsFor}:${matchHistory.goalsAgainst} Toren`
+      );
+
+      if (matchHistory.sameVenueMatches) {
+        const venueWord = event.isHome ? "Heim" : "Auswärts";
+        notes.push(
+          `${venueWord} zuletzt ${matchHistory.sameVenuePoints} Punkte aus ${matchHistory.sameVenueMatches} Spielen`
+        );
+        hainsfarthStrength += Math.max(-0.18, Math.min(0.18, (matchHistory.sameVenuePoints - matchHistory.sameVenueMatches) * 0.08));
+      } else {
+        notes.push(event.isHome ? "Heimvorteil auf eigener Anlage" : "Auswärts muss der TSV stabil stehen");
+      }
+
+      if (matchHistory.recentThreeMatches) {
+        notes.push(`${matchHistory.recentThreeGoals} TSV-Tore in den letzten ${matchHistory.recentThreeMatches} Partien`);
+      }
     } else {
-      notes.push("Auswärtsspiel macht die Aufgabe enger");
-    }
-
-    if (/meisterschaften/i.test(event.competition)) {
-      hainsfarthStrength += 0.1;
-      opponentStrength += 0.1;
-      notes.push("Pflichtspiel mit offenem Verlauf");
+      aiConfidenceNode.textContent = "Noch wenig Verlaufsdaten verfügbar";
+      notes.push(event.isHome ? "Heimvorteil auf eigener Anlage" : "Auswärts wartet eine engere Aufgabe");
     }
 
     if (weatherPoint) {
@@ -278,25 +299,24 @@ if (countdownRoot) {
       }
     }
 
-    const hainsfarthGoals = Math.max(0, Math.min(4, Math.round(hainsfarthStrength + (weatherPoint ? 0 : 0.1))));
+    const hainsfarthGoals = Math.max(0, Math.min(4, Math.round(hainsfarthStrength)));
     const opponentGoals = Math.max(0, Math.min(4, Math.round(opponentStrength)));
     const goalDiff = hainsfarthGoals - opponentGoals;
-    const confidenceBase = Math.max(Math.abs(goalDiff), 1);
-    const confidence = Math.min(82, 52 + confidenceBase * 9 + (event.isHome ? 4 : 0));
+    confidence += Math.max(0, Math.abs(goalDiff) * 5);
+    confidence = Math.min(84, confidence);
 
     let outlook = "Ausgeglichenes Spiel";
     if (goalDiff > 0) {
-      outlook = "Leichter Vorteil TSV";
+      outlook = "Form spricht leicht für den TSV";
     } else if (goalDiff < 0) {
-      outlook = "Schwere Auswärtsaufgabe";
+      outlook = "Formkurve spricht für ein enges Spiel";
     }
 
     aiScoreNode.textContent = event.isHome
       ? `${hainsfarthGoals}:${opponentGoals}`
       : `${opponentGoals}:${hainsfarthGoals}`;
     aiOutlookNode.textContent = outlook;
-    aiConfidenceNode.textContent = `Wahrscheinlichkeit: ${confidence}%`;
-    aiNoteNode.textContent = notes[0] || "Datenbasierte Tendenz";
+    aiNoteNode.textContent = notes.slice(0, 2).join(" • ") || `Wahrscheinlichkeit: ${confidence}%`;
   };
 
   const renderSpotlight = (event) => {
@@ -490,12 +510,16 @@ if (countdownRoot) {
       const liveMatch = data?.match;
 
       if (!liveMatch || liveMatch.uid !== event.uid) {
+        matchHistory = null;
         showPendingMatchResult();
         return;
       }
 
+      matchHistory = liveMatch.history || null;
       renderMatchResult(liveMatch.result);
+      renderAiPrediction(event);
     } catch {
+      matchHistory = null;
       showPendingMatchResult();
     }
   };
