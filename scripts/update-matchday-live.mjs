@@ -6,7 +6,6 @@ const CLUB_NAME = "TSV Hainsfarth";
 const BFV_MATCH_BASE = "https://www.bfv.de/ergebnisse/spiel/-/";
 const ACTIVE_MATCH_WINDOW_MS = 4 * 60 * 60 * 1000;
 const HISTORY_LIMIT = 5;
-const BFV_TEAM_URL = "https://www.bfv.de/mannschaften/tsv-hainsfarth/016PHCS5TO000000VV0AG80NVUT1FLRU";
 
 const parseIcsDate = (rawValue) => {
   const match = rawValue.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z?$/);
@@ -209,30 +208,6 @@ const summarizeHistory = (entries, nextEvent) => {
   };
 };
 
-const extractSeasonSummary = (html) => {
-  const description = extractValue(html, /<meta name="description" content="([^"]+)"/);
-
-  if (!description) {
-    return null;
-  }
-
-  const positionMatch = description.match(/Platz\s+(\d+)/i);
-  const goalsMatch = description.match(/Torverhältnis von\s+(\d+):(\d+)/i);
-  const leagueMatch = description.match(/in der Liga\s+(.+?)\s+mit einem Torverhältnis/i);
-
-  if (!positionMatch && !goalsMatch) {
-    return null;
-  }
-
-  return {
-    description,
-    goalsAgainst: goalsMatch ? Number(goalsMatch[2]) : null,
-    goalsFor: goalsMatch ? Number(goalsMatch[1]) : null,
-    league: leagueMatch ? leagueMatch[1].trim() : "",
-    position: positionMatch ? Number(positionMatch[1]) : null,
-  };
-};
-
 const main = async () => {
   const icsText = await readFile(ICS_PATH, "utf8");
   const events = parseEvents(icsText);
@@ -255,7 +230,6 @@ const main = async () => {
 
   const html = await response.text();
   const result = buildResultPayload({ event: nextEvent, html });
-  let seasonSummary = null;
   const pastEvents = events.filter((event) => event.start.getTime() < nextEvent.start.getTime()).slice(-8);
   const historyEntries = [];
 
@@ -280,20 +254,6 @@ const main = async () => {
   }
 
   const historySummary = summarizeHistory(historyEntries, nextEvent);
-
-  if (!historySummary) {
-    try {
-      const teamResponse = await fetch(BFV_TEAM_URL);
-
-      if (teamResponse.ok) {
-        const teamHtml = await teamResponse.text();
-        seasonSummary = extractSeasonSummary(teamHtml);
-      }
-    } catch {
-      seasonSummary = null;
-    }
-  }
-
   const payload = {
     generatedAt: new Date().toISOString(),
     match: {
@@ -305,7 +265,6 @@ const main = async () => {
       location: nextEvent.location,
       opponent: nextEvent.opponent,
       history: historySummary,
-      seasonSummary,
       result,
       start: nextEvent.start.toISOString(),
       uid: nextEvent.uid,

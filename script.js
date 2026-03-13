@@ -75,7 +75,6 @@ if (countdownRoot) {
   const aiConfidenceNode = aiRoot?.querySelector("[data-ai-confidence]");
   const aiNoteNode = aiRoot?.querySelector("[data-ai-note]");
   let matchHistory = null;
-  let seasonSummary = null;
   const activeMatchWindowMs = 4 * 60 * 60 * 1000;
 
   const formatDate = (date) =>
@@ -277,24 +276,6 @@ if (countdownRoot) {
 
       if (matchHistory.recentThreeMatches) {
         notes.push(`${matchHistory.recentThreeGoals} TSV-Tore in den letzten ${matchHistory.recentThreeMatches} Partien`);
-      }
-    } else if (seasonSummary?.position || seasonSummary?.goalsFor !== null) {
-      if (typeof seasonSummary.position === "number") {
-        aiConfidenceNode.textContent = `BFV-Saisonstand: Platz ${seasonSummary.position}`;
-        hainsfarthStrength += Math.max(-0.12, 0.24 - seasonSummary.position * 0.02);
-        notes.push(`BFV führt den TSV aktuell auf Platz ${seasonSummary.position}`);
-      } else {
-        aiConfidenceNode.textContent = "BFV-Saisonstand verfügbar";
-      }
-
-      if (typeof seasonSummary.goalsFor === "number" && typeof seasonSummary.goalsAgainst === "number") {
-        const goalBalance = seasonSummary.goalsFor - seasonSummary.goalsAgainst;
-        hainsfarthStrength += Math.max(-0.18, Math.min(0.18, goalBalance * 0.03));
-        notes.push(`Torverhältnis laut BFV: ${seasonSummary.goalsFor}:${seasonSummary.goalsAgainst}`);
-      }
-
-      if (seasonSummary.league) {
-        notes.push(`Saisondaten aus ${seasonSummary.league}`);
       }
     } else {
       aiConfidenceNode.textContent = "Noch wenig Verlaufsdaten verfügbar";
@@ -530,18 +511,15 @@ if (countdownRoot) {
 
       if (!liveMatch || liveMatch.uid !== event.uid) {
         matchHistory = null;
-        seasonSummary = null;
         showPendingMatchResult();
         return;
       }
 
       matchHistory = liveMatch.history || null;
-      seasonSummary = liveMatch.seasonSummary || null;
       renderMatchResult(liveMatch.result);
       renderAiPrediction(event);
     } catch {
       matchHistory = null;
-      seasonSummary = null;
       showPendingMatchResult();
     }
   };
