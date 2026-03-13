@@ -241,16 +241,17 @@ if (countdownRoot) {
     }
   };
 
-  const hideMatchResult = () => {
+  const showPendingMatchResult = () => {
     if (!matchResultRoot) {
       return;
     }
 
-    matchResultRoot.hidden = true;
+    matchResultRoot.hidden = false;
     matchResultRoot.classList.remove("is-live");
+    matchResultRoot.classList.add("is-pending");
 
     if (matchResultLabelNode) {
-      matchResultLabelNode.textContent = "Live-Ergebnis";
+      matchResultLabelNode.textContent = "Ergebnis folgt ab Anpfiff";
     }
 
     if (matchResultTextNode) {
@@ -289,11 +290,12 @@ if (countdownRoot) {
 
   const renderMatchResult = (resultData) => {
     if (!matchResultRoot || !matchResultTextNode || !resultData?.available || !resultData?.text) {
-      hideMatchResult();
+      showPendingMatchResult();
       return;
     }
 
     matchResultRoot.hidden = false;
+    matchResultRoot.classList.remove("is-pending");
     matchResultRoot.classList.toggle("is-live", Boolean(resultData.live));
 
     if (matchResultLabelNode) {
@@ -340,7 +342,7 @@ if (countdownRoot) {
       spotlightRouteNode.href = "https://www.google.com/maps/dir/?api=1&destination=86744%20Hainsfarth%2C%20Deutschland";
     }
 
-    hideMatchResult();
+    showPendingMatchResult();
 
     if (weatherTempNode) {
       weatherTempNode.textContent = "--°";
@@ -379,7 +381,7 @@ if (countdownRoot) {
 
   const fetchMatchResult = async (event) => {
     if (!event?.uid) {
-      hideMatchResult();
+      showPendingMatchResult();
       return;
     }
 
@@ -394,13 +396,13 @@ if (countdownRoot) {
       const liveMatch = data?.match;
 
       if (!liveMatch || liveMatch.uid !== event.uid) {
-        hideMatchResult();
+        showPendingMatchResult();
         return;
       }
 
       renderMatchResult(liveMatch.result);
     } catch {
-      hideMatchResult();
+      showPendingMatchResult();
     }
   };
 

@@ -661,10 +661,6 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.matchday-live[hidden] {
-  display: none;
-}
-
 .matchday-live-label,
 .matchday-live-note {
   color: rgba(255, 255, 255, 0.88);
@@ -684,6 +680,10 @@ h3 {
 
 .matchday-live.is-live .matchday-live-label {
   color: #d8f0ff;
+}
+
+.matchday-live.is-pending .matchday-live-score {
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .matchday-fixture {
