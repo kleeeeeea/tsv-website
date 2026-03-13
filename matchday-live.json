@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-13T09:55:03.903Z",
+  "generatedAt": "2026-03-13T10:26:31.946Z",
   "match": {
     "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P60C000000VS5489BTVTHCTAHT",
     "competition": "Meisterschaften",
@@ -8,6 +8,7 @@
     "league": "KL Nord",
     "location": "Hauptplatz TSV 1895 Monheim,Kölburger Str. 35,86653 Monheim",
     "opponent": "TSV 1895 Monheim",
+    "history": null,
     "result": {
       "available": false,
       "fontId": "",
