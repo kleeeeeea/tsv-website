@@ -122,6 +122,15 @@ if (countdownRoot) {
       return "86744 Hainsfarth, Deutschland";
     }
 
+    const streetPostalMatch = normalizedLocation.match(
+      /((?:[A-Za-zÄÖÜäöüß.\-]+\s?)+(?:Straße|Str\.|Weg|Gasse|Platz|Ring|Allee|Ufer)\s*\d+[A-Za-z]?)[, ]+(\d{5}\s+[A-Za-zÄÖÜäöüß().\-\s]+)/i
+    );
+
+    if (streetPostalMatch) {
+      const [, street, postalCity] = streetPostalMatch;
+      return `${street.trim()}, ${postalCity.trim()}, Deutschland`;
+    }
+
     const parts = normalizedLocation
       .split(",")
       .map((part) => part.trim())
@@ -241,7 +250,7 @@ if (countdownRoot) {
 
     if (spotlightRouteNode) {
       const routeQuery = encodeURIComponent(getRouteAddress(event.location));
-      spotlightRouteNode.href = `https://www.google.com/maps/dir/?api=1&destination=${routeQuery}`;
+      spotlightRouteNode.href = `https://www.google.com/maps/search/?api=1&query=${routeQuery}`;
     }
   };
 
@@ -343,7 +352,7 @@ if (countdownRoot) {
     }
 
     if (spotlightRouteNode) {
-      spotlightRouteNode.href = "https://www.google.com/maps/dir/?api=1&destination=86744%20Hainsfarth%2C%20Deutschland";
+      spotlightRouteNode.href = "https://www.google.com/maps/search/?api=1&query=86744%20Hainsfarth%2C%20Deutschland";
     }
 
     showPendingMatchResult();
