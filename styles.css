@@ -727,6 +727,211 @@ h3 {
   }
 }
 
+.penalty-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.4fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.penalty-copy h3 {
+  margin-bottom: 12px;
+}
+
+.penalty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.penalty-status {
+  margin-top: 16px;
+  min-height: 28px;
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.penalty-field {
+  position: relative;
+  min-height: 420px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #d9ecfb 0 42%, #2ba15f 42% 100%);
+  border: 1px solid rgba(22, 37, 58, 0.08);
+}
+
+.penalty-field::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 58%;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 100% 52px, 64px 100%;
+  opacity: 0.35;
+}
+
+.penalty-goal {
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  width: min(82%, 520px);
+  height: 178px;
+  transform: translateX(-50%);
+  border: 8px solid #fff;
+  border-bottom-width: 10px;
+  border-radius: 12px 12px 0 0;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 18px 32px rgba(7, 34, 58, 0.16);
+}
+
+.penalty-net {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px);
+  background-size: 100% 20px, 28px 100%;
+  opacity: 0.85;
+}
+
+.penalty-keeper {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 84px;
+  height: 78px;
+  transform: translateX(-50%);
+  transition: transform 380ms ease;
+  z-index: 2;
+}
+
+.penalty-keeper.is-left {
+  transform: translateX(-160%);
+}
+
+.penalty-keeper.is-right {
+  transform: translateX(60%);
+}
+
+.penalty-keeper-head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffd2b3;
+  transform: translateX(-50%);
+}
+
+.penalty-keeper-body {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: 54px;
+  height: 48px;
+  border-radius: 18px 18px 8px 8px;
+  background: #f6b31f;
+  border: 3px solid #16253a;
+  transform: translateX(-50%);
+}
+
+.penalty-keeper-body::before,
+.penalty-keeper-body::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 28px;
+  height: 8px;
+  border-radius: 999px;
+  background: #16253a;
+}
+
+.penalty-keeper-body::before {
+  left: -18px;
+  transform: rotate(26deg);
+}
+
+.penalty-keeper-body::after {
+  right: -18px;
+  transform: rotate(-26deg);
+}
+
+.penalty-target {
+  position: absolute;
+  left: calc(var(--target-x, 50%) - 18px);
+  top: calc(var(--target-y, 52%) - 18px);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  background: rgba(17, 130, 198, 0.44);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.12);
+  cursor: crosshair;
+  z-index: 3;
+}
+
+.penalty-target::before,
+.penalty-target::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.penalty-target::before {
+  inset: 50% 8px auto;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.penalty-target::after {
+  inset: 8px auto 8px 50%;
+  width: 2px;
+  transform: translateX(-50%);
+}
+
+.penalty-ball {
+  position: absolute;
+  left: 50%;
+  bottom: 46px;
+  z-index: 4;
+  font-size: 2.9rem;
+  line-height: 1;
+  transform: translate(-50%, 0) scale(1);
+  transform-origin: center;
+}
+
+.penalty-ball.is-shot {
+  transition:
+    left 650ms cubic-bezier(0.2, 0.86, 0.24, 1),
+    bottom 650ms cubic-bezier(0.2, 0.86, 0.24, 1),
+    transform 650ms cubic-bezier(0.2, 0.86, 0.24, 1);
+  left: var(--shot-x, 50%);
+  bottom: var(--shot-y, 300px);
+  transform: translate(-50%, 0) scale(0.56) rotate(540deg);
+}
+
+.penalty-ball.is-resetting {
+  transition:
+    left 260ms ease,
+    bottom 260ms ease,
+    transform 260ms ease;
+}
+
+.penalty-spot {
+  position: absolute;
+  left: 50%;
+  bottom: 62px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+}
+
 .countdown-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1138,6 +1343,7 @@ h3 {
   .info-grid,
   .contact-grid,
   .matchcenter-grid,
+  .penalty-panel,
   .social-grid,
   .legal-grid {
     grid-template-columns: 1fr;
@@ -1217,5 +1423,14 @@ h3 {
 
   h1 {
     font-size: clamp(2.2rem, 11vw, 3.4rem);
+  }
+
+  .penalty-field {
+    min-height: 360px;
+  }
+
+  .penalty-goal {
+    width: min(88%, 420px);
+    height: 150px;
   }
 }

@@ -154,6 +154,12 @@ if (countdownRoot) {
     return `${normalizedLocation}, Deutschland`;
   };
 
+  const buildRouteHref = (location) => {
+    const routeAddress = getRouteAddress(location);
+    const routeQuery = encodeURIComponent(routeAddress);
+    return `https://www.google.com/maps/dir/?api=1&destination=${routeQuery}&travelmode=driving&dir_action=navigate`;
+  };
+
   const weatherCodeMap = {
     0: "Klar",
     1: "Meist klar",
@@ -249,8 +255,7 @@ if (countdownRoot) {
     }
 
     if (spotlightRouteNode) {
-      const routeQuery = encodeURIComponent(getRouteAddress(event.location));
-      spotlightRouteNode.href = `https://www.google.com/maps/dir/?api=1&destination=${routeQuery}`;
+      spotlightRouteNode.href = buildRouteHref(event.location);
     }
   };
 
@@ -352,7 +357,7 @@ if (countdownRoot) {
     }
 
     if (spotlightRouteNode) {
-      spotlightRouteNode.href = "https://www.google.com/maps/dir/?api=1&destination=86744%20Hainsfarth%2C%20Deutschland";
+      spotlightRouteNode.href = buildRouteHref("Am Sportplatz 2, 86744 Hainsfarth");
     }
 
     showPendingMatchResult();
@@ -626,4 +631,114 @@ if (countdownRoot) {
         renderFallback();
       });
   }
+}
+
+const penaltyGameRoot = document.querySelector("[data-penalty-game]");
+
+if (penaltyGameRoot) {
+  const fieldNode = penaltyGameRoot.querySelector("[data-penalty-field]");
+  const goalNode = penaltyGameRoot.querySelector("[data-penalty-goal]");
+  const targetNode = penaltyGameRoot.querySelector("[data-penalty-target]");
+  const ballNode = penaltyGameRoot.querySelector("[data-penalty-ball]");
+  const keeperNode = penaltyGameRoot.querySelector("[data-penalty-keeper]");
+  const statusNode = penaltyGameRoot.querySelector("[data-penalty-status]");
+  const shootButton = penaltyGameRoot.querySelector("[data-penalty-shoot]");
+  const resetButton = penaltyGameRoot.querySelector("[data-penalty-reset]");
+  let selectedTarget = null;
+  let isAnimating = false;
+
+  const setStatus = (text) => {
+    if (statusNode) {
+      statusNode.textContent = text;
+    }
+  };
+
+  const resetPenaltyGame = (message = "Ziel wählen.") => {
+    selectedTarget = null;
+    isAnimating = false;
+    keeperNode?.classList.remove("is-left", "is-right");
+    if (targetNode) {
+      targetNode.style.setProperty("--target-x", "50%");
+      targetNode.style.setProperty("--target-y", "52%");
+    }
+    if (ballNode) {
+      ballNode.classList.remove("is-shot");
+      ballNode.classList.add("is-resetting");
+      ballNode.style.removeProperty("--shot-x");
+      ballNode.style.removeProperty("--shot-y");
+      window.setTimeout(() => {
+        ballNode.classList.remove("is-resetting");
+      }, 280);
+    }
+    setStatus(message);
+  };
+
+  const selectTarget = (clientX, clientY) => {
+    if (!goalNode || !targetNode || isAnimating) {
+      return;
+    }
+
+    const rect = goalNode.getBoundingClientRect();
+    const clampedX = Math.max(16, Math.min(rect.width - 16, clientX - rect.left));
+    const clampedY = Math.max(18, Math.min(rect.height - 18, clientY - rect.top));
+    const xPercent = (clampedX / rect.width) * 100;
+    const yPercent = (clampedY / rect.height) * 100;
+
+    selectedTarget = { xPercent, yPercent };
+    targetNode.style.setProperty("--target-x", `${xPercent}%`);
+    targetNode.style.setProperty("--target-y", `${yPercent}%`);
+    setStatus("Ziel steht. Jetzt schießen.");
+  };
+
+  goalNode?.addEventListener("click", (event) => {
+    selectTarget(event.clientX, event.clientY);
+  });
+
+  targetNode?.addEventListener("click", (event) => {
+    event.preventDefault();
+    selectTarget(event.clientX, event.clientY);
+  });
+
+  shootButton?.addEventListener("click", () => {
+    if (!selectedTarget || !fieldNode || !goalNode || !ballNode || !keeperNode || isAnimating) {
+      if (!selectedTarget) {
+        setStatus("Erst ein Ziel im Tor anklicken.");
+      }
+      return;
+    }
+
+    isAnimating = true;
+    const keeperRoll = Math.random();
+    const keeperSide = keeperRoll < 0.33 ? "is-left" : keeperRoll > 0.66 ? "is-right" : "";
+    keeperNode.classList.remove("is-left", "is-right");
+    if (keeperSide) {
+      keeperNode.classList.add(keeperSide);
+    }
+
+    const fieldRect = fieldNode.getBoundingClientRect();
+    const goalRect = goalNode.getBoundingClientRect();
+    const targetX = goalRect.left - fieldRect.left + (goalRect.width * selectedTarget.xPercent) / 100;
+    const targetY = fieldRect.bottom - (goalRect.top - fieldRect.top + (goalRect.height * selectedTarget.yPercent) / 100);
+
+    ballNode.style.setProperty("--shot-x", `${targetX}px`);
+    ballNode.style.setProperty("--shot-y", `${targetY}px`);
+    ballNode.classList.add("is-shot");
+
+    const sideBucket = selectedTarget.xPercent < 38 ? "is-left" : selectedTarget.xPercent > 62 ? "is-right" : "";
+    const isSave = sideBucket && sideBucket === keeperSide && selectedTarget.yPercent > 26;
+
+    window.setTimeout(() => {
+      setStatus(isSave ? "Gehalten. Noch ein Versuch." : "Tor für den TSV.");
+    }, 520);
+
+    window.setTimeout(() => {
+      resetPenaltyGame(isSave ? "Neues Ziel wählen." : "Nochmal? Ziel neu setzen.");
+    }, 1300);
+  });
+
+  resetButton?.addEventListener("click", () => {
+    resetPenaltyGame("Ziel wählen.");
+  });
+
+  resetPenaltyGame("Ziel wählen.");
 }

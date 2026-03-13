@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>TSV Hainsfarth | Start</title>
-  <link rel="stylesheet" href="styles.css?v=20260313g">
+  <link rel="stylesheet" href="styles.css?v=20260313h">
   <script src="https://widget-prod.bfv.de/widget/widgetresource/widgetjs"></script>
 </head>
 <body>
@@ -264,6 +264,41 @@
 
       <section class="section">
         <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">TSV-Spiel</span>
+            <h2>Elfmeter für den TSV</h2>
+          </div>
+          <div class="panel penalty-panel" data-penalty-game>
+            <div class="penalty-copy">
+              <span class="eyebrow">11 Meter</span>
+              <h3>Schieße den Elfmeter für den TSV</h3>
+              <p class="panel-note">Ziel im Tor anklicken, dann abschließen.</p>
+              <div class="penalty-actions">
+                <button class="button" type="button" data-penalty-shoot>Schießen</button>
+                <button class="button-secondary" type="button" data-penalty-reset>Neu</button>
+              </div>
+              <div class="penalty-status" data-penalty-status>Ziel wählen.</div>
+            </div>
+            <div class="penalty-stage">
+              <div class="penalty-field" data-penalty-field>
+                <div class="penalty-goal" data-penalty-goal>
+                  <div class="penalty-net"></div>
+                  <div class="penalty-keeper" data-penalty-keeper>
+                    <span class="penalty-keeper-head"></span>
+                    <span class="penalty-keeper-body"></span>
+                  </div>
+                  <button class="penalty-target" type="button" aria-label="Ziel im Tor wählen" data-penalty-target></button>
+                </div>
+                <div class="penalty-ball" data-penalty-ball>⚽️</div>
+                <div class="penalty-spot" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
           <div class="cta-band">
             <div>
               <span class="eyebrow">Kontakt</span>
@@ -378,6 +413,6 @@
       );
     }
   </script>
-  <script src="script.js?v=20260313g"></script>
+  <script src="script.js?v=20260313i"></script>
 </body>
 </html>
