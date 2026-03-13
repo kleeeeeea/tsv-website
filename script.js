@@ -144,7 +144,7 @@ if (countdownRoot) {
   const weatherCodeMap = {
     0: "Klar",
     1: "Meist klar",
-    2: "Leicht bewoelkt",
+    2: "Leicht bewölkt",
     3: "Bedeckt",
     45: "Neblig",
     48: "Raureif",
@@ -159,7 +159,7 @@ if (countdownRoot) {
     71: "Leichter Schnee",
     73: "Schnee",
     75: "Starker Schnee",
-    77: "Schneekoerner",
+    77: "Schneekörner",
     80: "Regenschauer",
     81: "Schauer",
     82: "Starke Schauer",
@@ -222,7 +222,7 @@ if (countdownRoot) {
     }
 
     if (spotlightBadgeNode) {
-      spotlightBadgeNode.textContent = event.isHome ? "Heimspiel" : "Auswaertsspiel";
+      spotlightBadgeNode.textContent = event.isHome ? "Heimspiel" : "Auswärtsspiel";
     }
 
     if (spotlightCompetitionNode) {
@@ -315,15 +315,15 @@ if (countdownRoot) {
 
   const renderFallback = () => {
     if (dateNode) {
-      dateNode.textContent = "Kalender nicht verfuegbar";
+      dateNode.textContent = "Kalender nicht verfügbar";
     }
 
     if (locationNode) {
-      locationNode.textContent = "Bitte Spielplan pruefen";
+      locationNode.textContent = "Bitte Spielplan prüfen";
     }
 
     if (timerNode) {
-      timerNode.innerHTML = "<span>Kein Countdown verfuegbar</span>";
+      timerNode.innerHTML = "<span>Kein Countdown verfügbar</span>";
     }
 
     if (spotlightBadgeNode) {
@@ -349,7 +349,7 @@ if (countdownRoot) {
     }
 
     if (weatherLabelNode) {
-      weatherLabelNode.textContent = "Wetter nicht verfuegbar";
+      weatherLabelNode.textContent = "Wetter nicht verfügbar";
     }
 
     if (weatherRainNode) {
@@ -565,7 +565,7 @@ if (countdownRoot) {
       const diff = targetDate.getTime() - Date.now();
 
       if (diff <= 0) {
-        timerNode.innerHTML = "<span>Laeuft jetzt</span>";
+        timerNode.innerHTML = "<span>Läuft jetzt</span>";
         return;
       }
 
