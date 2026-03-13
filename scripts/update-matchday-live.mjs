@@ -5,7 +5,6 @@ const OUTPUT_PATH = "matchday-live.json";
 const CLUB_NAME = "TSV Hainsfarth";
 const BFV_MATCH_BASE = "https://www.bfv.de/ergebnisse/spiel/-/";
 const ACTIVE_MATCH_WINDOW_MS = 4 * 60 * 60 * 1000;
-const HISTORY_LIMIT = 5;
 
 const parseIcsDate = (rawValue) => {
   const match = rawValue.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z?$/);
@@ -125,93 +124,9 @@ const buildResultPayload = ({ html, event }) => {
   };
 };
 
-const parseScore = (resultText, isHome) => {
-  const scoreMatch = resultText.match(/(\d+):(\d+)/);
-
-  if (!scoreMatch) {
-    return null;
-  }
-
-  const homeGoals = Number(scoreMatch[1]);
-  const awayGoals = Number(scoreMatch[2]);
-
-  return {
-    homeGoals,
-    awayGoals,
-    opponentGoals: isHome ? awayGoals : homeGoals,
-    tsvGoals: isHome ? homeGoals : awayGoals,
-  };
-};
-
-const buildHistoryEntry = ({ event, result }) => {
-  if (!result.available || !result.text) {
-    return null;
-  }
-
-  const parsedScore = parseScore(result.text, event.isHome);
-
-  if (!parsedScore) {
-    return null;
-  }
-
-  const { tsvGoals, opponentGoals } = parsedScore;
-  const outcome = tsvGoals > opponentGoals ? "win" : tsvGoals < opponentGoals ? "loss" : "draw";
-
-  return {
-    competition: event.competition,
-    fixtureText: buildFixtureText(event),
-    isHome: event.isHome,
-    league: event.league,
-    opponent: event.opponent,
-    outcome,
-    resultText: result.text,
-    start: event.start.toISOString(),
-    tsvGoals,
-    opponentGoals,
-    uid: event.uid,
-  };
-};
-
-const summarizeHistory = (entries, nextEvent) => {
-  if (!entries.length) {
-    return null;
-  }
-
-  const recent = entries.slice(-HISTORY_LIMIT);
-  const recentThree = recent.slice(-3);
-  const sameVenueRecent = recent.filter((entry) => entry.isHome === nextEvent.isHome).slice(-3);
-  const wins = recent.filter((entry) => entry.outcome === "win").length;
-  const draws = recent.filter((entry) => entry.outcome === "draw").length;
-  const losses = recent.filter((entry) => entry.outcome === "loss").length;
-  const goalsFor = recent.reduce((sum, entry) => sum + entry.tsvGoals, 0);
-  const goalsAgainst = recent.reduce((sum, entry) => sum + entry.opponentGoals, 0);
-  const points = recent.reduce((sum, entry) => sum + (entry.outcome === "win" ? 3 : entry.outcome === "draw" ? 1 : 0), 0);
-  const sameVenuePoints = sameVenueRecent.reduce(
-    (sum, entry) => sum + (entry.outcome === "win" ? 3 : entry.outcome === "draw" ? 1 : 0),
-    0
-  );
-  const recentThreeGoals = recentThree.reduce((sum, entry) => sum + entry.tsvGoals, 0);
-
-  return {
-    entries: recent,
-    goalsAgainst,
-    goalsFor,
-    losses,
-    points,
-    recentThreeGoals,
-    recentThreeMatches: recentThree.length,
-    sameVenueMatches: sameVenueRecent.length,
-    sameVenuePoints,
-    venueLabel: nextEvent.isHome ? "Heimspiele" : "Auswärtsspiele",
-    wins,
-    draws,
-  };
-};
-
 const main = async () => {
   const icsText = await readFile(ICS_PATH, "utf8");
-  const events = parseEvents(icsText);
-  const nextEvent = getCurrentOrNextEvent(events);
+  const nextEvent = getCurrentOrNextEvent(parseEvents(icsText));
 
   if (!nextEvent) {
     const emptyPayload = {
@@ -230,30 +145,6 @@ const main = async () => {
 
   const html = await response.text();
   const result = buildResultPayload({ event: nextEvent, html });
-  const pastEvents = events.filter((event) => event.start.getTime() < nextEvent.start.getTime()).slice(-8);
-  const historyEntries = [];
-
-  for (const event of pastEvents) {
-    try {
-      const historyResponse = await fetch(`${BFV_MATCH_BASE}${event.uid}`);
-
-      if (!historyResponse.ok) {
-        continue;
-      }
-
-      const historyHtml = await historyResponse.text();
-      const historyResult = buildResultPayload({ event, html: historyHtml });
-      const entry = buildHistoryEntry({ event, result: historyResult });
-
-      if (entry) {
-        historyEntries.push(entry);
-      }
-    } catch {
-      // ignore single-match history fetch failures
-    }
-  }
-
-  const historySummary = summarizeHistory(historyEntries, nextEvent);
   const payload = {
     generatedAt: new Date().toISOString(),
     match: {
@@ -264,7 +155,6 @@ const main = async () => {
       league: nextEvent.league,
       location: nextEvent.location,
       opponent: nextEvent.opponent,
-      history: historySummary,
       result,
       start: nextEvent.start.toISOString(),
       uid: nextEvent.uid,
