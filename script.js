@@ -250,7 +250,7 @@ if (countdownRoot) {
 
     if (spotlightRouteNode) {
       const routeQuery = encodeURIComponent(getRouteAddress(event.location));
-      spotlightRouteNode.href = `https://www.google.com/maps/search/?api=1&query=${routeQuery}`;
+      spotlightRouteNode.href = `https://www.google.com/maps/dir/?api=1&destination=${routeQuery}`;
     }
   };
 
@@ -352,7 +352,7 @@ if (countdownRoot) {
     }
 
     if (spotlightRouteNode) {
-      spotlightRouteNode.href = "https://www.google.com/maps/search/?api=1&query=86744%20Hainsfarth%2C%20Deutschland";
+      spotlightRouteNode.href = "https://www.google.com/maps/dir/?api=1&destination=86744%20Hainsfarth%2C%20Deutschland";
     }
 
     showPendingMatchResult();
