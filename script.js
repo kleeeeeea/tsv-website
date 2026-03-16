@@ -750,30 +750,45 @@ if (penaltyGameRoot) {
 
 const squadData = window.tsvSquadData;
 
-if (squadData) {
+if (squadData?.teams) {
   const squadGrid = document.querySelector("[data-squad-grid]");
   const staffGrid = document.querySelector("[data-staff-grid]");
   const squadCount = document.querySelector("[data-squad-count]");
   const filterButtons = Array.from(document.querySelectorAll("[data-squad-filters] [data-filter]"));
+  const teamButtons = Array.from(document.querySelectorAll("[data-team-switcher] [data-team-key]"));
+  const teamEyebrow = document.querySelector("[data-team-eyebrow]");
+  const teamHeroTitle = document.querySelector("[data-team-hero-title]");
+  const teamHeroLead = document.querySelector("[data-team-hero-lead]");
+  const teamBadge = document.querySelector("[data-team-badge]");
+  const teamSeasonLabel = document.querySelector("[data-team-season-label]");
+  const teamSeasonNote = document.querySelector("[data-team-season-note]");
+  const teamSourceLabel = document.querySelector("[data-team-source-label]");
+  const teamSourceDate = document.querySelector("[data-team-source-date]");
+  const teamSectionEyebrow = document.querySelector("[data-team-section-eyebrow]");
+  const teamSectionTitle = document.querySelector("[data-team-section-title]");
+  const teamSectionLead = document.querySelector("[data-team-section-lead]");
+  const sourceLinkPrimary = document.querySelector("[data-team-source-link]");
+  const sourceLinkSecondary = document.querySelector("[data-team-source-link-secondary]");
   const positionOrder = {
     Torwart: 0,
     Abwehr: 1,
     Mittelfeld: 2,
     Angriff: 3,
   };
-  const players = [...squadData.players].sort((left, right) => {
-    const positionDiff = (positionOrder[left.position] ?? 99) - (positionOrder[right.position] ?? 99);
+  const sortPlayers = (inputPlayers) =>
+    [...inputPlayers].sort((left, right) => {
+      const positionDiff = (positionOrder[left.position] ?? 99) - (positionOrder[right.position] ?? 99);
 
-    if (positionDiff !== 0) {
-      return positionDiff;
-    }
+      if (positionDiff !== 0) {
+        return positionDiff;
+      }
 
-    if (left.jerseyNumber !== null && right.jerseyNumber !== null && left.jerseyNumber !== right.jerseyNumber) {
-      return left.jerseyNumber - right.jerseyNumber;
-    }
+      if (left.jerseyNumber !== null && right.jerseyNumber !== null && left.jerseyNumber !== right.jerseyNumber) {
+        return left.jerseyNumber - right.jerseyNumber;
+      }
 
-    return `${left.lastName}${left.firstName}`.localeCompare(`${right.lastName}${right.firstName}`, "de");
-  });
+      return `${left.lastName}${left.firstName}`.localeCompare(`${right.lastName}${right.firstName}`, "de");
+    });
   const formatName = (person) => `${person.firstName} ${person.lastName}`;
   const formatNumber = (value) => (typeof value === "number" ? value : "--");
   const formatAge = (value) => (typeof value === "number" ? `${value} J.` : "Alter offen");
@@ -798,7 +813,7 @@ if (squadData) {
       return flag;
     });
 
-  const renderSquad = (activeFilter) => {
+  const renderSquad = (players, activeFilter) => {
     if (!squadGrid) {
       return;
     }
@@ -841,12 +856,12 @@ if (squadData) {
     }
   };
 
-  const renderStaff = () => {
+  const renderStaff = (staff) => {
     if (!staffGrid) {
       return;
     }
 
-    staffGrid.innerHTML = squadData.staff
+    staffGrid.innerHTML = staff
       .map(
         (member) => `
           <article class="staff-card">
@@ -867,6 +882,38 @@ if (squadData) {
   };
 
   let activeFilter = "Alle";
+  let activeTeamKey = squadData.defaultTeam || "team1";
+
+  const renderTeam = () => {
+    const team = squadData.teams[activeTeamKey];
+
+    if (!team) {
+      return;
+    }
+
+    const players = sortPlayers(team.players);
+
+    if (teamEyebrow) teamEyebrow.textContent = team.eyebrow;
+    if (teamHeroTitle) teamHeroTitle.textContent = team.heroTitle;
+    if (teamHeroLead) teamHeroLead.textContent = team.heroLead;
+    if (teamBadge) teamBadge.textContent = team.heroBadge;
+    if (teamSeasonLabel) teamSeasonLabel.textContent = team.seasonLabel;
+    if (teamSeasonNote) teamSeasonNote.textContent = team.seasonNote;
+    if (teamSourceLabel) teamSourceLabel.textContent = team.sourceLabel;
+    if (teamSourceDate) teamSourceDate.textContent = team.sourceDate;
+    if (teamSectionEyebrow) teamSectionEyebrow.textContent = team.sectionEyebrow;
+    if (teamSectionTitle) teamSectionTitle.textContent = team.sectionTitle;
+    if (teamSectionLead) teamSectionLead.textContent = team.sectionLead;
+    if (sourceLinkPrimary) sourceLinkPrimary.href = team.sourceUrl;
+    if (sourceLinkSecondary) sourceLinkSecondary.href = team.sourceUrl;
+
+    teamButtons.forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.teamKey === activeTeamKey);
+    });
+
+    renderSquad(players, activeFilter);
+    renderStaff(team.staff);
+  };
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -876,10 +923,16 @@ if (squadData) {
         candidate.classList.toggle("is-active", candidate === button);
       });
 
-      renderSquad(activeFilter);
+      renderTeam();
     });
   });
 
-  renderSquad(activeFilter);
-  renderStaff();
+  teamButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeTeamKey = button.dataset.teamKey || squadData.defaultTeam || "team1";
+      renderTeam();
+    });
+  });
+
+  renderTeam();
 }

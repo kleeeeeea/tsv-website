@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kader des TSV Hainsfarth Herren I mit Spielerkarten, Trainerteam und möglicher Aufstellung.">
+  <meta name="description" content="Kader des TSV Hainsfarth mit Spielerkarten und Trainerteam für die 1. und 2. Mannschaft.">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>TSV Hainsfarth | Kader</title>
-  <link rel="stylesheet" href="styles.css?v=20260316b">
+  <link rel="stylesheet" href="styles.css?v=20260316c">
 </head>
 <body>
   <div class="site-shell">
@@ -38,25 +38,29 @@
         <div class="container">
           <div class="hero-card">
             <div>
-              <span class="eyebrow">Herren I</span>
-              <h1>Spielerkarten und Aufstellung.</h1>
-              <p class="lead">
+              <span class="eyebrow" data-team-eyebrow>Herren I</span>
+              <h1 data-team-hero-title>Spielerkarten und Aufstellung.</h1>
+              <p class="lead" data-team-hero-lead>
                 Der Kader basiert auf der FuPa-Teamseite des TSV Hainsfarth, Stand 16.03.2026. Hier sieht man
-                Spieler, Trainerteam und eine mögliche Grundordnung gesammelt auf einer eigenen Seite.
+                Spieler, Trainerteam und alle Daten gesammelt auf einer eigenen Seite.
               </p>
               <div class="hero-actions">
-                <a class="button" href="https://www.fupa.net/team/tsv-hainsfarth-m1-2025-26" target="_blank" rel="noopener noreferrer">FuPa-Quelle</a>
+                <a class="button" href="https://www.fupa.net/team/tsv-hainsfarth-m1-2025-26" target="_blank" rel="noopener noreferrer" data-team-source-link>FuPa-Quelle</a>
+              </div>
+              <div class="team-switcher" data-team-switcher>
+                <button class="team-switcher-button is-active" type="button" data-team-key="team1">1. Mannschaft</button>
+                <button class="team-switcher-button" type="button" data-team-key="team2">2. Mannschaft</button>
               </div>
             </div>
             <aside class="hero-side">
               <div>
-                <div class="hero-badge">Herren I</div>
-                <h3>Kader 2025/2026</h3>
-                <p>Mit Spielerkarten, Staff und einer visuellen Beispiel-Aufstellung.</p>
+                <div class="hero-badge" data-team-badge>Herren I</div>
+                <h3 data-team-season-label>Kader 2025/2026</h3>
+                <p data-team-season-note>Mit Spielerkarten und Staff der ersten Mannschaft.</p>
               </div>
               <div>
                 <h3>Datenbasis</h3>
-                <p>FuPa-Teamseite<br>Stand: 16.03.2026</p>
+                <p><span data-team-source-label>FuPa-Teamseite TSV Hainsfarth</span><br>Stand: <span data-team-source-date>16.03.2026</span></p>
               </div>
               <img class="hero-logo" src="logo.png?v=20260310b" alt="TSV Hainsfarth Vereinslogo">
             </aside>
@@ -67,12 +71,9 @@
       <section class="section squad-section">
         <div class="container">
           <div class="section-head">
-            <span class="eyebrow">Herren I Kader</span>
-            <h2>Alle Spieler auf einen Blick</h2>
-            <p>
-              Alle Spielerkarten liegen jetzt direkt auf einem Fußballplatz-Look, damit der Kader mehr wie eine
-              echte Teamübersicht wirkt und nicht wie eine separate Startelf plus Liste.
-            </p>
+            <span class="eyebrow" data-team-section-eyebrow>Herren I Kader</span>
+            <h2 data-team-section-title>Alle Spieler auf einen Blick</h2>
+            <p data-team-section-lead>Alle Spielerkarten der ersten Mannschaft auf einen Blick mit Foto, Position und Leistungsdaten.</p>
           </div>
           <article class="panel squad-panel squad-panel-full">
             <div class="panel-topline">
@@ -100,7 +101,7 @@
                 <span class="eyebrow">Trainerteam</span>
                 <h3>Staff rund um die Mannschaft</h3>
               </div>
-              <a class="button-secondary" href="https://www.fupa.net/team/tsv-hainsfarth-m1-2025-26" target="_blank" rel="noopener noreferrer">FuPa-Quelle</a>
+              <a class="button-secondary" href="https://www.fupa.net/team/tsv-hainsfarth-m1-2025-26" target="_blank" rel="noopener noreferrer" data-team-source-link-secondary>FuPa-Quelle</a>
             </div>
             <div class="staff-grid" data-staff-grid></div>
           </article>
@@ -118,7 +119,7 @@
       </div>
     </footer>
   </div>
-  <script src="team-data.js?v=20260316b"></script>
-  <script src="script.js?v=20260316f"></script>
+  <script src="team-data.js?v=20260316c"></script>
+  <script src="script.js?v=20260316g"></script>
 </body>
 </html>
