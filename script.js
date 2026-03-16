@@ -796,6 +796,7 @@ if (squadData?.teams) {
     const match = value?.match(/\/player\/([^/]+)/i);
     return match?.[1] || null;
   };
+  const defaultPlayerImage = "logo.png?v=20260310b";
   const cutoutDisabledTokens = new Set([
     "Y1NfDiFUnwcn",
     "6pxKXYYOFU0I"
@@ -803,7 +804,7 @@ if (squadData?.teams) {
 
   const resolveImageUrl = (value) => {
     if (!value) {
-      return "logo.png?v=20260310b";
+      return defaultPlayerImage;
     }
 
     if (/\.(?:avif|webp|png|jpe?g|svg)$/i.test(value)) {
@@ -811,6 +812,20 @@ if (squadData?.teams) {
     }
 
     return `${value.replace(/\/$/, "")}/480x600.webp`;
+  };
+  const resolveDisplayImageUrl = (value) => {
+    const token = getImageToken(value);
+    const cutoutUrl = resolveCutoutUrl(value);
+
+    if (cutoutUrl) {
+      return cutoutUrl;
+    }
+
+    if (token && cutoutDisabledTokens.has(token)) {
+      return defaultPlayerImage;
+    }
+
+    return resolveImageUrl(value);
   };
   const resolveCutoutUrl = (value) => {
     const token = getImageToken(value);
@@ -824,9 +839,9 @@ if (squadData?.teams) {
   const fallbackImageAttributes = (value) => {
     const remoteImage = resolveImageUrl(value);
     const escapedRemote = remoteImage.replace(/'/g, "\\'");
-    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo.png?v=20260310b';}"`;
+    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='${defaultPlayerImage}';}"`;
   };
-  const asCssImage = (value) => `style="--player-image: url('${resolveImageUrl(value)}');"`;
+  const asCssImage = (value) => `style="--player-image: url('${resolveDisplayImageUrl(value)}');"`;
   const formatFlags = (flags = []) =>
     flags.map((flag) => {
       if (flag === "new") {
@@ -852,7 +867,7 @@ if (squadData?.teams) {
         return `
           <article class="squad-card">
             <div class="squad-card-media" ${asCssImage(player.imageUrl)}>
-              <img src="${resolveCutoutUrl(player.imageUrl) || resolveImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>
+              <img src="${resolveDisplayImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>
             </div>
             <div class="squad-card-body">
               <div class="squad-card-topline">
@@ -889,7 +904,7 @@ if (squadData?.teams) {
         (member) => `
           <article class="staff-card">
             <div class="staff-card-media" ${asCssImage(member.imageUrl)}>
-              <img src="${resolveCutoutUrl(member.imageUrl) || resolveImageUrl(member.imageUrl)}" alt="${formatName(member)}" loading="lazy" ${fallbackImageAttributes(member.imageUrl)}>
+              <img src="${resolveDisplayImageUrl(member.imageUrl)}" alt="${formatName(member)}" loading="lazy" ${fallbackImageAttributes(member.imageUrl)}>
             </div>
             <div class="staff-card-body">
               <p class="staff-role">${member.role}</p>
