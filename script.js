@@ -796,6 +796,10 @@ if (squadData?.teams) {
     const match = value?.match(/\/player\/([^/]+)/i);
     return match?.[1] || null;
   };
+  const cutoutDisabledTokens = new Set([
+    "Y1NfDiFUnwcn",
+    "6pxKXYYOFU0I"
+  ]);
 
   const resolveImageUrl = (value) => {
     if (!value) {
@@ -811,11 +815,11 @@ if (squadData?.teams) {
   const resolveCutoutUrl = (value) => {
     const token = getImageToken(value);
 
-    if (!token) {
+    if (!token || cutoutDisabledTokens.has(token)) {
       return null;
     }
 
-    return `images/kader/cutouts/${token}.png?v=20260316g`;
+    return `images/kader/cutouts/${token}.png?v=20260316h`;
   };
   const fallbackImageAttributes = (value) => {
     const remoteImage = resolveImageUrl(value);
