@@ -1,0 +1,60 @@
+window.tsvSquadData = {
+  sourceLabel: "FuPa-Teamseite TSV Hainsfarth",
+  sourceDate: "2026-03-16",
+  sourceUrl: "https://www.fupa.net/team/tsv-hainsfarth-m1-2025-26",
+  formation: {
+    name: "Mögliche Startelf",
+    system: "4-2-3-1",
+    rows: [
+      [22912530],
+      [22912513, 22912521, 22912520],
+      [22912532, 22912514],
+      [22912518, 22912527, 22912519, 22912515],
+      [22912531]
+    ]
+  },
+  players: [
+    { id: 22912537, firstName: "Yannic", lastName: "Bederke", position: "Torwart", jerseyNumber: null, matches: 0, goals: 0, flags: [], age: 25, imageUrl: "https://image.fupa.net/player/1FzEc8cJ5nbe/" },
+    { id: 23876282, firstName: "Thomas", lastName: "Grygar", position: "Torwart", jerseyNumber: null, matches: 2, goals: 0, flags: [], age: 39, imageUrl: "https://image.fupa.net/player/xucF1UJHPUr0/" },
+    { id: 22912517, firstName: "Timo", lastName: "Haffelt", position: "Torwart", jerseyNumber: 1, matches: 0, goals: 0, flags: [], age: 33, imageUrl: "https://image.fupa.net/player/GHQMtdXIjctS/" },
+    { id: 22912526, firstName: "Tobias", lastName: "Hoffmann", position: "Torwart", jerseyNumber: 1, matches: 0, goals: 0, flags: [], age: 34, imageUrl: "https://image.fupa.net/player/7RGg4VAzVof5/" },
+    { id: 22912531, firstName: "Christoph", lastName: "Kolitsch", position: "Torwart", jerseyNumber: 1, matches: 12, goals: 0, flags: [], age: 27, imageUrl: "https://image.fupa.net/player/NcjbGLOfeOno/" },
+    { id: 22912518, firstName: "Florian", lastName: "Angerer", position: "Abwehr", jerseyNumber: 14, matches: 14, goals: 0, flags: [], age: 31, imageUrl: "https://image.fupa.net/player/B6MovWSTWNfA/" },
+    { id: 23876549, firstName: "Martin", lastName: "Bauer", position: "Abwehr", jerseyNumber: null, matches: 1, goals: 0, flags: [], age: 35, imageUrl: "https://image.fupa.net/player/pzGb0PGI24aM/" },
+    { id: 24158742, firstName: "Sven", lastName: "Großhauser", position: "Abwehr", jerseyNumber: null, matches: 0, goals: 0, flags: ["new"], age: 20, imageUrl: "https://image.fupa.net/player/f9p8kcYelk8b/" },
+    { id: 23930560, firstName: "Florian", lastName: "Hensolt", position: "Abwehr", jerseyNumber: null, matches: 2, goals: 0, flags: [], age: 32, imageUrl: "https://image.fupa.net/player/OKKsunKvilgu/" },
+    { id: 22912522, firstName: "Jonas", lastName: "Meyer", position: "Abwehr", jerseyNumber: 11, matches: 4, goals: 0, flags: [], age: 24, imageUrl: "https://image.fupa.net/player/87Uybr9gtyRb/" },
+    { id: 22912515, firstName: "Dennis", lastName: "Schröppel", position: "Abwehr", jerseyNumber: 3, matches: 10, goals: 0, flags: [], age: 30, imageUrl: "https://image.fupa.net/player/i2V87gpRuRu4/" },
+    { id: 23766306, firstName: "Michael", lastName: "Seitz", position: "Abwehr", jerseyNumber: null, matches: 7, goals: 0, flags: [], age: 37, imageUrl: "https://image.fupa.net/player/xsLtdyId1huZ/" },
+    { id: 22912519, firstName: "Hannes", lastName: "Sitta", position: "Abwehr", jerseyNumber: 6, matches: 12, goals: 0, flags: [], age: 29, imageUrl: "https://image.fupa.net/player/XNq2qEv3xKj0/" },
+    { id: 23876554, firstName: "Reinhard", lastName: "Steinhoff", position: "Abwehr", jerseyNumber: null, matches: 7, goals: 1, flags: [], age: null, imageUrl: "https://image.fupa.net/player/PVoBA3Y0y8ix/" },
+    { id: 23766320, firstName: "Markus", lastName: "Straßner", position: "Abwehr", jerseyNumber: null, matches: 3, goals: 0, flags: [], age: 29, imageUrl: "https://image.fupa.net/player/K1kBuOat6XFS/" },
+    { id: 22912527, firstName: "Benjamin", lastName: "Taglieber", position: "Abwehr", jerseyNumber: 4, matches: 11, goals: 0, flags: [], age: 26, imageUrl: "https://image.fupa.net/player/U8YOFMSas8PA/" },
+    { id: 23888201, firstName: "Luis", lastName: "Tremmel", position: "Abwehr", jerseyNumber: null, matches: 2, goals: 0, flags: [], age: null, imageUrl: "https://image.fupa.net/player/3FcWKCuQ3oSk/" },
+    { id: 22912525, firstName: "Simon", lastName: "Wiedemann", position: "Abwehr", jerseyNumber: 12, matches: 0, goals: 0, flags: [], age: 23, imageUrl: "https://image.fupa.net/player/edroiFk1cyLu/" },
+    { id: 23793846, firstName: "Thomas", lastName: "Eberle", position: "Mittelfeld", jerseyNumber: null, matches: 6, goals: 0, flags: [], age: 38, imageUrl: "https://image.fupa.net/player/r7H9hLPYRN9t/" },
+    { id: 22912532, firstName: "Silvan", lastName: "Egner", position: "Mittelfeld", jerseyNumber: 13, matches: 13, goals: 0, flags: [], age: 29, imageUrl: "https://image.fupa.net/player/rdu8ocLq0xrB/" },
+    { id: 24158750, firstName: "Maximilian", lastName: "Haas", position: "Mittelfeld", jerseyNumber: null, matches: 0, goals: 0, flags: [], age: 24, imageUrl: "https://image.fupa.net/player/sWpostsVsvgB/" },
+    { id: 22912520, firstName: "Nico", lastName: "Hensolt", position: "Mittelfeld", jerseyNumber: 21, matches: 11, goals: 3, flags: [], age: 34, imageUrl: "https://image.fupa.net/player/UvsX5ItV5EjK/" },
+    { id: 22912533, firstName: "David", lastName: "Hertle", position: "Mittelfeld", jerseyNumber: null, matches: 5, goals: 0, flags: [], age: 34, imageUrl: "https://image.fupa.net/player/2T8fRkQ9qpdU/" },
+    { id: 22912536, firstName: "Silvan", lastName: "Hertle", position: "Mittelfeld", jerseyNumber: null, matches: 3, goals: 0, flags: [], age: 41, imageUrl: "https://image.fupa.net/player/xioCZmDrN9Ry/" },
+    { id: 22912514, firstName: "Martin", lastName: "Hoffmann", position: "Mittelfeld", jerseyNumber: 8, matches: 12, goals: 0, flags: [], age: 32, imageUrl: "https://image.fupa.net/player/t5rand7jG9Of/" },
+    { id: 22912528, firstName: "Tolga", lastName: "Kahveci", position: "Mittelfeld", jerseyNumber: 22, matches: 4, goals: 0, flags: [], age: 30, imageUrl: "https://image.fupa.net/player/yATiDSchGz4n/" },
+    { id: 22912513, firstName: "Nico", lastName: "Leister", position: "Mittelfeld", jerseyNumber: 7, matches: 10, goals: 4, flags: [], age: 31, imageUrl: "https://image.fupa.net/player/NHGZwWK7iTIZ/" },
+    { id: 23832562, firstName: "Jannick", lastName: "Schwemmer", position: "Mittelfeld", jerseyNumber: null, matches: 1, goals: 0, flags: [], age: 28, imageUrl: "https://image.fupa.net/player/nBvZ9D2lXxnG/" },
+    { id: 22912521, firstName: "Luca", lastName: "Stropek", position: "Mittelfeld", jerseyNumber: 9, matches: 11, goals: 5, flags: [], age: 25, imageUrl: "https://image.fupa.net/player/ia55QkyqCBVS/" },
+    { id: 22912534, firstName: "Garibaldi", lastName: "Üschner", position: "Mittelfeld", jerseyNumber: null, matches: 5, goals: 0, flags: [], age: null, imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/" },
+    { id: 22912529, firstName: "Jonas", lastName: "Babel", position: "Angriff", jerseyNumber: 16, matches: 0, goals: 0, flags: [], age: 27, imageUrl: "https://image.fupa.net/player/oyp9R2gd1iXL/" },
+    { id: 22912516, firstName: "Jannik", lastName: "Gramm", position: "Angriff", jerseyNumber: 19, matches: 9, goals: 0, flags: [], age: 29, imageUrl: "https://image.fupa.net/player/mnAFucSnqkRr/" },
+    { id: 23766317, firstName: "Johannes", lastName: "Grün", position: "Angriff", jerseyNumber: null, matches: 1, goals: 0, flags: [], age: 22, imageUrl: "https://image.fupa.net/player/kEhGlJIy7VaA/" },
+    { id: 22912530, firstName: "Daniel", lastName: "Hensolt", position: "Angriff", jerseyNumber: 10, matches: 7, goals: 5, flags: [], age: 34, imageUrl: "https://image.fupa.net/player/RZs3hqECiXOK/" },
+    { id: 23818598, firstName: "Milos", lastName: "Pesut", position: "Angriff", jerseyNumber: null, matches: 2, goals: 0, flags: [], age: null, imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/" }
+  ],
+  staff: [
+    { id: 22912511, firstName: "Hans", lastName: "Golder", role: "Trainer", age: null, imageUrl: "https://image.fupa.net/player/CFpcgjjP2uKM/" },
+    { id: 22912512, firstName: "Hannes", lastName: "Sitta", role: "Spielender Co-Trainer", age: 29, imageUrl: "https://image.fupa.net/player/XNq2qEv3xKj0/" },
+    { id: 22912510, firstName: "Antonio", lastName: "Aglieri Rinella", role: "Physiotherapeut", age: null, imageUrl: "https://image.fupa.net/player/0Ea1kC8iBMZv/" },
+    { id: 22912508, firstName: "Timo", lastName: "Haffelt", role: "Sportlicher Leiter", age: 33, imageUrl: "https://image.fupa.net/player/GHQMtdXIjctS/" },
+    { id: 22912509, firstName: "Holger", lastName: "Meyr", role: "Sportlicher Leiter", age: 50, imageUrl: "https://image.fupa.net/player/aWZKd1kso7Aw/" }
+  ]
+};

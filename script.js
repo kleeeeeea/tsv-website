@@ -747,3 +747,174 @@ if (penaltyGameRoot) {
 
   resetPenaltyGame("Ziel wählen.");
 }
+
+const squadData = window.tsvSquadData;
+
+if (squadData) {
+  const squadGrid = document.querySelector("[data-squad-grid]");
+  const staffGrid = document.querySelector("[data-staff-grid]");
+  const squadCount = document.querySelector("[data-squad-count]");
+  const lineupPitch = document.querySelector("[data-lineup-pitch]");
+  const lineupTitle = document.querySelector("[data-lineup-title]");
+  const lineupSystem = document.querySelector("[data-lineup-system]");
+  const filterButtons = Array.from(document.querySelectorAll("[data-squad-filters] [data-filter]"));
+  const positionOrder = {
+    Torwart: 0,
+    Abwehr: 1,
+    Mittelfeld: 2,
+    Angriff: 3,
+  };
+  const players = [...squadData.players].sort((left, right) => {
+    const positionDiff = (positionOrder[left.position] ?? 99) - (positionOrder[right.position] ?? 99);
+
+    if (positionDiff !== 0) {
+      return positionDiff;
+    }
+
+    if (left.jerseyNumber !== null && right.jerseyNumber !== null && left.jerseyNumber !== right.jerseyNumber) {
+      return left.jerseyNumber - right.jerseyNumber;
+    }
+
+    return `${left.lastName}${left.firstName}`.localeCompare(`${right.lastName}${right.firstName}`, "de");
+  });
+  const playersById = new Map(players.map((player) => [player.id, player]));
+
+  const formatName = (person) => `${person.firstName} ${person.lastName}`;
+  const formatNumber = (value) => (typeof value === "number" ? value : "--");
+  const formatAge = (value) => (typeof value === "number" ? `${value} J.` : "Alter offen");
+  const formatFlags = (flags = []) =>
+    flags.map((flag) => {
+      if (flag === "new") {
+        return "Neuzugang";
+      }
+
+      return flag;
+    });
+
+  const renderSquad = (activeFilter) => {
+    if (!squadGrid) {
+      return;
+    }
+
+    const visiblePlayers = players.filter((player) => activeFilter === "Alle" || player.position === activeFilter);
+
+    squadGrid.innerHTML = visiblePlayers
+      .map((player) => {
+        const tags = formatFlags(player.flags)
+          .map((flag) => `<span class="squad-flag">${flag}</span>`)
+          .join("");
+
+        return `
+          <article class="squad-card">
+            <div class="squad-card-media">
+              <img src="${player.imageUrl}" alt="${formatName(player)}" loading="lazy">
+            </div>
+            <div class="squad-card-body">
+              <div class="squad-card-topline">
+                <div>
+                  <p class="squad-position">${player.position}</p>
+                  <h3>${formatName(player)}</h3>
+                </div>
+                <span class="squad-number-badge">${formatNumber(player.jerseyNumber)}</span>
+              </div>
+              ${tags}
+              <div class="squad-meta">
+                <span>${formatAge(player.age)}</span>
+                <span>${player.matches} Spiele</span>
+                <span>${player.goals} Tore</span>
+              </div>
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+
+    if (squadCount) {
+      squadCount.textContent = `${visiblePlayers.length} Spieler`;
+    }
+  };
+
+  const renderStaff = () => {
+    if (!staffGrid) {
+      return;
+    }
+
+    staffGrid.innerHTML = squadData.staff
+      .map(
+        (member) => `
+          <article class="staff-card">
+            <div class="staff-card-media">
+              <img src="${member.imageUrl}" alt="${formatName(member)}" loading="lazy">
+            </div>
+            <div class="staff-card-body">
+              <p class="staff-role">${member.role}</p>
+              <h3>${formatName(member)}</h3>
+              <div class="staff-meta">
+                <span>${formatAge(member.age)}</span>
+              </div>
+            </div>
+          </article>
+        `
+      )
+      .join("");
+  };
+
+  const renderLineup = () => {
+    if (!lineupPitch) {
+      return;
+    }
+
+    if (lineupTitle) {
+      lineupTitle.textContent = squadData.formation.name;
+    }
+
+    if (lineupSystem) {
+      lineupSystem.textContent = squadData.formation.system;
+    }
+
+    lineupPitch.innerHTML = squadData.formation.rows
+      .map((row) => {
+        const rowMarkup = row
+          .map((playerId) => {
+            const player = playersById.get(playerId);
+
+            if (!player) {
+              return "";
+            }
+
+            return `
+              <div class="lineup-player">
+                <img class="lineup-avatar" src="${player.imageUrl}" alt="${formatName(player)}" loading="lazy">
+                <div class="lineup-card">
+                  <span class="lineup-number">${formatNumber(player.jerseyNumber)}</span>
+                  <strong>${formatName(player)}</strong>
+                  <span class="lineup-role">${player.position}</span>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+
+        return `<div class="lineup-row" style="grid-template-columns: repeat(${row.length}, minmax(0, 1fr));">${rowMarkup}</div>`;
+      })
+      .join("");
+  };
+
+  let activeFilter = "Alle";
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeFilter = button.dataset.filter || "Alle";
+
+      filterButtons.forEach((candidate) => {
+        candidate.classList.toggle("is-active", candidate === button);
+      });
+
+      renderSquad(activeFilter);
+    });
+  });
+
+  renderLineup();
+  renderSquad(activeFilter);
+  renderStaff();
+}
