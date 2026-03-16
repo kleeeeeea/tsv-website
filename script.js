@@ -782,6 +782,18 @@ if (squadData) {
   const formatName = (person) => `${person.firstName} ${person.lastName}`;
   const formatNumber = (value) => (typeof value === "number" ? value : "--");
   const formatAge = (value) => (typeof value === "number" ? `${value} J.` : "Alter offen");
+  const resolveImageUrl = (value) => {
+    if (!value) {
+      return "logo.png?v=20260310b";
+    }
+
+    if (/\.(?:avif|webp|png|jpe?g|svg)$/i.test(value)) {
+      return value;
+    }
+
+    return `${value.replace(/\/$/, "")}/480x600.webp`;
+  };
+  const fallbackImageAttributes = 'onerror="this.onerror=null;this.src=\'logo.png?v=20260310b\';"';
   const formatFlags = (flags = []) =>
     flags.map((flag) => {
       if (flag === "new") {
@@ -807,7 +819,7 @@ if (squadData) {
         return `
           <article class="squad-card">
             <div class="squad-card-media">
-              <img src="${player.imageUrl}" alt="${formatName(player)}" loading="lazy">
+              <img src="${resolveImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes}>
             </div>
             <div class="squad-card-body">
               <div class="squad-card-topline">
@@ -844,7 +856,7 @@ if (squadData) {
         (member) => `
           <article class="staff-card">
             <div class="staff-card-media">
-              <img src="${member.imageUrl}" alt="${formatName(member)}" loading="lazy">
+              <img src="${resolveImageUrl(member.imageUrl)}" alt="${formatName(member)}" loading="lazy" ${fallbackImageAttributes}>
             </div>
             <div class="staff-card-body">
               <p class="staff-role">${member.role}</p>
@@ -884,7 +896,7 @@ if (squadData) {
 
             return `
               <div class="lineup-player">
-                <img class="lineup-avatar" src="${player.imageUrl}" alt="${formatName(player)}" loading="lazy">
+                <img class="lineup-avatar" src="${resolveImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes}>
                 <div class="lineup-card">
                   <span class="lineup-number">${formatNumber(player.jerseyNumber)}</span>
                   <strong>${formatName(player)}</strong>
