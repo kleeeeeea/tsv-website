@@ -797,6 +797,50 @@ if (squadData) {
 
       return flag;
     });
+  const positionRows = ["Angriff", "Mittelfeld", "Abwehr", "Torwart"];
+  const columnCountFor = (count) => {
+    if (count <= 1) {
+      return 1;
+    }
+
+    if (count === 2) {
+      return 2;
+    }
+
+    if (count <= 4) {
+      return count;
+    }
+
+    return Math.min(count, 5);
+  };
+  const renderPlayerCard = (player) => {
+    const tags = formatFlags(player.flags)
+      .map((flag) => `<span class="squad-flag">${flag}</span>`)
+      .join("");
+
+    return `
+      <article class="squad-card">
+        <div class="squad-card-media">
+          <img src="${resolveImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes}>
+        </div>
+        <div class="squad-card-body">
+          <div class="squad-card-topline">
+            <div>
+              <p class="squad-position">${player.position}</p>
+              <h3>${formatName(player)}</h3>
+            </div>
+            <span class="squad-number-badge">${formatNumber(player.jerseyNumber)}</span>
+          </div>
+          ${tags}
+          <div class="squad-meta">
+            <span>${formatAge(player.age)}</span>
+            <span>${player.matches} Spiele</span>
+            <span>${player.goals} Tore</span>
+          </div>
+        </div>
+      </article>
+    `;
+  };
 
   const renderSquad = (activeFilter) => {
     if (!squadGrid) {
@@ -805,36 +849,26 @@ if (squadData) {
 
     const visiblePlayers = players.filter((player) => activeFilter === "Alle" || player.position === activeFilter);
 
-    squadGrid.innerHTML = visiblePlayers
-      .map((player) => {
-        const tags = formatFlags(player.flags)
-          .map((flag) => `<span class="squad-flag">${flag}</span>`)
-          .join("");
+    const rows = positionRows
+      .map((position) => {
+        const rowPlayers = visiblePlayers.filter((player) => player.position === position);
+
+        if (!rowPlayers.length) {
+          return "";
+        }
 
         return `
-          <article class="squad-card">
-            <div class="squad-card-media">
-              <img src="${resolveImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes}>
+          <section class="squad-row squad-row-${position.toLowerCase()}">
+            <div class="squad-row-label">${position}</div>
+            <div class="squad-row-cards" style="grid-template-columns: repeat(${columnCountFor(rowPlayers.length)}, minmax(0, 1fr));">
+              ${rowPlayers.map(renderPlayerCard).join("")}
             </div>
-            <div class="squad-card-body">
-              <div class="squad-card-topline">
-                <div>
-                  <p class="squad-position">${player.position}</p>
-                  <h3>${formatName(player)}</h3>
-                </div>
-                <span class="squad-number-badge">${formatNumber(player.jerseyNumber)}</span>
-              </div>
-              ${tags}
-              <div class="squad-meta">
-                <span>${formatAge(player.age)}</span>
-                <span>${player.matches} Spiele</span>
-                <span>${player.goals} Tore</span>
-              </div>
-            </div>
-          </article>
+          </section>
         `;
       })
       .join("");
+
+    squadGrid.innerHTML = rows;
 
     if (squadCount) {
       squadCount.textContent = `${visiblePlayers.length} Spieler`;
