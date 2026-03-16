@@ -754,9 +754,6 @@ if (squadData) {
   const squadGrid = document.querySelector("[data-squad-grid]");
   const staffGrid = document.querySelector("[data-staff-grid]");
   const squadCount = document.querySelector("[data-squad-count]");
-  const lineupPitch = document.querySelector("[data-lineup-pitch]");
-  const lineupTitle = document.querySelector("[data-lineup-title]");
-  const lineupSystem = document.querySelector("[data-lineup-system]");
   const filterButtons = Array.from(document.querySelectorAll("[data-squad-filters] [data-filter]"));
   const positionOrder = {
     Torwart: 0,
@@ -777,8 +774,6 @@ if (squadData) {
 
     return `${left.lastName}${left.firstName}`.localeCompare(`${right.lastName}${right.firstName}`, "de");
   });
-  const playersById = new Map(players.map((player) => [player.id, player]));
-
   const formatName = (person) => `${person.firstName} ${person.lastName}`;
   const formatNumber = (value) => (typeof value === "number" ? value : "--");
   const formatAge = (value) => (typeof value === "number" ? `${value} J.` : "Alter offen");
@@ -871,47 +866,6 @@ if (squadData) {
       .join("");
   };
 
-  const renderLineup = () => {
-    if (!lineupPitch) {
-      return;
-    }
-
-    if (lineupTitle) {
-      lineupTitle.textContent = squadData.formation.name;
-    }
-
-    if (lineupSystem) {
-      lineupSystem.textContent = squadData.formation.system;
-    }
-
-    lineupPitch.innerHTML = squadData.formation.rows
-      .map((row) => {
-        const rowMarkup = row
-          .map((playerId) => {
-            const player = playersById.get(playerId);
-
-            if (!player) {
-              return "";
-            }
-
-            return `
-              <div class="lineup-player">
-                <img class="lineup-avatar" src="${resolveImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes}>
-                <div class="lineup-card">
-                  <span class="lineup-number">${formatNumber(player.jerseyNumber)}</span>
-                  <strong>${formatName(player)}</strong>
-                  <span class="lineup-role">${player.position}</span>
-                </div>
-              </div>
-            `;
-          })
-          .join("");
-
-        return `<div class="lineup-row" style="grid-template-columns: repeat(${row.length}, minmax(0, 1fr));">${rowMarkup}</div>`;
-      })
-      .join("");
-  };
-
   let activeFilter = "Alle";
 
   filterButtons.forEach((button) => {
@@ -926,7 +880,6 @@ if (squadData) {
     });
   });
 
-  renderLineup();
   renderSquad(activeFilter);
   renderStaff();
 }
