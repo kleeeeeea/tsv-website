@@ -804,6 +804,7 @@ if (squadData?.teams) {
     return `${value.replace(/\/$/, "")}/480x600.webp`;
   };
   const fallbackImageAttributes = 'onerror="this.onerror=null;this.src=\'logo.png?v=20260310b\';"';
+  const asCssImage = (value) => `style="--player-image: url('${resolveImageUrl(value)}');"`;
   const formatFlags = (flags = []) =>
     flags.map((flag) => {
       if (flag === "new") {
@@ -828,7 +829,7 @@ if (squadData?.teams) {
 
         return `
           <article class="squad-card">
-            <div class="squad-card-media">
+            <div class="squad-card-media" ${asCssImage(player.imageUrl)}>
               <img src="${resolveImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes}>
             </div>
             <div class="squad-card-body">
@@ -865,7 +866,7 @@ if (squadData?.teams) {
       .map(
         (member) => `
           <article class="staff-card">
-            <div class="staff-card-media">
+            <div class="staff-card-media" ${asCssImage(member.imageUrl)}>
               <img src="${resolveImageUrl(member.imageUrl)}" alt="${formatName(member)}" loading="lazy" ${fallbackImageAttributes}>
             </div>
             <div class="staff-card-body">
