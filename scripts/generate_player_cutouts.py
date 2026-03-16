@@ -10,6 +10,7 @@ SOURCE_FILE = ROOT_DIR / "team-data.js"
 DOWNLOAD_DIR = ROOT_DIR / ".tmp" / "player-cutouts" / "downloads"
 OUTPUT_DIR = ROOT_DIR / "images" / "kader" / "cutouts"
 REMBG_BIN = Path("/Users/leakleemann/Library/Python/3.13/bin/rembg")
+REMBG_MODEL = "u2net_human_seg"
 
 
 def normalize_image_url(value: str) -> str:
@@ -47,7 +48,11 @@ def main() -> None:
             continue
 
         subprocess.run(["curl", "-L", remote_url, "-o", str(download_file)], cwd=ROOT_DIR, check=True)
-        subprocess.run([str(REMBG_BIN), "i", str(download_file), str(output_file)], cwd=ROOT_DIR, check=True)
+        subprocess.run(
+            [str(REMBG_BIN), "i", "-m", REMBG_MODEL, str(download_file), str(output_file)],
+            cwd=ROOT_DIR,
+            check=True,
+        )
         created += 1
 
     print(

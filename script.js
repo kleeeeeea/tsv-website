@@ -796,15 +796,10 @@ if (squadData?.teams) {
     const match = value?.match(/\/player\/([^/]+)/i);
     return match?.[1] || null;
   };
-  const defaultPlayerImage = "logo.png?v=20260310b";
-  const cutoutDisabledTokens = new Set([
-    "Y1NfDiFUnwcn",
-    "6pxKXYYOFU0I"
-  ]);
 
   const resolveImageUrl = (value) => {
     if (!value) {
-      return defaultPlayerImage;
+      return "logo.png?v=20260310b";
     }
 
     if (/\.(?:avif|webp|png|jpe?g|svg)$/i.test(value)) {
@@ -813,34 +808,21 @@ if (squadData?.teams) {
 
     return `${value.replace(/\/$/, "")}/480x600.webp`;
   };
-  const resolveDisplayImageUrl = (value) => {
-    const token = getImageToken(value);
-    const cutoutUrl = resolveCutoutUrl(value);
-
-    if (cutoutUrl) {
-      return cutoutUrl;
-    }
-
-    if (token && cutoutDisabledTokens.has(token)) {
-      return defaultPlayerImage;
-    }
-
-    return resolveImageUrl(value);
-  };
   const resolveCutoutUrl = (value) => {
     const token = getImageToken(value);
 
-    if (!token || cutoutDisabledTokens.has(token)) {
+    if (!token) {
       return null;
     }
 
-    return `images/kader/cutouts/${token}.png?v=20260316h`;
+    return `images/kader/cutouts/${token}.png?v=20260316i`;
   };
   const fallbackImageAttributes = (value) => {
     const remoteImage = resolveImageUrl(value);
     const escapedRemote = remoteImage.replace(/'/g, "\\'");
-    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='${defaultPlayerImage}';}"`;
+    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo.png?v=20260310b';}"`;
   };
+  const resolveDisplayImageUrl = (value) => resolveCutoutUrl(value) || resolveImageUrl(value);
   const asCssImage = (value) => `style="--player-image: url('${resolveDisplayImageUrl(value)}');"`;
   const formatFlags = (flags = []) =>
     flags.map((flag) => {
