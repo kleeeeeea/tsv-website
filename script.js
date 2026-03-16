@@ -792,6 +792,11 @@ if (squadData?.teams) {
   const formatName = (person) => `${person.firstName} ${person.lastName}`;
   const formatNumber = (value) => (typeof value === "number" ? value : "--");
   const formatAge = (value) => (typeof value === "number" ? `${value} J.` : "Alter offen");
+  const getImageToken = (value) => {
+    const match = value?.match(/\/player\/([^/]+)/i);
+    return match?.[1] || null;
+  };
+
   const resolveImageUrl = (value) => {
     if (!value) {
       return "logo.png?v=20260310b";
@@ -803,7 +808,20 @@ if (squadData?.teams) {
 
     return `${value.replace(/\/$/, "")}/480x600.webp`;
   };
-  const fallbackImageAttributes = 'onerror="this.onerror=null;this.src=\'logo.png?v=20260310b\';"';
+  const resolveCutoutUrl = (value) => {
+    const token = getImageToken(value);
+
+    if (!token) {
+      return null;
+    }
+
+    return `images/kader/cutouts/${token}.png?v=20260316g`;
+  };
+  const fallbackImageAttributes = (value) => {
+    const remoteImage = resolveImageUrl(value);
+    const escapedRemote = remoteImage.replace(/'/g, "\\'");
+    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo.png?v=20260310b';}"`;
+  };
   const asCssImage = (value) => `style="--player-image: url('${resolveImageUrl(value)}');"`;
   const formatFlags = (flags = []) =>
     flags.map((flag) => {
@@ -830,7 +848,7 @@ if (squadData?.teams) {
         return `
           <article class="squad-card">
             <div class="squad-card-media" ${asCssImage(player.imageUrl)}>
-              <img src="${resolveImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes}>
+              <img src="${resolveCutoutUrl(player.imageUrl) || resolveImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>
             </div>
             <div class="squad-card-body">
               <div class="squad-card-topline">
@@ -867,7 +885,7 @@ if (squadData?.teams) {
         (member) => `
           <article class="staff-card">
             <div class="staff-card-media" ${asCssImage(member.imageUrl)}>
-              <img src="${resolveImageUrl(member.imageUrl)}" alt="${formatName(member)}" loading="lazy" ${fallbackImageAttributes}>
+              <img src="${resolveCutoutUrl(member.imageUrl) || resolveImageUrl(member.imageUrl)}" alt="${formatName(member)}" loading="lazy" ${fallbackImageAttributes(member.imageUrl)}>
             </div>
             <div class="staff-card-body">
               <p class="staff-role">${member.role}</p>
