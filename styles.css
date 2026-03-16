@@ -1317,6 +1317,10 @@ h3 {
   margin-top: 22px;
 }
 
+.team-switcher-section {
+  margin-top: 18px;
+}
+
 .team-switcher-button {
   border: 1px solid rgba(255, 255, 255, 0.22);
   background: rgba(255, 255, 255, 0.14);
