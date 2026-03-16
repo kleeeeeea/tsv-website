@@ -1388,33 +1388,7 @@ h3 {
 .squad-grid {
   position: relative;
   z-index: 1;
-  gap: 28px;
-}
-
-.squad-row {
-  display: grid;
-  gap: 14px;
-}
-
-.squad-row-label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  min-height: 32px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(7, 34, 58, 0.72);
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.squad-row-cards {
-  display: grid;
-  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .staff-grid {
@@ -1553,7 +1527,7 @@ h3 {
   }
 
   .squad-grid {
-    gap: 22px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .countdown-grid,
