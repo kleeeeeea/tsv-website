@@ -52,7 +52,7 @@ window.tsvSquadData = {
         { id: 22912516, firstName: "Jannik", lastName: "Gramm", position: "Angriff", jerseyNumber: 19, matches: 9, goals: 0, flags: [], age: 29, imageUrl: "https://image.fupa.net/player/mnAFucSnqkRr/" },
         { id: 23766317, firstName: "Johannes", lastName: "Grün", position: "Angriff", jerseyNumber: null, matches: 1, goals: 0, flags: [], age: 22, imageUrl: "https://image.fupa.net/player/kEhGlJIy7VaA/" },
         { id: 22912530, firstName: "Daniel", lastName: "Hensolt", position: "Angriff", jerseyNumber: 10, matches: 7, goals: 5, flags: [], age: 34, imageUrl: "https://image.fupa.net/player/RZs3hqECiXOK/" },
-        { id: 23818598, firstName: "Milos", lastName: "Pesut", position: "Angriff", jerseyNumber: null, matches: 2, goals: 0, flags: [], age: null, imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/" }
+        { id: 23818598, firstName: "Milos", lastName: "Pesut", position: "Angriff", jerseyNumber: null, matches: 2, goals: 0, flags: [], age: null, imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/", hideImage: true }
       ],
       staff: [
         { id: 22912511, firstName: "Hans", lastName: "Golder", role: "Trainer", age: null, imageUrl: "https://image.fupa.net/player/CFpcgjjP2uKM/" },

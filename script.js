@@ -855,11 +855,15 @@ if (squadData?.teams) {
         const tags = formatFlags(player.flags)
           .map((flag) => `<span class="squad-flag">${flag}</span>`)
           .join("");
+        const playerImage = player.hideImage
+          ? ""
+          : `<img src="${resolveDisplayImageUrl(player)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>`;
+        const playerMediaStyle = player.hideImage ? "" : ` ${asCssImage(player)}`;
 
         return `
           <article class="squad-card">
-            <div class="squad-card-media" ${asCssImage(player)}>
-              <img src="${resolveDisplayImageUrl(player)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>
+            <div class="squad-card-media"${playerMediaStyle}>
+              ${playerImage}
             </div>
             <div class="squad-card-body">
               <div class="squad-card-topline">
