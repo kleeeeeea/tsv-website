@@ -796,9 +796,7 @@ if (squadData?.teams) {
     const match = value?.match(/\/player\/([^/]+)/i);
     return match?.[1] || null;
   };
-  const cutoutOverrides = {
-    "6pxKXYYOFU0I": "images/kader/cutouts/6pxKXYYOFU0I-v2.png?v=20260317c",
-  };
+  const cutoutOverrides = {};
 
   const resolveImageUrl = (value) => {
     if (!value) {
