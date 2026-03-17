@@ -1522,6 +1522,28 @@ h3 {
     rgba(255, 255, 255, 0.98);
 }
 
+.squad-card-body::before,
+.staff-card-body::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  width: 128px;
+  height: 128px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+    url("logo.svg") center / contain no-repeat;
+  opacity: 0.055;
+  transform: rotate(-10deg);
+  pointer-events: none;
+}
+
+.squad-card-body > *,
+.staff-card-body > * {
+  position: relative;
+  z-index: 1;
+}
+
 .squad-card-topline {
   display: flex;
   align-items: flex-start;
