@@ -811,7 +811,12 @@ if (squadData?.teams) {
 
     return `${value.replace(/\/$/, "")}/480x600.webp`;
   };
-  const resolveCutoutUrl = (value) => {
+  const resolveCutoutUrl = (person) => {
+    if (person?.customCutoutUrl) {
+      return person.customCutoutUrl;
+    }
+
+    const value = person?.imageUrl;
     const token = getImageToken(value);
 
     if (!token) {
@@ -829,8 +834,8 @@ if (squadData?.teams) {
     const escapedRemote = remoteImage.replace(/'/g, "\\'");
     return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo.png?v=20260310b';}"`;
   };
-  const resolveDisplayImageUrl = (value) => resolveCutoutUrl(value) || resolveImageUrl(value);
-  const asCssImage = (value) => `style="--player-image: url('${resolveDisplayImageUrl(value)}');"`;
+  const resolveDisplayImageUrl = (person) => resolveCutoutUrl(person) || resolveImageUrl(person?.imageUrl);
+  const asCssImage = (person) => `style="--player-image: url('${resolveDisplayImageUrl(person)}');"`;
   const formatFlags = (flags = []) =>
     flags.map((flag) => {
       if (flag === "new") {
@@ -855,8 +860,8 @@ if (squadData?.teams) {
 
         return `
           <article class="squad-card">
-            <div class="squad-card-media" ${asCssImage(player.imageUrl)}>
-              <img src="${resolveDisplayImageUrl(player.imageUrl)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>
+            <div class="squad-card-media" ${asCssImage(player)}>
+              <img src="${resolveDisplayImageUrl(player)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>
             </div>
             <div class="squad-card-body">
               <div class="squad-card-topline">
@@ -892,8 +897,8 @@ if (squadData?.teams) {
       .map(
         (member) => `
           <article class="staff-card">
-            <div class="staff-card-media" ${asCssImage(member.imageUrl)}>
-              <img src="${resolveDisplayImageUrl(member.imageUrl)}" alt="${formatName(member)}" loading="lazy" ${fallbackImageAttributes(member.imageUrl)}>
+            <div class="staff-card-media" ${asCssImage(member)}>
+              <img src="${resolveDisplayImageUrl(member)}" alt="${formatName(member)}" loading="lazy" ${fallbackImageAttributes(member.imageUrl)}>
             </div>
             <div class="staff-card-body">
               <p class="staff-role">${member.role}</p>
