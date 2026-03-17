@@ -1471,14 +1471,14 @@ h3 {
 
 .squad-card-logo {
   position: absolute;
-  top: 12px;
-  right: 14px;
-  width: 48px;
+  top: 10px;
+  right: 12px;
+  width: 54px;
   aspect-ratio: 1;
   background: url("logo.png?v=20260310b") center / contain no-repeat;
-  opacity: 0.14;
+  opacity: 0.19;
   mix-blend-mode: multiply;
-  filter: saturate(0.72) brightness(1.03);
+  filter: saturate(0.8) brightness(1.01);
   z-index: 1;
   pointer-events: none;
 }
