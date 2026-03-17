@@ -1522,6 +1522,24 @@ h3 {
     rgba(255, 255, 255, 0.98);
 }
 
+.squad-card-body::before {
+  content: "";
+  position: absolute;
+  right: -12px;
+  bottom: -18px;
+  width: 144px;
+  height: 144px;
+  background: url("logo.png?v=20260310b") center / contain no-repeat;
+  opacity: 0.035;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.squad-card-body > * {
+  position: relative;
+  z-index: 1;
+}
+
 .squad-card-topline {
   display: flex;
   align-items: flex-start;
