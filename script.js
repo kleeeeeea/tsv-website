@@ -815,7 +815,7 @@ if (squadData?.teams) {
       return null;
     }
 
-    return `images/kader/cutouts/${token}.png?v=20260317a`;
+    return `images/kader/cutouts/${token}.png?v=20260317b`;
   };
   const fallbackImageAttributes = (value) => {
     const remoteImage = resolveImageUrl(value);
