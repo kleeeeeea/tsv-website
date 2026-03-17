@@ -1469,6 +1469,20 @@ h3 {
   isolation: isolate;
 }
 
+.squad-card-logo {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 48px;
+  aspect-ratio: 1;
+  background: url("logo.png?v=20260310b") center / contain no-repeat;
+  opacity: 0.14;
+  mix-blend-mode: multiply;
+  filter: saturate(0.72) brightness(1.03);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .squad-card-media::before,
 .staff-card-media::before {
   content: "";
@@ -1502,7 +1516,7 @@ h3 {
 .squad-card-media img,
 .staff-card-media img {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: auto;
   max-width: min(100%, 250px);
   height: 242px;

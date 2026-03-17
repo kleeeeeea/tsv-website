@@ -863,6 +863,7 @@ if (squadData?.teams) {
         return `
           <article class="squad-card">
             <div class="squad-card-media"${playerMediaStyle}>
+              <span class="squad-card-logo" aria-hidden="true"></span>
               ${playerImage}
             </div>
             <div class="squad-card-body">
