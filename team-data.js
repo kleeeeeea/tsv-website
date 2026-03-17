@@ -109,7 +109,7 @@ window.tsvSquadData = {
         { id: 22918352, firstName: "Jannik", lastName: "Gramm", position: "Angriff", jerseyNumber: null, matches: 0, goals: 0, flags: [], age: 29, imageUrl: "https://image.fupa.net/player/mnAFucSnqkRr/" },
         { id: 22918369, firstName: "Johannes", lastName: "Grün", position: "Angriff", jerseyNumber: null, matches: 0, goals: 0, flags: [], age: 22, imageUrl: "https://image.fupa.net/player/kEhGlJIy7VaA/" },
         { id: 22918370, firstName: "Daniel", lastName: "Hensolt", position: "Angriff", jerseyNumber: null, matches: 0, goals: 0, flags: [], age: 34, imageUrl: "https://image.fupa.net/player/RZs3hqECiXOK/" },
-        { id: 22918378, firstName: "Simon", lastName: "Meyer", position: "Angriff", jerseyNumber: null, matches: 0, goals: 0, flags: [], age: 23, imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/", customCutoutUrl: "images/kader/cutouts/simon-meyer.png?v=20260317e" },
+        { id: 22918378, firstName: "Simon", lastName: "Meyer", position: "Angriff", jerseyNumber: null, matches: 0, goals: 0, flags: [], age: 23, imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/", customCutoutUrl: "images/kader/cutouts/simon-meyer.png?v=20260317f" },
         { id: 22918359, firstName: "Christoph", lastName: "Seitz", position: "Angriff", jerseyNumber: 14, matches: 0, goals: 0, flags: [], age: 33, imageUrl: "https://image.fupa.net/player/9Y7qdRHRTSTj/" }
       ],
       staff: [
