@@ -1476,7 +1476,7 @@ h3 {
   width: 54px;
   aspect-ratio: 1;
   background: url("logo.png?v=20260310b") center / contain no-repeat;
-  opacity: 0.19;
+  opacity: 0.24;
   mix-blend-mode: multiply;
   filter: saturate(0.8) brightness(1.01);
   z-index: 1;
