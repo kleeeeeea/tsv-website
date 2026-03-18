@@ -1220,6 +1220,127 @@ h3 {
   font-weight: 700;
 }
 
+.club-stat-grid {
+  margin-top: -12px;
+}
+
+.story-layout,
+.campus-grid,
+.leadership-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.story-layout {
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+}
+
+.story-panel,
+.quote-panel,
+.campus-card,
+.club-cta-band {
+  background:
+    linear-gradient(180deg, rgba(17, 130, 198, 0.05), rgba(17, 130, 198, 0)),
+    var(--surface);
+}
+
+.story-timeline {
+  display: grid;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.story-step {
+  position: relative;
+  padding: 0 0 0 22px;
+}
+
+.story-step::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 6px rgba(17, 130, 198, 0.12);
+}
+
+.story-step + .story-step {
+  border-top: 1px solid rgba(22, 37, 58, 0.08);
+  padding-top: 16px;
+}
+
+.story-step strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--primary-dark);
+  font-size: 1.02rem;
+}
+
+.story-step p,
+.quote-panel p,
+.campus-card p,
+.leadership-item span,
+.club-highlights li {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.quote-panel h3,
+.campus-card h3 {
+  margin-bottom: 12px;
+}
+
+.club-pill-list {
+  margin-top: 18px;
+}
+
+.campus-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.campus-card-feature {
+  grid-column: span 2;
+}
+
+.campus-card .eyebrow {
+  margin-bottom: 10px;
+}
+
+.club-info-grid {
+  align-items: stretch;
+}
+
+.leadership-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 18px;
+}
+
+.leadership-item {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(17, 130, 198, 0.06);
+  border: 1px solid rgba(17, 130, 198, 0.12);
+}
+
+.leadership-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--primary-dark);
+}
+
+.club-highlights {
+  margin: 18px 0 0;
+  padding-left: 20px;
+}
+
+.club-highlights li + li {
+  margin-top: 10px;
+}
+
 .footer-copy strong {
   color: var(--primary-dark);
 }
@@ -1624,7 +1745,10 @@ h3 {
   .penalty-panel,
   .social-grid,
   .legal-grid,
-  .staff-grid {
+  .staff-grid,
+  .story-layout,
+  .campus-grid,
+  .leadership-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1645,6 +1769,10 @@ h3 {
 
   .page-hero {
     padding-top: 54px;
+  }
+
+  .campus-card-feature {
+    grid-column: span 1;
   }
 }
 
