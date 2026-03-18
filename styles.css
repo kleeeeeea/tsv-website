@@ -1341,6 +1341,19 @@ h3 {
   margin-top: 10px;
 }
 
+.chronicle-longform {
+  margin-top: 28px;
+}
+
+.chronicle-accordion summary {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.01em;
+}
+
+.chronicle-accordion p + p {
+  margin-top: 14px;
+}
+
 .footer-copy strong {
   color: var(--primary-dark);
 }
