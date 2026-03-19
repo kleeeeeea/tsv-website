@@ -669,19 +669,19 @@ h3 {
   }
 
   20% {
-    transform: translateX(120px) translateY(2px) rotate(90deg);
+    transform: translateX(120px) translateY(2px) rotate(360deg);
   }
 
   45% {
-    transform: translateX(260px) translateY(15px) rotate(210deg);
+    transform: translateX(260px) translateY(15px) rotate(810deg);
   }
 
   70% {
-    transform: translateX(420px) translateY(6px) rotate(320deg);
+    transform: translateX(420px) translateY(6px) rotate(1260deg);
   }
 
   100% {
-    transform: translateX(640px) translateY(0) rotate(480deg);
+    transform: translateX(640px) translateY(0) rotate(1800deg);
   }
 }
 
