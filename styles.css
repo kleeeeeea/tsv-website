@@ -1425,16 +1425,6 @@ h3 {
   transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.team-switcher-button::before {
-  content: "Tippen";
-  display: block;
-  margin-bottom: 4px;
-  color: var(--primary);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .team-switcher-button:hover,
 .team-switcher-button.is-active {
   background: linear-gradient(180deg, var(--primary), #0a6aa5);
@@ -1442,11 +1432,6 @@ h3 {
   border-color: rgba(10, 79, 124, 0.4);
   box-shadow: 0 16px 30px rgba(17, 130, 198, 0.28);
   transform: translateY(-2px);
-}
-
-.team-switcher-button:hover::before,
-.team-switcher-button.is-active::before {
-  color: rgba(255, 255, 255, 0.82);
 }
 
 .squad-panel-full {
