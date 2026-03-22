@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-03-22T17:48:11.639Z",
+  "generatedAt": "2026-03-22T18:23:16.410Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P5IS000000VS5489BTVTHCTAHT",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P514000000VS5489BTVTHCTAHT",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Hainsfarth vs. SV Mauren",
-    "isHome": true,
+    "fixtureText": "SV Holzkirchen vs. TSV Hainsfarth",
+    "isHome": false,
     "league": "KL Nord",
-    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
-    "opponent": "SV Mauren",
+    "location": "Wörnitzstadion Holzkirchen,Hirtenweg 4,86759 Wechingen",
+    "opponent": "SV Holzkirchen",
     "result": {
       "available": false,
       "fontId": "",
@@ -18,7 +18,7 @@
       "status": "",
       "text": ""
     },
-    "start": "2026-03-22T14:00:00.000Z",
-    "uid": "02TUN9P5IS000000VS5489BTVTHCTAHT"
+    "start": "2026-03-29T13:00:00.000Z",
+    "uid": "02TUN9P514000000VS5489BTVTHCTAHT"
   }
 }
