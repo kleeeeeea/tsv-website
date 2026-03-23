@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>TSV Hainsfarth | Start</title>
-  <link rel="stylesheet" href="styles.css?v=20260319d">
+  <link rel="stylesheet" href="styles.css?v=20260323a">
   <script src="https://widget-prod.bfv.de/widget/widgetresource/widgetjs"></script>
 </head>
 <body>
@@ -147,6 +147,32 @@
                     </div>
                   </div>
                 </div>
+                <section class="tip-game-card" data-tip-game>
+                  <div class="tip-game-head">
+                    <div>
+                      <p class="countdown-label">Tippspiel</p>
+                      <h3>Dein Tipp fürs nächste Spiel</h3>
+                    </div>
+                    <span class="tip-game-badge" data-tip-game-status>Offen</span>
+                  </div>
+                  <p class="tip-game-fixture" data-tip-game-fixture>TSV Hainsfarth vs. Gegner</p>
+                  <div class="tip-game-form">
+                    <label class="tip-score-field">
+                      <span>TSV</span>
+                      <input type="number" min="0" max="20" inputmode="numeric" value="0" data-tip-home>
+                    </label>
+                    <span class="tip-score-divider">:</span>
+                    <label class="tip-score-field">
+                      <span>Gegner</span>
+                      <input type="number" min="0" max="20" inputmode="numeric" value="0" data-tip-away>
+                    </label>
+                  </div>
+                  <div class="tip-game-actions">
+                    <button class="button" type="button" data-tip-save>Tipp speichern</button>
+                    <button class="button-secondary tip-game-reset" type="button" data-tip-reset>Tipp löschen</button>
+                  </div>
+                  <p class="tip-game-note" data-tip-game-note>Dein Tipp wird nur auf diesem Gerät gespeichert.</p>
+                </section>
               </div>
             </div>
           </div>
@@ -374,6 +400,6 @@
       );
     }
   </script>
-  <script src="script.js?v=20260317i"></script>
+  <script src="script.js?v=20260323a"></script>
 </body>
 </html>
