@@ -69,17 +69,7 @@ if (countdownRoot) {
   const weatherRainNode = weatherRoot?.querySelector("[data-weather-rain]");
   const weatherWindNode = weatherRoot?.querySelector("[data-weather-wind]");
   const weatherTimeNode = weatherRoot?.querySelector("[data-weather-time]");
-  const tipGameRoot = countdownRoot.querySelector("[data-tip-game]");
-  const tipGameStatusNode = tipGameRoot?.querySelector("[data-tip-game-status]");
-  const tipGameFixtureNode = tipGameRoot?.querySelector("[data-tip-game-fixture]");
-  const tipGameNoteNode = tipGameRoot?.querySelector("[data-tip-game-note]");
-  const tipHomeInput = tipGameRoot?.querySelector("[data-tip-home]");
-  const tipAwayInput = tipGameRoot?.querySelector("[data-tip-away]");
-  const tipSaveButton = tipGameRoot?.querySelector("[data-tip-save]");
-  const tipResetButton = tipGameRoot?.querySelector("[data-tip-reset]");
   const activeMatchWindowMs = 4 * 60 * 60 * 1000;
-  const tipStorageKeyPrefix = "tsv-tip-";
-  let activeTipEvent = null;
 
   const formatDate = (date) =>
     new Intl.DateTimeFormat("de-DE", {
@@ -240,145 +230,10 @@ if (countdownRoot) {
     return events.find((event) => event.start.getTime() > now) || null;
   };
 
-  const getNextUpcomingEvent = (events) => events.find((event) => event.start.getTime() > Date.now()) || null;
-
   const buildFixtureText = (event) =>
     event.isHome
       ? `TSV Hainsfarth vs. ${event.opponent}`
       : `${event.opponent} vs. TSV Hainsfarth`;
-
-  const getTipStorageKey = (event) => `${tipStorageKeyPrefix}${event.uid || event.start.toISOString()}`;
-
-  const readStoredTip = (event) => {
-    if (!event) {
-      return null;
-    }
-
-    try {
-      const rawValue = window.localStorage.getItem(getTipStorageKey(event));
-      return rawValue ? JSON.parse(rawValue) : null;
-    } catch {
-      return null;
-    }
-  };
-
-  const writeStoredTip = (event, tip) => {
-    if (!event) {
-      return;
-    }
-
-    try {
-      window.localStorage.setItem(getTipStorageKey(event), JSON.stringify(tip));
-    } catch {
-      // Ignore storage errors and keep the UI usable.
-    }
-  };
-
-  const clearStoredTip = (event) => {
-    if (!event) {
-      return;
-    }
-
-    try {
-      window.localStorage.removeItem(getTipStorageKey(event));
-    } catch {
-      // Ignore storage errors and keep the UI usable.
-    }
-  };
-
-  const setTipDisabledState = (isDisabled) => {
-    tipHomeInput?.toggleAttribute("disabled", isDisabled);
-    tipAwayInput?.toggleAttribute("disabled", isDisabled);
-    tipSaveButton?.toggleAttribute("disabled", isDisabled);
-    tipResetButton?.toggleAttribute("disabled", isDisabled);
-  };
-
-  const renderTipFallback = (message = "Kein neues Tippspiel verfügbar.") => {
-    if (!tipGameRoot) {
-      return;
-    }
-
-    activeTipEvent = null;
-    tipGameRoot.hidden = false;
-
-    if (tipGameStatusNode) {
-      tipGameStatusNode.textContent = "Pause";
-    }
-
-    if (tipGameFixtureNode) {
-      tipGameFixtureNode.textContent = "Sobald das nächste Spiel feststeht, kannst du hier wieder tippen.";
-    }
-
-    if (tipGameNoteNode) {
-      tipGameNoteNode.textContent = message;
-    }
-
-    if (tipHomeInput) {
-      tipHomeInput.value = "0";
-    }
-
-    if (tipAwayInput) {
-      tipAwayInput.value = "0";
-    }
-
-    setTipDisabledState(true);
-  };
-
-  const renderTipGame = (event) => {
-    if (!event) {
-      renderTipFallback();
-      return;
-    }
-
-    if (!tipGameRoot || !tipHomeInput || !tipAwayInput) {
-      return;
-    }
-
-    activeTipEvent = event;
-    const fixtureText = buildFixtureText(event);
-    const storedTip = readStoredTip(event);
-    const isLocked = Date.now() >= event.start.getTime();
-    const homeTeamLabel = event.isHome ? "TSV" : event.opponent;
-    const awayTeamLabel = event.isHome ? event.opponent : "TSV";
-
-    tipGameRoot.hidden = false;
-
-    if (tipGameFixtureNode) {
-      tipGameFixtureNode.textContent = fixtureText;
-    }
-
-    const homeLabelNode = tipHomeInput.closest(".tip-score-field")?.querySelector("span");
-    const awayLabelNode = tipAwayInput.closest(".tip-score-field")?.querySelector("span");
-
-    if (homeLabelNode) {
-      homeLabelNode.textContent = homeTeamLabel;
-    }
-
-    if (awayLabelNode) {
-      awayLabelNode.textContent = awayTeamLabel;
-    }
-
-    tipHomeInput.value = String(storedTip?.home ?? 0);
-    tipAwayInput.value = String(storedTip?.away ?? 0);
-
-    if (tipGameStatusNode) {
-      tipGameStatusNode.textContent = isLocked ? "Geschlossen" : storedTip ? "Gespeichert" : "Offen";
-    }
-
-    if (tipGameNoteNode) {
-      if (isLocked && storedTip) {
-        tipGameNoteNode.textContent = `Dein Tipp ${storedTip.home}:${storedTip.away} ist gespeichert. Ab Anpfiff ist das Tippspiel geschlossen.`;
-      } else if (isLocked) {
-        tipGameNoteNode.textContent = "Anpfiff läuft oder ist vorbei. Für dieses Spiel ist kein neuer Tipp mehr möglich.";
-      } else if (storedTip) {
-        tipGameNoteNode.textContent = `Dein aktueller Tipp: ${storedTip.home}:${storedTip.away}. Du kannst ihn bis zum Anpfiff noch ändern.`;
-      } else {
-        tipGameNoteNode.textContent = "Dein Tipp wird nur auf diesem Gerät gespeichert.";
-      }
-    }
-
-    setTipDisabledState(isLocked);
-  };
 
   const renderSpotlight = (event) => {
     if (!spotlightRoot) {
@@ -522,8 +377,6 @@ if (countdownRoot) {
     if (weatherWindNode) {
       weatherWindNode.textContent = "Wind: --";
     }
-
-    renderTipFallback();
   };
 
   const renderWeatherFallback = () => {
@@ -750,42 +603,6 @@ if (countdownRoot) {
     window.setInterval(render, 60000);
   };
 
-  tipSaveButton?.addEventListener("click", () => {
-    if (!activeTipEvent || !tipHomeInput || !tipAwayInput) {
-      return;
-    }
-
-    if (Date.now() >= activeTipEvent.start.getTime()) {
-      renderTipGame(activeTipEvent);
-      return;
-    }
-
-    const home = Math.max(0, Math.min(20, Number.parseInt(tipHomeInput.value || "0", 10) || 0));
-    const away = Math.max(0, Math.min(20, Number.parseInt(tipAwayInput.value || "0", 10) || 0));
-    const nextTip = { home, away, savedAt: new Date().toISOString() };
-
-    tipHomeInput.value = String(home);
-    tipAwayInput.value = String(away);
-    writeStoredTip(activeTipEvent, nextTip);
-    renderTipGame(activeTipEvent);
-  });
-
-  tipResetButton?.addEventListener("click", () => {
-    if (!activeTipEvent) {
-      return;
-    }
-
-    if (Date.now() >= activeTipEvent.start.getTime()) {
-      renderTipGame(activeTipEvent);
-      return;
-    }
-
-    clearStoredTip(activeTipEvent);
-    tipHomeInput.value = "0";
-    tipAwayInput.value = "0";
-    renderTipGame(activeTipEvent);
-  });
-
   if (countdownSrc && dateNode && locationNode && timerNode) {
     fetch(`${countdownSrc}?t=${Date.now()}`, { cache: "no-store" })
       .then((response) => {
@@ -798,7 +615,6 @@ if (countdownRoot) {
       .then((icsText) => {
         const events = parseEvents(icsText);
         const nextEvent = getCurrentOrNextEvent(events);
-        const tipEvent = getNextUpcomingEvent(events);
 
         if (!nextEvent) {
           renderFallback();
@@ -811,12 +627,6 @@ if (countdownRoot) {
         void fetchMatchResult(nextEvent);
         void fetchMatchWeather(nextEvent);
         startCountdown(nextEvent.start);
-
-        if (tipEvent) {
-          renderTipGame(tipEvent);
-        } else {
-          renderTipFallback("Aktuell ist kein kommendes Spiel im Kalender hinterlegt.");
-        }
       })
       .catch(() => {
         renderFallback();

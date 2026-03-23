@@ -1130,6 +1130,233 @@ h3 {
   min-width: 300px;
 }
 
+.tippspiel-top-grid {
+  align-items: start;
+}
+
+.tippspiel-board-grid {
+  margin-top: 20px;
+}
+
+.tippspiel-panel,
+.tippspiel-card {
+  background:
+    linear-gradient(180deg, rgba(17, 130, 198, 0.05), rgba(17, 130, 198, 0)),
+    var(--surface);
+}
+
+.tippspiel-setup-panel {
+  margin-bottom: 20px;
+}
+
+.tippspiel-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(17, 130, 198, 0.12);
+  color: var(--primary-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.tippspiel-match-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.tippspiel-meta-chip {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(17, 130, 198, 0.07);
+  border: 1px solid rgba(17, 130, 198, 0.12);
+}
+
+.tippspiel-meta-chip strong,
+.tippspiel-meta-chip span {
+  display: block;
+}
+
+.tippspiel-meta-chip strong {
+  margin-bottom: 6px;
+  color: rgba(22, 37, 58, 0.68);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tippspiel-meta-chip span {
+  color: var(--primary-dark);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.tippspiel-meta-chip-wide {
+  grid-column: 1 / -1;
+}
+
+.tippspiel-form {
+  margin-top: 24px;
+}
+
+.tippspiel-name-row {
+  margin-bottom: 16px;
+}
+
+.tippspiel-field,
+.tippspiel-score-card {
+  display: grid;
+  gap: 8px;
+}
+
+.tippspiel-field span,
+.tippspiel-score-card span {
+  color: rgba(22, 37, 58, 0.72);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.tippspiel-field input,
+.tippspiel-score-card input {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 16px;
+  border: 1px solid rgba(17, 130, 198, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--primary-dark);
+  font: inherit;
+}
+
+.tippspiel-score-card input {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.tippspiel-score-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: end;
+}
+
+.tippspiel-score-divider {
+  padding-bottom: 14px;
+  color: var(--primary-dark);
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.tippspiel-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.tippspiel-feedback {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.tippspiel-feedback.is-error {
+  color: #9b1c1c;
+}
+
+.tippspiel-feedback.is-success {
+  color: var(--primary-dark);
+}
+
+.tippspiel-table-wrap {
+  overflow: auto;
+  margin-top: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(17, 130, 198, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.tippspiel-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+}
+
+.tippspiel-table th,
+.tippspiel-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(17, 130, 198, 0.1);
+}
+
+.tippspiel-table th {
+  color: rgba(22, 37, 58, 0.72);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tippspiel-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tippspiel-tip-list,
+.tippspiel-result-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.tippspiel-tip-item,
+.tippspiel-result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(17, 130, 198, 0.07);
+  border: 1px solid rgba(17, 130, 198, 0.12);
+}
+
+.tippspiel-tip-item strong,
+.tippspiel-result-item strong {
+  color: var(--primary-dark);
+}
+
+.tippspiel-tip-item span,
+.tippspiel-result-item span {
+  color: var(--muted);
+}
+
+.tippspiel-result-item > div:first-child {
+  display: grid;
+  gap: 6px;
+}
+
+.tippspiel-result-score {
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+  text-align: right;
+}
+
+.tippspiel-empty {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .shop-panel {
   overflow: hidden;
 }
@@ -1869,7 +2096,9 @@ h3 {
   .countdown-grid,
   .countdown-timer,
   .match-weather-grid,
-  .tip-game-form {
+  .tip-game-form,
+  .tippspiel-score-grid,
+  .tippspiel-match-meta {
     grid-template-columns: 1fr;
   }
 

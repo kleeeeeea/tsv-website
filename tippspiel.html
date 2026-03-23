@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Das offizielle TSV Hainsfarth Tippspiel mit Tippabgabe, Rangliste und Saisonwertung.">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>TSV Hainsfarth | Tippspiel</title>
+  <link rel="stylesheet" href="styles.css?v=20260323c">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">
+          <img class="brand-mark" src="logo.png?v=20260310b" alt="Logo des TSV Hainsfarth">
+          <span class="brand-copy">
+            <strong>TSV Hainsfarth</strong>
+            <span>Die Macht vom Burschel</span>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Navigation öffnen" aria-expanded="false" data-nav-toggle>☰</button>
+        <nav class="site-nav" aria-label="Hauptnavigation" data-nav>
+          <a href="index.html">Start</a>
+          <a href="verein.html">Verein</a>
+          <a href="kader.html">Kader</a>
+          <a href="sportangebot.html">Sportangebot</a>
+          <a href="tippspiel.html" aria-current="page">Tippspiel</a>
+          <a href="fanshop.html">Fanshop</a>
+          <a href="kontakt.html">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <main data-tippspiel-app>
+      <section class="page-hero">
+        <div class="container">
+          <div class="hero-card">
+            <div>
+              <span class="eyebrow">TSV Tippspiel</span>
+              <p class="motto">Spieltag für Spieltag mitfiebern</p>
+              <h1>Tippen, mitreden, Rangliste jagen.</h1>
+              <p class="lead">
+                Hier gibst du deinen Tipp für das nächste TSV-Spiel ab, siehst alle eingegangenen Tipps
+                und verfolgst die Saisonwertung. Exaktes Ergebnis, richtige Tordifferenz oder Tendenz:
+                am Ende zählt jeder Punkt.
+              </p>
+              <div class="hero-actions">
+                <a class="button" href="#abgeben">Jetzt tippen</a>
+                <a class="button-secondary" href="#rangliste">Zur Rangliste</a>
+              </div>
+            </div>
+            <aside class="hero-side">
+              <div>
+                <div class="hero-badge" data-tip-season>2025/2026</div>
+                <h3>Punkte-System</h3>
+                <p>3 Punkte exaktes Ergebnis<br>2 Punkte richtige Tordifferenz<br>1 Punkt richtige Tendenz</p>
+              </div>
+              <div>
+                <h3>Was zählt</h3>
+                <p>Name, Tipp, Rangliste und Saisonwertung werden zentral gespeichert und laufend aktualisiert.</p>
+              </div>
+              <img class="hero-logo" src="logo.png?v=20260310b" alt="TSV Hainsfarth Vereinslogo">
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <section class="panel tippspiel-setup-panel" data-tippspiel-setup hidden>
+            <div class="panel-topline">
+              <div>
+                <span class="eyebrow">Setup</span>
+                <h3>Supabase noch nicht verbunden</h3>
+              </div>
+            </div>
+            <p class="panel-note">
+              Für das zentrale Tippspiel braucht die Seite noch eine Supabase-Verbindung. Hinterlege dazu
+              deine Projekt-URL und den Anon-Key in `tippspiel-config.js` und lege die Tabellen mit
+              `supabase-tippspiel-schema.sql` an.
+            </p>
+          </section>
+
+          <div class="info-grid tippspiel-top-grid">
+            <section class="panel tippspiel-panel" id="abgeben">
+              <div class="panel-topline">
+                <div>
+                  <span class="eyebrow">Nächstes Spiel</span>
+                  <h2 data-tip-next-title>TSV Hainsfarth vs. Gegner</h2>
+                </div>
+                <span class="tippspiel-status-pill" data-tip-next-badge>Offen</span>
+              </div>
+              <div class="tippspiel-match-meta">
+                <div class="tippspiel-meta-chip">
+                  <strong>Termin</strong>
+                  <span data-tip-next-date>-</span>
+                </div>
+                <div class="tippspiel-meta-chip">
+                  <strong>Wettbewerb</strong>
+                  <span data-tip-next-competition>-</span>
+                </div>
+                <div class="tippspiel-meta-chip tippspiel-meta-chip-wide">
+                  <strong>Ort</strong>
+                  <span data-tip-next-location>-</span>
+                </div>
+              </div>
+
+              <form class="tippspiel-form" data-tip-form>
+                <div class="tippspiel-name-row">
+                  <label class="tippspiel-field">
+                    <span>Dein Name</span>
+                    <input type="text" maxlength="40" placeholder="z. B. Max Muster" data-tip-name>
+                  </label>
+                </div>
+                <div class="tippspiel-score-grid">
+                  <label class="tippspiel-score-card">
+                    <span data-tip-home-label>TSV Hainsfarth</span>
+                    <input type="number" min="0" max="20" value="0" inputmode="numeric" data-tip-home-score>
+                  </label>
+                  <div class="tippspiel-score-divider">:</div>
+                  <label class="tippspiel-score-card">
+                    <span data-tip-away-label>Gegner</span>
+                    <input type="number" min="0" max="20" value="0" inputmode="numeric" data-tip-away-score>
+                  </label>
+                </div>
+                <div class="tippspiel-form-actions">
+                  <button class="button" type="submit" data-tip-submit>Tipp speichern</button>
+                  <button class="button-secondary" type="button" data-tip-clear>Felder leeren</button>
+                </div>
+                <p class="tippspiel-feedback" data-tip-feedback>Dein Name und dein Tipp werden für dieses Spiel zentral gespeichert.</p>
+              </form>
+            </section>
+
+            <section class="panel tippspiel-panel" id="rangliste">
+              <div class="panel-topline">
+                <div>
+                  <span class="eyebrow">Saisonranking</span>
+                  <h2>Aktuelle Rangliste</h2>
+                </div>
+              </div>
+              <div class="tippspiel-table-wrap">
+                <table class="tippspiel-table">
+                  <thead>
+                    <tr>
+                      <th>Platz</th>
+                      <th>Name</th>
+                      <th>Punkte</th>
+                      <th>Exakt</th>
+                      <th>Tipps</th>
+                    </tr>
+                  </thead>
+                  <tbody data-tip-leaderboard-body>
+                    <tr>
+                      <td colspan="5">Rangliste wird geladen ...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="card-grid tippspiel-board-grid">
+            <section class="card tippspiel-card">
+              <span class="eyebrow">Fürs nächste Spiel</span>
+              <h3>Alle abgegebenen Tipps</h3>
+              <div class="tippspiel-tip-list" data-tip-next-predictions>
+                <p class="tippspiel-empty">Noch keine Tipps vorhanden.</p>
+              </div>
+            </section>
+
+            <section class="card tippspiel-card">
+              <span class="eyebrow">Saisonverlauf</span>
+              <h3>Abgeschlossene Spiele</h3>
+              <div class="tippspiel-result-list" data-tip-results-list>
+                <p class="tippspiel-empty">Sobald Ergebnisse eingetragen sind, erscheint hier die Auswertung.</p>
+              </div>
+            </section>
+
+            <section class="card tippspiel-card">
+              <span class="eyebrow">Regeln</span>
+              <h3>So werden die Punkte vergeben</h3>
+              <ul class="club-highlights">
+                <li>3 Punkte für das exakte Ergebnis.</li>
+                <li>2 Punkte für die richtige Tordifferenz.</li>
+                <li>1 Punkt für die richtige Tendenz.</li>
+                <li>0 Punkte für alles andere.</li>
+                <li>Der Spieltag schließt automatisch mit dem Anpfiff.</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-copy">© TSV Hainsfarth 1949 e.V. <strong>Die Macht vom Burschel</strong></p>
+        <div class="footer-links">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="script.js?v=20260323c"></script>
+  <script src="tippspiel-config.js?v=20260323c"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="tippspiel.js?v=20260323c"></script>
+</body>
+</html>
