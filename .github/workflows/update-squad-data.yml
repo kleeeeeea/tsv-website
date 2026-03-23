@@ -1,0 +1,38 @@
+name: Update Squad Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 4,10,16,22 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-squad-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update FuPa squad snapshot
+        run: node scripts/update-squad-data.mjs
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- team-data.js; then
+            echo "No squad changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add team-data.js
+          git commit -m "chore: update squad data"
+          git push
