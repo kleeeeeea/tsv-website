@@ -115,6 +115,36 @@
     registerFeedbackNode.classList.toggle("is-success", !isError);
   };
 
+  const getReadableErrorMessage = (error, fallbackMessage) => {
+    const rawMessage = error?.message || error?.details || error?.hint || "";
+
+    if (!rawMessage) {
+      return fallbackMessage;
+    }
+
+    if (rawMessage.includes("bereits vergeben")) {
+      return "Dieser Name ist schon vergeben.";
+    }
+
+    if (rawMessage.includes("PIN falsch")) {
+      return "Die PIN passt nicht zu diesem Namen.";
+    }
+
+    if (rawMessage.includes("Name nicht gefunden")) {
+      return "Dieser Name ist noch nicht registriert.";
+    }
+
+    if (rawMessage.includes("ungueltig")) {
+      return rawMessage;
+    }
+
+    if (rawMessage.includes("geschlossen")) {
+      return "Der Anpfiff ist erreicht. Fuer dieses Spiel ist kein neuer Tipp mehr moeglich.";
+    }
+
+    return `${fallbackMessage} (${rawMessage})`;
+  };
+
   const setFormDisabled = (isDisabled) => {
     nameInput?.toggleAttribute("disabled", isDisabled);
     pinInput?.toggleAttribute("disabled", isDisabled);
@@ -472,10 +502,7 @@
       setFeedback("Name angelegt. Du kannst jetzt direkt deinen Tipp speichern.");
       await refreshBoard();
     } catch (error) {
-      const message =
-        error?.message?.includes("bereits vergeben")
-          ? "Dieser Name ist schon vergeben."
-          : "Der Name konnte gerade nicht angelegt werden.";
+      const message = getReadableErrorMessage(error, "Der Name konnte gerade nicht angelegt werden.");
       setRegisterFeedback(message, true);
     } finally {
       registerSubmitButton?.toggleAttribute("disabled", false);
@@ -530,12 +557,7 @@
       setFeedback(`Tipp gespeichert: ${homeScore}:${awayScore} fuer ${data?.player_name || playerName}.`);
       await refreshBoard();
     } catch (error) {
-      const message =
-        error?.message?.includes("PIN")
-          ? "Die PIN passt nicht zu diesem Namen."
-          : error?.message?.includes("Name")
-            ? "Dieser Name ist nicht freigeschaltet."
-            : "Dein Tipp konnte gerade nicht gespeichert werden.";
+      const message = getReadableErrorMessage(error, "Dein Tipp konnte gerade nicht gespeichert werden.");
       setFeedback(message, true);
     } finally {
       submitButton?.toggleAttribute("disabled", false);

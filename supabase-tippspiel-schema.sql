@@ -259,6 +259,8 @@ drop policy if exists "Tippspiel predictions are deletable by owner" on public.t
 
 revoke all on public.tippspiel_players from anon, authenticated;
 revoke all on public.tippspiel_predictions from anon, authenticated;
+grant select on public.tippspiel_matches to anon, authenticated;
+grant select on public.tippspiel_predictions to anon, authenticated;
 grant execute on function public.submit_tippspiel_prediction(uuid, text, text, integer, integer) to anon, authenticated;
 grant execute on function public.register_tippspiel_player(text, text) to anon, authenticated;
 
