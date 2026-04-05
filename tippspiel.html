@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>TSV Hainsfarth | Tippspiel</title>
-  <link rel="stylesheet" href="styles.css?v=20260405b">
+  <link rel="stylesheet" href="styles.css?v=20260405c">
 </head>
 <body>
   <div class="site-shell">
@@ -83,6 +83,44 @@
               fuer den serverseitigen Match- und Ergebnis-Sync. Gespeichert werden Tipps nur noch ueber
               eine sichere Name-und-PIN-Pruefung in Supabase.
             </p>
+          </section>
+
+          <section class="panel tippspiel-panel" data-tip-register-panel>
+            <div class="panel-topline">
+              <div>
+                <span class="eyebrow">Name + PIN</span>
+                <h2>Neu registrieren</h2>
+              </div>
+            </div>
+            <p class="panel-note">
+              Jeder Name kann nur einmal angelegt werden. Danach kann nur noch mit genau diesem Namen
+              und deiner PIN getippt werden.
+            </p>
+            <form class="tippspiel-form" data-tip-register-form>
+              <div class="tippspiel-name-row">
+                <label class="tippspiel-field">
+                  <span>Dein Name</span>
+                  <input type="text" maxlength="40" placeholder="z. B. Max Muster" data-tip-register-name>
+                </label>
+              </div>
+              <div class="tippspiel-score-grid">
+                <label class="tippspiel-score-card">
+                  <span>PIN</span>
+                  <input type="password" maxlength="20" inputmode="numeric" placeholder="Mindestens 4 Zeichen" data-tip-register-pin>
+                </label>
+                <div class="tippspiel-score-divider">:</div>
+                <label class="tippspiel-score-card">
+                  <span>PIN wiederholen</span>
+                  <input type="password" maxlength="20" inputmode="numeric" placeholder="Zur Sicherheit nochmal" data-tip-register-pin-confirm>
+                </label>
+              </div>
+              <div class="tippspiel-form-actions">
+                <button class="button" type="submit" data-tip-register-submit>Name + PIN anlegen</button>
+              </div>
+              <p class="tippspiel-feedback" data-tip-register-feedback>
+                Wenn dein Name noch frei ist, wird er mit deiner PIN gespeichert.
+              </p>
+            </form>
           </section>
 
           <div class="info-grid tippspiel-top-grid">
@@ -215,6 +253,6 @@
   <script src="script.js?v=20260323d"></script>
   <script src="tippspiel-config.js?v=20260323c"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="tippspiel.js?v=20260405c"></script>
+  <script src="tippspiel.js?v=20260405d"></script>
 </body>
 </html>

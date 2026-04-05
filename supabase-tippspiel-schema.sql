@@ -166,6 +166,51 @@ begin
 end;
 $$;
 
+create or replace function public.register_tippspiel_player(
+  p_player_name text,
+  p_pin text
+)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  normalized_name text;
+  created_player public.tippspiel_players;
+begin
+  normalized_name := public.normalize_tippspiel_name(p_player_name);
+
+  if normalized_name = '' then
+    raise exception 'Name fehlt.';
+  end if;
+
+  if coalesce(length(trim(p_pin)), 0) < 4 then
+    raise exception 'PIN ungueltig.';
+  end if;
+
+  if exists(
+    select 1
+      from public.tippspiel_players
+     where display_name_key = normalized_name
+  ) then
+    raise exception 'Name bereits vergeben.';
+  end if;
+
+  insert into public.tippspiel_players (display_name, pin_hash)
+  values (
+    trim(regexp_replace(p_player_name, '\s+', ' ', 'g')),
+    crypt(p_pin, gen_salt('bf'))
+  )
+  returning * into created_player;
+
+  return jsonb_build_object(
+    'player_id', created_player.id,
+    'player_name', created_player.display_name
+  );
+end;
+$$;
+
 drop trigger if exists set_tippspiel_matches_updated_at on public.tippspiel_matches;
 create trigger set_tippspiel_matches_updated_at
 before update on public.tippspiel_matches
@@ -215,6 +260,7 @@ drop policy if exists "Tippspiel predictions are deletable by owner" on public.t
 revoke all on public.tippspiel_players from anon, authenticated;
 revoke all on public.tippspiel_predictions from anon, authenticated;
 grant execute on function public.submit_tippspiel_prediction(uuid, text, text, integer, integer) to anon, authenticated;
+grant execute on function public.register_tippspiel_player(text, text) to anon, authenticated;
 
 -- Beispiel fuer Spieler:
 -- insert into public.tippspiel_players (display_name, pin_hash)

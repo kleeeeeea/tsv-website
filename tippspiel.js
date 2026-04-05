@@ -19,6 +19,12 @@
   const predictionsList = root.querySelector("[data-tip-next-predictions]");
   const resultsList = root.querySelector("[data-tip-results-list]");
   const form = root.querySelector("[data-tip-form]");
+  const registerForm = root.querySelector("[data-tip-register-form]");
+  const registerNameInput = root.querySelector("[data-tip-register-name]");
+  const registerPinInput = root.querySelector("[data-tip-register-pin]");
+  const registerPinConfirmInput = root.querySelector("[data-tip-register-pin-confirm]");
+  const registerSubmitButton = root.querySelector("[data-tip-register-submit]");
+  const registerFeedbackNode = root.querySelector("[data-tip-register-feedback]");
   const nameInput = root.querySelector("[data-tip-name]");
   const pinInput = root.querySelector("[data-tip-pin]");
   const homeInput = root.querySelector("[data-tip-home-score]");
@@ -97,6 +103,16 @@
     feedbackNode.textContent = text;
     feedbackNode.classList.toggle("is-error", isError);
     feedbackNode.classList.toggle("is-success", !isError);
+  };
+
+  const setRegisterFeedback = (text, isError = false) => {
+    if (!registerFeedbackNode) {
+      return;
+    }
+
+    registerFeedbackNode.textContent = text;
+    registerFeedbackNode.classList.toggle("is-error", isError);
+    registerFeedbackNode.classList.toggle("is-success", !isError);
   };
 
   const setFormDisabled = (isDisabled) => {
@@ -399,6 +415,72 @@
     renderResults();
     hydrateSavedNameTip();
   };
+
+  registerForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!supabaseClient) {
+      return;
+    }
+
+    const playerName = registerNameInput?.value?.replace(/\s+/g, " ").trim() || "";
+    const pin = registerPinInput?.value?.trim() || "";
+    const pinConfirm = registerPinConfirmInput?.value?.trim() || "";
+
+    if (playerName.length < 2) {
+      setRegisterFeedback("Bitte gib einen Namen mit mindestens 2 Zeichen ein.", true);
+      return;
+    }
+
+    if (pin.length < 4) {
+      setRegisterFeedback("Bitte waehle eine PIN mit mindestens 4 Zeichen.", true);
+      return;
+    }
+
+    if (pin !== pinConfirm) {
+      setRegisterFeedback("Die beiden PIN-Eingaben stimmen nicht ueberein.", true);
+      return;
+    }
+
+    registerSubmitButton?.toggleAttribute("disabled", true);
+
+    try {
+      const { data, error } = await supabaseClient.rpc("register_tippspiel_player", {
+        p_player_name: playerName,
+        p_pin: pin,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      const savedName = data?.player_name || playerName;
+      if (nameInput) {
+        nameInput.value = savedName;
+      }
+      if (pinInput) {
+        pinInput.value = pin;
+      }
+      window.localStorage.setItem(savedNameKey, savedName);
+      if (registerPinInput) {
+        registerPinInput.value = "";
+      }
+      if (registerPinConfirmInput) {
+        registerPinConfirmInput.value = "";
+      }
+      setRegisterFeedback(`Registrierung erfolgreich. ${savedName} kann jetzt mit dieser PIN tippen.`);
+      setFeedback("Name angelegt. Du kannst jetzt direkt deinen Tipp speichern.");
+      await refreshBoard();
+    } catch (error) {
+      const message =
+        error?.message?.includes("bereits vergeben")
+          ? "Dieser Name ist schon vergeben."
+          : "Der Name konnte gerade nicht angelegt werden.";
+      setRegisterFeedback(message, true);
+    } finally {
+      registerSubmitButton?.toggleAttribute("disabled", false);
+    }
+  });
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
