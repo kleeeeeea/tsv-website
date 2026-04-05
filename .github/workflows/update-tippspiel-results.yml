@@ -8,6 +8,9 @@ on:
 jobs:
   sync-tippspiel-results:
     runs-on: ubuntu-latest
+    env:
+      SUPABASE_URL: https://yarlxyfkzhlcfkyiwtzp.supabase.co
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
     steps:
       - name: Checkout repository
@@ -17,6 +20,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      - name: Sync tippspiel matches into Supabase
+        run: node scripts/sync-tippspiel-matches.mjs
 
       - name: Sync finished BFV results into Supabase
         run: node scripts/update-tippspiel-results.mjs

@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>TSV Hainsfarth | Tippspiel</title>
-  <link rel="stylesheet" href="styles.css?v=20260323c">
+  <link rel="stylesheet" href="styles.css?v=20260405a">
 </head>
 <body>
   <div class="site-shell">
@@ -78,9 +78,48 @@
               </div>
             </div>
             <p class="panel-note">
-              Für das zentrale Tippspiel braucht die Seite noch eine Supabase-Verbindung. Hinterlege dazu
-              deine Projekt-URL und den Anon-Key in `tippspiel-config.js` und lege die Tabellen mit
-              `supabase-tippspiel-schema.sql` an.
+              Fuer das sichere Tippspiel braucht die Seite eine Supabase-Verbindung mit Auth, das SQL aus
+              `supabase-tippspiel-schema.sql` und in GitHub Actions den Secret `SUPABASE_SERVICE_ROLE_KEY`
+              fuer den serverseitigen Match- und Ergebnis-Sync.
+            </p>
+          </section>
+
+          <section class="panel tippspiel-panel tippspiel-auth-panel" data-tip-auth-panel hidden>
+            <div class="panel-topline">
+              <div>
+                <span class="eyebrow">Sicheres Login</span>
+                <h2 data-tip-auth-state>Login erforderlich</h2>
+              </div>
+              <button class="button-secondary" type="button" data-tip-auth-logout hidden>Abmelden</button>
+            </div>
+            <p class="panel-note" data-tip-auth-email>Nur eingeloggte Nutzer koennen fuer sich selbst tippen.</p>
+
+            <form class="tippspiel-form" data-tip-auth-form>
+              <div class="tippspiel-name-row">
+                <label class="tippspiel-field">
+                  <span>E-Mail fuer den Login-Link</span>
+                  <input type="email" inputmode="email" autocomplete="email" placeholder="name@beispiel.de" data-tip-auth-email-input>
+                </label>
+              </div>
+              <div class="tippspiel-form-actions">
+                <button class="button" type="submit" data-tip-auth-submit>Login-Link senden</button>
+              </div>
+            </form>
+
+            <form class="tippspiel-form" data-tip-profile-form hidden>
+              <div class="tippspiel-name-row">
+                <label class="tippspiel-field">
+                  <span>Dein Anzeigename in der Rangliste</span>
+                  <input type="text" maxlength="40" placeholder="z. B. Max Muster" data-tip-profile-name>
+                </label>
+              </div>
+              <div class="tippspiel-form-actions">
+                <button class="button" type="submit" data-tip-profile-submit>Anzeigename speichern</button>
+              </div>
+            </form>
+
+            <p class="tippspiel-feedback" data-tip-auth-feedback>
+              Logge dich per E-Mail-Link ein. Danach kannst nur du selbst deinen Tipp speichern.
             </p>
           </section>
 
@@ -208,6 +247,6 @@
   <script src="script.js?v=20260323d"></script>
   <script src="tippspiel-config.js?v=20260323c"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="tippspiel.js?v=20260405a"></script>
+  <script src="tippspiel.js?v=20260405b"></script>
 </body>
 </html>

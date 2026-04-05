@@ -7,6 +7,17 @@
 
   const config = window.tsvTippspielConfig || {};
   const setupPanel = root.querySelector("[data-tippspiel-setup]");
+  const authPanel = root.querySelector("[data-tip-auth-panel]");
+  const authStateNode = root.querySelector("[data-tip-auth-state]");
+  const authEmailNode = root.querySelector("[data-tip-auth-email]");
+  const authForm = root.querySelector("[data-tip-auth-form]");
+  const authEmailInput = root.querySelector("[data-tip-auth-email-input]");
+  const authSubmitButton = root.querySelector("[data-tip-auth-submit]");
+  const authFeedbackNode = root.querySelector("[data-tip-auth-feedback]");
+  const logoutButton = root.querySelector("[data-tip-auth-logout]");
+  const profileForm = root.querySelector("[data-tip-profile-form]");
+  const profileInput = root.querySelector("[data-tip-profile-name]");
+  const profileSubmitButton = root.querySelector("[data-tip-profile-submit]");
   const seasonNode = root.querySelector("[data-tip-season]");
   const nextTitleNode = root.querySelector("[data-tip-next-title]");
   const nextBadgeNode = root.querySelector("[data-tip-next-badge]");
@@ -27,9 +38,10 @@
   const feedbackNode = root.querySelector("[data-tip-feedback]");
   const clubName = config.clubName || "TSV Hainsfarth";
   const seasonLabel = config.seasonLabel || "2025/2026";
-  const savedNameKey = "tsv-tippspiel-name";
   const activeMatchWindowMs = 12 * 60 * 60 * 1000;
   let supabaseClient = null;
+  let currentSession = null;
+  let currentProfile = null;
   let selectedMatch = null;
   let nextOpenMatch = null;
   let matches = [];
@@ -37,6 +49,10 @@
 
   if (seasonNode) {
     seasonNode.textContent = seasonLabel;
+  }
+
+  if (nameInput) {
+    nameInput.readOnly = true;
   }
 
   const formatDateTime = (value) =>
@@ -48,66 +64,6 @@
       hour: "2-digit",
       minute: "2-digit",
     }).format(new Date(value));
-
-  const parseIcsDate = (rawValue) => {
-    const match = rawValue.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z?$/);
-
-    if (!match) {
-      return null;
-    }
-
-    const [, year, month, day, hour, minute, second] = match;
-    return new Date(Date.UTC(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(second)));
-  };
-
-  const parseSummary = (summary) => {
-    const [fixturePart = "", competition = "", league = ""] = summary.split(",").map((part) => part.trim());
-    let opponent = fixturePart || clubName;
-    let isHome = fixturePart.startsWith(`${clubName}-`);
-
-    if (fixturePart.startsWith(`${clubName}-`)) {
-      opponent = fixturePart.slice(`${clubName}-`.length);
-      isHome = true;
-    } else if (fixturePart.endsWith(`-${clubName}`)) {
-      opponent = fixturePart.slice(0, fixturePart.length - `-${clubName}`.length);
-      isHome = false;
-    }
-
-    return {
-      fixture: fixturePart || clubName,
-      competition,
-      league,
-      opponent: opponent.trim() || clubName,
-      isHome,
-    };
-  };
-
-  const parseEvents = (icsText) => {
-    const normalized = icsText.replace(/\r\n[ \t]/g, "").replace(/\r/g, "");
-
-    return normalized
-      .split("BEGIN:VEVENT")
-      .slice(1)
-      .map((chunk) => {
-        const getField = (fieldName) => {
-          const fieldMatch = chunk.match(new RegExp(`${fieldName}[^:]*:(.+)`));
-          return fieldMatch ? fieldMatch[1].trim() : "";
-        };
-
-        return {
-          start: parseIcsDate(getField("DTSTART")),
-          summary: getField("SUMMARY").replace(/\\,/g, ","),
-          location: getField("LOCATION").replace(/\\,/g, ","),
-          uid: getField("UID"),
-        };
-      })
-      .map((event) => ({
-        ...event,
-        ...parseSummary(event.summary),
-      }))
-      .filter((event) => event.start instanceof Date && !Number.isNaN(event.start.getTime()))
-      .sort((a, b) => a.start - b.start);
-  };
 
   const normalizePlayerName = (value) =>
     value
@@ -141,17 +97,14 @@
       return 2;
     }
 
-    const predictionTrend = Math.sign(predictionDiff);
-    const resultTrend = Math.sign(resultDiff);
-
-    if (predictionTrend === resultTrend) {
+    if (Math.sign(predictionDiff) === Math.sign(resultDiff)) {
       return 1;
     }
 
     return 0;
   };
 
-  const setFeedback = (text, isError = false) => {
+  const setTipFeedback = (text, isError = false) => {
     if (!feedbackNode) {
       return;
     }
@@ -161,18 +114,81 @@
     feedbackNode.classList.toggle("is-success", !isError);
   };
 
+  const setAuthFeedback = (text, isError = false) => {
+    if (!authFeedbackNode) {
+      return;
+    }
+
+    authFeedbackNode.textContent = text;
+    authFeedbackNode.classList.toggle("is-error", isError);
+    authFeedbackNode.classList.toggle("is-success", !isError);
+  };
+
   const setFormDisabled = (isDisabled) => {
-    nameInput?.toggleAttribute("disabled", isDisabled);
     homeInput?.toggleAttribute("disabled", isDisabled);
     awayInput?.toggleAttribute("disabled", isDisabled);
     submitButton?.toggleAttribute("disabled", isDisabled);
     clearButton?.toggleAttribute("disabled", isDisabled);
   };
 
+  const setDisplayedPlayerName = () => {
+    if (!nameInput) {
+      return;
+    }
+
+    if (currentProfile?.display_name) {
+      nameInput.value = currentProfile.display_name;
+      nameInput.placeholder = currentProfile.display_name;
+      return;
+    }
+
+    nameInput.value = "";
+    nameInput.placeholder = currentSession ? "Lege erst deinen Anzeigenamen fest" : "Bitte zuerst einloggen";
+  };
+
   const renderSetupState = (message) => {
     setupPanel.hidden = false;
+    authPanel?.setAttribute("hidden", "");
+    setDisplayedPlayerName();
     setFormDisabled(true);
-    setFeedback(message, true);
+    setTipFeedback(message, true);
+  };
+
+  const renderAuthState = () => {
+    if (authPanel) {
+      authPanel.hidden = false;
+    }
+
+    if (authStateNode) {
+      authStateNode.textContent = currentSession ? "Dein Account" : "Login erforderlich";
+    }
+
+    if (authEmailNode) {
+      authEmailNode.textContent = currentSession?.user?.email || "Nur eingeloggte Nutzer koennen fuer sich selbst tippen.";
+    }
+
+    authForm?.toggleAttribute("hidden", Boolean(currentSession));
+    logoutButton?.toggleAttribute("hidden", !currentSession);
+
+    const needsProfile = Boolean(currentSession) && !currentProfile;
+    profileForm?.toggleAttribute("hidden", !currentSession);
+
+    if (profileInput) {
+      profileInput.value = currentProfile?.display_name || "";
+      profileInput.placeholder = needsProfile ? "Dein Name in der Rangliste" : "Anzeigename anpassen";
+    }
+
+    if (!currentSession) {
+      setAuthFeedback("Logge dich per E-Mail-Link ein. Danach kannst nur du selbst deinen Tipp speichern.");
+      return;
+    }
+
+    if (needsProfile) {
+      setAuthFeedback("Lege zuerst deinen Anzeigenamen fest. Unter diesem Namen erscheint dein Tipp in der Rangliste.");
+      return;
+    }
+
+    setAuthFeedback("Dein Account ist aktiv. Du kannst nur fuer dein eigenes Konto tippen.");
   };
 
   const renderNextMatch = () => {
@@ -202,13 +218,19 @@
     }
 
     const kickoffPassed = Date.now() >= new Date(selectedMatch.starts_at).getTime();
+    const canTip =
+      Boolean(currentSession) &&
+      Boolean(currentProfile) &&
+      Boolean(nextOpenMatch) &&
+      nextOpenMatch.id === selectedMatch.id &&
+      !kickoffPassed;
 
     if (nextTitleNode) {
       nextTitleNode.textContent = `${selectedMatch.home_team} vs. ${selectedMatch.away_team}`;
     }
 
     if (nextBadgeNode) {
-      nextBadgeNode.textContent = kickoffPassed ? "Geschlossen" : selectedMatch.is_home ? "Heimspiel" : "Auswärtsspiel";
+      nextBadgeNode.textContent = kickoffPassed ? "Geschlossen" : selectedMatch.is_home ? "Heimspiel" : "Auswaertsspiel";
     }
 
     if (nextDateNode) {
@@ -231,7 +253,7 @@
       awayLabelNode.textContent = selectedMatch.away_team;
     }
 
-    setFormDisabled(kickoffPassed || !supabaseClient || !nextOpenMatch || nextOpenMatch.id !== selectedMatch.id);
+    setFormDisabled(!canTip);
   };
 
   const renderNextPredictions = () => {
@@ -244,7 +266,7 @@
       .sort((a, b) => a.player_name.localeCompare(b.player_name, "de"));
 
     if (!nextPredictions.length) {
-      predictionsList.innerHTML = '<p class="tippspiel-empty">Noch keine Tipps für das angezeigte Spiel vorhanden.</p>';
+      predictionsList.innerHTML = '<p class="tippspiel-empty">Noch keine Tipps fuer das angezeigte Spiel vorhanden.</p>';
       return;
     }
 
@@ -355,7 +377,7 @@
       const hasPastMatches = matches.some((match) => new Date(match.starts_at).getTime() <= Date.now());
 
       resultsList.innerHTML = hasStoredPredictions && hasPastMatches
-        ? '<p class="tippspiel-empty">Tipps sind vorhanden. Die Auswertung erscheint, sobald Endstände in den Spieldaten stehen.</p>'
+        ? '<p class="tippspiel-empty">Tipps sind vorhanden. Die Auswertung erscheint, sobald Endstaende in den Spieldaten stehen.</p>'
         : '<p class="tippspiel-empty">Sobald Ergebnisse eingetragen sind, erscheint hier die Auswertung.</p>';
       return;
     }
@@ -381,29 +403,47 @@
       .join("");
   };
 
-  const hydrateSavedNameTip = () => {
-    if (!selectedMatch || !nameInput || !homeInput || !awayInput) {
+  const hydrateUserPrediction = () => {
+    setDisplayedPlayerName();
+
+    if (!selectedMatch || !homeInput || !awayInput || !currentProfile) {
       return;
     }
-
-    const savedName = window.localStorage.getItem(savedNameKey) || "";
-    const playerKey = normalizePlayerName(savedName);
-
-    if (!savedName || !playerKey) {
-      return;
-    }
-
-    nameInput.value = savedName;
 
     const existingPrediction = predictions.find(
-      (entry) => entry.match_id === selectedMatch.id && entry.player_key === playerKey
+      (entry) =>
+        entry.match_id === selectedMatch.id &&
+        (entry.user_id === currentSession?.user?.id || entry.player_key === currentProfile.display_name_key)
     );
 
-    if (existingPrediction) {
-      homeInput.value = String(existingPrediction.predicted_home_score);
-      awayInput.value = String(existingPrediction.predicted_away_score);
-      setFeedback(`Dein gespeicherter Tipp für dieses Spiel: ${existingPrediction.predicted_home_score}:${existingPrediction.predicted_away_score}.`);
+    if (!existingPrediction) {
+      return;
     }
+
+    homeInput.value = String(existingPrediction.predicted_home_score);
+    awayInput.value = String(existingPrediction.predicted_away_score);
+    setTipFeedback(
+      `Dein gespeicherter Tipp fuer dieses Spiel: ${existingPrediction.predicted_home_score}:${existingPrediction.predicted_away_score}.`
+    );
+  };
+
+  const fetchCurrentProfile = async () => {
+    if (!currentSession) {
+      currentProfile = null;
+      return;
+    }
+
+    const { data, error } = await supabaseClient
+      .from("tippspiel_players")
+      .select("*")
+      .eq("user_id", currentSession.user.id)
+      .maybeSingle();
+
+    if (error) {
+      throw error;
+    }
+
+    currentProfile = data || null;
   };
 
   const fetchMatchesAndPredictions = async () => {
@@ -452,69 +492,163 @@
     predictions = predictionRows || [];
   };
 
-  const seedMatchesFromCalendar = async () => {
-    const response = await fetch(`spielplan-tsv-hainsfarth.ics?t=${Date.now()}`, { cache: "no-store" });
-
-    if (!response.ok) {
-      throw new Error("Spielplan konnte nicht geladen werden.");
-    }
-
-    const icsText = await response.text();
-    const rows = parseEvents(icsText).map((event) => ({
-      match_uid: event.uid || `${event.start.toISOString()}-${event.opponent}`,
-      season: seasonLabel,
-      starts_at: event.start.toISOString(),
-      competition: event.competition || null,
-      league: event.league || null,
-      is_home: event.isHome,
-      opponent: event.opponent,
-      location: event.location || null,
-      home_team: event.isHome ? clubName : event.opponent,
-      away_team: event.isHome ? event.opponent : clubName,
-    }));
-
-    if (!rows.length) {
-      return;
-    }
-
-    const { error } = await supabaseClient
-      .from("tippspiel_matches")
-      .upsert(rows, { onConflict: "match_uid" });
-
-    if (error) {
-      throw error;
-    }
-  };
-
   const refreshBoard = async () => {
     await fetchMatchesAndPredictions();
     renderNextMatch();
     renderNextPredictions();
     renderLeaderboard();
     renderResults();
-    hydrateSavedNameTip();
+    hydrateUserPrediction();
   };
 
-  form?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    if (!supabaseClient || !selectedMatch || !nextOpenMatch || selectedMatch.id !== nextOpenMatch.id) {
-      setFeedback("Das Tippspiel ist gerade noch nicht bereit.", true);
+  const updateTipFeedbackForState = () => {
+    if (!selectedMatch) {
+      setTipFeedback("Aktuell ist kein kommendes Spiel im Kalender hinterlegt.");
       return;
     }
 
-    const playerName = nameInput?.value?.replace(/\s+/g, " ").trim() || "";
-    const playerKey = normalizePlayerName(playerName);
-    const homeScore = Math.max(0, Math.min(20, Number.parseInt(homeInput?.value || "0", 10) || 0));
-    const awayScore = Math.max(0, Math.min(20, Number.parseInt(awayInput?.value || "0", 10) || 0));
+    if (!currentSession) {
+      setTipFeedback("Bitte logge dich ein. Dann kannst nur du selbst deinen Tipp speichern.", true);
+      return;
+    }
 
-    if (playerName.length < 2) {
-      setFeedback("Bitte gib einen Namen mit mindestens 2 Zeichen ein.", true);
+    if (!currentProfile) {
+      setTipFeedback("Bitte lege zuerst deinen Anzeigenamen fest.", true);
+      return;
+    }
+
+    if (!nextOpenMatch || selectedMatch.id !== nextOpenMatch.id) {
+      setTipFeedback("Das angezeigte Spiel ist bereits geschlossen.");
       return;
     }
 
     if (Date.now() >= new Date(nextOpenMatch.starts_at).getTime()) {
-      setFeedback("Der Anpfiff ist erreicht. Für dieses Spiel ist kein neuer Tipp mehr möglich.", true);
+      setTipFeedback("Der Anpfiff ist erreicht. Fuer dieses Spiel ist kein neuer Tipp mehr moeglich.");
+      return;
+    }
+
+    setTipFeedback("Tippspiel bereit. Dein Tipp wird deinem Account zugeordnet und kann nicht fuer andere Namen gespeichert werden.");
+  };
+
+  const applySessionState = async (session) => {
+    currentSession = session;
+    await fetchCurrentProfile();
+    renderAuthState();
+    renderNextMatch();
+    hydrateUserPrediction();
+    updateTipFeedbackForState();
+  };
+
+  authForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!supabaseClient) {
+      return;
+    }
+
+    const email = authEmailInput?.value?.trim() || "";
+
+    if (!email || !email.includes("@")) {
+      setAuthFeedback("Bitte gib eine gueltige E-Mail-Adresse ein.", true);
+      return;
+    }
+
+    authSubmitButton?.toggleAttribute("disabled", true);
+
+    try {
+      const { error } = await supabaseClient.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: window.location.href.split("#")[0],
+          shouldCreateUser: true,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      setAuthFeedback("Der Login-Link wurde verschickt. Oeffne ihn in deinem Postfach, dann bist du eingeloggt.");
+    } catch (error) {
+      setAuthFeedback("Der Login-Link konnte gerade nicht verschickt werden.", true);
+    } finally {
+      authSubmitButton?.toggleAttribute("disabled", false);
+    }
+  });
+
+  logoutButton?.addEventListener("click", async () => {
+    if (!supabaseClient) {
+      return;
+    }
+
+    try {
+      await supabaseClient.auth.signOut();
+      await applySessionState(null);
+    } catch (error) {
+      setAuthFeedback("Abmelden hat gerade nicht funktioniert.", true);
+    }
+  });
+
+  profileForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!supabaseClient || !currentSession) {
+      return;
+    }
+
+    const displayName = profileInput?.value?.replace(/\s+/g, " ").trim() || "";
+
+    if (displayName.length < 2) {
+      setAuthFeedback("Bitte waehle einen Anzeigenamen mit mindestens 2 Zeichen.", true);
+      return;
+    }
+
+    profileSubmitButton?.toggleAttribute("disabled", true);
+
+    try {
+      const { error } = await supabaseClient.from("tippspiel_players").upsert(
+        {
+          user_id: currentSession.user.id,
+          display_name: displayName,
+        },
+        { onConflict: "user_id" }
+      );
+
+      if (error) {
+        throw error;
+      }
+
+      await fetchCurrentProfile();
+      renderAuthState();
+      renderNextMatch();
+      hydrateUserPrediction();
+      updateTipFeedbackForState();
+      setAuthFeedback("Anzeigename gespeichert. Unter diesem Namen erscheint dein Tipp.");
+    } catch (error) {
+      setAuthFeedback("Der Anzeigename konnte nicht gespeichert werden. Vielleicht ist er schon vergeben.", true);
+    } finally {
+      profileSubmitButton?.toggleAttribute("disabled", false);
+    }
+  });
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!supabaseClient || !currentSession || !currentProfile) {
+      setTipFeedback("Bitte logge dich ein und lege deinen Anzeigenamen fest.", true);
+      return;
+    }
+
+    if (!selectedMatch || !nextOpenMatch || selectedMatch.id !== nextOpenMatch.id) {
+      setTipFeedback("Das Tippspiel ist gerade fuer dieses Spiel nicht offen.", true);
+      return;
+    }
+
+    const homeScore = Math.max(0, Math.min(20, Number.parseInt(homeInput?.value || "0", 10) || 0));
+    const awayScore = Math.max(0, Math.min(20, Number.parseInt(awayInput?.value || "0", 10) || 0));
+
+    if (Date.now() >= new Date(nextOpenMatch.starts_at).getTime()) {
+      setTipFeedback("Der Anpfiff ist erreicht. Fuer dieses Spiel ist kein neuer Tipp mehr moeglich.", true);
       renderNextMatch();
       return;
     }
@@ -525,23 +659,23 @@
       const { error } = await supabaseClient.from("tippspiel_predictions").upsert(
         {
           match_id: nextOpenMatch.id,
-          player_name: playerName,
-          player_key: playerKey,
+          user_id: currentSession.user.id,
+          player_name: currentProfile.display_name,
+          player_key: currentProfile.display_name_key || normalizePlayerName(currentProfile.display_name),
           predicted_home_score: homeScore,
           predicted_away_score: awayScore,
         },
-        { onConflict: "match_id,player_key" }
+        { onConflict: "match_id,user_id" }
       );
 
       if (error) {
         throw error;
       }
 
-      window.localStorage.setItem(savedNameKey, playerName);
-      setFeedback(`Tipp gespeichert: ${homeScore}:${awayScore} für ${playerName}.`);
+      setTipFeedback(`Tipp gespeichert: ${homeScore}:${awayScore} fuer ${currentProfile.display_name}.`);
       await refreshBoard();
     } catch (error) {
-      setFeedback("Dein Tipp konnte gerade nicht gespeichert werden.", true);
+      setTipFeedback("Dein Tipp konnte gerade nicht gespeichert werden.", true);
     } finally {
       submitButton?.toggleAttribute("disabled", false);
     }
@@ -556,7 +690,7 @@
       awayInput.value = "0";
     }
 
-    setFeedback("Felder zurückgesetzt.");
+    setTipFeedback("Felder zurueckgesetzt.");
   });
 
   const initialize = async () => {
@@ -570,23 +704,34 @@
 
     supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey, {
       auth: {
-        persistSession: false,
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
       },
     });
 
     setupPanel.hidden = true;
 
     try {
-      await seedMatchesFromCalendar();
       await refreshBoard();
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabaseClient.auth.getSession();
 
-      if (!selectedMatch) {
-        setFeedback("Aktuell ist kein kommendes Spiel im Kalender hinterlegt.");
-      } else {
-        setFeedback("Tippspiel bereit. Dein Tipp landet direkt in der gemeinsamen Rangliste.");
+      if (sessionError) {
+        throw sessionError;
       }
+
+      await applySessionState(session);
+
+      supabaseClient.auth.onAuthStateChange((_event, sessionValue) => {
+        void applySessionState(sessionValue);
+      });
     } catch (error) {
-      renderSetupState("Die Verbindung zum Tippspiel konnte nicht aufgebaut werden. Prüfe Supabase-Konfiguration und Tabellen.");
+      renderSetupState(
+        "Die Verbindung zum Tippspiel konnte nicht aufgebaut werden. Pruefe Supabase-Konfiguration, Auth-Einstellungen und Tabellen."
+      );
     }
   };
 

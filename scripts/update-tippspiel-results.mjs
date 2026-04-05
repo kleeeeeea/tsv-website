@@ -1,15 +1,17 @@
 const SUPABASE_URL =
   process.env.SUPABASE_URL?.trim() || "https://yarlxyfkzhlcfkyiwtzp.supabase.co";
-const SUPABASE_ANON_KEY =
-  process.env.SUPABASE_ANON_KEY?.trim() ||
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlhcmx4eWZremhsY2ZreWl3dHpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNjc2MDcsImV4cCI6MjA4OTg0MzYwN30.i1EYDAFx19L8gJv5_EX1Qj0pjXrmbjEWhqTKOaHxLjc";
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 const BFV_MATCH_BASE = "https://www.bfv.de/ergebnisse/spiel/-/";
 const FINISHED_STATUSES = new Set(["acknowledged", "finished", "played"]);
 const GOAL_MARKER = "Time_partialScore__xFjLz";
 
+if (!SUPABASE_SERVICE_ROLE_KEY) {
+  throw new Error("SUPABASE_SERVICE_ROLE_KEY fehlt. Fuer sichere Schreibzugriffe wird der Service-Role-Key benoetigt.");
+}
+
 const supabaseHeaders = {
-  apikey: SUPABASE_ANON_KEY,
-  Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+  apikey: SUPABASE_SERVICE_ROLE_KEY,
+  Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
 };
 
 const extractValue = (html, pattern) => {

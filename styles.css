@@ -1149,6 +1149,10 @@ h3 {
   margin-bottom: 20px;
 }
 
+.tippspiel-auth-panel {
+  margin-bottom: 20px;
+}
+
 .tippspiel-status-pill {
   display: inline-flex;
   align-items: center;
@@ -1275,6 +1279,12 @@ h3 {
 
 .tippspiel-feedback.is-success {
   color: var(--primary-dark);
+}
+
+.tippspiel-field input[readonly] {
+  background: rgba(17, 130, 198, 0.05);
+  color: rgba(22, 37, 58, 0.78);
+  cursor: default;
 }
 
 .tippspiel-table-wrap {
