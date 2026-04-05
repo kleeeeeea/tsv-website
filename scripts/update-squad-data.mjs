@@ -53,14 +53,88 @@ const parseExistingSquadData = async () => {
   return sandbox.window.tsvSquadData || null;
 };
 
-const extractReduxData = (html) => {
-  const match = html.match(/window\.REDUX_DATA = (\{.*\})<\/script>/s);
+const extractScriptJson = (scriptContent) => {
+  const jsonStart = scriptContent.indexOf("{");
 
-  if (!match) {
-    throw new Error("Could not find REDUX_DATA in FuPa page");
+  if (jsonStart === -1) {
+    return null;
   }
 
-  return JSON.parse(match[1]);
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+
+  for (let index = jsonStart; index < scriptContent.length; index += 1) {
+    const char = scriptContent[index];
+
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+
+      if (char === "\\") {
+        escaped = true;
+        continue;
+      }
+
+      if (char === "\"") {
+        inString = false;
+      }
+
+      continue;
+    }
+
+    if (char === "\"") {
+      inString = true;
+      continue;
+    }
+
+    if (char === "{") {
+      depth += 1;
+      continue;
+    }
+
+    if (char === "}") {
+      depth -= 1;
+
+      if (depth === 0) {
+        return scriptContent.slice(jsonStart, index + 1);
+      }
+    }
+  }
+
+  return null;
+};
+
+const extractReduxData = (html) => {
+  const scriptContents = [...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)]
+    .map((match) => match[1]?.trim() || "")
+    .filter(Boolean);
+
+  const directReduxScript = scriptContents.find((content) => content.includes("window.REDUX_DATA"));
+
+  if (directReduxScript) {
+    const directJson = extractScriptJson(directReduxScript);
+
+    if (directJson) {
+      return JSON.parse(directJson);
+    }
+  }
+
+  const dataHistoryScript = scriptContents.find(
+    (content) => content.includes("\"dataHistory\"") && content.includes("\"header\"")
+  );
+
+  if (dataHistoryScript) {
+    const fallbackJson = extractScriptJson(dataHistoryScript);
+
+    if (fallbackJson) {
+      return JSON.parse(fallbackJson);
+    }
+  }
+
+  throw new Error("Could not find parseable FuPa state in page");
 };
 
 const fetchTeamPayload = async (url) => {
@@ -76,6 +150,15 @@ const fetchTeamPayload = async (url) => {
 
   const html = await response.text();
   return extractReduxData(html);
+};
+
+const fetchTeamPayloadSafe = async (config) => {
+  try {
+    const reduxData = await fetchTeamPayload(config.sourceUrl);
+    return { reduxData, error: null };
+  } catch (error) {
+    return { reduxData: null, error };
+  }
 };
 
 const findDataHistoryEntry = (reduxData, key) => {
@@ -212,29 +295,56 @@ const serialize = (value, indent = 0) => {
 
 const main = async () => {
   const existingData = await parseExistingSquadData();
-  const [team1Redux, team2Redux] = await Promise.all([
-    fetchTeamPayload(TEAM_CONFIG.team1.sourceUrl),
-    fetchTeamPayload(TEAM_CONFIG.team2.sourceUrl),
+  const [team1Result, team2Result] = await Promise.all([
+    fetchTeamPayloadSafe(TEAM_CONFIG.team1),
+    fetchTeamPayloadSafe(TEAM_CONFIG.team2),
   ]);
+
+  const fallbackWarnings = [];
+  const buildTeamWithFallback = (config, result, existingTeam) => {
+    if (result.reduxData) {
+      return buildTeam({
+        config,
+        reduxData: result.reduxData,
+        existingTeam,
+      });
+    }
+
+    if (existingTeam) {
+      fallbackWarnings.push(
+        `${config.key}: ${result.error?.message || "Unbekannter Fehler"}`
+      );
+      return existingTeam;
+    }
+
+    throw result.error || new Error(`Could not update ${config.key}`);
+  };
 
   const output = {
     defaultTeam: existingData?.defaultTeam || "team1",
     teams: {
-      team1: buildTeam({
-        config: TEAM_CONFIG.team1,
-        reduxData: team1Redux,
-        existingTeam: existingData?.teams?.team1,
-      }),
-      team2: buildTeam({
-        config: TEAM_CONFIG.team2,
-        reduxData: team2Redux,
-        existingTeam: existingData?.teams?.team2,
-      }),
+      team1: buildTeamWithFallback(
+        TEAM_CONFIG.team1,
+        team1Result,
+        existingData?.teams?.team1
+      ),
+      team2: buildTeamWithFallback(
+        TEAM_CONFIG.team2,
+        team2Result,
+        existingData?.teams?.team2
+      ),
     },
   };
 
   const fileContents = `window.tsvSquadData = ${serialize(output)};\n`;
   await writeFile(OUTPUT_PATH, fileContents);
+  if (fallbackWarnings.length) {
+    console.warn(
+      `FuPa voruebergehend nicht erreichbar, bestehende Daten weiterverwendet: ${fallbackWarnings.join(
+        " | "
+      )}`
+    );
+  }
   console.log(`Kaderdaten aktualisiert: ${TODAY}`);
 };
 
