@@ -74,7 +74,7 @@ const parseEvents = (icsText) => {
 };
 
 const syncMatches = async (rows) => {
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/tippspiel_matches`, {
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/tippspiel_matches?on_conflict=match_uid`, {
     method: "POST",
     headers: {
       ...supabaseHeaders,
