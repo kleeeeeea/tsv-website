@@ -125,9 +125,9 @@
     }
 
     registerPanel.classList.toggle("is-open", isOpen);
-    registerContent.hidden = !isOpen;
+    registerPanel.hidden = !isOpen;
     registerToggleButton.setAttribute("aria-expanded", String(isOpen));
-    registerToggleButton.textContent = isOpen ? "Schließen" : "Hier registrieren";
+    registerShortcutButton?.setAttribute("aria-expanded", String(isOpen));
   };
 
   const getReadableErrorMessage = (error, fallbackMessage) => {

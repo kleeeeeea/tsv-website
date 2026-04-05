@@ -84,28 +84,22 @@
             </p>
           </section>
 
-          <section class="panel tippspiel-panel tippspiel-register-panel" id="registrieren" data-tip-register-panel>
-            <div class="tippspiel-register-bar">
-              <div class="tippspiel-register-copy">
-                <span class="eyebrow">Noch kein Zugang?</span>
-                <p>Einmal kurz registrieren, dann kannst du immer mit deinem Namen und deiner PIN tippen.</p>
-              </div>
-              <button
-                class="button tippspiel-register-toggle"
-                type="button"
-                aria-expanded="false"
-                aria-controls="tippspiel-register-content"
-                data-tip-register-toggle
-              >
-                Hier registrieren
-              </button>
-            </div>
-            <div id="tippspiel-register-content" class="tippspiel-register-content" data-tip-register-content hidden>
+          <section class="panel tippspiel-panel tippspiel-register-panel" id="registrieren" data-tip-register-panel hidden>
+            <div id="tippspiel-register-content" class="tippspiel-register-content" data-tip-register-content>
               <div class="panel-topline">
                 <div>
                   <span class="eyebrow">Name + PIN</span>
                   <h2>Neu registrieren</h2>
                 </div>
+                <button
+                  class="button-secondary tippspiel-register-toggle"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="tippspiel-register-content"
+                  data-tip-register-toggle
+                >
+                  Schließen
+                </button>
               </div>
               <p class="panel-note">
                 Jeder Name kann nur einmal angelegt werden. Danach kann nur noch mit genau diesem Namen
@@ -136,7 +130,6 @@
                   Wenn dein Name noch frei ist, wird er mit deiner PIN gespeichert.
                 </p>
               </form>
-            </div>
           </section>
 
           <div class="info-grid tippspiel-top-grid">
@@ -269,6 +262,6 @@
   <script src="script.js?v=20260323d"></script>
   <script src="tippspiel-config.js?v=20260323c"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="tippspiel.js?v=20260406c"></script>
+  <script src="tippspiel.js?v=20260406d"></script>
 </body>
 </html>
