@@ -1,0 +1,22 @@
+name: Update Tippspiel Results
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+
+jobs:
+  sync-tippspiel-results:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Sync finished BFV results into Supabase
+        run: node scripts/update-tippspiel-results.mjs

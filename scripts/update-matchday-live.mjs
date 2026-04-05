@@ -90,12 +90,17 @@ const extractValue = (html, pattern) => {
 };
 
 const buildResultPayload = ({ html, event }) => {
-  const status = extractValue(html, /"status":"([^"]+)"/);
-  const live = extractValue(html, /"live":(true|false)/) === "true";
-  const liveMinute = extractValue(html, /"liveMinute":"([^"]*)"/);
-  const resultText = extractValue(html, /"result":\{"text":"([^"]*)","specialResult":(true|false)\}/);
-  const specialResult = html.includes(`"result":{"text":"${resultText}","specialResult":true}`);
-  const fontId = extractValue(html, /"obfuscatedFont":"([^"]+)"/);
+  const status = extractValue(html, /\\?"status\\?":\\?"([^"\\]+)\\?"/);
+  const live = extractValue(html, /\\?"live\\?":(true|false)/) === "true";
+  const liveMinute = extractValue(html, /\\?"liveMinute\\?":\\?"([^"\\]*)\\?"/);
+  const resultText = extractValue(html, /\\?"result\\?":\{\\?"text\\?":\\?"([^"\\]*)\\?",\\?"specialResult\\?":(true|false)\}/);
+  const specialResult = Boolean(
+    resultText &&
+      html.match(
+        new RegExp(String.raw`\\?"result\\?":\{\\?"text\\?":\\?"${resultText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\?",\\?"specialResult\\?":true\}`)
+      )
+  );
+  const fontId = extractValue(html, /\\?"obfuscatedFont\\?":\\?"([^"\\]+)\\?"/);
 
   const hasResult = Boolean(resultText) && status !== "scheduled";
   let label = "BFV-Ergebnis";

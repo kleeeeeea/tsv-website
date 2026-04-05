@@ -518,6 +518,14 @@ if (countdownRoot) {
     }
   };
 
+  const startMatchResultPolling = (event) => {
+    void fetchMatchResult(event);
+
+    window.setInterval(() => {
+      void fetchMatchResult(event);
+    }, 60000);
+  };
+
   const renderWeather = (hourlyPoint, eventDate) => {
     if (weatherTempNode) {
       weatherTempNode.textContent = `${Math.round(hourlyPoint.temperature_2m)}°`;
@@ -718,7 +726,7 @@ if (countdownRoot) {
         dateNode.textContent = formatDate(nextEvent.start);
         locationNode.textContent = nextEvent.location;
         renderSpotlight(nextEvent);
-        void fetchMatchResult(nextEvent);
+        startMatchResultPolling(nextEvent);
         void fetchMatchWeather(nextEvent);
         startCountdown(nextEvent.start);
       })

@@ -28,8 +28,10 @@
   const clubName = config.clubName || "TSV Hainsfarth";
   const seasonLabel = config.seasonLabel || "2025/2026";
   const savedNameKey = "tsv-tippspiel-name";
+  const activeMatchWindowMs = 12 * 60 * 60 * 1000;
   let supabaseClient = null;
-  let nextMatch = null;
+  let selectedMatch = null;
+  let nextOpenMatch = null;
   let matches = [];
   let predictions = [];
 
@@ -174,7 +176,7 @@
   };
 
   const renderNextMatch = () => {
-    if (!nextMatch) {
+    if (!selectedMatch) {
       if (nextTitleNode) {
         nextTitleNode.textContent = "Aktuell kein kommendes Spiel";
       }
@@ -199,37 +201,37 @@
       return;
     }
 
-    const kickoffPassed = Date.now() >= new Date(nextMatch.starts_at).getTime();
+    const kickoffPassed = Date.now() >= new Date(selectedMatch.starts_at).getTime();
 
     if (nextTitleNode) {
-      nextTitleNode.textContent = `${nextMatch.home_team} vs. ${nextMatch.away_team}`;
+      nextTitleNode.textContent = `${selectedMatch.home_team} vs. ${selectedMatch.away_team}`;
     }
 
     if (nextBadgeNode) {
-      nextBadgeNode.textContent = kickoffPassed ? "Geschlossen" : nextMatch.is_home ? "Heimspiel" : "Auswärtsspiel";
+      nextBadgeNode.textContent = kickoffPassed ? "Geschlossen" : selectedMatch.is_home ? "Heimspiel" : "Auswärtsspiel";
     }
 
     if (nextDateNode) {
-      nextDateNode.textContent = formatDateTime(nextMatch.starts_at);
+      nextDateNode.textContent = formatDateTime(selectedMatch.starts_at);
     }
 
     if (nextCompetitionNode) {
-      nextCompetitionNode.textContent = [nextMatch.competition, nextMatch.league].filter(Boolean).join(" · ") || "Pflichtspiel";
+      nextCompetitionNode.textContent = [selectedMatch.competition, selectedMatch.league].filter(Boolean).join(" · ") || "Pflichtspiel";
     }
 
     if (nextLocationNode) {
-      nextLocationNode.textContent = nextMatch.location || "Ort folgt";
+      nextLocationNode.textContent = selectedMatch.location || "Ort folgt";
     }
 
     if (homeLabelNode) {
-      homeLabelNode.textContent = nextMatch.home_team;
+      homeLabelNode.textContent = selectedMatch.home_team;
     }
 
     if (awayLabelNode) {
-      awayLabelNode.textContent = nextMatch.away_team;
+      awayLabelNode.textContent = selectedMatch.away_team;
     }
 
-    setFormDisabled(kickoffPassed || !supabaseClient);
+    setFormDisabled(kickoffPassed || !supabaseClient || !nextOpenMatch || nextOpenMatch.id !== selectedMatch.id);
   };
 
   const renderNextPredictions = () => {
@@ -238,11 +240,11 @@
     }
 
     const nextPredictions = predictions
-      .filter((entry) => entry.match_id === nextMatch?.id)
+      .filter((entry) => entry.match_id === selectedMatch?.id)
       .sort((a, b) => a.player_name.localeCompare(b.player_name, "de"));
 
     if (!nextPredictions.length) {
-      predictionsList.innerHTML = '<p class="tippspiel-empty">Noch keine Tipps für dieses Spiel vorhanden.</p>';
+      predictionsList.innerHTML = '<p class="tippspiel-empty">Noch keine Tipps für das angezeigte Spiel vorhanden.</p>';
       return;
     }
 
@@ -310,6 +312,15 @@
     });
 
     if (!ranking.length) {
+      const hasStoredPredictions = predictions.length > 0;
+      const hasPastMatches = matches.some((match) => new Date(match.starts_at).getTime() <= Date.now());
+
+      if (hasStoredPredictions && hasPastMatches) {
+        leaderboardBody.innerHTML =
+          '<tr><td colspan="5">Tipps sind gespeichert. Die Rangliste erscheint, sobald Endergebnisse in den Spieldaten hinterlegt sind.</td></tr>';
+        return;
+      }
+
       leaderboardBody.innerHTML = '<tr><td colspan="5">Sobald Ergebnisse eingetragen sind, erscheint hier die Saisonwertung.</td></tr>';
       return;
     }
@@ -340,7 +351,12 @@
       .slice(0, 8);
 
     if (!finishedMatches.length) {
-      resultsList.innerHTML = '<p class="tippspiel-empty">Sobald Ergebnisse eingetragen sind, erscheint hier die Auswertung.</p>';
+      const hasStoredPredictions = predictions.length > 0;
+      const hasPastMatches = matches.some((match) => new Date(match.starts_at).getTime() <= Date.now());
+
+      resultsList.innerHTML = hasStoredPredictions && hasPastMatches
+        ? '<p class="tippspiel-empty">Tipps sind vorhanden. Die Auswertung erscheint, sobald Endstände in den Spieldaten stehen.</p>'
+        : '<p class="tippspiel-empty">Sobald Ergebnisse eingetragen sind, erscheint hier die Auswertung.</p>';
       return;
     }
 
@@ -366,7 +382,7 @@
   };
 
   const hydrateSavedNameTip = () => {
-    if (!nextMatch || !nameInput || !homeInput || !awayInput) {
+    if (!selectedMatch || !nameInput || !homeInput || !awayInput) {
       return;
     }
 
@@ -380,7 +396,7 @@
     nameInput.value = savedName;
 
     const existingPrediction = predictions.find(
-      (entry) => entry.match_id === nextMatch.id && entry.player_key === playerKey
+      (entry) => entry.match_id === selectedMatch.id && entry.player_key === playerKey
     );
 
     if (existingPrediction) {
@@ -402,7 +418,20 @@
     }
 
     matches = matchRows || [];
-    nextMatch = matches.find((match) => new Date(match.starts_at).getTime() > Date.now()) || null;
+    const now = Date.now();
+    const liveWindowMatch =
+      matches.find((match) => {
+        const startsAt = new Date(match.starts_at).getTime();
+        return now >= startsAt && now <= startsAt + activeMatchWindowMs;
+      }) || null;
+    const upcomingMatch = matches.find((match) => new Date(match.starts_at).getTime() > now) || null;
+    const latestPastMatch =
+      [...matches]
+        .filter((match) => new Date(match.starts_at).getTime() <= now)
+        .sort((a, b) => new Date(b.starts_at) - new Date(a.starts_at))[0] || null;
+
+    nextOpenMatch = upcomingMatch;
+    selectedMatch = liveWindowMatch || upcomingMatch || latestPastMatch;
 
     const matchIds = matches.map((match) => match.id);
 
@@ -469,7 +498,7 @@
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    if (!supabaseClient || !nextMatch) {
+    if (!supabaseClient || !selectedMatch || !nextOpenMatch || selectedMatch.id !== nextOpenMatch.id) {
       setFeedback("Das Tippspiel ist gerade noch nicht bereit.", true);
       return;
     }
@@ -484,7 +513,7 @@
       return;
     }
 
-    if (Date.now() >= new Date(nextMatch.starts_at).getTime()) {
+    if (Date.now() >= new Date(nextOpenMatch.starts_at).getTime()) {
       setFeedback("Der Anpfiff ist erreicht. Für dieses Spiel ist kein neuer Tipp mehr möglich.", true);
       renderNextMatch();
       return;
@@ -495,7 +524,7 @@
     try {
       const { error } = await supabaseClient.from("tippspiel_predictions").upsert(
         {
-          match_id: nextMatch.id,
+          match_id: nextOpenMatch.id,
           player_name: playerName,
           player_key: playerKey,
           predicted_home_score: homeScore,
@@ -551,7 +580,7 @@
       await seedMatchesFromCalendar();
       await refreshBoard();
 
-      if (!nextMatch) {
+      if (!selectedMatch) {
         setFeedback("Aktuell ist kein kommendes Spiel im Kalender hinterlegt.");
       } else {
         setFeedback("Tippspiel bereit. Dein Tipp landet direkt in der gemeinsamen Rangliste.");
