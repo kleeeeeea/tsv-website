@@ -126,7 +126,7 @@
     registerPanel.classList.toggle("is-open", isOpen);
     registerContent.hidden = !isOpen;
     registerToggleButton.setAttribute("aria-expanded", String(isOpen));
-    registerToggleButton.textContent = isOpen ? "Registrierung schließen" : "Registrierung öffnen";
+    registerToggleButton.textContent = isOpen ? "Schließen" : "Hier registrieren";
   };
 
   const getReadableErrorMessage = (error, fallbackMessage) => {
