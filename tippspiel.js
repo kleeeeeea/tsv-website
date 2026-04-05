@@ -19,6 +19,9 @@
   const predictionsList = root.querySelector("[data-tip-next-predictions]");
   const resultsList = root.querySelector("[data-tip-results-list]");
   const form = root.querySelector("[data-tip-form]");
+  const registerPanel = root.querySelector("[data-tip-register-panel]");
+  const registerToggleButton = root.querySelector("[data-tip-register-toggle]");
+  const registerContent = root.querySelector("[data-tip-register-content]");
   const registerForm = root.querySelector("[data-tip-register-form]");
   const registerNameInput = root.querySelector("[data-tip-register-name]");
   const registerPinInput = root.querySelector("[data-tip-register-pin]");
@@ -113,6 +116,17 @@
     registerFeedbackNode.textContent = text;
     registerFeedbackNode.classList.toggle("is-error", isError);
     registerFeedbackNode.classList.toggle("is-success", !isError);
+  };
+
+  const setRegisterPanelOpen = (isOpen) => {
+    if (!registerPanel || !registerToggleButton || !registerContent) {
+      return;
+    }
+
+    registerPanel.classList.toggle("is-open", isOpen);
+    registerContent.hidden = !isOpen;
+    registerToggleButton.setAttribute("aria-expanded", String(isOpen));
+    registerToggleButton.textContent = isOpen ? "Registrierung schließen" : "Registrierung öffnen";
   };
 
   const getReadableErrorMessage = (error, fallbackMessage) => {
@@ -446,6 +460,11 @@
     hydrateSavedNameTip();
   };
 
+  registerToggleButton?.addEventListener("click", () => {
+    const isOpen = registerToggleButton.getAttribute("aria-expanded") === "true";
+    setRegisterPanelOpen(!isOpen);
+  });
+
   registerForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -500,10 +519,12 @@
       }
       setRegisterFeedback(`Registrierung erfolgreich. ${savedName} kann jetzt mit dieser PIN tippen.`);
       setFeedback("Name angelegt. Du kannst jetzt direkt deinen Tipp speichern.");
+      setRegisterPanelOpen(false);
       await refreshBoard();
     } catch (error) {
       const message = getReadableErrorMessage(error, "Der Name konnte gerade nicht angelegt werden.");
       setRegisterFeedback(message, true);
+      setRegisterPanelOpen(true);
     } finally {
       registerSubmitButton?.toggleAttribute("disabled", false);
     }
@@ -588,6 +609,8 @@
       renderSetupState("Supabase ist noch nicht verbunden. Sobald `tippspiel-config.js` gepflegt ist, startet hier das zentrale Tippspiel.");
       return;
     }
+
+    setRegisterPanelOpen(false);
 
     supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey, {
       auth: {
