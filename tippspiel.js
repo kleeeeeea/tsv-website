@@ -19,6 +19,7 @@
   const predictionsList = root.querySelector("[data-tip-next-predictions]");
   const resultsList = root.querySelector("[data-tip-results-list]");
   const form = root.querySelector("[data-tip-form]");
+  const registerShortcutButton = root.querySelector("[data-tip-register-shortcut]");
   const registerPanel = root.querySelector("[data-tip-register-panel]");
   const registerToggleButton = root.querySelector("[data-tip-register-toggle]");
   const registerContent = root.querySelector("[data-tip-register-content]");
@@ -463,6 +464,11 @@
   registerToggleButton?.addEventListener("click", () => {
     const isOpen = registerToggleButton.getAttribute("aria-expanded") === "true";
     setRegisterPanelOpen(!isOpen);
+  });
+
+  registerShortcutButton?.addEventListener("click", () => {
+    setRegisterPanelOpen(true);
+    registerPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   registerForm?.addEventListener("submit", async (event) => {
