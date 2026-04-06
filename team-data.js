@@ -108,7 +108,7 @@ window.tsvSquadData = {
           lastName: "Großhauser",
           position: "Abwehr",
           jerseyNumber: null,
-          matches: 1,
+          matches: 2,
           goals: 0,
           flags: [
             "new"
