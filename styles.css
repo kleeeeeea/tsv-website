@@ -491,6 +491,14 @@ h3 {
   margin-bottom: 24px;
 }
 
+.squad-page-title {
+  max-width: none;
+  font-size: clamp(2.2rem, 3.8vw, 3.9rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
 .section-head p {
   margin: 14px 0 0;
   color: var(--muted);
@@ -2253,6 +2261,11 @@ h3 {
 
   h1 {
     font-size: clamp(2.2rem, 11vw, 3.4rem);
+  }
+
+  .squad-page-title {
+    font-size: clamp(2rem, 9vw, 2.9rem);
+    white-space: normal;
   }
 
   .penalty-field {
