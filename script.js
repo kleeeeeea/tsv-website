@@ -900,6 +900,7 @@ if (squadData?.teams) {
     return match?.[1] || null;
   };
   const cutoutOverrides = {};
+  const placeholderCutoutUrl = "images/kader/cutouts/Y1NfDiFUnwcn.png?v=20260407a";
 
   const resolveImageUrl = (value) => {
     if (!value) {
@@ -913,6 +914,10 @@ if (squadData?.teams) {
     return `${value.replace(/\/$/, "")}/480x600.webp`;
   };
   const resolveCutoutUrl = (person) => {
+    if (person?.hideImage) {
+      return placeholderCutoutUrl;
+    }
+
     if (person?.customCutoutUrl) {
       return person.customCutoutUrl;
     }
@@ -958,10 +963,8 @@ if (squadData?.teams) {
         const tags = formatFlags(player.flags)
           .map((flag) => `<span class="squad-flag">${flag}</span>`)
           .join("");
-        const playerImage = player.hideImage
-          ? ""
-          : `<img src="${resolveDisplayImageUrl(player)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>`;
-        const playerMediaStyle = player.hideImage ? "" : ` ${asCssImage(player)}`;
+        const playerImage = `<img src="${resolveDisplayImageUrl(player)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>`;
+        const playerMediaStyle = ` ${asCssImage(player)}`;
 
         return `
           <article class="squad-card">
