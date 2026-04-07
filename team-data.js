@@ -72,7 +72,7 @@ window.tsvSquadData = {
           lastName: "Kolitsch",
           position: "Torwart",
           jerseyNumber: 1,
-          matches: 14,
+          matches: 15,
           goals: 0,
           flags: [],
           age: 27,
