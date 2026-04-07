@@ -3,333 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Der TSV Hainsfarth 1949 e.V. im Ueberblick: Vereinsprofil, Anlagen am Burschel, Vereinsheim und Chronik.">
+  <meta name="description" content="TSV Hainsfarth 1949 e.V. mit Vereinsprofil, Sportangebot, Anlagen, Vorstandschaft und Chronik.">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>TSV Hainsfarth | Verein</title>
   <link rel="stylesheet" href="styles.css?v=20260323c">
-  <style>
-    .verein-page {
-      padding-bottom: 84px;
-    }
-
-    .verein-hero-card {
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.95fr);
-      gap: 28px;
-      padding: 36px;
-      border: 1px solid rgba(17, 130, 198, 0.16);
-      border-radius: 32px;
-      background:
-        radial-gradient(circle at top right, rgba(17, 130, 198, 0.16), transparent 32%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 255, 0.98));
-      box-shadow: 0 24px 54px rgba(18, 37, 63, 0.12);
-    }
-
-    .verein-hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto 36px 0 auto;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(17, 130, 198, 0.12), transparent 68%);
-      pointer-events: none;
-    }
-
-    .verein-hero-copy {
-      position: relative;
-      z-index: 1;
-    }
-
-    .verein-hero-copy h1 {
-      max-width: 11ch;
-      margin-top: 10px;
-      font-size: clamp(2.55rem, 4.8vw, 4.8rem);
-    }
-
-    .verein-hero-copy .lead {
-      max-width: 60ch;
-      margin-top: 18px;
-    }
-
-    .verein-chip-row,
-    .verein-fact-grid,
-    .verein-profile-grid,
-    .verein-ground-grid,
-    .verein-board-grid,
-    .verein-identity-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .verein-chip-row {
-      grid-template-columns: repeat(4, minmax(0, max-content));
-      margin-top: 24px;
-    }
-
-    .verein-chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 10px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(17, 130, 198, 0.16);
-      background: rgba(17, 130, 198, 0.08);
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .verein-fact-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-content: start;
-      position: relative;
-      z-index: 1;
-    }
-
-    .verein-fact-card,
-    .verein-profile-card,
-    .verein-ground-card,
-    .verein-board-card,
-    .verein-cta-card {
-      border-radius: 24px;
-      border: 1px solid rgba(17, 130, 198, 0.14);
-      background: rgba(255, 255, 255, 0.88);
-      box-shadow: 0 18px 34px rgba(18, 37, 63, 0.08);
-    }
-
-    .verein-fact-card {
-      padding: 20px;
-      min-height: 150px;
-    }
-
-    .verein-fact-card strong {
-      display: block;
-      margin-top: 8px;
-      font-size: 1.55rem;
-      line-height: 1.1;
-      color: var(--ink);
-    }
-
-    .verein-fact-card span:last-child {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .verein-section {
-      padding-top: 36px;
-    }
-
-    .verein-profile-grid {
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-      align-items: stretch;
-    }
-
-    .verein-profile-card,
-    .verein-ground-card,
-    .verein-board-card,
-    .verein-cta-card {
-      padding: 28px;
-    }
-
-    .verein-profile-card h2,
-    .verein-ground-card h3,
-    .verein-board-card h3,
-    .verein-cta-card h2 {
-      margin-top: 8px;
-    }
-
-    .verein-profile-card p,
-    .verein-ground-card p,
-    .verein-board-card p,
-    .verein-cta-card p {
-      margin: 14px 0 0;
-      color: var(--muted);
-      line-height: 1.72;
-    }
-
-    .verein-identity-list {
-      margin: 22px 0 0;
-    }
-
-    .verein-identity-item {
-      display: grid;
-      grid-template-columns: 112px minmax(0, 1fr);
-      gap: 16px;
-      align-items: start;
-      padding-top: 14px;
-      border-top: 1px solid rgba(17, 130, 198, 0.12);
-    }
-
-    .verein-identity-item:first-child {
-      padding-top: 0;
-      border-top: 0;
-    }
-
-    .verein-identity-label {
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
-
-    .verein-identity-text {
-      margin: 0;
-      color: var(--ink);
-      line-height: 1.62;
-    }
-
-    .verein-mini-list {
-      margin: 20px 0 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 12px;
-    }
-
-    .verein-mini-list li {
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(17, 130, 198, 0.08);
-      color: var(--ink);
-      line-height: 1.58;
-    }
-
-    .verein-ground-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 24px;
-    }
-
-    .verein-ground-card {
-      min-height: 100%;
-    }
-
-    .verein-ground-card .eyebrow {
-      margin-bottom: 8px;
-    }
-
-    .verein-ground-meta {
-      margin: 18px 0 0;
-      padding: 18px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(17, 130, 198, 0.12), rgba(17, 130, 198, 0.05));
-    }
-
-    .verein-ground-meta strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 0.82rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
-
-    .verein-ground-meta span {
-      color: var(--ink);
-      line-height: 1.62;
-    }
-
-    .verein-board-grid {
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-      margin-top: 24px;
-    }
-
-    .verein-board-people {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .verein-board-person {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(17, 130, 198, 0.08);
-    }
-
-    .verein-board-person span {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
-
-    .verein-board-person strong {
-      display: block;
-      color: var(--ink);
-      font-size: 1.12rem;
-      line-height: 1.35;
-    }
-
-    .verein-note {
-      margin-top: 18px;
-      font-size: 0.96rem;
-      color: var(--muted);
-    }
-
-    .chronicle-shell {
-      margin-top: 16px;
-    }
-
-    .chronicle-shell .section-head {
-      max-width: 52ch;
-    }
-
-    @media (max-width: 1040px) {
-      .verein-hero-card,
-      .verein-profile-grid,
-      .verein-board-grid,
-      .verein-ground-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .verein-chip-row {
-        grid-template-columns: repeat(2, minmax(0, max-content));
-      }
-    }
-
-    @media (max-width: 720px) {
-      .verein-page {
-        padding-bottom: 64px;
-      }
-
-      .verein-hero-card,
-      .verein-profile-card,
-      .verein-ground-card,
-      .verein-board-card,
-      .verein-cta-card {
-        padding: 24px;
-      }
-
-      .verein-hero-copy h1 {
-        max-width: none;
-      }
-
-      .verein-fact-grid,
-      .verein-board-people {
-        grid-template-columns: 1fr;
-      }
-
-      .verein-chip-row {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .verein-identity-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="site-shell">
@@ -347,7 +26,6 @@
           <a href="index.html">Start</a>
           <a href="verein.html" aria-current="page">Verein</a>
           <a href="kader.html">Kader</a>
-          <a href="sportangebot.html">Sportangebot</a>
           <a href="tippspiel.html">Tippspiel</a>
           <a href="fanshop.html">Fanshop</a>
           <a href="kontakt.html">Kontakt</a>
@@ -355,367 +33,320 @@
       </div>
     </header>
 
-    <main class="verein-page">
-      <section class="section">
+    <main>
+      <section class="page-hero">
         <div class="container">
-          <article class="verein-hero-card">
-            <div class="verein-hero-copy">
-              <span class="eyebrow">Verein</span>
-              <h1>Der TSV gehoert in Hainsfarth einfach dazu.</h1>
+          <div class="hero-card">
+            <div>
+              <span class="eyebrow">TSV Hainsfarth 1949 e.V.</span>
+              <p class="motto">Die Macht vom Burschel</p>
+              <h1>Verein, Anlagen und Chronik.</h1>
               <p class="lead">
-                Der TSV Hainsfarth 1949 e.V. ist kein zweites Schaufenster fuer Spielbetrieb oder Abteilungen,
-                sondern die organisatorische und soziale Klammer dahinter: Vereinsheimat, Treffpunkt,
-                Ehrenamt und Alltag rund um den Burschel.
+                Auf dieser Seite geht es nicht um Spieltage oder Kader, sondern um den Verein selbst:
+                das Sportangebot, die Heimat am Burschel, die Vorstandschaft und die Geschichte des TSV
+                Hainsfarth seit 1949.
               </p>
-              <div class="verein-chip-row" aria-label="Vereinsprofil">
-                <span class="verein-chip">22.03.1949 gegruendet</span>
-                <span class="verein-chip">Blau-Weiss</span>
-                <span class="verein-chip">Burschel als Heimstatt</span>
-                <span class="verein-chip">Die Macht vom Burschel</span>
+              <div class="hero-actions">
+                <a class="button" href="#sportangebot">Sportangebot</a>
+                <a class="button" href="#anlagen">Anlagen</a>
+                <a class="button-secondary" href="#geschichte">Chronik</a>
+              </div>
+              <div class="stat-grid">
+                <div class="stat">
+                  <strong>1949</strong>
+                  <span>gegruendet</span>
+                </div>
+                <div class="stat">
+                  <strong>6</strong>
+                  <span>Sportbereiche</span>
+                </div>
+                <div class="stat">
+                  <strong>435</strong>
+                  <span>Mitglieder</span>
+                </div>
+                <div class="stat">
+                  <strong>Blau/Weiss</strong>
+                  <span>Vereinsfarben</span>
+                </div>
               </div>
             </div>
-
-            <aside class="verein-fact-grid" aria-label="Wichtige Vereinsdaten">
-              <article class="verein-fact-card">
-                <span class="eyebrow">Vereinsprofil</span>
-                <strong>435 Mitglieder</strong>
-                <span>Offizielle Angabe auf der Vereinsseite, Stand 01.01.2020.</span>
-              </article>
-              <article class="verein-fact-card">
-                <span class="eyebrow">Anschrift</span>
-                <strong>Am Sportplatz 2</strong>
-                <span>86744 Hainsfarth, direkt am Burschel und nahe der Sportanlagen.</span>
-              </article>
-              <article class="verein-fact-card">
-                <span class="eyebrow">Heimat</span>
-                <strong>Sportgelaende am Burschel</strong>
-                <span>Spielort, Vereinsheim und Treffpunkt fuer Alltag, Heimspiele und Veranstaltungen.</span>
-              </article>
-              <article class="verein-fact-card">
-                <span class="eyebrow">Vereinsform</span>
-                <strong>TSV Hainsfarth 1949 e.V.</strong>
-                <span>Turn- und Sportverein mit langer Verankerung im Dorf und viel Eigenleistung.</span>
-              </article>
+            <aside class="hero-side">
+              <div>
+                <div class="hero-badge">Am Burschel zuhause</div>
+                <h3>Vereinsprofil</h3>
+                <p>Am Sportplatz 2<br>86744 Hainsfarth<br>Region Donau-Ries / Schwaben</p>
+              </div>
+              <div>
+                <h3>Auf dieser Seite</h3>
+                <p>Sportangebot<br>Anlagen und Vereinsheim<br>Vorstandschaft und Vereinschronik</p>
+              </div>
+              <img class="hero-logo" src="logo.png?v=20260310b" alt="TSV Hainsfarth Vereinslogo">
             </aside>
-          </article>
+          </div>
         </div>
       </section>
 
-      <section class="section verein-section">
+      <section class="section" id="sportangebot">
         <div class="container">
-          <div class="verein-profile-grid">
-            <article class="verein-profile-card">
-              <span class="eyebrow">Vereinsidentitaet</span>
-              <h2>Wofuer der TSV auf dieser Seite stehen soll</h2>
-              <p>
-                Auf der Startseite geht es um aktuelle Spiele, im Sportangebot um Abteilungen, im Kader um
-                Personen. Die Vereinsseite selbst konzentriert sich auf das Grundsaetzliche: Herkunft,
-                Haltung, Vereinsheimat und die Rolle des TSV im Ort.
-              </p>
-              <div class="verein-identity-list">
-                <div class="verein-identity-item">
-                  <span class="verein-identity-label">Gruendung</span>
-                  <p class="verein-identity-text">Der Verein wurde am 22. Maerz 1949 gegruendet und gehoert seitdem fest zur Ortsgeschichte.</p>
-                </div>
-                <div class="verein-identity-item">
-                  <span class="verein-identity-label">Selbstverstaendnis</span>
-                  <p class="verein-identity-text">Nicht gross inszeniert, sondern glaubwuerdig gewachsen: Sport, Ehrenamt und Miteinander laufen hier seit Jahrzehnten zusammen.</p>
-                </div>
-                <div class="verein-identity-item">
-                  <span class="verein-identity-label">Im Ort</span>
-                  <p class="verein-identity-text">Der TSV ist Teil des Dorflebens, weil er nicht nur Trainingsflaeche ist, sondern auch sozialer Treffpunkt und Veranstaltungsort.</p>
-                </div>
-              </div>
+          <div class="section-head">
+            <span class="eyebrow">Sportangebot</span>
+            <h2>Die Abteilungen des TSV</h2>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Fussball</h3>
+              <p>Herrenbereich und Nachwuchs bilden einen zentralen Teil des sportlichen Lebens beim TSV.</p>
             </article>
-
-            <article class="verein-profile-card">
-              <span class="eyebrow">Kurzprofil</span>
-              <h2>Knapp, aber konkret</h2>
-              <ul class="verein-mini-list">
-                <li>Vereinsfarben: Blau und Weiss.</li>
-                <li>Heimstaette: Burschelstadion und Sportzentrum Hainsfarth.</li>
-                <li>Vereinsheim mit Treffpunktcharakter fuer Spieltage, Sitzungen und Veranstaltungen.</li>
-                <li>Mehrgenerationenverein mit Sport, Organisation und viel Arbeit im Hintergrund.</li>
-              </ul>
+            <article class="card">
+              <h3>Tischtennis</h3>
+              <p>Tischtennis ergaenzt den Verein um schnellen Hallensport mit Training und Wettkampfcharakter.</p>
+            </article>
+            <article class="card">
+              <h3>Volleyball</h3>
+              <p>Volleyball steht fuer gemeinsames Training, Teamspiel und Bewegung in der Gruppe.</p>
+            </article>
+            <article class="card">
+              <h3>Tennis</h3>
+              <p>Mit den Tennisflaechen am Sportzentrum bleibt der TSV auch im Freiluftbereich breit aufgestellt.</p>
+            </article>
+            <article class="card">
+              <h3>Gymnastik</h3>
+              <p>Gymnastik bietet regelmaessige Bewegung, Fitness und Ausgleich fuer verschiedene Altersgruppen.</p>
+            </article>
+            <article class="card">
+              <h3>Kinderturnen</h3>
+              <p>Kinderturnen schafft einen fruehen Einstieg in Koordination, Bewegung und gemeinsames Sporterleben.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section verein-section" id="sportanlagen">
+      <section class="section" id="anlagen">
         <div class="container">
           <div class="section-head">
-            <span class="eyebrow">Am Burschel</span>
-            <h2>Sportgelaende, Vereinsheim und das Zentrum des TSV</h2>
+            <span class="eyebrow">Burschel</span>
+            <h2>Anlagen und Vereinsheim</h2>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Burschelstadion</h3>
+              <p>
+                Das Burschelstadion ist die sichtbare Vereinsmitte. Heimspiele, Trainingsalltag und viele
+                praegende Momente des TSV laufen hier zusammen.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Vereinsheim</h3>
+              <p>
+                Das Vereinsheim verbindet Spieltag, Besprechung und gemeinsames Zusammensitzen und ist damit
+                ein wichtiger Treffpunkt im Vereinsalltag.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Sportzentrum</h3>
+              <p>
+                Rund um den Burschel liegen weitere Sportflaechen und Trainingsmoeglichkeiten, die den TSV
+                das ganze Jahr ueber handlungsfaehig machen.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="vorsitzende">
+        <div class="container">
+          <div class="panel">
+            <div class="panel-topline">
+              <div>
+                <span class="eyebrow">Vorsitzende</span>
+                <h2>Vorstandschaft in kompakter Form</h2>
+              </div>
+            </div>
+            <div class="card-grid">
+              <article class="card">
+                <h3>1. Vorsitzender</h3>
+                <p>Josef Seitz</p>
+              </article>
+              <article class="card">
+                <h3>2. Vorsitzender</h3>
+                <p>Guenter Kienast</p>
+              </article>
+              <article class="card">
+                <h3>3. Vorsitzender</h3>
+                <p>Markus Daniel</p>
+              </article>
+              <article class="card">
+                <h3>Schriftfuehrer</h3>
+                <p>Jochen Seefried</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="geschichte">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Chronik im Detail</span>
+            <h2>Die lange Vereinsgeschichte zum Aufklappen</h2>
             <p>
-              Wer den TSV verstehen will, muss den Burschel verstehen. Hier liegen nicht nur Spielflaechen,
-              sondern auch die Orte, an denen Heimspiele vorbereitet, Sitzungen gefuehrt und Vereinsmomente
-              ausserhalb des Sports geteilt werden.
+              Wer tiefer eintauchen will, findet hier die ausfuehrlichere Chronik des TSV.
             </p>
           </div>
 
-          <div class="verein-ground-grid">
-            <article class="verein-ground-card">
-              <span class="eyebrow">Sportgelaende</span>
-              <h3>Burschelstadion</h3>
-              <p>
-                Das Stadion ist die sichtbare Vereinsmitte. Heimspieltage, Trainingsalltag und viele
-                Erinnerungen des TSV laufen hier zusammen. Der Burschel ist damit nicht nur Adresse,
-                sondern Teil der Vereinsidentitaet.
-              </p>
-              <div class="verein-ground-meta">
-                <strong>Vor Ort</strong>
-                <span>Am Sportplatz 2, 86744 Hainsfarth</span>
-              </div>
-            </article>
+          <details class="legal-accordion chronicle-accordion">
+            <summary>1949: Gruendung in schwerer Zeit</summary>
+            <p>
+              Als sich 1949 junge sportbegeisterte Hainsfarther im Gasthaus Rummel trafen, lag eine schwere
+              Zeit hinter ihnen. Der Zweite Weltkrieg war erst vier Jahre vorueber, die Bombenangriffe auf
+              die Nachbarstadt Oettingen und die Schrecken des Krieges waren noch vielen in schlimmer
+              Erinnerung. Das taegliche Leben war gepraegt von materieller Not, von harter Arbeit und von
+              der Aufgabe, viele Heimatvertriebene in die Dorfgemeinschaft zu integrieren.
+            </p>
+            <p>
+              Eine Gruppe um Buergermeister Josef Grosshauser, Lehrer Adolf Thum und Emil Dantonello liess
+              ueber Gemeindediener Josef Kohnle ausschellen, dass sportbegeisterte Buerger zur Gruendung
+              eines Sportvereins in das Gasthaus Rummel geladen sind. Schon bei dieser allerersten
+              Versammlung fanden sich 44 Buerger bereit, beizutreten und den Verein zu gruenden. Als erstes
+              Mitglied ist der damalige Buergermeister Josef Grosshauser eingetragen.
+            </p>
+            <p>
+              So wurde am 22. Maerz 1949 der Turn- und Sportverein Hainsfarth gegruendet. Bereits am
+              23. Maerz 1949 wurde die Anmeldung beim Bayerischen Landessportverband in Muenchen getaetigt.
+              In dieser Mitteilung wurden Josef Strauss als Vorstand, Adolf Thum als stellvertretender
+              Vorstand, Josef Hauber als Kassier und Oswald Losert als Schriftfuehrer genannt. Amtlich
+              bestaetigt wurde der TSV am 10. Mai 1949 unter der Nummer 23338.
+            </p>
+          </details>
 
-            <article class="verein-ground-card">
-              <span class="eyebrow">Treffpunkt</span>
-              <h3>Vereinsheim</h3>
-              <p>
-                Das Vereinsheim ist mehr als Infrastruktur. Es verbindet Spielbetrieb, Besprechung,
-                Bewirtung und gemeinsames Zusammensitzen. Genau dieser Treffpunktcharakter macht den TSV
-                auch ausserhalb des Sports praesenter im Ort.
-              </p>
-              <div class="verein-ground-meta">
-                <strong>Funktion</strong>
-                <span>Umkleiden, Versammlungen, Spieltage und Vereinsleben unter einem Dach</span>
-              </div>
-            </article>
+          <details class="legal-accordion chronicle-accordion">
+            <summary>Die ersten Jahre und der Hintere Burschel</summary>
+            <p>
+              Schon in der Gruendungsversammlung wurden die Sparten Bodenturnen, Faustball, Fussball,
+              Leichtathletik, Schwimmen und Tischtennis installiert. Am 16. Maerz 1950 erhielt der Verein
+              eine Satzung. In der Praeambel zum Gruendungsprotokoll schrieb Schriftfuehrer Oswald Losert,
+              dass sich in der Gemeinde eine sich dauernd steigernde Sportbegeisterung gezeigt habe und
+              dass die Jugend auf der Suche nach Bahnen sei, die zu frohen, gesellig-sportlichen Spielen
+              fuehren.
+            </p>
+            <p>
+              Fuer alle Ballspiele wurde der bereits vorhandene Sportplatz am Hinteren Burschel von der
+              Gemeinde Hainsfarth fuer eine jaehrliche Pachtgebuehr von 1 DM angemietet. Interessant sind
+              auch die damaligen Mitgliedsbeitraege, die monatlich einkassiert wurden: 10 bis 14 Jahre
+              10 Pfennige, 14 bis 18 Jahre 30 Pfennige und ueber 18 Jahre 50 Pfennige. Selbst fuer den Fall,
+              dass jemand zum Zeitpunkt der Einhebung nicht sofort bezahlen konnte, war eine Stundung vorgesehen.
+            </p>
+            <p>
+              Im Taetigkeitsbericht zur Generalversammlung vom 19. April 1950 waren bereits 206 Mitglieder
+              aufgefuehrt. Sie verteilten sich auf Fussball 81, Faustball 20, Leichtathletik 49, Schwimmen 7
+              und Tischtennis 49. Bereits im April 1950 wurde ein gewisser Herr Dietrich als Spielertrainer
+              verpflichtet, und bald stellte sich der sportliche Erfolg ein. Ungeschlagen wurde die Mannschaft
+              in der Saison 1952/53 Meister der C-Klasse und wiederholte den Titel 1953/54, wobei jeweils aus
+              finanziellen Gruenden auf den Aufstieg in die B-Klasse verzichtet wurde.
+            </p>
+          </details>
 
-            <article class="verein-ground-card">
-              <span class="eyebrow">Rundherum</span>
-              <h3>Sportzentrum Hainsfarth</h3>
-              <p>
-                Zum Umfeld gehoeren weitere Trainings- und Sportflaechen, Mehrzweckhalle sowie die
-                Anlagen, die den TSV im Jahresverlauf handlungsfaehig machen. So bleibt der Verein
-                breit aufgestellt, ohne dass diese Seite die Abteilungen erneut aufzaehlen muss.
-              </p>
-              <div class="hero-actions">
-                <a class="button-secondary" href="https://www.google.com/maps/search/?api=1&query=Am+Sportplatz+2%2C+86744+Hainsfarth" target="_blank" rel="noopener noreferrer">Anfahrt ansehen</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+          <details class="legal-accordion chronicle-accordion">
+            <summary>Der Vordere Burschel und der Ausbau der Anlagen</summary>
+            <p>
+              Im Rahmen der Flurbereinigung 1954 bis 1956 erhielt der TSV am Vorderen Burschel ein neues
+              Sportgelaende, das wesentlich naeher am Ortsbereich lag als der Platz am Hinteren Burschel.
+              Das rund 12000 Quadratmeter grosse Areal musste mit grossen Erdbewegungen erst herrgerichtet
+              werden, denn dort waren frueher Burschelsteine gebrochen worden. Besonders im Sueden des Platzes
+              musste viel Erdreich aufgeschuettet werden.
+            </p>
+            <p>
+              Grossen Anteil an der Neugestaltung dieses Sportgelaendes hatte Georg Seefried, der 1959 in
+              der schwierigsten Zeit des Vereins die Leitung uebernahm und den von der Aufloesung bedrohten
+              TSV in den folgenden Jahren wieder finanziell und sportlich nach vorne brachte. Die Einweihung
+              am 16. August 1964 war ueberaus gelungen; im Protokoll wurden rund 400 Autos und ueber
+              1500 Besucher festgehalten.
+            </p>
+            <p>
+              Das neue Sporthaus, damals als massive Umkleidekabine bezeichnet, war fuer die damaligen
+              Verhaeltnisse auf modernstem Stand, obwohl zunaechst weder Strom noch Wasser vorhanden waren.
+              Das Duschwasser musste in Tankfaessern nach oben gefahren und in Behaelter umgefuellt werden.
+              1970 erfolgte der Anschluss an die Rieswasserversorgung, 1971 wurde der Stromanschluss
+              hergestellt, 1972 konnten elektrische Heizkoerper installiert werden. Auch die ersten
+              Flutlichtmasten und die Sommernachtsfestplatzecke wurden in Eigenleistung realisiert.
+            </p>
+          </details>
 
-      <section class="section verein-section">
-        <div class="container">
-          <div class="verein-board-grid">
-            <article class="verein-board-card">
-              <span class="eyebrow">Vereinsstruktur</span>
-              <h2>Vorstandschaft in kompakter Form</h2>
-              <p>
-                Die operative Vereinsarbeit liegt nicht auf dieser Seite im Detail, aber ein kurzer Blick
-                auf die Struktur ist sinnvoll. Fuer Kontaktwege und Unterlagen bleibt weiterhin die
-                Kontaktseite der richtige Ort.
-              </p>
-              <div class="verein-board-people">
-                <div class="verein-board-person">
-                  <span>1. Vorsitzender</span>
-                  <strong>Josef Seitz</strong>
-                </div>
-                <div class="verein-board-person">
-                  <span>2. Vorsitzender</span>
-                  <strong>Guenter Kienast</strong>
-                </div>
-                <div class="verein-board-person">
-                  <span>3. Vorsitzender</span>
-                  <strong>Markus Daniel</strong>
-                </div>
-                <div class="verein-board-person">
-                  <span>Schriftfuehrer</span>
-                  <strong>Jochen Seefried</strong>
-                </div>
-              </div>
-              <p class="verein-note">
-                Die Besetzung ist bewusst reduziert dargestellt. Ansprechpartner, Mitgliedschaft und
-                Kontaktwege findest du gesammelt auf der Kontaktseite.
-              </p>
-            </article>
+          <details class="legal-accordion chronicle-accordion">
+            <summary>Sport in der Synagoge, Feste und Vereinsleben</summary>
+            <p>
+              Bereits frueh suchte die Vorstandschaft nach einer Turnhalle. In den 1950er Jahren wurde dafuer
+              zeitweise die ehemalige Synagoge als Uebungsraum genutzt. Das Bauobjekt war dem damaligen
+              Vorstand sogar einmal zum Preis von 8000 DM angeboten worden, der Kauf scheiterte jedoch an der
+              duennen Finanzdecke des Vereins. Spaeter wurde von den Sportlern eine solide Holzdecke eingezogen
+              und in den 50er Jahren dort im Winter vorwiegend das Fussballtraining abgehalten.
+            </p>
+            <p>
+              Nachdem spaeter die evangelische Kirchengemeinde Oettingen den Gebaeudekomplex erworben hatte,
+              durfte der TSV den Uebungsraum weiterhin nutzen. Zum Duschen ging man in die Grundschule.
+              Die beste Loesung ergab sich erst mit der Fertigstellung der neuen Mehrzweckhalle 1985 in
+              Hainsfarth.
+            </p>
+            <p>
+              Was waere ein Verein ohne gesellige und kameradschaftliche Veranstaltungen? Schon frueh erkannte
+              die Vorstandschaft, dass nicht nur Sport und Wettkampf, sondern auch Feste, Feiern, Feten,
+              Ausfluege und froehliche Zusammenkuenfte fuer ein Vereinsleben wichtig sind. Faschingsumzuege,
+              Tanzveranstaltungen, Kappenabende, Maibaumaufstellen und die Theatergruppe gehoerten dazu. Das
+              erste Sommernachtsfest fand 1969 als Open-Air-Veranstaltung mit Lagerfeuer am neuen Sportgelaende
+              statt und entwickelte sich zu einem festen Termin im Dorfleben. Auch der Damenfussball brachte
+              ab 1972 neuen Schwung in den Verein, musste 1985 aber wegen Spielermangel wieder abgemeldet werden.
+            </p>
+          </details>
 
-            <article class="verein-cta-card">
-              <span class="eyebrow">Im Ort verankert</span>
-              <h2>Kein Ausweichtext, sondern echte Vereinsrealitaet</h2>
-              <p>
-                Der TSV lebt nicht nur von Trainingsplaenen oder Ergebnissen, sondern von Menschen, die
-                Arbeiten uebernehmen, Feste tragen, Anlagen pflegen und Generationen zusammenhalten.
-                Genau deshalb hat die Vereinsseite hier ihren Platz.
-              </p>
-              <div class="hero-actions">
-                <a class="button" href="kontakt.html">Zum Kontakt</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+          <details class="legal-accordion chronicle-accordion">
+            <summary>Aufstiege, Rueckschlaege und das Fussballwunder</summary>
+            <p>
+              Dank der guten Anlage am Vorderen Burschel stellten sich nach und nach wieder groessere sportliche
+              Erfolge ein. Der Gewinn des Scheiblepokals 1965 im Endspiel gegen Moenchsdeggingen durch das
+              goldene Tor von G. Ruppert war wieder ein Schritt aus der Talsohle. 1967/68 gelang mit der
+              Mannschaft um Carlo Breznik erstmals der Aufstieg in die B-Klasse.
+            </p>
+            <p>
+              Nach dem Abstieg wurden verstaerkt Jugendspieler eingebaut, die 1973/74 zum dritten Mal die
+              Meisterschaft holten. Doch wiederum folgte nach nur einem Jahr in der B-Klasse der Abstieg.
+              Da der direkte Wiederaufstieg im Folgejahr nicht realisiert werden konnte, fiel das Team immer
+              mehr auseinander, und der Tiefpunkt wurde 1976/77 mit dem vorletzten Platz in der C-Klasse II
+              erreicht.
+            </p>
+            <p>
+              Von 1977 bis 1982 war die Verpflichtung des Oettinger Trainers Hans Reichert ein wahrer
+              Gluecksgriff. Seine Waldlaeufe rund um den Burschel, in das Kach und ausgedehnte Fahrradtouren
+              sind vielen noch in Erinnerung. 1977/78 wurde der TSV Meister der C-Klasse II, spaeter gelang
+              sogar der Aufstieg in die A-Klasse. Unvergessen bleibt das dramatische Spiel in Fremdingen,
+              als nach einem 0:3 Rueckstand durch einen verwandelten Foulelfmeter kurz vor Schluss doch noch
+              der fuer die Meisterschaft noetige Punkt geholt wurde.
+            </p>
+          </details>
 
-      <section class="section verein-section chronicle-shell" id="geschichte">
-        <div class="container">
-          <div class="chronicle-longform">
-            <div class="section-head">
-              <span class="eyebrow">Chronik im Detail</span>
-              <h2>Die lange Vereinsgeschichte zum Aufklappen</h2>
-              <p>
-                Wer tiefer eintauchen will, findet hier eine ausfuehrlichere Chronik, die sich sprachlich
-                bewusst nahe an der ueberlieferten Vereinsgeschichte orientiert.
-              </p>
-            </div>
-
-            <details class="legal-accordion chronicle-accordion">
-              <summary>1949: Gruendung in schwerer Zeit</summary>
-              <p>
-                Als sich 1949 junge sportbegeisterte Hainsfarther im Gasthaus Rummel trafen, lag eine schwere
-                Zeit hinter ihnen. Der Zweite Weltkrieg war erst vier Jahre vorueber, die Bombenangriffe auf
-                die Nachbarstadt Oettingen und die Schrecken des Krieges waren noch vielen in schlimmer
-                Erinnerung. Das taegliche Leben war gepraegt von materieller Not, von harter Arbeit und von
-                der Aufgabe, viele Heimatvertriebene in die Dorfgemeinschaft zu integrieren.
-              </p>
-              <p>
-                Eine Gruppe um Buergermeister Josef Grosshauser, Lehrer Adolf Thum und Emil Dantonello liess
-                ueber Gemeindediener Josef Kohnle ausschellen, dass sportbegeisterte Buerger zur Gruendung
-                eines Sportvereins in das Gasthaus Rummel geladen sind. Schon bei dieser allerersten
-                Versammlung fanden sich 44 Buerger bereit, beizutreten und den Verein zu gruenden. Als erstes
-                Mitglied ist der damalige Buergermeister Josef Grosshauser eingetragen.
-              </p>
-              <p>
-                So wurde am 22. Maerz 1949 der Turn- und Sportverein Hainsfarth gegruendet. Bereits am
-                23. Maerz 1949 wurde die Anmeldung beim Bayerischen Landessportverband in Muenchen getaetigt.
-                In dieser Mitteilung wurden Josef Strauss als Vorstand, Adolf Thum als stellvertretender
-                Vorstand, Josef Hauber als Kassier und Oswald Losert als Schriftfuehrer genannt. Amtlich
-                bestaetigt wurde der TSV am 10. Mai 1949 unter der Nummer 23338.
-              </p>
-            </details>
-
-            <details class="legal-accordion chronicle-accordion">
-              <summary>Die ersten Jahre und der Hintere Burschel</summary>
-              <p>
-                Schon in der Gruendungsversammlung wurden die Sparten Bodenturnen, Faustball, Fussball,
-                Leichtathletik, Schwimmen und Tischtennis installiert. Am 16. Maerz 1950 erhielt der Verein
-                eine Satzung. In der Praeambel zum Gruendungsprotokoll schrieb Schriftfuehrer Oswald Losert,
-                dass sich in der Gemeinde eine sich dauernd steigernde Sportbegeisterung gezeigt habe und
-                dass die Jugend auf der Suche nach Bahnen sei, die zu frohen, gesellig-sportlichen Spielen
-                fuehren.
-              </p>
-              <p>
-                Fuer alle Ballspiele wurde der bereits vorhandene Sportplatz am Hinteren Burschel von der
-                Gemeinde Hainsfarth fuer eine jaehrliche Pachtgebuehr von 1 DM angemietet. Interessant sind
-                auch die damaligen Mitgliedsbeitraege, die monatlich einkassiert wurden: 10 bis 14 Jahre
-                10 Pfennige, 14 bis 18 Jahre 30 Pfennige und ueber 18 Jahre 50 Pfennige. Selbst fuer den Fall,
-                dass jemand zum Zeitpunkt der Einhebung nicht sofort bezahlen konnte, war eine Stundung vorgesehen.
-              </p>
-              <p>
-                Im Taetigkeitsbericht zur Generalversammlung vom 19. April 1950 waren bereits 206 Mitglieder
-                aufgefuehrt. Sie verteilten sich auf Fussball 81, Faustball 20, Leichtathletik 49, Schwimmen 7
-                und Tischtennis 49. Bereits im April 1950 wurde ein gewisser Herr Dietrich als Spielertrainer
-                verpflichtet, und bald stellte sich der sportliche Erfolg ein. Ungeschlagen wurde die Mannschaft
-                in der Saison 1952/53 Meister der C-Klasse und wiederholte den Titel 1953/54, wobei jeweils aus
-                finanziellen Gruenden auf den Aufstieg in die B-Klasse verzichtet wurde.
-              </p>
-            </details>
-
-            <details class="legal-accordion chronicle-accordion">
-              <summary>Der Vordere Burschel und der Ausbau der Anlagen</summary>
-              <p>
-                Im Rahmen der Flurbereinigung 1954 bis 1956 erhielt der TSV am Vorderen Burschel ein neues
-                Sportgelaende, das wesentlich naeher am Ortsbereich lag als der Platz am Hinteren Burschel.
-                Das rund 12000 Quadratmeter grosse Areal musste mit grossen Erdbewegungen erst herrgerichtet
-                werden, denn dort waren frueher Burschelsteine gebrochen worden. Besonders im Sueden des Platzes
-                musste viel Erdreich aufgeschuettet werden.
-              </p>
-              <p>
-                Grossen Anteil an der Neugestaltung dieses Sportgelaendes hatte Georg Seefried, der 1959 in
-                der schwierigsten Zeit des Vereins die Leitung uebernahm und den von der Aufloesung bedrohten
-                TSV in den folgenden Jahren wieder finanziell und sportlich nach vorne brachte. Die Einweihung
-                am 16. August 1964 war ueberaus gelungen; im Protokoll wurden rund 400 Autos und ueber
-                1500 Besucher festgehalten.
-              </p>
-              <p>
-                Das neue Sporthaus, damals als massive Umkleidekabine bezeichnet, war fuer die damaligen
-                Verhaeltnisse auf modernstem Stand, obwohl zunaechst weder Strom noch Wasser vorhanden waren.
-                Das Duschwasser musste in Tankfaessern nach oben gefahren und in Behaelter umgefuellt werden.
-                1970 erfolgte der Anschluss an die Rieswasserversorgung, 1971 wurde der Stromanschluss
-                hergestellt, 1972 konnten elektrische Heizkoerper installiert werden. Auch die ersten
-                Flutlichtmasten und die Sommernachtsfestplatzecke wurden in Eigenleistung realisiert.
-              </p>
-            </details>
-
-            <details class="legal-accordion chronicle-accordion">
-              <summary>Sport in der Synagoge, Feste und Vereinsleben</summary>
-              <p>
-                Bereits frueh suchte die Vorstandschaft nach einer Turnhalle. In den 1950er Jahren wurde dafuer
-                zeitweise die ehemalige Synagoge als Uebungsraum genutzt. Das Bauobjekt war dem damaligen
-                Vorstand sogar einmal zum Preis von 8000 DM angeboten worden, der Kauf scheiterte jedoch an der
-                duennen Finanzdecke des Vereins. Spaeter wurde von den Sportlern eine solide Holzdecke eingezogen
-                und in den 50er Jahren dort im Winter vorwiegend das Fussballtraining abgehalten.
-              </p>
-              <p>
-                Nachdem spaeter die evangelische Kirchengemeinde Oettingen den Gebaeudekomplex erworben hatte,
-                durfte der TSV den Uebungsraum weiterhin nutzen. Zum Duschen ging man in die Grundschule.
-                Die beste Loesung ergab sich erst mit der Fertigstellung der neuen Mehrzweckhalle 1985 in
-                Hainsfarth.
-              </p>
-              <p>
-                Was waere ein Verein ohne gesellige und kameradschaftliche Veranstaltungen? Schon frueh erkannte
-                die Vorstandschaft, dass nicht nur Sport und Wettkampf, sondern auch Feste, Feiern, Feten,
-                Ausfluege und froehliche Zusammenkuenfte fuer ein Vereinsleben wichtig sind. Faschingsumzuege,
-                Tanzveranstaltungen, Kappenabende, Maibaumaufstellen und die Theatergruppe gehoerten dazu. Das
-                erste Sommernachtsfest fand 1969 als Open-Air-Veranstaltung mit Lagerfeuer am neuen Sportgelaende
-                statt und entwickelte sich zu einem festen Termin im Dorfleben. Auch der Damenfussball brachte
-                ab 1972 neuen Schwung in den Verein, musste 1985 aber wegen Spielermangel wieder abgemeldet werden.
-              </p>
-            </details>
-
-            <details class="legal-accordion chronicle-accordion">
-              <summary>Aufstiege, Rueckschlaege und das Fussballwunder</summary>
-              <p>
-                Dank der guten Anlage am Vorderen Burschel stellten sich nach und nach wieder groessere sportliche
-                Erfolge ein. Der Gewinn des Scheiblepokals 1965 im Endspiel gegen Moenchsdeggingen durch das
-                goldene Tor von G. Ruppert war wieder ein Schritt aus der Talsohle. 1967/68 gelang mit der
-                Mannschaft um Carlo Breznik erstmals der Aufstieg in die B-Klasse.
-              </p>
-              <p>
-                Nach dem Abstieg wurden verstaerkt Jugendspieler eingebaut, die 1973/74 zum dritten Mal die
-                Meisterschaft holten. Doch wiederum folgte nach nur einem Jahr in der B-Klasse der Abstieg.
-                Da der direkte Wiederaufstieg im Folgejahr nicht realisiert werden konnte, fiel das Team immer
-                mehr auseinander, und der Tiefpunkt wurde 1976/77 mit dem vorletzten Platz in der C-Klasse II
-                erreicht.
-              </p>
-              <p>
-                Von 1977 bis 1982 war die Verpflichtung des Oettinger Trainers Hans Reichert ein wahrer
-                Gluecksgriff. Seine Waldlaeufe rund um den Burschel, in das Kach und ausgedehnte Fahrradtouren
-                sind vielen noch in Erinnerung. 1977/78 wurde der TSV Meister der C-Klasse II, spaeter gelang
-                sogar der Aufstieg in die A-Klasse. Unvergessen bleibt das dramatische Spiel in Fremdingen,
-                als nach einem 0:3 Rueckstand durch einen verwandelten Foulelfmeter kurz vor Schluss doch noch
-                der fuer die Meisterschaft noetige Punkt geholt wurde.
-              </p>
-            </details>
-
-            <details class="legal-accordion chronicle-accordion">
-              <summary>Sportheim, Sportzentrum und der Weg in die Bezirksliga</summary>
-              <p>
-                Ein grosser Meilenstein war der Bau des Vereinsheims von 1984 bis 1988. Die Gesamtanlage kostete
-                425000 Mark. Mehr als 3500 Arbeitsstunden wurden von aktiven und passiven Vereinsmitgliedern
-                geleistet. Am 20. November 1988 wurde das neue TSV-Heim der Oeffentlichkeit vorgestellt. Das
-                Erdgeschoss mit Umkleide- und Duschraeumen umfasste 108 Quadratmeter, der Dachraum bot als
-                Vereinsgaststaette und Versammlungsraum rund 70 Besuchern Platz.
-              </p>
-              <p>
-                Parallel dazu entstand rund um die Mehrzweckhalle ein neues Sportzentrum. Nach Planungen ab 1987/88
-                konnte die gesamte Schul- und Freizeitsportanlage am 15. Juni 1991 eingeweiht werden. Zu dem
-                Projekt gehoerten ein Rasenplatz, zwei Tennisplaetze, eine Laufbahn, ein Hartplatz, ein
-                Kinderspielplatz und ein grosser Parkplatz. Damit standen den Aktiven zwei schoen gelegene
-                Fussballstadien und mehrere Trainingsflaechen zur Verfuegung.
-              </p>
-              <p>
-                In den 1990er Jahren und darueber hinaus fuehrte der sportliche Weg weiter nach oben. 1995/96
-                gelang unter Trainer Rainer Konheiser der langersehnte Wiederaufstieg in die A-Klasse.
-                Mit Peter Dworschak kam 1999 frischer Wind auf den Burschel. Der ganz grosse Traum wurde
-                2004/05 wahr: Nach einer grandiosen Rueckrunde feierte der TSV die Meisterschaft in der
-                Kreisliga Nord I und damit den Aufstieg in die Bezirksliga Nord.
-              </p>
-            </details>
-          </div>
+          <details class="legal-accordion chronicle-accordion">
+            <summary>Sportheim, Sportzentrum und der Weg in die Bezirksliga</summary>
+            <p>
+              Ein grosser Meilenstein war der Bau des Vereinsheims von 1984 bis 1988. Die Gesamtanlage kostete
+              425000 Mark. Mehr als 3500 Arbeitsstunden wurden von aktiven und passiven Vereinsmitgliedern
+              geleistet. Am 20. November 1988 wurde das neue TSV-Heim der Oeffentlichkeit vorgestellt. Das
+              Erdgeschoss mit Umkleide- und Duschraeumen umfasste 108 Quadratmeter, der Dachraum bot als
+              Vereinsgaststaette und Versammlungsraum rund 70 Besuchern Platz.
+            </p>
+            <p>
+              Parallel dazu entstand rund um die Mehrzweckhalle ein neues Sportzentrum. Nach Planungen ab 1987/88
+              konnte die gesamte Schul- und Freizeitsportanlage am 15. Juni 1991 eingeweiht werden. Zu dem
+              Projekt gehoerten ein Rasenplatz, zwei Tennisplaetze, eine Laufbahn, ein Hartplatz, ein
+              Kinderspielplatz und ein grosser Parkplatz. Damit standen den Aktiven zwei schoen gelegene
+              Fussballstadien und mehrere Trainingsflaechen zur Verfuegung.
+            </p>
+            <p>
+              In den 1990er Jahren und darueber hinaus fuehrte der sportliche Weg weiter nach oben. 1995/96
+              gelang unter Trainer Rainer Konheiser der langersehnte Wiederaufstieg in die A-Klasse.
+              Mit Peter Dworschak kam 1999 frischer Wind auf den Burschel. Der ganz grosse Traum wurde
+              2004/05 wahr: Nach einer grandiosen Rueckrunde feierte der TSV die Meisterschaft in der
+              Kreisliga Nord I und damit den Aufstieg in die Bezirksliga Nord.
+            </p>
+          </details>
         </div>
       </section>
     </main>
