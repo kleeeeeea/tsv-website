@@ -439,7 +439,7 @@ window.tsvSquadData = {
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/",
-          customCutoutUrl: "images/kader/cutouts/Y1NfDiFUnwcn.png?v=20260319a"
+          hideImage: true
         }
       ],
       staff: [
