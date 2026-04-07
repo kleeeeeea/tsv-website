@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Der TSV Hainsfarth 1949 e.V. im Ueberblick: Vereinsprofil, Anlagen am Burschel, Vereinsheim und Chronik.">
+  <meta name="description" content="TSV Hainsfarth 1949 e.V. mit Sportangebot, Anlagen, Vorstandschaft und Vereinschronik.">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -11,247 +11,101 @@
   <link rel="stylesheet" href="styles.css?v=20260323c">
   <style>
     .verein-page {
-      padding-bottom: 84px;
+      padding-bottom: 80px;
     }
 
-    .verein-hero-card {
-      position: relative;
-      overflow: hidden;
+    .verein-hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.95fr);
-      gap: 28px;
-      padding: 36px;
-      border: 1px solid rgba(17, 130, 198, 0.16);
-      border-radius: 32px;
-      background:
-        radial-gradient(circle at top right, rgba(17, 130, 198, 0.16), transparent 32%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 255, 0.98));
-      box-shadow: 0 24px 54px rgba(18, 37, 63, 0.12);
+      gap: 22px;
     }
 
-    .verein-hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto 36px 0 auto;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(17, 130, 198, 0.12), transparent 68%);
-      pointer-events: none;
-    }
-
-    .verein-hero-copy {
-      position: relative;
-      z-index: 1;
-    }
-
-    .verein-hero-copy h1 {
+    .verein-headline {
       max-width: 11ch;
-      margin-top: 10px;
-      font-size: clamp(2.55rem, 4.8vw, 4.8rem);
     }
 
-    .verein-hero-copy .lead {
-      max-width: 60ch;
-      margin-top: 18px;
+    .verein-jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
     }
 
-    .verein-chip-row,
-    .verein-fact-grid,
-    .verein-profile-grid,
-    .verein-ground-grid,
-    .verein-board-grid,
-    .verein-identity-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .verein-chip-row {
-      grid-template-columns: repeat(4, minmax(0, max-content));
-      margin-top: 24px;
-    }
-
-    .verein-chip {
+    .verein-jump-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 42px;
-      padding: 10px 18px;
+      min-height: 50px;
+      padding: 0 22px;
       border-radius: 999px;
-      border: 1px solid rgba(17, 130, 198, 0.16);
-      background: rgba(17, 130, 198, 0.08);
-      font-weight: 700;
+      border: 1px solid rgba(17, 130, 198, 0.18);
+      background: rgba(255, 255, 255, 0.92);
       color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 12px 26px rgba(18, 37, 63, 0.08);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
 
-    .verein-fact-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-content: start;
-      position: relative;
-      z-index: 1;
+    .verein-jump-link:hover,
+    .verein-jump-link:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(17, 130, 198, 0.32);
+      box-shadow: 0 18px 30px rgba(18, 37, 63, 0.12);
     }
 
-    .verein-fact-card,
-    .verein-profile-card,
-    .verein-ground-card,
-    .verein-board-card,
-    .verein-cta-card {
-      border-radius: 24px;
+    .verein-stack {
+      display: grid;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .verein-grid-3,
+    .verein-board-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .verein-grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .verein-board-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .verein-card {
+      padding: 28px;
+      border-radius: 28px;
       border: 1px solid rgba(17, 130, 198, 0.14);
-      background: rgba(255, 255, 255, 0.88);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 255, 0.96));
       box-shadow: 0 18px 34px rgba(18, 37, 63, 0.08);
     }
 
-    .verein-fact-card {
-      padding: 20px;
-      min-height: 150px;
-    }
-
-    .verein-fact-card strong {
-      display: block;
-      margin-top: 8px;
-      font-size: 1.55rem;
-      line-height: 1.1;
-      color: var(--ink);
-    }
-
-    .verein-fact-card span:last-child {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .verein-section {
-      padding-top: 36px;
-    }
-
-    .verein-profile-grid {
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-      align-items: stretch;
-    }
-
-    .verein-profile-card,
-    .verein-ground-card,
-    .verein-board-card,
-    .verein-cta-card {
-      padding: 28px;
-    }
-
-    .verein-profile-card h2,
-    .verein-ground-card h3,
-    .verein-board-card h3,
-    .verein-cta-card h2 {
+    .verein-card h2,
+    .verein-card h3 {
       margin-top: 8px;
     }
 
-    .verein-profile-card p,
-    .verein-ground-card p,
-    .verein-board-card p,
-    .verein-cta-card p {
+    .verein-card p {
       margin: 14px 0 0;
       color: var(--muted);
-      line-height: 1.72;
+      line-height: 1.7;
     }
 
-    .verein-identity-list {
-      margin: 22px 0 0;
-    }
-
-    .verein-identity-item {
-      display: grid;
-      grid-template-columns: 112px minmax(0, 1fr);
-      gap: 16px;
-      align-items: start;
-      padding-top: 14px;
-      border-top: 1px solid rgba(17, 130, 198, 0.12);
-    }
-
-    .verein-identity-item:first-child {
-      padding-top: 0;
-      border-top: 0;
-    }
-
-    .verein-identity-label {
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
-
-    .verein-identity-text {
-      margin: 0;
-      color: var(--ink);
-      line-height: 1.62;
-    }
-
-    .verein-mini-list {
-      margin: 20px 0 0;
+    .verein-list {
+      margin: 18px 0 0;
       padding: 0;
       list-style: none;
       display: grid;
       gap: 12px;
     }
 
-    .verein-mini-list li {
+    .verein-list li {
       padding: 14px 16px;
       border-radius: 18px;
       background: rgba(17, 130, 198, 0.08);
       color: var(--ink);
       line-height: 1.58;
-    }
-
-    .verein-ground-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 24px;
-    }
-
-    .verein-ground-card {
-      min-height: 100%;
-    }
-
-    .verein-ground-card .eyebrow {
-      margin-bottom: 8px;
-    }
-
-    .verein-ground-meta {
-      margin: 18px 0 0;
-      padding: 18px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(17, 130, 198, 0.12), rgba(17, 130, 198, 0.05));
-    }
-
-    .verein-ground-meta strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 0.82rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
-
-    .verein-ground-meta span {
-      color: var(--ink);
-      line-height: 1.62;
-    }
-
-    .verein-board-grid {
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-      margin-top: 24px;
-    }
-
-    .verein-board-people {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .verein-board-person {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(17, 130, 198, 0.08);
     }
 
     .verein-board-person span {
@@ -267,18 +121,13 @@
     .verein-board-person strong {
       display: block;
       color: var(--ink);
-      font-size: 1.12rem;
+      font-size: 1.16rem;
       line-height: 1.35;
     }
 
     .verein-note {
       margin-top: 18px;
-      font-size: 0.96rem;
       color: var(--muted);
-    }
-
-    .chronicle-shell {
-      margin-top: 16px;
     }
 
     .chronicle-shell .section-head {
@@ -286,15 +135,12 @@
     }
 
     @media (max-width: 1040px) {
-      .verein-hero-card,
-      .verein-profile-grid,
-      .verein-board-grid,
-      .verein-ground-grid {
+      .verein-grid-3 {
         grid-template-columns: 1fr;
       }
 
-      .verein-chip-row {
-        grid-template-columns: repeat(2, minmax(0, max-content));
+      .verein-board-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -303,30 +149,21 @@
         padding-bottom: 64px;
       }
 
-      .verein-hero-card,
-      .verein-profile-card,
-      .verein-ground-card,
-      .verein-board-card,
-      .verein-cta-card {
-        padding: 24px;
+      .verein-card {
+        padding: 22px;
       }
 
-      .verein-hero-copy h1 {
+      .verein-headline {
         max-width: none;
       }
 
-      .verein-fact-grid,
-      .verein-board-people {
-        grid-template-columns: 1fr;
-      }
-
-      .verein-chip-row {
+      .verein-jump-nav {
+        display: grid;
         grid-template-columns: 1fr 1fr;
       }
 
-      .verein-identity-item {
+      .verein-board-grid {
         grid-template-columns: 1fr;
-        gap: 8px;
       }
     }
   </style>
@@ -347,7 +184,6 @@
           <a href="index.html">Start</a>
           <a href="verein.html" aria-current="page">Verein</a>
           <a href="kader.html">Kader</a>
-          <a href="sportangebot.html">Sportangebot</a>
           <a href="tippspiel.html">Tippspiel</a>
           <a href="fanshop.html">Fanshop</a>
           <a href="kontakt.html">Kontakt</a>
@@ -358,207 +194,95 @@
     <main class="verein-page">
       <section class="section">
         <div class="container">
-          <article class="verein-hero-card">
-            <div class="verein-hero-copy">
-              <span class="eyebrow">Verein</span>
-              <h1>Der TSV gehoert in Hainsfarth einfach dazu.</h1>
-              <p class="lead">
-                Der TSV Hainsfarth 1949 e.V. ist kein zweites Schaufenster fuer Spielbetrieb oder Abteilungen,
-                sondern die organisatorische und soziale Klammer dahinter: Vereinsheimat, Treffpunkt,
-                Ehrenamt und Alltag rund um den Burschel.
-              </p>
-              <div class="verein-chip-row" aria-label="Vereinsprofil">
-                <span class="verein-chip">22.03.1949 gegruendet</span>
-                <span class="verein-chip">Blau-Weiss</span>
-                <span class="verein-chip">Burschel als Heimstatt</span>
-                <span class="verein-chip">Die Macht vom Burschel</span>
-              </div>
+          <div class="section-head verein-hero">
+            <span class="eyebrow">Verein</span>
+            <h1 class="verein-headline">Verein, Anlagen und Chronik.</h1>
+            <div class="verein-jump-nav" aria-label="Bereiche auf dieser Seite">
+              <a class="verein-jump-link" href="#sportangebot">Sportangebot</a>
+              <a class="verein-jump-link" href="#anlagen">Anlagen</a>
+              <a class="verein-jump-link" href="#vorsitzende">Vorsitzende</a>
+              <a class="verein-jump-link" href="#geschichte">Chronik</a>
             </div>
+          </div>
 
-            <aside class="verein-fact-grid" aria-label="Wichtige Vereinsdaten">
-              <article class="verein-fact-card">
-                <span class="eyebrow">Vereinsprofil</span>
-                <strong>435 Mitglieder</strong>
-                <span>Offizielle Angabe auf der Vereinsseite, Stand 01.01.2020.</span>
-              </article>
-              <article class="verein-fact-card">
-                <span class="eyebrow">Anschrift</span>
-                <strong>Am Sportplatz 2</strong>
-                <span>86744 Hainsfarth, direkt am Burschel und nahe der Sportanlagen.</span>
-              </article>
-              <article class="verein-fact-card">
-                <span class="eyebrow">Heimat</span>
-                <strong>Sportgelaende am Burschel</strong>
-                <span>Spielort, Vereinsheim und Treffpunkt fuer Alltag, Heimspiele und Veranstaltungen.</span>
-              </article>
-              <article class="verein-fact-card">
-                <span class="eyebrow">Vereinsform</span>
-                <strong>TSV Hainsfarth 1949 e.V.</strong>
-                <span>Turn- und Sportverein mit langer Verankerung im Dorf und viel Eigenleistung.</span>
-              </article>
-            </aside>
-          </article>
-        </div>
-      </section>
-
-      <section class="section verein-section">
-        <div class="container">
-          <div class="verein-profile-grid">
-            <article class="verein-profile-card">
-              <span class="eyebrow">Vereinsidentitaet</span>
-              <h2>Wofuer der TSV auf dieser Seite stehen soll</h2>
-              <p>
-                Auf der Startseite geht es um aktuelle Spiele, im Sportangebot um Abteilungen, im Kader um
-                Personen. Die Vereinsseite selbst konzentriert sich auf das Grundsaetzliche: Herkunft,
-                Haltung, Vereinsheimat und die Rolle des TSV im Ort.
-              </p>
-              <div class="verein-identity-list">
-                <div class="verein-identity-item">
-                  <span class="verein-identity-label">Gruendung</span>
-                  <p class="verein-identity-text">Der Verein wurde am 22. Maerz 1949 gegruendet und gehoert seitdem fest zur Ortsgeschichte.</p>
-                </div>
-                <div class="verein-identity-item">
-                  <span class="verein-identity-label">Selbstverstaendnis</span>
-                  <p class="verein-identity-text">Nicht gross inszeniert, sondern glaubwuerdig gewachsen: Sport, Ehrenamt und Miteinander laufen hier seit Jahrzehnten zusammen.</p>
-                </div>
-                <div class="verein-identity-item">
-                  <span class="verein-identity-label">Im Ort</span>
-                  <p class="verein-identity-text">Der TSV ist Teil des Dorflebens, weil er nicht nur Trainingsflaeche ist, sondern auch sozialer Treffpunkt und Veranstaltungsort.</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="verein-profile-card">
-              <span class="eyebrow">Kurzprofil</span>
-              <h2>Knapp, aber konkret</h2>
-              <ul class="verein-mini-list">
-                <li>Vereinsfarben: Blau und Weiss.</li>
-                <li>Heimstaette: Burschelstadion und Sportzentrum Hainsfarth.</li>
-                <li>Vereinsheim mit Treffpunktcharakter fuer Spieltage, Sitzungen und Veranstaltungen.</li>
-                <li>Mehrgenerationenverein mit Sport, Organisation und viel Arbeit im Hintergrund.</li>
+          <div class="verein-stack">
+            <section class="verein-card" id="sportangebot">
+              <span class="eyebrow">Sportangebot</span>
+              <h2>Das sportliche Angebot des TSV</h2>
+              <ul class="verein-list">
+                <li>Fussball mit Herrenbereich und Nachwuchs.</li>
+                <li>Tischtennis als fester Hallensport im Verein.</li>
+                <li>Volleyball fuer gemeinsames Training und Spielbetrieb.</li>
+                <li>Tennis auf den vereinseigenen Freiflaechen.</li>
+                <li>Gymnastik fuer regelmaessige Bewegung und Ausgleich.</li>
+                <li>Kinderturnen als frueher Einstieg in Sport und Koordination.</li>
               </ul>
-            </article>
-          </div>
-        </div>
-      </section>
+            </section>
 
-      <section class="section verein-section" id="sportanlagen">
-        <div class="container">
-          <div class="section-head">
-            <span class="eyebrow">Am Burschel</span>
-            <h2>Sportgelaende, Vereinsheim und das Zentrum des TSV</h2>
-            <p>
-              Wer den TSV verstehen will, muss den Burschel verstehen. Hier liegen nicht nur Spielflaechen,
-              sondern auch die Orte, an denen Heimspiele vorbereitet, Sitzungen gefuehrt und Vereinsmomente
-              ausserhalb des Sports geteilt werden.
-            </p>
-          </div>
+            <section class="verein-grid-3" id="anlagen">
+              <article class="verein-card">
+                <span class="eyebrow">Burschelstadion</span>
+                <h3>Das Herzstueck des Vereins</h3>
+                <p>
+                  Das Burschelstadion ist Spielort, Treffpunkt und der sichtbarste Teil des Vereinslebens.
+                  Hier laufen Heimspiele, Alltag und viele praegende TSV-Momente zusammen.
+                </p>
+              </article>
+              <article class="verein-card">
+                <span class="eyebrow">Vereinsheim</span>
+                <h3>Mehr als nur Infrastruktur</h3>
+                <p>
+                  Das Vereinsheim verbindet Umkleiden, Besprechungen, Bewirtung und gemeinsames
+                  Zusammensitzen. Gerade dieser Treffpunktcharakter macht den TSV auch neben dem Platz stark.
+                </p>
+              </article>
+              <article class="verein-card">
+                <span class="eyebrow">Sportzentrum</span>
+                <h3>Anlagen rund um den TSV</h3>
+                <p>
+                  Zum Umfeld gehoeren weitere Sportflaechen, Halle und Trainingsmoeglichkeiten am Burschel.
+                  So bleibt der Verein im Jahresverlauf breit nutzbar und im Ort praesent.
+                </p>
+              </article>
+            </section>
 
-          <div class="verein-ground-grid">
-            <article class="verein-ground-card">
-              <span class="eyebrow">Sportgelaende</span>
-              <h3>Burschelstadion</h3>
-              <p>
-                Das Stadion ist die sichtbare Vereinsmitte. Heimspieltage, Trainingsalltag und viele
-                Erinnerungen des TSV laufen hier zusammen. Der Burschel ist damit nicht nur Adresse,
-                sondern Teil der Vereinsidentitaet.
-              </p>
-              <div class="verein-ground-meta">
-                <strong>Vor Ort</strong>
-                <span>Am Sportplatz 2, 86744 Hainsfarth</span>
-              </div>
-            </article>
-
-            <article class="verein-ground-card">
-              <span class="eyebrow">Treffpunkt</span>
-              <h3>Vereinsheim</h3>
-              <p>
-                Das Vereinsheim ist mehr als Infrastruktur. Es verbindet Spielbetrieb, Besprechung,
-                Bewirtung und gemeinsames Zusammensitzen. Genau dieser Treffpunktcharakter macht den TSV
-                auch ausserhalb des Sports praesenter im Ort.
-              </p>
-              <div class="verein-ground-meta">
-                <strong>Funktion</strong>
-                <span>Umkleiden, Versammlungen, Spieltage und Vereinsleben unter einem Dach</span>
-              </div>
-            </article>
-
-            <article class="verein-ground-card">
-              <span class="eyebrow">Rundherum</span>
-              <h3>Sportzentrum Hainsfarth</h3>
-              <p>
-                Zum Umfeld gehoeren weitere Trainings- und Sportflaechen, Mehrzweckhalle sowie die
-                Anlagen, die den TSV im Jahresverlauf handlungsfaehig machen. So bleibt der Verein
-                breit aufgestellt, ohne dass diese Seite die Abteilungen erneut aufzaehlen muss.
-              </p>
-              <div class="hero-actions">
-                <a class="button-secondary" href="https://www.google.com/maps/search/?api=1&query=Am+Sportplatz+2%2C+86744+Hainsfarth" target="_blank" rel="noopener noreferrer">Anfahrt ansehen</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section verein-section">
-        <div class="container">
-          <div class="verein-board-grid">
-            <article class="verein-board-card">
-              <span class="eyebrow">Vereinsstruktur</span>
+            <section class="verein-card" id="vorsitzende">
+              <span class="eyebrow">Vorsitzende</span>
               <h2>Vorstandschaft in kompakter Form</h2>
-              <p>
-                Die operative Vereinsarbeit liegt nicht auf dieser Seite im Detail, aber ein kurzer Blick
-                auf die Struktur ist sinnvoll. Fuer Kontaktwege und Unterlagen bleibt weiterhin die
-                Kontaktseite der richtige Ort.
-              </p>
-              <div class="verein-board-people">
-                <div class="verein-board-person">
+              <div class="verein-board-grid">
+                <div class="verein-card verein-board-person">
                   <span>1. Vorsitzender</span>
                   <strong>Josef Seitz</strong>
                 </div>
-                <div class="verein-board-person">
+                <div class="verein-card verein-board-person">
                   <span>2. Vorsitzender</span>
                   <strong>Guenter Kienast</strong>
                 </div>
-                <div class="verein-board-person">
+                <div class="verein-card verein-board-person">
                   <span>3. Vorsitzender</span>
                   <strong>Markus Daniel</strong>
                 </div>
-                <div class="verein-board-person">
+                <div class="verein-card verein-board-person">
                   <span>Schriftfuehrer</span>
                   <strong>Jochen Seefried</strong>
                 </div>
               </div>
               <p class="verein-note">
-                Die Besetzung ist bewusst reduziert dargestellt. Ansprechpartner, Mitgliedschaft und
-                Kontaktwege findest du gesammelt auf der Kontaktseite.
+                Kontaktwege und Mitgliedschaft bleiben gesammelt auf der Kontaktseite.
               </p>
-            </article>
-
-            <article class="verein-cta-card">
-              <span class="eyebrow">Im Ort verankert</span>
-              <h2>Kein Ausweichtext, sondern echte Vereinsrealitaet</h2>
-              <p>
-                Der TSV lebt nicht nur von Trainingsplaenen oder Ergebnissen, sondern von Menschen, die
-                Arbeiten uebernehmen, Feste tragen, Anlagen pflegen und Generationen zusammenhalten.
-                Genau deshalb hat die Vereinsseite hier ihren Platz.
-              </p>
-              <div class="hero-actions">
-                <a class="button" href="kontakt.html">Zum Kontakt</a>
-              </div>
-            </article>
+            </section>
           </div>
         </div>
       </section>
 
-      <section class="section verein-section chronicle-shell" id="geschichte">
+      <section class="section chronicle-shell" id="geschichte">
         <div class="container">
           <div class="chronicle-longform">
             <div class="section-head">
               <span class="eyebrow">Chronik im Detail</span>
               <h2>Die lange Vereinsgeschichte zum Aufklappen</h2>
               <p>
-                Wer tiefer eintauchen will, findet hier eine ausfuehrlichere Chronik, die sich sprachlich
-                bewusst nahe an der ueberlieferten Vereinsgeschichte orientiert.
+                Wer tiefer eintauchen will, findet hier die ausfuehrlichere Chronik des TSV.
               </p>
             </div>
 
