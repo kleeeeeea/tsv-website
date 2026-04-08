@@ -2047,6 +2047,13 @@ h3 {
   transform: translateY(-1px);
 }
 
+.squad-filter-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .squad-grid,
 .staff-grid {
   display: grid;
