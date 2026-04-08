@@ -34,19 +34,25 @@
     </header>
 
     <main>
-      <section class="page-hero page-hero-compact">
+      <section class="page-hero page-hero-compact squad-page-hero">
         <div class="container">
-          <div class="hero-card hero-card-compact">
-            <div>
+          <div class="hero-card hero-card-compact squad-hero-card">
+            <div class="squad-hero-copy">
               <span class="eyebrow">TSV Hainsfarth 1949 e.V.</span>
-              <h1>Kader</h1>
-              <p class="lead">Spielerkarten, Aufstellung, Positionsfilter und Staff der 1. und 2. Mannschaft.</p>
+              <h1>Kader &amp; Spielerkarten</h1>
+              <p class="lead">Spielerkarten, Positionsfilter und Staff der 1. und 2. Mannschaft direkt auf einen Blick.</p>
+              <div class="hero-actions squad-hero-actions">
+                <div class="team-switcher squad-hero-switcher" data-team-switcher>
+                  <button class="team-switcher-button is-active" type="button" data-team-key="team1">1. Mannschaft</button>
+                  <button class="team-switcher-button" type="button" data-team-key="team2">2. Mannschaft</button>
+                </div>
+                <a class="button-secondary squad-hero-link" href="#staff">Zum Staff</a>
+              </div>
             </div>
-            <div class="club-facts-inline">
-              <span class="matchday-chip matchday-chip-soft">1. und 2. Mannschaft</span>
-              <span class="matchday-chip matchday-chip-soft">Spielerkarten nach Position</span>
-              <span class="matchday-chip matchday-chip-soft">Staff inklusive</span>
-              <span class="matchday-chip matchday-chip-soft">TSV Blau/Weiss</span>
+            <div class="club-facts-inline squad-hero-facts" aria-label="Kader-Highlights">
+              <span class="matchday-chip matchday-chip-soft">Spielerkarten</span>
+              <span class="matchday-chip matchday-chip-soft">Positionen filtern</span>
+              <span class="matchday-chip matchday-chip-soft">Staff &amp; Trainerteam</span>
             </div>
           </div>
         </div>
@@ -58,12 +64,8 @@
             <span class="eyebrow">Direkt zur Auswahl</span>
             <h2 class="squad-page-title">Spielerkarten &amp; Aufstellung</h2>
             <p>Waehle zwischen beiden Teams und filtere den Kader nach Positionen.</p>
-            <div class="team-switcher team-switcher-section" data-team-switcher>
-              <button class="team-switcher-button is-active" type="button" data-team-key="team1">1. Mannschaft</button>
-              <button class="team-switcher-button" type="button" data-team-key="team2">2. Mannschaft</button>
-            </div>
           </div>
-          <article class="panel squad-panel">
+          <article class="panel squad-panel" id="spielerkarten">
             <div class="squad-filter-row" data-squad-filters>
               <button class="squad-filter is-active" type="button" data-filter="Alle">Alle</button>
               <button class="squad-filter" type="button" data-filter="Torwart">Tor</button>
@@ -75,7 +77,7 @@
               <div class="squad-grid" data-squad-grid></div>
             </div>
           </article>
-          <article class="panel squad-staff-panel">
+          <article class="panel squad-staff-panel" id="staff">
             <div class="panel-topline">
               <div>
                 <span class="eyebrow">Team hinter dem Team</span>

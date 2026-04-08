@@ -193,6 +193,85 @@ img {
   max-width: 380px;
 }
 
+.squad-page-hero {
+  padding: 28px 0 4px;
+}
+
+.squad-hero-card {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  padding: 22px 28px 20px;
+  border-radius: 28px;
+}
+
+.squad-hero-card::before {
+  width: 10px;
+}
+
+.squad-hero-card h1 {
+  font-size: clamp(2.3rem, 4vw, 3.4rem);
+  max-width: none;
+}
+
+.squad-hero-card .eyebrow {
+  margin-bottom: 8px;
+}
+
+.squad-hero-card .lead {
+  margin-top: 8px;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  white-space: normal;
+}
+
+.squad-hero-facts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 300px;
+}
+
+.squad-hero-facts .matchday-chip {
+  min-height: 34px;
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  background: rgba(17, 130, 198, 0.1);
+  border-color: rgba(17, 130, 198, 0.12);
+  color: var(--primary-dark);
+}
+
+.squad-hero-copy {
+  max-width: 780px;
+}
+
+.squad-hero-actions {
+  align-items: center;
+  gap: 14px 16px;
+}
+
+.squad-hero-switcher {
+  margin-top: 0;
+}
+
+.squad-hero-switcher .team-switcher-button {
+  min-height: 54px;
+  min-width: 172px;
+  border-radius: 18px;
+}
+
+.squad-hero-link {
+  min-height: 54px;
+  padding: 0 22px;
+  border-radius: 18px;
+  background: rgba(17, 130, 198, 0.08);
+}
+
+.squad-hero-link:hover,
+.squad-hero-link:focus-visible {
+  background: rgba(17, 130, 198, 0.14);
+}
+
 .hero-card::before {
   content: "";
   position: absolute;
@@ -2237,6 +2316,19 @@ h3 {
   .page-hero {
     padding-top: 54px;
   }
+
+  .squad-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .squad-hero-facts {
+    max-width: none;
+    align-items: flex-start;
+  }
+
+  .squad-hero-actions {
+    align-items: stretch;
+  }
 }
 
 @media (max-width: 760px) {
@@ -2272,6 +2364,29 @@ h3 {
   .panel,
   .cta-band {
     padding: 24px;
+  }
+
+  .squad-page-hero {
+    padding-top: 18px;
+  }
+
+  .squad-hero-card {
+    padding: 18px 20px 16px;
+    border-radius: 24px;
+  }
+
+  .squad-hero-card h1 {
+    font-size: clamp(2rem, 11vw, 2.8rem);
+  }
+
+  .squad-hero-facts .matchday-chip {
+    font-size: 0.76rem;
+  }
+
+  .squad-hero-switcher .team-switcher-button,
+  .squad-hero-link {
+    min-width: 0;
+    width: 100%;
   }
 
   .pdf-frame,
