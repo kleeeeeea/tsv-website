@@ -180,9 +180,10 @@ img {
 
 .hero-card-compact .lead {
   margin-top: 12px;
-  max-width: 34ch;
+  max-width: none;
   font-size: 1rem;
   line-height: 1.62;
+  white-space: nowrap;
 }
 
 .hero-card-compact .club-facts-inline {
