@@ -143,6 +143,10 @@ img {
   padding: 84px 0 40px;
 }
 
+.page-hero-compact {
+  padding: 46px 0 12px;
+}
+
 .hero-card,
 .panel,
 .cta-band {
@@ -160,6 +164,32 @@ img {
   align-items: center;
   position: relative;
   overflow: hidden;
+}
+
+.hero-card-compact {
+  grid-template-columns: minmax(0, 1.2fr) auto;
+  align-items: end;
+  gap: 20px;
+  padding: 30px 34px 26px;
+}
+
+.hero-card-compact h1 {
+  max-width: none;
+  font-size: clamp(2.9rem, 4.8vw, 4.6rem);
+}
+
+.hero-card-compact .lead {
+  margin-top: 12px;
+  max-width: 34ch;
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.hero-card-compact .club-facts-inline {
+  margin-top: 0;
+  justify-content: flex-end;
+  align-self: center;
+  max-width: 380px;
 }
 
 .hero-card::before {
