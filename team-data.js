@@ -898,7 +898,8 @@ window.tsvSquadData = {
             "new"
           ],
           age: null,
-          imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/"
+          imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/",
+          hideImage: true
         },
         {
           id: 22918359,
