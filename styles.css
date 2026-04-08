@@ -198,8 +198,8 @@ img {
 }
 
 .squad-hero-card {
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
   padding: 22px 28px 20px;
   border-radius: 28px;
 }
@@ -224,23 +224,6 @@ img {
   white-space: normal;
 }
 
-.squad-hero-facts {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-  max-width: 300px;
-}
-
-.squad-hero-facts .matchday-chip {
-  min-height: 34px;
-  padding: 7px 12px;
-  font-size: 0.78rem;
-  background: rgba(17, 130, 198, 0.1);
-  border-color: rgba(17, 130, 198, 0.12);
-  color: var(--primary-dark);
-}
-
 .squad-hero-copy {
   max-width: 780px;
 }
@@ -258,18 +241,6 @@ img {
   min-height: 54px;
   min-width: 172px;
   border-radius: 18px;
-}
-
-.squad-hero-link {
-  min-height: 54px;
-  padding: 0 22px;
-  border-radius: 18px;
-  background: rgba(17, 130, 198, 0.08);
-}
-
-.squad-hero-link:hover,
-.squad-hero-link:focus-visible {
-  background: rgba(17, 130, 198, 0.14);
 }
 
 .hero-card::before {
@@ -2317,15 +2288,6 @@ h3 {
     padding-top: 54px;
   }
 
-  .squad-hero-card {
-    grid-template-columns: 1fr;
-  }
-
-  .squad-hero-facts {
-    max-width: none;
-    align-items: flex-start;
-  }
-
   .squad-hero-actions {
     align-items: stretch;
   }
@@ -2379,12 +2341,7 @@ h3 {
     font-size: clamp(2rem, 11vw, 2.8rem);
   }
 
-  .squad-hero-facts .matchday-chip {
-    font-size: 0.76rem;
-  }
-
-  .squad-hero-switcher .team-switcher-button,
-  .squad-hero-link {
+  .squad-hero-switcher .team-switcher-button {
     min-width: 0;
     width: 100%;
   }
