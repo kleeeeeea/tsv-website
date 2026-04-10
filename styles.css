@@ -2295,15 +2295,61 @@ h3 {
     padding-top: 54px;
   }
 
+  .hero-card-compact {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .hero-card-compact .lead,
+  .legal-copy h1 {
+    white-space: normal;
+  }
+
+  .hero-card-compact .club-facts-inline {
+    justify-content: flex-start;
+    max-width: none;
+  }
+
   .squad-hero-actions {
     align-items: stretch;
   }
 }
 
 @media (max-width: 760px) {
+  .container {
+    width: min(var(--max-width), calc(100% - 22px));
+  }
+
+  .header-inner {
+    min-height: 68px;
+    gap: 14px;
+  }
+
+  .brand {
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 48px;
+  }
+
+  .brand-copy strong {
+    font-size: 0.96rem;
+  }
+
+  .brand-copy span {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+
   .nav-toggle {
     display: inline-grid;
     place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
   }
 
   .site-nav {
@@ -2332,7 +2378,38 @@ h3 {
   .hero-card,
   .panel,
   .cta-band {
-    padding: 24px;
+    padding: 20px;
+  }
+
+  .page-hero {
+    padding: 26px 0 18px;
+  }
+
+  .page-hero-compact {
+    padding: 18px 0 8px;
+  }
+
+  .hero-card {
+    gap: 18px;
+    border-radius: 20px;
+  }
+
+  .hero-card::before {
+    width: 10px;
+  }
+
+  .hero-card-compact {
+    padding: 20px 22px 18px;
+  }
+
+  .hero-card-compact h1 {
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+  }
+
+  .hero-card-compact .lead {
+    margin-top: 8px;
+    font-size: 0.96rem;
+    line-height: 1.55;
   }
 
   .squad-page-hero {
@@ -2355,27 +2432,218 @@ h3 {
 
   .pdf-frame,
   .pdf-frame iframe {
-    min-height: 520px;
+    min-height: 420px;
   }
 
   .floating-audio-button {
     right: 16px;
     bottom: 16px;
-    width: 88px;
-    height: 88px;
+    width: 72px;
+    height: 72px;
   }
 
   .floating-audio-emoji {
-    font-size: 4.6rem;
+    font-size: 3.8rem;
   }
 
   h1 {
-    font-size: clamp(2.2rem, 11vw, 3.4rem);
+    font-size: clamp(2rem, 10.4vw, 3rem);
   }
 
   .squad-page-title {
     font-size: clamp(2rem, 9vw, 2.9rem);
     white-space: normal;
+  }
+
+  .hero-side {
+    min-height: 0;
+    padding: 18px;
+    gap: 14px;
+    border-radius: 18px;
+  }
+
+  .hero-badge {
+    margin-bottom: 8px;
+    font-size: 0.88rem;
+  }
+
+  .hero-logo {
+    width: min(148px, 44%);
+  }
+
+  .lead {
+    margin-top: 12px;
+    font-size: 0.98rem;
+    line-height: 1.62;
+  }
+
+  .hero-actions,
+  .link-row,
+  .team-switcher,
+  .tippspiel-form-actions,
+  .matchday-actions,
+  .tip-game-actions {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .button,
+  .button-secondary {
+    min-height: 44px;
+    padding: 0 16px;
+  }
+
+  .section {
+    padding: 18px 0 40px;
+  }
+
+  .section-head {
+    margin-bottom: 18px;
+  }
+
+  .section-head p {
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+
+  .panel-topline {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .panel-note,
+  .card p,
+  .panel p,
+  .list,
+  .mini-note,
+  .legal-copy p {
+    line-height: 1.58;
+  }
+
+  .matchday-shell {
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .matchday-spotlight {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .matchday-opponent {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+  }
+
+  .matchday-live {
+    gap: 8px 10px;
+    margin-top: 12px;
+    padding: 10px 12px;
+  }
+
+  .matchday-fixture {
+    font-size: 0.98rem;
+    line-height: 1.4;
+  }
+
+  .countdown-grid {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .countdown-timer {
+    gap: 10px;
+  }
+
+  .countdown-timer span {
+    padding: 10px 12px;
+  }
+
+  .match-weather {
+    padding: 12px;
+  }
+
+  .widget-frame {
+    padding: 10px;
+  }
+
+  .widget-frame > div {
+    min-width: 240px;
+  }
+
+  .shop-frame {
+    min-height: 760px;
+  }
+
+  .social-card {
+    gap: 10px;
+  }
+
+  .social-preview-bar {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  .social-preview-body {
+    min-height: 0;
+    padding: 16px 14px 18px;
+    gap: 12px;
+  }
+
+  .social-preview-body img {
+    width: 68px;
+    height: 68px;
+    border-radius: 14px;
+  }
+
+  .social-preview-copy strong {
+    font-size: 0.98rem;
+  }
+
+  .social-preview-copy span {
+    line-height: 1.35;
+  }
+
+  .cta-band {
+    padding: 22px 20px;
+  }
+
+  .legal-grid {
+    gap: 14px;
+    margin: 18px 0 20px;
+  }
+
+  .legal-copy h1 {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+
+  .legal-accordion {
+    padding: 0 16px;
+  }
+
+  .legal-accordion summary {
+    padding: 16px 0;
+    font-size: 1rem;
+  }
+
+  .legal-accordion[open] summary {
+    padding-bottom: 10px;
+  }
+
+  .squad-filter-row {
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .squad-filter {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 0.94rem;
+  }
+
+  .squad-pitch {
+    padding: 8px 6px 6px;
+    border-radius: 22px;
   }
 
   .penalty-field {
@@ -2392,14 +2660,190 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .squad-card,
+  .staff-card {
+    border-radius: 22px;
+  }
+
   .squad-card-media,
   .staff-card-media {
-    min-height: 190px;
+    min-height: 164px;
+    padding: 18px 14px 0;
   }
 
   .squad-card-media img,
   .staff-card-media img {
-    height: 198px;
+    height: 170px;
   }
 
+  .squad-card-body,
+  .staff-card-body {
+    padding: 16px;
+  }
+
+  .squad-card h3,
+  .staff-card h3 {
+    font-size: 1.22rem;
+  }
+
+  .squad-number-badge {
+    min-width: 46px;
+    min-height: 46px;
+    font-size: 1.18rem;
+  }
+
+  .squad-meta {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .squad-meta span,
+  .staff-meta span {
+    padding: 10px;
+    font-size: 0.88rem;
+  }
+
+  .tippspiel-form {
+    margin-top: 18px;
+  }
+
+  .tippspiel-name-row {
+    margin-bottom: 12px;
+  }
+
+  .tippspiel-field input,
+  .tippspiel-score-card input {
+    min-height: 50px;
+    padding: 0 14px;
+  }
+
+  .tippspiel-score-card input {
+    font-size: 1.24rem;
+  }
+
+  .tippspiel-table {
+    min-width: 420px;
+  }
+
+  .tippspiel-table th,
+  .tippspiel-table td {
+    padding: 12px 12px;
+  }
+
+  .tippspiel-tip-item,
+  .tippspiel-result-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+
+  .tippspiel-result-score {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .site-footer {
+    padding: 18px 0 28px;
+  }
+
+  .footer-inner {
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    padding-top: 14px;
+  }
+
+  .footer-links {
+    justify-content: center;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: min(var(--max-width), calc(100% - 18px));
+  }
+
+  .brand-copy span {
+    display: none;
+  }
+
+  .hero-card,
+  .panel,
+  .cta-band {
+    padding: 16px;
+  }
+
+  .hero-card-compact {
+    padding: 16px 16px 14px;
+  }
+
+  .hero-card-compact h1 {
+    font-size: clamp(2rem, 11vw, 2.7rem);
+  }
+
+  .hero-side {
+    padding: 14px;
+  }
+
+  .hero-logo {
+    width: min(122px, 42%);
+  }
+
+  .matchday-shell,
+  .countdown-grid,
+  .match-weather,
+  .widget-frame,
+  .tip-game-card {
+    padding: 10px;
+  }
+
+  .social-preview-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .social-preview-copy {
+    gap: 4px;
+  }
+
+  .button,
+  .button-secondary,
+  .team-switcher-button {
+    width: 100%;
+  }
+
+  .team-switcher-button {
+    min-height: 50px;
+    min-width: 0;
+    padding: 0 16px;
+    border-radius: 16px;
+  }
+
+  .tippspiel-status-pill,
+  .matchday-chip,
+  .squad-filter {
+    font-size: 0.82rem;
+  }
+
+  .pdf-frame,
+  .pdf-frame iframe {
+    min-height: 360px;
+  }
+
+  .shop-frame {
+    min-height: 640px;
+  }
+
+  .floating-audio-button {
+    width: 64px;
+    height: 64px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .floating-audio-emoji {
+    font-size: 3.3rem;
+  }
 }
