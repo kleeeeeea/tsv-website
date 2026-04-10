@@ -2119,7 +2119,7 @@ h3 {
   right: 12px;
   width: 54px;
   aspect-ratio: 1;
-  background: url("logo.svg?v=20260410a") center / contain no-repeat;
+  background: url("logo.png?v=20260310b") center / contain no-repeat;
   opacity: 0.29;
   mix-blend-mode: multiply;
   filter: saturate(0.8) brightness(1.01);

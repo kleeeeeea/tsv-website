@@ -904,7 +904,7 @@ if (squadData?.teams) {
 
   const resolveImageUrl = (value) => {
     if (!value) {
-      return "logo.svg?v=20260410a";
+      return "logo.png?v=20260310b";
     }
 
     if (/\.(?:avif|webp|png|jpe?g|svg)$/i.test(value)) {
@@ -938,7 +938,7 @@ if (squadData?.teams) {
   const fallbackImageAttributes = (value) => {
     const remoteImage = resolveImageUrl(value);
     const escapedRemote = remoteImage.replace(/'/g, "\\'");
-    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo.svg?v=20260410a';}"`;
+    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo.png?v=20260310b';}"`;
   };
   const resolveDisplayImageUrl = (person) => resolveCutoutUrl(person) || resolveImageUrl(person?.imageUrl);
   const asCssImage = (person) => `style="--player-image: url('${resolveDisplayImageUrl(person)}');"`;
