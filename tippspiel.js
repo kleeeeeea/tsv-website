@@ -149,12 +149,12 @@
       return "Dieser Name ist noch nicht registriert.";
     }
 
-    if (rawMessage.includes("ungueltig")) {
+    if (rawMessage.includes("ungültig")) {
       return rawMessage;
     }
 
     if (rawMessage.includes("geschlossen")) {
-      return "Der Anpfiff ist erreicht. Fuer dieses Spiel ist kein neuer Tipp mehr moeglich.";
+      return "Der Anpfiff ist erreicht. Für dieses Spiel ist kein neuer Tipp mehr möglich.";
     }
 
     return `${fallbackMessage} (${rawMessage})`;
@@ -208,7 +208,7 @@
     }
 
     if (nextBadgeNode) {
-      nextBadgeNode.textContent = kickoffPassed ? "Geschlossen" : selectedMatch.is_home ? "Heimspiel" : "Auswaertsspiel";
+      nextBadgeNode.textContent = kickoffPassed ? "Geschlossen" : selectedMatch.is_home ? "Heimspiel" : "Auswärtsspiel";
     }
 
     if (nextDateNode) {
@@ -244,7 +244,7 @@
       .sort((a, b) => a.player_name.localeCompare(b.player_name, "de"));
 
     if (!nextPredictions.length) {
-      predictionsList.innerHTML = '<p class="tippspiel-empty">Noch keine Tipps fuer das angezeigte Spiel vorhanden.</p>';
+      predictionsList.innerHTML = '<p class="tippspiel-empty">Noch keine Tipps für das angezeigte Spiel vorhanden.</p>';
       return;
     }
 
@@ -355,7 +355,7 @@
       const hasPastMatches = matches.some((match) => new Date(match.starts_at).getTime() <= Date.now());
 
       resultsList.innerHTML = hasStoredPredictions && hasPastMatches
-        ? '<p class="tippspiel-empty">Tipps sind vorhanden. Die Auswertung erscheint, sobald Endstaende in den Spieldaten stehen.</p>'
+        ? '<p class="tippspiel-empty">Tipps sind vorhanden. Die Auswertung erscheint, sobald Endstände in den Spieldaten stehen.</p>'
         : '<p class="tippspiel-empty">Sobald Ergebnisse eingetragen sind, erscheint hier die Auswertung.</p>';
       return;
     }
@@ -402,7 +402,7 @@
     if (existingPrediction) {
       homeInput.value = String(existingPrediction.predicted_home_score);
       awayInput.value = String(existingPrediction.predicted_away_score);
-      setFeedback(`Dein gespeicherter Tipp fuer dieses Spiel: ${existingPrediction.predicted_home_score}:${existingPrediction.predicted_away_score}.`);
+      setFeedback(`Dein gespeicherter Tipp für dieses Spiel: ${existingPrediction.predicted_home_score}:${existingPrediction.predicted_away_score}.`);
     }
   };
 
@@ -488,12 +488,12 @@
     }
 
     if (pin.length < 4) {
-      setRegisterFeedback("Bitte waehle eine PIN mit mindestens 4 Zeichen.", true);
+      setRegisterFeedback("Bitte wähle eine PIN mit mindestens 4 Zeichen.", true);
       return;
     }
 
     if (pin !== pinConfirm) {
-      setRegisterFeedback("Die beiden PIN-Eingaben stimmen nicht ueberein.", true);
+      setRegisterFeedback("Die beiden PIN-Eingaben stimmen nicht überein.", true);
       return;
     }
 
@@ -560,7 +560,7 @@
     }
 
     if (Date.now() >= new Date(nextOpenMatch.starts_at).getTime()) {
-      setFeedback("Der Anpfiff ist erreicht. Fuer dieses Spiel ist kein neuer Tipp mehr moeglich.", true);
+      setFeedback("Der Anpfiff ist erreicht. Für dieses Spiel ist kein neuer Tipp mehr möglich.", true);
       renderNextMatch();
       return;
     }
@@ -581,7 +581,7 @@
       }
 
       window.localStorage.setItem(savedNameKey, playerName);
-      setFeedback(`Tipp gespeichert: ${homeScore}:${awayScore} fuer ${data?.player_name || playerName}.`);
+      setFeedback(`Tipp gespeichert: ${homeScore}:${awayScore} für ${data?.player_name || playerName}.`);
       await refreshBoard();
     } catch (error) {
       const message = getReadableErrorMessage(error, "Dein Tipp konnte gerade nicht gespeichert werden.");
@@ -604,7 +604,7 @@
       awayInput.value = "0";
     }
 
-    setFeedback("Felder zurueckgesetzt.");
+    setFeedback("Felder zurückgesetzt.");
   });
 
   const initialize = async () => {
@@ -636,7 +636,7 @@
       }
     } catch (error) {
       renderSetupState(
-        "Die Verbindung zum Tippspiel konnte nicht aufgebaut werden. Pruefe Supabase, die SQL-Migration und die serverseitigen Syncs."
+        "Die Verbindung zum Tippspiel konnte nicht aufgebaut werden. Prüfe Supabase, die SQL-Migration und die serverseitigen Syncs."
       );
     }
   };
