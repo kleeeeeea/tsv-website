@@ -2850,6 +2850,12 @@ h3 {
     margin-bottom: 10px;
   }
 
+  .tippspiel-score-grid {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 8px;
+    align-items: end;
+  }
+
   .tippspiel-field input,
   .tippspiel-score-card input {
     min-height: 50px;
@@ -2858,6 +2864,11 @@ h3 {
 
   .tippspiel-score-card input {
     font-size: 1.24rem;
+  }
+
+  .tippspiel-score-divider {
+    padding-bottom: 12px;
+    font-size: 1.45rem;
   }
 
   .tippspiel-table {
@@ -3056,6 +3067,25 @@ h3 {
   .pdf-frame,
   .pdf-frame iframe {
     min-height: 300px;
+  }
+
+  .tippspiel-score-grid {
+    gap: 6px;
+  }
+
+  .tippspiel-field input,
+  .tippspiel-score-card input {
+    min-height: 46px;
+    padding: 0 10px;
+  }
+
+  .tippspiel-score-card input {
+    font-size: 1.12rem;
+  }
+
+  .tippspiel-score-divider {
+    padding-bottom: 10px;
+    font-size: 1.2rem;
   }
 
   .shop-frame {
