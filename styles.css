@@ -2394,6 +2394,11 @@ h3 {
     border-radius: 20px;
   }
 
+  .page-hero:not(.page-hero-compact) .hero-card {
+    grid-template-columns: minmax(0, 1.06fr) minmax(132px, 0.72fr);
+    align-items: stretch;
+  }
+
   .hero-card::before {
     width: 10px;
   }
@@ -2468,7 +2473,7 @@ h3 {
   }
 
   .hero-logo {
-    width: min(148px, 44%);
+    width: min(118px, 68%);
   }
 
   .lead {
@@ -2601,7 +2606,32 @@ h3 {
   }
 
   .match-weather {
-    padding: 10px;
+    padding: 8px 10px;
+  }
+
+  .match-weather-head {
+    margin-bottom: 8px;
+  }
+
+  .match-weather-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .match-weather-main strong {
+    font-size: clamp(1.26rem, 5vw, 1.7rem);
+  }
+
+  .match-weather-main span,
+  .match-weather-meta span {
+    font-size: 0.84rem;
+    line-height: 1.32;
+  }
+
+  .match-weather-meta {
+    gap: 4px;
+    justify-items: end;
   }
 
   .widget-frame {
@@ -2943,6 +2973,11 @@ h3 {
     padding: 14px 14px 12px;
   }
 
+  .page-hero:not(.page-hero-compact) .hero-card {
+    grid-template-columns: minmax(0, 1fr) 108px;
+    gap: 10px;
+  }
+
   .hero-card-compact h1 {
     font-size: clamp(2rem, 11vw, 2.7rem);
   }
@@ -2952,7 +2987,7 @@ h3 {
   }
 
   .hero-logo {
-    width: min(122px, 42%);
+    width: min(86px, 72%);
   }
 
   .matchday-shell,
@@ -2961,6 +2996,20 @@ h3 {
   .widget-frame,
   .tip-game-card {
     padding: 8px;
+  }
+
+  .match-weather-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .match-weather-main strong {
+    font-size: 1.12rem;
+  }
+
+  .match-weather-main span,
+  .match-weather-meta span {
+    font-size: 0.78rem;
   }
 
   .section {
