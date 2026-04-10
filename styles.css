@@ -2521,6 +2521,18 @@ h3 {
     line-height: 1.58;
   }
 
+  .panel-note {
+    margin: -2px 0 10px;
+  }
+
+  .matchcenter-overview,
+  .matchcenter-countdown,
+  .squad-staff-panel,
+  .team-switcher-section {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
   .matchday-shell {
     padding: 8px;
     border-radius: 16px;
@@ -2535,6 +2547,17 @@ h3 {
     font-size: clamp(1.4rem, 7vw, 2rem);
   }
 
+  .matchday-status-row {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .matchday-chip {
+    min-height: 32px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
   .matchday-live {
     gap: 8px 10px;
     margin-top: 10px;
@@ -2542,13 +2565,31 @@ h3 {
   }
 
   .matchday-fixture {
-    font-size: 0.98rem;
-    line-height: 1.4;
+    font-size: 0.92rem;
+    line-height: 1.32;
+  }
+
+  .matchday-route-button,
+  .matchday-tippspiel-button {
+    min-width: 0;
+  }
+
+  .matchday-tippspiel-button {
+    padding: 8px 14px;
   }
 
   .countdown-grid {
     padding: 10px;
     gap: 8px;
+  }
+
+  .countdown-label {
+    margin-bottom: 6px;
+    font-size: 0.76rem;
+  }
+
+  .countdown-meta {
+    font-size: 0.94rem;
   }
 
   .countdown-timer {
@@ -2568,7 +2609,11 @@ h3 {
   }
 
   .widget-frame > div {
-    min-width: 240px;
+    min-width: 220px;
+  }
+
+  .widget-panel {
+    padding-bottom: 14px;
   }
 
   .shop-frame {
@@ -2576,7 +2621,7 @@ h3 {
   }
 
   .social-card {
-    gap: 10px;
+    gap: 8px;
   }
 
   .social-preview-bar {
@@ -2609,16 +2654,24 @@ h3 {
   }
 
   .legal-grid {
-    gap: 14px;
+    gap: 10px;
     margin: 14px 0 16px;
+  }
+
+  .legal-grid .card {
+    gap: 8px;
   }
 
   .legal-copy h1 {
     font-size: clamp(1.8rem, 8vw, 2.4rem);
   }
 
+  .legal-copy p {
+    margin-bottom: 12px;
+  }
+
   .legal-accordion {
-    padding: 0 16px;
+    padding: 0 14px;
   }
 
   .legal-accordion summary {
@@ -2628,6 +2681,79 @@ h3 {
 
   .legal-accordion[open] summary {
     padding-bottom: 10px;
+  }
+
+  .legal-accordion + .legal-accordion {
+    margin-top: 10px;
+  }
+
+  .legal-accordion p:last-child {
+    margin-bottom: 16px;
+  }
+
+  .story-timeline {
+    gap: 10px;
+  }
+
+  .story-step {
+    padding-left: 16px;
+  }
+
+  .story-step::before {
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 0 4px rgba(17, 130, 198, 0.12);
+  }
+
+  .story-step + .story-step {
+    padding-top: 12px;
+  }
+
+  .story-step strong {
+    margin-bottom: 6px;
+    font-size: 0.96rem;
+  }
+
+  .story-step p,
+  .club-highlights li,
+  .club-copy-block p {
+    line-height: 1.52;
+  }
+
+  .club-highlights {
+    margin-top: 12px;
+  }
+
+  .club-highlights li + li,
+  .club-copy-block p + p,
+  .chronicle-accordion p + p {
+    margin-top: 8px;
+  }
+
+  .chronicle-longform {
+    margin-top: 18px;
+  }
+
+  .club-intro-grid {
+    margin-bottom: 18px;
+  }
+
+  .club-side-card p {
+    margin: 6px 0 12px;
+  }
+
+  .club-facts-inline {
+    margin-top: 14px;
+  }
+
+  .membership-panel,
+  .tippspiel-top-grid,
+  .tippspiel-board-grid {
+    gap: 12px;
+  }
+
+  .tippspiel-board-grid {
+    margin-top: 12px;
   }
 
   .squad-filter-row {
@@ -2756,6 +2882,12 @@ h3 {
     text-align: left;
   }
 
+  .tippspiel-tip-list,
+  .tippspiel-result-list {
+    gap: 10px;
+    margin-top: 12px;
+  }
+
   .site-footer {
     padding: 14px 0 22px;
   }
@@ -2788,6 +2920,14 @@ h3 {
     padding: 14px;
   }
 
+  .page-hero {
+    padding: 16px 0 8px;
+  }
+
+  .page-hero-compact {
+    padding: 10px 0 2px;
+  }
+
   .hero-card-compact {
     padding: 14px 14px 12px;
   }
@@ -2810,6 +2950,38 @@ h3 {
   .widget-frame,
   .tip-game-card {
     padding: 8px;
+  }
+
+  .section {
+    padding: 10px 0 20px;
+  }
+
+  .section-head {
+    margin-bottom: 10px;
+  }
+
+  .panel-topline {
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .panel-note,
+  .legal-copy p {
+    margin-bottom: 10px;
+  }
+
+  .matchday-opponent {
+    font-size: clamp(1.24rem, 6.8vw, 1.72rem);
+  }
+
+  .matchday-fixture,
+  .lead,
+  .section-head p,
+  .story-step p,
+  .club-highlights li,
+  .club-copy-block p {
+    font-size: 0.9rem;
+    line-height: 1.46;
   }
 
   .social-preview-body {
@@ -2869,6 +3041,16 @@ h3 {
   .matchday-chip,
   .squad-filter {
     font-size: 0.82rem;
+  }
+
+  .tippspiel-table {
+    min-width: 340px;
+  }
+
+  .tippspiel-table th,
+  .tippspiel-table td {
+    padding: 10px 10px;
+    font-size: 0.86rem;
   }
 
   .pdf-frame,
