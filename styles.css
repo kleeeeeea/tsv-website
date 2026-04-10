@@ -2378,19 +2378,19 @@ h3 {
   .hero-card,
   .panel,
   .cta-band {
-    padding: 20px;
+    padding: 18px;
   }
 
   .page-hero {
-    padding: 26px 0 18px;
+    padding: 20px 0 12px;
   }
 
   .page-hero-compact {
-    padding: 18px 0 8px;
+    padding: 14px 0 4px;
   }
 
   .hero-card {
-    gap: 18px;
+    gap: 14px;
     border-radius: 20px;
   }
 
@@ -2399,7 +2399,7 @@ h3 {
   }
 
   .hero-card-compact {
-    padding: 20px 22px 18px;
+    padding: 18px 18px 14px;
   }
 
   .hero-card-compact h1 {
@@ -2413,11 +2413,11 @@ h3 {
   }
 
   .squad-page-hero {
-    padding-top: 18px;
+    padding-top: 12px;
   }
 
   .squad-hero-card {
-    padding: 18px 20px 16px;
+    padding: 16px 16px 14px;
     border-radius: 24px;
   }
 
@@ -2432,7 +2432,7 @@ h3 {
 
   .pdf-frame,
   .pdf-frame iframe {
-    min-height: 420px;
+    min-height: 360px;
   }
 
   .floating-audio-button {
@@ -2457,8 +2457,8 @@ h3 {
 
   .hero-side {
     min-height: 0;
-    padding: 18px;
-    gap: 14px;
+    padding: 14px;
+    gap: 10px;
     border-radius: 18px;
   }
 
@@ -2472,9 +2472,9 @@ h3 {
   }
 
   .lead {
-    margin-top: 12px;
-    font-size: 0.98rem;
-    line-height: 1.62;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    line-height: 1.55;
   }
 
   .hero-actions,
@@ -2494,11 +2494,11 @@ h3 {
   }
 
   .section {
-    padding: 18px 0 40px;
+    padding: 14px 0 28px;
   }
 
   .section-head {
-    margin-bottom: 18px;
+    margin-bottom: 14px;
   }
 
   .section-head p {
@@ -2508,8 +2508,8 @@ h3 {
 
   .panel-topline {
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 12px;
+    gap: 8px;
+    margin-bottom: 10px;
   }
 
   .panel-note,
@@ -2522,13 +2522,13 @@ h3 {
   }
 
   .matchday-shell {
-    padding: 10px;
-    border-radius: 18px;
+    padding: 8px;
+    border-radius: 16px;
   }
 
   .matchday-spotlight {
-    padding: 12px;
-    border-radius: 14px;
+    padding: 10px;
+    border-radius: 12px;
   }
 
   .matchday-opponent {
@@ -2537,8 +2537,8 @@ h3 {
 
   .matchday-live {
     gap: 8px 10px;
-    margin-top: 12px;
-    padding: 10px 12px;
+    margin-top: 10px;
+    padding: 8px 10px;
   }
 
   .matchday-fixture {
@@ -2547,24 +2547,24 @@ h3 {
   }
 
   .countdown-grid {
-    padding: 12px;
-    gap: 10px;
+    padding: 10px;
+    gap: 8px;
   }
 
   .countdown-timer {
-    gap: 10px;
+    gap: 8px;
   }
 
   .countdown-timer span {
-    padding: 10px 12px;
+    padding: 8px 10px;
   }
 
   .match-weather {
-    padding: 12px;
+    padding: 10px;
   }
 
   .widget-frame {
-    padding: 10px;
+    padding: 8px;
   }
 
   .widget-frame > div {
@@ -2572,7 +2572,7 @@ h3 {
   }
 
   .shop-frame {
-    min-height: 760px;
+    min-height: 620px;
   }
 
   .social-card {
@@ -2586,8 +2586,8 @@ h3 {
 
   .social-preview-body {
     min-height: 0;
-    padding: 16px 14px 18px;
-    gap: 12px;
+    padding: 12px;
+    gap: 10px;
   }
 
   .social-preview-body img {
@@ -2605,12 +2605,12 @@ h3 {
   }
 
   .cta-band {
-    padding: 22px 20px;
+    padding: 18px 16px;
   }
 
   .legal-grid {
     gap: 14px;
-    margin: 18px 0 20px;
+    margin: 14px 0 16px;
   }
 
   .legal-copy h1 {
@@ -2622,7 +2622,7 @@ h3 {
   }
 
   .legal-accordion summary {
-    padding: 16px 0;
+    padding: 14px 0;
     font-size: 1rem;
   }
 
@@ -2632,7 +2632,7 @@ h3 {
 
   .squad-filter-row {
     gap: 8px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
 
   .squad-filter {
@@ -2642,7 +2642,7 @@ h3 {
   }
 
   .squad-pitch {
-    padding: 8px 6px 6px;
+    padding: 6px 4px 4px;
     border-radius: 22px;
   }
 
@@ -2667,13 +2667,13 @@ h3 {
 
   .squad-card-media,
   .staff-card-media {
-    min-height: 164px;
-    padding: 18px 14px 0;
+    min-height: 148px;
+    padding: 14px 12px 0;
   }
 
   .squad-card-media img,
   .staff-card-media img {
-    height: 170px;
+    height: 154px;
   }
 
   .squad-card-body,
@@ -2704,11 +2704,11 @@ h3 {
   }
 
   .tippspiel-form {
-    margin-top: 18px;
+    margin-top: 14px;
   }
 
   .tippspiel-name-row {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .tippspiel-field input,
@@ -2722,7 +2722,7 @@ h3 {
   }
 
   .tippspiel-table {
-    min-width: 420px;
+    min-width: 380px;
   }
 
   .tippspiel-table th,
@@ -2735,7 +2735,7 @@ h3 {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
-    padding: 12px 14px;
+    padding: 10px 12px;
   }
 
   .tippspiel-result-score {
@@ -2744,7 +2744,7 @@ h3 {
   }
 
   .site-footer {
-    padding: 18px 0 28px;
+    padding: 14px 0 22px;
   }
 
   .footer-inner {
@@ -2772,11 +2772,11 @@ h3 {
   .hero-card,
   .panel,
   .cta-band {
-    padding: 16px;
+    padding: 14px;
   }
 
   .hero-card-compact {
-    padding: 16px 16px 14px;
+    padding: 14px 14px 12px;
   }
 
   .hero-card-compact h1 {
@@ -2784,7 +2784,7 @@ h3 {
   }
 
   .hero-side {
-    padding: 14px;
+    padding: 12px;
   }
 
   .hero-logo {
@@ -2796,7 +2796,7 @@ h3 {
   .match-weather,
   .widget-frame,
   .tip-game-card {
-    padding: 10px;
+    padding: 8px;
   }
 
   .social-preview-body {
@@ -2829,11 +2829,11 @@ h3 {
 
   .pdf-frame,
   .pdf-frame iframe {
-    min-height: 360px;
+    min-height: 300px;
   }
 
   .shop-frame {
-    min-height: 640px;
+    min-height: 520px;
   }
 
   .floating-audio-button {
