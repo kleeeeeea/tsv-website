@@ -700,8 +700,8 @@ window.tsvSquadData = {
           lastName: "Hertle",
           position: "Mittelfeld",
           jerseyNumber: null,
-          matches: 0,
-          goals: 0,
+          matches: 1,
+          goals: 1,
           flags: [],
           age: 41,
           imageUrl: "https://image.fupa.net/player/xioCZmDrN9Ry/"
@@ -844,8 +844,8 @@ window.tsvSquadData = {
           lastName: "Gramm",
           position: "Angriff",
           jerseyNumber: null,
-          matches: 0,
-          goals: 0,
+          matches: 1,
+          goals: 1,
           flags: [],
           age: 29,
           imageUrl: "https://image.fupa.net/player/mnAFucSnqkRr/"
