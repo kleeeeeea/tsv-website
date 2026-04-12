@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-12T16:54:52.576Z",
+  "generatedAt": "2026-04-12T17:32:14.319Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P430000000VS5489BTVTHCTAHT",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P3QS000000VS5489BTVTHCTAHT",
     "competition": "Meisterschaften",
-    "fixtureText": "FC Mertingen vs. TSV Hainsfarth",
-    "isHome": false,
+    "fixtureText": "TSV Hainsfarth vs. SV Ehingen-Ortlfingen",
+    "isHome": true,
     "league": "KL Nord",
-    "location": "Sportanlage Mertingen Platz 1,Donauwörther Str.,86690 Mertingen",
-    "opponent": "FC Mertingen",
+    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
+    "opponent": "SV Ehingen-Ortlfingen",
     "result": {
       "available": false,
       "fontId": "",
@@ -15,10 +15,10 @@
       "live": false,
       "note": "BFV",
       "specialResult": false,
-      "status": "acknowledged",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-04-12T13:00:00.000Z",
-    "uid": "02TUN9P430000000VS5489BTVTHCTAHT"
+    "start": "2026-04-19T13:00:00.000Z",
+    "uid": "02TUN9P3QS000000VS5489BTVTHCTAHT"
   }
 }
