@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-12T14:55:52.411Z",
+  "generatedAt": "2026-04-12T15:36:02.799Z",
   "match": {
     "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P430000000VS5489BTVTHCTAHT",
     "competition": "Meisterschaften",
@@ -15,7 +15,7 @@
       "live": false,
       "note": "BFV",
       "specialResult": false,
-      "status": "scheduled",
+      "status": "acknowledged",
       "text": ""
     },
     "start": "2026-04-12T13:00:00.000Z",
