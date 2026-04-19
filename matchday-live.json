@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-19T16:25:04.715Z",
+  "generatedAt": "2026-04-19T17:04:29.703Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P3QS000000VS5489BTVTHCTAHT",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P6O8000000VS5489BTVTHCTAHT",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Hainsfarth vs. SV Ehingen-Ortlfingen",
+    "fixtureText": "TSV Hainsfarth vs. SSV Dillingen",
     "isHome": true,
     "league": "KL Nord",
     "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
-    "opponent": "SV Ehingen-Ortlfingen",
+    "opponent": "SSV Dillingen",
     "result": {
       "available": false,
       "fontId": "",
@@ -15,10 +15,10 @@
       "live": false,
       "note": "BFV",
       "specialResult": false,
-      "status": "acknowledged",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-04-19T13:00:00.000Z",
-    "uid": "02TUN9P3QS000000VS5489BTVTHCTAHT"
+    "start": "2026-04-24T16:15:00.000Z",
+    "uid": "02TUN9P6O8000000VS5489BTVTHCTAHT"
   }
 }
