@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-24T19:59:24.384Z",
+  "generatedAt": "2026-04-24T20:59:47.182Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P6O8000000VS5489BTVTHCTAHT",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P36S000000VS5489BTVTHCTAHT",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Hainsfarth vs. SSV Dillingen",
-    "isHome": true,
+    "fixtureText": "SV Donaumünster-Erlingshofen vs. TSV Hainsfarth",
+    "isHome": false,
     "league": "KL Nord",
-    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
-    "opponent": "SSV Dillingen",
+    "location": "SV Donaumünster-Erlingshofen HF,Birkschwaige,86660 Tapfheim",
+    "opponent": "SV Donaumünster-Erlingshofen",
     "result": {
       "available": false,
       "fontId": "",
@@ -18,7 +18,7 @@
       "status": "scheduled",
       "text": ""
     },
-    "start": "2026-04-24T16:15:00.000Z",
-    "uid": "02TUN9P6O8000000VS5489BTVTHCTAHT"
+    "start": "2026-04-26T13:00:00.000Z",
+    "uid": "02TUN9P36S000000VS5489BTVTHCTAHT"
   }
 }
