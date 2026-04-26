@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-26T16:59:20.689Z",
+  "generatedAt": "2026-04-26T17:50:35.675Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P36S000000VS5489BTVTHCTAHT",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P2RO000000VS5489BTVTHCTAHT",
     "competition": "Meisterschaften",
-    "fixtureText": "SV Donaumünster-Erlingshofen vs. TSV Hainsfarth",
-    "isHome": false,
+    "fixtureText": "TSV Hainsfarth vs. FSV Buchdorf",
+    "isHome": true,
     "league": "KL Nord",
-    "location": "SV Donaumünster-Erlingshofen HF,Birkschwaige,86660 Tapfheim",
-    "opponent": "SV Donaumünster-Erlingshofen",
+    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
+    "opponent": "FSV Buchdorf",
     "result": {
       "available": false,
       "fontId": "",
@@ -15,10 +15,10 @@
       "live": false,
       "note": "BFV",
       "specialResult": false,
-      "status": "acknowledged",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-04-26T13:00:00.000Z",
-    "uid": "02TUN9P36S000000VS5489BTVTHCTAHT"
+    "start": "2026-05-03T13:00:00.000Z",
+    "uid": "02TUN9P2RO000000VS5489BTVTHCTAHT"
   }
 }
