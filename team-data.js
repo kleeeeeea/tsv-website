@@ -96,8 +96,8 @@ window.tsvSquadData = {
           lastName: "Bauer",
           position: "Abwehr",
           jerseyNumber: null,
-          matches: 5,
-          goals: 0,
+          matches: 6,
+          goals: 1,
           flags: [],
           age: 35,
           imageUrl: "https://image.fupa.net/player/pzGb0PGI24aM/"
