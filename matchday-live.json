@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-05-17T16:15:46.601Z",
+  "generatedAt": "2026-05-17T17:18:07.051Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P1U0000000VS5489BTVTHCTAHT",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P1Q0000000VS5489BTVTHCTAHT",
     "competition": "Meisterschaften",
-    "fixtureText": "(SG) Ebermergen/Mündling-Sulzdorf  n.a. vs. TSV Hainsfarth",
-    "isHome": false,
+    "fixtureText": "TSV Hainsfarth vs. SG Alerheim",
+    "isHome": true,
     "league": "KL Nord",
-    "location": "Mündling-Sulzdorf Hauptplatz,Am Priel,86655 Harburg (Schwaben)",
-    "opponent": "(SG) Ebermergen/Mündling-Sulzdorf  n.a.",
+    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
+    "opponent": "SG Alerheim",
     "result": {
       "available": false,
       "fontId": "",
@@ -15,10 +15,10 @@
       "live": false,
       "note": "BFV",
       "specialResult": false,
-      "status": "acknowledged",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-05-17T13:00:00.000Z",
-    "uid": "02TUN9P1U0000000VS5489BTVTHCTAHT"
+    "start": "2026-05-23T13:30:00.000Z",
+    "uid": "02TUN9P1Q0000000VS5489BTVTHCTAHT"
   }
 }
