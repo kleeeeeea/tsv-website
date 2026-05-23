@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-05-23T16:43:27.478Z",
+  "generatedAt": "2026-05-23T17:45:38.540Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P1Q0000000VS5489BTVTHCTAHT",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/02TUN9P12O000000VS5489BTVTHCTAHT",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Hainsfarth vs. SG Alerheim",
-    "isHome": true,
+    "fixtureText": "BC Schretzheim vs. TSV Hainsfarth",
+    "isHome": false,
     "league": "KL Nord",
-    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
-    "opponent": "SG Alerheim",
+    "location": "BC Schretzheim Hauptplatz,Alemannenweg 12,89407 Dillingen a.d.Donau",
+    "opponent": "BC Schretzheim",
     "result": {
       "available": false,
       "fontId": "",
@@ -15,10 +15,10 @@
       "live": false,
       "note": "BFV",
       "specialResult": false,
-      "status": "acknowledged",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-05-23T13:30:00.000Z",
-    "uid": "02TUN9P1Q0000000VS5489BTVTHCTAHT"
+    "start": "2026-05-30T13:30:00.000Z",
+    "uid": "02TUN9P12O000000VS5489BTVTHCTAHT"
   }
 }
