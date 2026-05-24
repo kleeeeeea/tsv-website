@@ -146,7 +146,7 @@ window.tsvSquadData = {
           lastName: "Schmidt",
           position: "Abwehr",
           jerseyNumber: null,
-          matches: 0,
+          matches: 1,
           goals: 0,
           flags: [
             "new"
@@ -197,7 +197,7 @@ window.tsvSquadData = {
           position: "Abwehr",
           jerseyNumber: null,
           matches: 11,
-          goals: 1,
+          goals: 2,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/PVoBA3Y0y8ix/"
@@ -244,7 +244,7 @@ window.tsvSquadData = {
           lastName: "Wiedemann",
           position: "Abwehr",
           jerseyNumber: 12,
-          matches: 6,
+          matches: 7,
           goals: 0,
           flags: [],
           age: 23,
@@ -353,7 +353,7 @@ window.tsvSquadData = {
           position: "Mittelfeld",
           jerseyNumber: 7,
           matches: 21,
-          goals: 9,
+          goals: 10,
           flags: [],
           age: 31,
           imageUrl: "https://image.fupa.net/player/NHGZwWK7iTIZ/"
@@ -400,7 +400,7 @@ window.tsvSquadData = {
           lastName: "Üschner",
           position: "Mittelfeld",
           jerseyNumber: null,
-          matches: 6,
+          matches: 7,
           goals: 0,
           flags: [],
           age: null,
@@ -425,7 +425,7 @@ window.tsvSquadData = {
           position: "Angriff",
           jerseyNumber: 19,
           matches: 19,
-          goals: 0,
+          goals: 1,
           flags: [],
           age: 29,
           imageUrl: "https://image.fupa.net/player/mnAFucSnqkRr/"
