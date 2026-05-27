@@ -418,6 +418,7 @@ h3 {
   justify-content: flex-start;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .hero-logo {
@@ -425,7 +426,11 @@ h3 {
   height: auto;
   margin-top: auto;
   align-self: flex-end;
-  filter: none;
+  display: block;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 12px 26px rgba(9, 45, 78, 0.18));
+  transform: translateY(4px);
+  opacity: 0.98;
 }
 
 .hero-side h3,
