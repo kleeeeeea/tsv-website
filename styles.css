@@ -421,17 +421,13 @@ h3 {
   isolation: isolate;
 }
 
-.hero-logo-shell {
-  width: min(220px, 58%);
-  margin-top: auto;
-  align-self: center;
-}
-
 .hero-logo {
-  width: 100%;
+  width: min(220px, 52%);
   height: auto;
+  margin-top: auto;
+  align-self: flex-end;
   display: block;
-  filter: drop-shadow(0 12px 24px rgba(9, 45, 78, 0.28));
+  filter: none;
 }
 
 .hero-side h3,
