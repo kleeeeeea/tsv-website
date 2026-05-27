@@ -421,14 +421,29 @@ h3 {
   isolation: isolate;
 }
 
-.hero-logo {
-  width: min(220px, 52%);
-  height: auto;
+.hero-logo-shell {
+  position: relative;
+  width: min(232px, 54%);
   margin-top: auto;
   align-self: flex-end;
+  transform: translate(8px, 8px);
+}
+
+.hero-logo-shell::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, var(--primary) 0%, rgba(17, 130, 198, 0) 20%, rgba(17, 130, 198, 0) 80%, var(--primary) 100%),
+    linear-gradient(to bottom, var(--primary) 0%, rgba(17, 130, 198, 0) 18%, rgba(17, 130, 198, 0) 82%, var(--primary) 100%);
+}
+
+.hero-logo {
+  width: 100%;
+  height: auto;
   display: block;
-  filter: drop-shadow(0 14px 28px rgba(9, 45, 78, 0.22));
-  transform: translateY(4px);
+  filter: drop-shadow(0 14px 28px rgba(9, 45, 78, 0.18));
 }
 
 .hero-side h3,
