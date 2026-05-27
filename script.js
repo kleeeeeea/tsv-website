@@ -179,6 +179,22 @@ if (countdownRoot) {
       "86744 hainsfarth",
       { latitude: 48.95839, longitude: 10.62491, name: "Hainsfarth" },
     ],
+    [
+      "bc schretzheim hauptplatz,alemannenweg 12,89407 dillingen a.d.donau",
+      { latitude: 48.59217, longitude: 10.51169, name: "Schretzheim" },
+    ],
+    [
+      "alemannenweg 12,89407 dillingen a.d.donau",
+      { latitude: 48.59217, longitude: 10.51169, name: "Schretzheim" },
+    ],
+    [
+      "89407 dillingen a.d.donau",
+      { latitude: 48.59217, longitude: 10.51169, name: "Schretzheim" },
+    ],
+    [
+      "schretzheim",
+      { latitude: 48.59217, longitude: 10.51169, name: "Schretzheim" },
+    ],
   ]);
 
   const formatDate = (date) =>
