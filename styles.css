@@ -446,6 +446,18 @@ h3 {
   filter: drop-shadow(0 14px 28px rgba(9, 45, 78, 0.18));
 }
 
+.hero-crest {
+  position: absolute;
+  right: -32px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 140%;
+  width: auto;
+  opacity: 0.1;
+  pointer-events: none;
+  user-select: none;
+}
+
 .hero-side h3,
 .hero-side p {
   color: #fff;
@@ -2478,6 +2490,12 @@ h3 {
   .squad-hero-switcher .team-switcher-button {
     min-width: 0;
     width: 100%;
+  }
+
+  .hero-crest {
+    height: 110%;
+    right: -20px;
+    opacity: 0.08;
   }
 
   .pdf-frame,
