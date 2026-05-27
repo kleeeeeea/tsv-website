@@ -164,6 +164,22 @@ if (countdownRoot) {
   const weatherWindNode = weatherRoot?.querySelector("[data-weather-wind]");
   const weatherTimeNode = weatherRoot?.querySelector("[data-weather-time]");
   const activeMatchWindowMs = 4 * 60 * 60 * 1000;
+  const weatherForecastHorizonDays = 16;
+  const weatherForecastHorizonMs = weatherForecastHorizonDays * 24 * 60 * 60 * 1000;
+  const knownWeatherLocations = new Map([
+    [
+      "burschelstadion,am burschel,86744 hainsfarth",
+      { latitude: 48.95839, longitude: 10.62491, name: "Hainsfarth" },
+    ],
+    [
+      "am burschel,86744 hainsfarth",
+      { latitude: 48.95839, longitude: 10.62491, name: "Hainsfarth" },
+    ],
+    [
+      "86744 hainsfarth",
+      { latitude: 48.95839, longitude: 10.62491, name: "Hainsfarth" },
+    ],
+  ]);
 
   const formatDate = (date) =>
     new Intl.DateTimeFormat("de-DE", {
@@ -282,6 +298,12 @@ if (countdownRoot) {
     96: "Gewitter mit Hagel",
     99: "Starkes Gewitter",
   };
+
+  const formatShortDate = (date) =>
+    new Intl.DateTimeFormat("de-DE", {
+      day: "2-digit",
+      month: "2-digit",
+    }).format(date);
 
   const parseEvents = (icsText) => {
     const normalized = icsText.replace(/\r\n[ \t]/g, "").replace(/\r/g, "");
@@ -491,6 +513,24 @@ if (countdownRoot) {
     }
   };
 
+  const renderWeatherWaiting = (eventDate) => {
+    if (weatherTempNode) {
+      weatherTempNode.textContent = "--°";
+    }
+
+    if (weatherLabelNode) {
+      weatherLabelNode.textContent = `Vorhersage ab ${formatShortDate(new Date(eventDate.getTime() - weatherForecastHorizonMs))}`;
+    }
+
+    if (weatherRainNode) {
+      weatherRainNode.textContent = "Regenrisiko: folgt";
+    }
+
+    if (weatherWindNode) {
+      weatherWindNode.textContent = "Wind: folgt";
+    }
+  };
+
   const fetchMatchResult = async (event) => {
     if (!event?.uid) {
       showPendingMatchResult();
@@ -565,11 +605,15 @@ if (countdownRoot) {
     pushQuery(normalizedLocation);
 
     const locationParts = normalizedLocation.split(",").map((part) => part.trim()).filter(Boolean);
+    const streetPart = locationParts.find((part) => /\d/.test(part) || /(?:str\.|straße|weg|gasse|platz|ring|allee|ufer)\b/i.test(part));
     const postalPart = locationParts.find((part) => /\b\d{5}\b/.test(part));
     const postalMatch = postalPart?.match(/\b(\d{5})\b\s*(.+)?/);
 
     if (postalMatch) {
       const [, postalCode, cityName = ""] = postalMatch;
+      if (streetPart) {
+        pushQuery(`${streetPart}, ${postalCode} ${cityName.trim()}, Deutschland`);
+      }
       pushQuery(`${cityName.trim()}, ${postalCode}, Deutschland`);
       pushQuery(`${cityName.trim()}, Deutschland`);
       pushQuery(cityName.trim());
@@ -584,6 +628,20 @@ if (countdownRoot) {
     }
 
     return queries;
+  };
+
+  const getKnownWeatherLocation = (event) => {
+    const normalizedLocation = (event.location || "").replace(/\s+/g, " ").trim().toLowerCase();
+
+    if (knownWeatherLocations.has(normalizedLocation)) {
+      return knownWeatherLocations.get(normalizedLocation);
+    }
+
+    if (event.isHome) {
+      return knownWeatherLocations.get("86744 hainsfarth") || null;
+    }
+
+    return null;
   };
 
   const fetchGeocode = async (query) => {
@@ -616,15 +674,22 @@ if (countdownRoot) {
       }).format(event.start);
     }
 
+    if (event.start.getTime() - Date.now() > weatherForecastHorizonMs) {
+      renderWeatherWaiting(event.start);
+      return;
+    }
+
     try {
       const locationQueries = getLocationQueries(event);
-      let place = null;
+      let place = getKnownWeatherLocation(event);
 
-      for (const query of locationQueries) {
-        place = await fetchGeocode(query);
+      if (!place) {
+        for (const query of locationQueries) {
+          place = await fetchGeocode(query);
 
-        if (place) {
-          break;
+          if (place) {
+            break;
+          }
         }
       }
 
@@ -657,6 +722,13 @@ if (countdownRoot) {
       let bestDiff = Number.POSITIVE_INFINITY;
 
       hourly.time.forEach((timeValue, index) => {
+        const temperature = hourly.temperature_2m?.[index];
+        const weatherCode = hourly.weather_code?.[index];
+
+        if (temperature == null || weatherCode == null) {
+          return;
+        }
+
         const candidateTime = new Date(timeValue).getTime();
         const diff = Math.abs(candidateTime - targetTime);
 
@@ -675,7 +747,12 @@ if (countdownRoot) {
         },
         event.start
       );
-    } catch {
+    } catch (error) {
+      console.warn("Weather widget fallback", {
+        location: event.location,
+        uid: event.uid,
+        error,
+      });
       renderWeatherFallback();
     }
   };
@@ -904,7 +981,7 @@ if (squadData?.teams) {
 
   const resolveImageUrl = (value) => {
     if (!value) {
-      return "logo.png?v=20260310b";
+      return "logo.svg?v=20260410a";
     }
 
     if (/\.(?:avif|webp|png|jpe?g|svg)$/i.test(value)) {
@@ -938,7 +1015,7 @@ if (squadData?.teams) {
   const fallbackImageAttributes = (value) => {
     const remoteImage = resolveImageUrl(value);
     const escapedRemote = remoteImage.replace(/'/g, "\\'");
-    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo.png?v=20260310b';}"`;
+    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo.svg?v=20260410a';}"`;
   };
   const resolveDisplayImageUrl = (person) => resolveCutoutUrl(person) || resolveImageUrl(person?.imageUrl);
   const asCssImage = (person) => `style="--player-image: url('${resolveDisplayImageUrl(person)}');"`;
