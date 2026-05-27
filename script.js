@@ -978,6 +978,7 @@ if (squadData?.teams) {
   };
   const cutoutOverrides = {};
   const placeholderCutoutUrl = "images/kader/cutouts/Y1NfDiFUnwcn.png?v=20260407a";
+  const placeholderPlayers = new Set(["Felix Schmidt"]);
 
   const resolveImageUrl = (value) => {
     if (!value) {
@@ -991,7 +992,7 @@ if (squadData?.teams) {
     return `${value.replace(/\/$/, "")}/480x600.webp`;
   };
   const resolveCutoutUrl = (person) => {
-    if (person?.hideImage) {
+    if (person?.hideImage || placeholderPlayers.has(formatName(person))) {
       return placeholderCutoutUrl;
     }
 
