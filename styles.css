@@ -447,13 +447,22 @@ h3 {
 }
 
 .hero-crest {
+  width: min(110px, 22%);
+  height: auto;
+  display: block;
+  align-self: center;
+  justify-self: end;
+  flex-shrink: 0;
+  mix-blend-mode: multiply;
+}
+
+.hero-crest-abs {
   position: absolute;
-  right: -32px;
+  right: 32px;
   top: 50%;
   transform: translateY(-50%);
-  height: 140%;
-  width: auto;
-  opacity: 0.18;
+  width: 100px;
+  height: auto;
   mix-blend-mode: multiply;
   pointer-events: none;
   user-select: none;
@@ -2494,9 +2503,12 @@ h3 {
   }
 
   .hero-crest {
-    height: 110%;
-    right: -20px;
-    opacity: 0.14;
+    width: min(80px, 18%);
+  }
+
+  .hero-crest-abs {
+    width: 72px;
+    right: 20px;
   }
 
   .pdf-frame,
