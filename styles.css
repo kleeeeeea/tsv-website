@@ -427,10 +427,8 @@ h3 {
   margin-top: auto;
   align-self: flex-end;
   display: block;
-  mix-blend-mode: multiply;
-  filter: drop-shadow(0 12px 26px rgba(9, 45, 78, 0.18));
+  filter: drop-shadow(0 14px 28px rgba(9, 45, 78, 0.22));
   transform: translateY(4px);
-  opacity: 0.98;
 }
 
 .hero-side h3,
