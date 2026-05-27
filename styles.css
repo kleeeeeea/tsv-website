@@ -422,50 +422,16 @@ h3 {
 }
 
 .hero-logo-shell {
-  position: relative;
-  width: min(232px, 54%);
+  width: min(220px, 58%);
   margin-top: auto;
-  align-self: flex-end;
-  transform: translate(8px, 8px);
-}
-
-.hero-logo-shell::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  pointer-events: none;
-  background:
-    linear-gradient(to right, var(--primary) 0%, rgba(17, 130, 198, 0) 20%, rgba(17, 130, 198, 0) 80%, var(--primary) 100%),
-    linear-gradient(to bottom, var(--primary) 0%, rgba(17, 130, 198, 0) 18%, rgba(17, 130, 198, 0) 82%, var(--primary) 100%);
+  align-self: center;
 }
 
 .hero-logo {
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 14px 28px rgba(9, 45, 78, 0.18));
-}
-
-.hero-crest {
-  width: min(110px, 22%);
-  height: auto;
-  display: block;
-  align-self: center;
-  justify-self: end;
-  flex-shrink: 0;
-  mix-blend-mode: multiply;
-}
-
-.hero-crest-abs {
-  position: absolute;
-  right: 32px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100px;
-  height: auto;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  user-select: none;
+  filter: drop-shadow(0 12px 24px rgba(9, 45, 78, 0.28));
 }
 
 .hero-side h3,
@@ -2500,15 +2466,6 @@ h3 {
   .squad-hero-switcher .team-switcher-button {
     min-width: 0;
     width: 100%;
-  }
-
-  .hero-crest {
-    width: min(80px, 18%);
-  }
-
-  .hero-crest-abs {
-    width: 72px;
-    right: 20px;
   }
 
   .pdf-frame,
