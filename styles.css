@@ -1494,6 +1494,33 @@ h3 {
   margin-top: 18px;
 }
 
+.tippspiel-result-list-scroll {
+  max-height: 42rem;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(17, 130, 198, 0.7) rgba(17, 130, 198, 0.1);
+}
+
+.tippspiel-result-list-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tippspiel-result-list-scroll::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(17, 130, 198, 0.1);
+}
+
+.tippspiel-result-list-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(17, 130, 198, 0.72);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+}
+
+.tippspiel-result-list-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(13, 96, 154, 0.82);
+}
+
 .tippspiel-tip-item,
 .tippspiel-result-item {
   display: flex;
@@ -2289,6 +2316,11 @@ h3 {
   .matchday-shell,
   .matchday-spotlight {
     grid-template-columns: 1fr;
+  }
+
+  .tippspiel-result-list-scroll {
+    max-height: 30rem;
+    padding-right: 6px;
   }
 
   .page-hero {
