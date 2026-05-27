@@ -453,7 +453,8 @@ h3 {
   transform: translateY(-50%);
   height: 140%;
   width: auto;
-  opacity: 0.1;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
   pointer-events: none;
   user-select: none;
 }
@@ -2495,7 +2496,7 @@ h3 {
   .hero-crest {
     height: 110%;
     right: -20px;
-    opacity: 0.08;
+    opacity: 0.14;
   }
 
   .pdf-frame,
