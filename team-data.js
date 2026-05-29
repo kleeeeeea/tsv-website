@@ -428,7 +428,7 @@ window.tsvSquadData = {
           goals: 1,
           flags: [],
           age: 29,
-          imageUrl: "https://image.fupa.net/player/mnAFucSnqkRr/"
+          imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/"
         },
         {
           id: 23766317,
@@ -827,7 +827,7 @@ window.tsvSquadData = {
           matches: 2,
           goals: 0,
           flags: [],
-          age: 26,
+          age: 27,
           imageUrl: "https://image.fupa.net/player/AYVVnG7hPQJW/"
         },
         {
@@ -876,7 +876,7 @@ window.tsvSquadData = {
           goals: 1,
           flags: [],
           age: 29,
-          imageUrl: "https://image.fupa.net/player/mnAFucSnqkRr/"
+          imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/"
         },
         {
           id: 22918369,
