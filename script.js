@@ -8,8 +8,6 @@ if (navToggle && nav) {
   });
 }
 
-const audioStateKey = "tsv-club-audio-state";
-
 const ensureInstagramNoticeUi = () => {
   let link = document.querySelector("[data-instagram-floating-link]");
 
@@ -22,8 +20,11 @@ const ensureInstagramNoticeUi = () => {
     link.setAttribute("data-instagram-floating-link", "");
     link.setAttribute("aria-label", "Instagram des TSV Hainsfarth mit aktuellen Infos öffnen");
     link.innerHTML = `
-      <span class="floating-instagram-kicker">Instagram</span>
-      <strong>Neueste Infos immer aktuell</strong>
+      <span class="floating-instagram-ball" aria-hidden="true">⚽</span>
+      <span class="floating-instagram-copy">
+        <span class="floating-instagram-kicker">Instagram</span>
+        <strong>Neueste Infos immer aktuell</strong>
+      </span>
     `;
     document.body.appendChild(link);
   }
@@ -31,137 +32,7 @@ const ensureInstagramNoticeUi = () => {
   return link;
 };
 
-const ensureClubAudioUi = () => {
-  let audio = document.querySelector("[data-club-audio]");
-  let toggle = document.querySelector("[data-audio-toggle]");
-
-  if (!audio) {
-    audio = document.createElement("audio");
-    audio.preload = "auto";
-    audio.setAttribute("data-club-audio", "");
-
-    const source = document.createElement("source");
-    source.src = "tsv-song.mp3?v=20260310b";
-    source.type = "audio/mpeg";
-    audio.appendChild(source);
-    document.body.appendChild(audio);
-  }
-
-  if (!toggle) {
-    toggle = document.createElement("button");
-    toggle.className = "floating-audio-button";
-    toggle.type = "button";
-    toggle.setAttribute("aria-label", "TSV-Song abspielen oder pausieren");
-    toggle.setAttribute("data-audio-toggle", "");
-    toggle.innerHTML = '<span class="floating-audio-emoji" aria-hidden="true">⚽</span>';
-    document.body.appendChild(toggle);
-  }
-
-  return { audio, toggle };
-};
-
 ensureInstagramNoticeUi();
-const { audio: clubAudio, toggle: audioToggle } = ensureClubAudioUi();
-
-if (audioToggle && clubAudio) {
-  const readAudioState = () => {
-    try {
-      return JSON.parse(window.localStorage.getItem(audioStateKey) || "{}");
-    } catch {
-      return {};
-    }
-  };
-
-  const writeAudioState = (nextState) => {
-    try {
-      const currentState = readAudioState();
-      window.localStorage.setItem(
-        audioStateKey,
-        JSON.stringify({
-          ...currentState,
-          ...nextState,
-        })
-      );
-    } catch {
-      // Ignore storage issues and keep controls responsive.
-    }
-  };
-
-  const syncAudioState = () => {
-    audioToggle.classList.toggle("is-playing", !clubAudio.paused);
-  };
-
-  const kickBall = () => {
-    audioToggle.classList.remove("is-kicking");
-    void audioToggle.offsetWidth;
-    audioToggle.classList.add("is-kicking");
-  };
-
-  const tryPlayAudio = () => {
-    clubAudio
-      .play()
-      .then(() => {
-        writeAudioState({ shouldPlay: true });
-        syncAudioState();
-      })
-      .catch(() => {
-        syncAudioState();
-      });
-  };
-
-  audioToggle.addEventListener("click", () => {
-    kickBall();
-
-    if (clubAudio.paused) {
-      tryPlayAudio();
-    } else {
-      clubAudio.pause();
-      writeAudioState({ shouldPlay: false, currentTime: clubAudio.currentTime });
-      syncAudioState();
-    }
-  });
-
-  clubAudio.addEventListener("play", () => {
-    writeAudioState({ shouldPlay: true });
-    syncAudioState();
-  });
-
-  clubAudio.addEventListener("pause", () => {
-    writeAudioState({ shouldPlay: false, currentTime: clubAudio.currentTime });
-    syncAudioState();
-  });
-
-  clubAudio.addEventListener("timeupdate", () => {
-    writeAudioState({ currentTime: clubAudio.currentTime });
-  });
-
-  clubAudio.addEventListener("ended", () => {
-    writeAudioState({ shouldPlay: false, currentTime: 0 });
-    syncAudioState();
-  });
-
-  window.addEventListener("load", () => {
-    const savedState = readAudioState();
-
-    if (typeof savedState.currentTime === "number" && Number.isFinite(savedState.currentTime)) {
-      const resumeTime = Math.max(0, savedState.currentTime);
-      clubAudio.currentTime = resumeTime;
-    }
-
-    syncAudioState();
-
-    if (savedState.shouldPlay) {
-      tryPlayAudio();
-    }
-  });
-
-  window.addEventListener("beforeunload", () => {
-    writeAudioState({
-      shouldPlay: !clubAudio.paused,
-      currentTime: clubAudio.currentTime,
-    });
-  });
-}
 
 const countdownRoot = document.querySelector("[data-countdown]");
 
