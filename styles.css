@@ -308,21 +308,28 @@ h3 {
   z-index: 30;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  max-width: min(320px, calc(100vw - 32px));
-  padding: 14px 18px 14px 16px;
-  border-radius: 999px;
-  background: rgba(250, 247, 242, 0.96);
-  border: 1px solid rgba(17, 130, 198, 0.18);
-  box-shadow: 0 16px 30px rgba(19, 36, 58, 0.12);
+  justify-content: space-between;
+  gap: 18px;
+  min-width: 280px;
+  max-width: min(340px, calc(100vw - 32px));
+  padding: 16px 18px 16px 18px;
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(246, 242, 255, 0.94)),
+    linear-gradient(135deg, rgba(245, 96, 64, 0.12), rgba(131, 58, 180, 0.12));
+  border: 1px solid rgba(131, 58, 180, 0.14);
+  box-shadow: 0 18px 34px rgba(19, 36, 58, 0.14);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
 .floating-instagram-copy {
   display: grid;
-  gap: 4px;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
 }
 
 .floating-instagram-link:hover {
@@ -332,23 +339,28 @@ h3 {
 
 .floating-instagram-ball {
   flex: 0 0 auto;
-  font-size: 2.9rem;
+  font-size: 4rem;
   line-height: 1;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.12));
+  opacity: 0.28;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
+  margin-right: -2px;
 }
 
 .floating-instagram-link strong {
   font-size: 0.98rem;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--primary-dark);
 }
 
 .floating-instagram-kicker {
-  font-size: 0.75rem;
+  font-size: 1.02rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary);
+  letter-spacing: 0.01em;
+  color: #833ab4;
+  background: linear-gradient(135deg, #f58529 0%, #f56040 22%, #fd1d1d 45%, #c13584 68%, #833ab4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .button,
@@ -2486,17 +2498,6 @@ h3 {
     min-height: 360px;
   }
 
-  .floating-audio-button {
-    right: 16px;
-    bottom: 16px;
-    width: 72px;
-    height: 72px;
-  }
-
-  .floating-audio-emoji {
-    font-size: 3.8rem;
-  }
-
   h1 {
     font-size: clamp(2rem, 10.4vw, 3rem);
   }
@@ -3236,10 +3237,11 @@ h3 {
   .floating-instagram-link {
     right: 12px;
     bottom: 12px;
-    gap: 10px;
-    max-width: min(240px, calc(100vw - 24px));
-    padding: 10px 14px 10px 12px;
-    border-radius: 999px;
+    gap: 12px;
+    min-width: 0;
+    max-width: min(260px, calc(100vw - 24px));
+    padding: 12px 14px;
+    border-radius: 20px;
   }
 
   .floating-instagram-link strong {
@@ -3247,10 +3249,10 @@ h3 {
   }
 
   .floating-instagram-kicker {
-    font-size: 0.68rem;
+    font-size: 0.92rem;
   }
 
   .floating-instagram-ball {
-    font-size: 2.25rem;
+    font-size: 3rem;
   }
 }

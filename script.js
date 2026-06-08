@@ -8,6 +8,8 @@ if (navToggle && nav) {
   });
 }
 
+document.querySelectorAll("[data-audio-toggle], [data-club-audio]").forEach((node) => node.remove());
+
 const ensureInstagramNoticeUi = () => {
   let link = document.querySelector("[data-instagram-floating-link]");
 
@@ -20,11 +22,11 @@ const ensureInstagramNoticeUi = () => {
     link.setAttribute("data-instagram-floating-link", "");
     link.setAttribute("aria-label", "Instagram des TSV Hainsfarth mit aktuellen Infos öffnen");
     link.innerHTML = `
-      <span class="floating-instagram-ball" aria-hidden="true">⚽</span>
       <span class="floating-instagram-copy">
         <span class="floating-instagram-kicker">Instagram</span>
-        <strong>Neueste Infos immer aktuell</strong>
+        <strong>Neueste Infos immer aktuell!!</strong>
       </span>
+      <span class="floating-instagram-ball" aria-hidden="true">⚽</span>
     `;
     document.body.appendChild(link);
   }
