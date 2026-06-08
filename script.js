@@ -964,6 +964,48 @@ if (squadData?.teams) {
     };
   };
 
+  const getLowestGoalsPerGameLeader = (players) => {
+    const eligiblePlayers = players.filter(
+      (player) =>
+        player?.position !== "Torwart" &&
+        Number.isFinite(player?.matches) &&
+        player.matches >= 5
+    );
+
+    if (!eligiblePlayers.length) {
+      return {
+        ids: new Set(),
+        count: 0,
+        valueText: "",
+      };
+    }
+
+    const rankedPlayers = eligiblePlayers
+      .map((player) => ({
+        player,
+        ratio: (Number.isFinite(player?.goals) ? player.goals : 0) / player.matches,
+      }))
+      .sort((left, right) => {
+        if (left.ratio !== right.ratio) {
+          return left.ratio - right.ratio;
+        }
+
+        if (left.player.matches !== right.player.matches) {
+          return right.player.matches - left.player.matches;
+        }
+
+        return formatName(left.player).localeCompare(formatName(right.player), "de");
+      });
+
+    const winner = rankedPlayers[0];
+
+    return {
+      ids: new Set([winner.player.id]),
+      count: winner.ratio,
+      valueText: `${winner.ratio.toFixed(2).replace(".", ",")}`,
+    };
+  };
+
   const leaderDefinitions = [
     {
       key: "goals",
@@ -971,6 +1013,14 @@ if (squadData?.teams) {
       title: "Meiste Tore",
       countLabel: "Tore",
       leaderClass: "squad-card--goal-leader",
+    },
+    {
+      key: "lowGoalsPerGame",
+      className: "low-goals",
+      title: "Wenigste Tore/Spiel",
+      countLabel: "",
+      leaderClass: "squad-card--low-goals-leader",
+      valueText: (leader) => leader.valueText,
     },
     {
       key: "assists",
@@ -1031,10 +1081,14 @@ if (squadData?.teams) {
               return "";
             }
 
+            const valueText = typeof definition.valueText === "function"
+              ? definition.valueText(leader, player)
+              : `${leader.count} ${definition.countLabel}`.trim();
+
             return `
               <span class="squad-spotlight squad-spotlight--${definition.className}" aria-label="${definition.title} laut FuPa: ${leader.count}" title="${definition.title} laut FuPa: ${leader.count}">
                 <span class="squad-spotlight-badge">
-                  <span><strong>${definition.title}:</strong> ${leader.count}</span>
+                  <span><strong>${definition.title}:</strong> ${valueText}</span>
                 </span>
               </span>
             `;
@@ -1119,7 +1173,12 @@ if (squadData?.teams) {
 
     const players = sortPlayers(team.players);
     const statLeaders = Object.fromEntries(
-      leaderDefinitions.map((definition) => [definition.key, getStatLeaders(players, definition.key)])
+      leaderDefinitions.map((definition) => [
+        definition.key,
+        definition.key === "lowGoalsPerGame"
+          ? getLowestGoalsPerGameLeader(players)
+          : getStatLeaders(players, definition.key),
+      ])
     );
 
     if (teamEyebrow) teamEyebrow.textContent = team.eyebrow;
