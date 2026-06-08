@@ -427,7 +427,7 @@ window.tsvSquadData = {
           matches: 20,
           goals: 1,
           flags: [],
-          age: 29,
+          age: 30,
           imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/"
         },
         {
@@ -887,7 +887,7 @@ window.tsvSquadData = {
           matches: 1,
           goals: 1,
           flags: [],
-          age: 29,
+          age: 30,
           imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/"
         },
         {
