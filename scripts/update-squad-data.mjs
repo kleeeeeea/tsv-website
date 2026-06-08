@@ -198,7 +198,11 @@ const personExtrasById = (entries = []) =>
         delete extras.jerseyNumber;
         delete extras.matches;
         delete extras.goals;
+        delete extras.assists;
         delete extras.yellowCards;
+        delete extras.yellowRedCards;
+        delete extras.redCards;
+        delete extras.teamOfWeek;
         delete extras.flags;
         delete extras.age;
         delete extras.imageUrl;
@@ -256,7 +260,7 @@ const mapWithConcurrency = async (items, limit, mapper) => {
   return results;
 };
 
-const attachLiveYellowCards = async ({ players, teamSlug }) => {
+const attachLiveSeasonStats = async ({ players, teamSlug }) => {
   return mapWithConcurrency(players, PLAYER_FETCH_CONCURRENCY, async (player) => {
     if (!player?.slug) {
       return player;
@@ -271,13 +275,17 @@ const attachLiveYellowCards = async ({ players, teamSlug }) => {
     const seasonEntries = getPlayerSeasonEntries(reduxData);
     const statistics = findSeasonStatisticsForTeam(seasonEntries, teamSlug);
 
-    if (!statistics || typeof statistics.yellowCard !== "number") {
+    if (!statistics) {
       return player;
     }
 
     return {
       ...player,
-      yellowCards: statistics.yellowCard,
+      assists: typeof statistics.assists === "number" ? statistics.assists : 0,
+      yellowCards: typeof statistics.yellowCard === "number" ? statistics.yellowCard : 0,
+      yellowRedCards: typeof statistics.yellowRedCard === "number" ? statistics.yellowRedCard : 0,
+      redCards: typeof statistics.redCard === "number" ? statistics.redCard : 0,
+      teamOfWeek: typeof statistics.topEleven === "number" ? statistics.topEleven : 0,
     };
   });
 };
@@ -310,14 +318,19 @@ const buildTeam = async ({ config, reduxData, existingTeam }) => {
         jerseyNumber: player.jerseyNumber ?? null,
         matches: player.matches ?? 0,
         goals: player.goals ?? 0,
+        assists: 0,
         flags: Array.isArray(player.flags) ? player.flags : [],
         age: player.age ?? null,
         imageUrl: toImageUrl(player.image),
+        yellowCards: 0,
+        yellowRedCards: 0,
+        redCards: 0,
+        teamOfWeek: 0,
       },
       playerExtras
     )
   );
-  const players = await attachLiveYellowCards({
+  const players = await attachLiveSeasonStats({
     players: basePlayers,
     teamSlug,
   });

@@ -27,10 +27,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 25,
           imageUrl: "https://image.fupa.net/player/1FzEc8cJ5nbe/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23876282,
@@ -41,10 +45,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 3,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 39,
           imageUrl: "https://image.fupa.net/player/xucF1UJHPUr0/",
-          yellowCards: 1
+          yellowCards: 1,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912517,
@@ -55,10 +63,14 @@ window.tsvSquadData = {
           jerseyNumber: 1,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 33,
           imageUrl: "https://image.fupa.net/player/GHQMtdXIjctS/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912526,
@@ -69,10 +81,14 @@ window.tsvSquadData = {
           jerseyNumber: 1,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 34,
           imageUrl: "https://image.fupa.net/player/7RGg4VAzVof5/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912531,
@@ -83,10 +99,14 @@ window.tsvSquadData = {
           jerseyNumber: 1,
           matches: 23,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 27,
           imageUrl: "https://image.fupa.net/player/NcjbGLOfeOno/",
-          yellowCards: 3
+          yellowCards: 3,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 2
         },
         {
           id: 22912518,
@@ -97,10 +117,14 @@ window.tsvSquadData = {
           jerseyNumber: 14,
           matches: 22,
           goals: 1,
+          assists: 0,
           flags: [],
           age: 31,
           imageUrl: "https://image.fupa.net/player/B6MovWSTWNfA/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 1,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23876549,
@@ -111,10 +135,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 9,
           goals: 1,
+          assists: 0,
           flags: [],
           age: 35,
           imageUrl: "https://image.fupa.net/player/pzGb0PGI24aM/",
-          yellowCards: 1
+          yellowCards: 1,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 24158742,
@@ -125,12 +153,16 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 1,
           goals: 0,
+          assists: 0,
           flags: [
             "new"
           ],
           age: 20,
           imageUrl: "https://image.fupa.net/player/f9p8kcYelk8b/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23930560,
@@ -141,10 +173,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 10,
           goals: 0,
+          assists: 1,
           flags: [],
           age: 32,
           imageUrl: "https://image.fupa.net/player/OKKsunKvilgu/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912522,
@@ -155,10 +191,14 @@ window.tsvSquadData = {
           jerseyNumber: 11,
           matches: 6,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 25,
           imageUrl: "https://image.fupa.net/player/87Uybr9gtyRb/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 24263645,
@@ -169,12 +209,16 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 0,
+          assists: 1,
           flags: [
             "new"
           ],
           age: 34,
           imageUrl: "https://image.fupa.net/player/psCGs1GRIaJU/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912515,
@@ -185,10 +229,14 @@ window.tsvSquadData = {
           jerseyNumber: 3,
           matches: 22,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 30,
           imageUrl: "https://image.fupa.net/player/i2V87gpRuRu4/",
-          yellowCards: 7
+          yellowCards: 7,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23766306,
@@ -199,10 +247,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 13,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 37,
           imageUrl: "https://image.fupa.net/player/xsLtdyId1huZ/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912519,
@@ -213,10 +265,14 @@ window.tsvSquadData = {
           jerseyNumber: 6,
           matches: 24,
           goals: 0,
+          assists: 3,
           flags: [],
           age: 29,
           imageUrl: "https://image.fupa.net/player/XNq2qEv3xKj0/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23876554,
@@ -227,10 +283,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 12,
           goals: 2,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/PVoBA3Y0y8ix/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 1,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23766320,
@@ -241,10 +301,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 5,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 29,
           imageUrl: "https://image.fupa.net/player/K1kBuOat6XFS/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912527,
@@ -255,10 +319,14 @@ window.tsvSquadData = {
           jerseyNumber: 4,
           matches: 22,
           goals: 0,
+          assists: 1,
           flags: [],
           age: 26,
           imageUrl: "https://image.fupa.net/player/U8YOFMSas8PA/",
-          yellowCards: 6
+          yellowCards: 6,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23888201,
@@ -269,10 +337,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 10,
           goals: 0,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/3FcWKCuQ3oSk/",
-          yellowCards: 1
+          yellowCards: 1,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912525,
@@ -283,10 +355,14 @@ window.tsvSquadData = {
           jerseyNumber: 12,
           matches: 7,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 23,
           imageUrl: "https://image.fupa.net/player/edroiFk1cyLu/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23793846,
@@ -297,10 +373,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 8,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 38,
           imageUrl: "https://image.fupa.net/player/r7H9hLPYRN9t/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912532,
@@ -311,10 +391,14 @@ window.tsvSquadData = {
           jerseyNumber: 13,
           matches: 23,
           goals: 0,
+          assists: 2,
           flags: [],
           age: 29,
           imageUrl: "https://image.fupa.net/player/rdu8ocLq0xrB/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 24158750,
@@ -325,10 +409,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 24,
           imageUrl: "https://image.fupa.net/player/sWpostsVsvgB/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912520,
@@ -339,10 +427,14 @@ window.tsvSquadData = {
           jerseyNumber: 21,
           matches: 18,
           goals: 11,
+          assists: 4,
           flags: [],
           age: 34,
           imageUrl: "https://image.fupa.net/player/UvsX5ItV5EjK/",
-          yellowCards: 3
+          yellowCards: 3,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 4
         },
         {
           id: 22912533,
@@ -353,10 +445,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 5,
           goals: 0,
+          assists: 2,
           flags: [],
           age: 34,
           imageUrl: "https://image.fupa.net/player/2T8fRkQ9qpdU/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912536,
@@ -367,10 +463,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 3,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 41,
           imageUrl: "https://image.fupa.net/player/xioCZmDrN9Ry/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912514,
@@ -381,10 +481,14 @@ window.tsvSquadData = {
           jerseyNumber: 8,
           matches: 13,
           goals: 0,
+          assists: 1,
           flags: [],
           age: 32,
           imageUrl: "https://image.fupa.net/player/t5rand7jG9Of/",
-          yellowCards: 3
+          yellowCards: 3,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912528,
@@ -395,10 +499,14 @@ window.tsvSquadData = {
           jerseyNumber: 22,
           matches: 4,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 30,
           imageUrl: "https://image.fupa.net/player/yATiDSchGz4n/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912513,
@@ -409,10 +517,14 @@ window.tsvSquadData = {
           jerseyNumber: 7,
           matches: 21,
           goals: 10,
+          assists: 2,
           flags: [],
           age: 31,
           imageUrl: "https://image.fupa.net/player/NHGZwWK7iTIZ/",
-          yellowCards: 10
+          yellowCards: 10,
+          yellowRedCards: 1,
+          redCards: 0,
+          teamOfWeek: 2
         },
         {
           id: 24196503,
@@ -423,10 +535,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/tltkA3rh9xOJ/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23832562,
@@ -437,10 +553,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 29,
           imageUrl: "https://image.fupa.net/player/nBvZ9D2lXxnG/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912521,
@@ -451,10 +571,14 @@ window.tsvSquadData = {
           jerseyNumber: 9,
           matches: 22,
           goals: 13,
+          assists: 11,
           flags: [],
           age: 26,
           imageUrl: "https://image.fupa.net/player/ia55QkyqCBVS/",
-          yellowCards: 3
+          yellowCards: 3,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 5
         },
         {
           id: 22912534,
@@ -465,10 +589,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 7,
           goals: 0,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912529,
@@ -479,10 +607,14 @@ window.tsvSquadData = {
           jerseyNumber: 16,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 27,
           imageUrl: "https://image.fupa.net/player/oyp9R2gd1iXL/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912516,
@@ -493,10 +625,14 @@ window.tsvSquadData = {
           jerseyNumber: 19,
           matches: 20,
           goals: 1,
+          assists: 3,
           flags: [],
           age: 30,
           imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/",
-          yellowCards: 6
+          yellowCards: 6,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23766317,
@@ -507,10 +643,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 22,
           imageUrl: "https://image.fupa.net/player/kEhGlJIy7VaA/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22912530,
@@ -521,10 +661,14 @@ window.tsvSquadData = {
           jerseyNumber: 10,
           matches: 12,
           goals: 7,
+          assists: 9,
           flags: [],
           age: 34,
           imageUrl: "https://image.fupa.net/player/RZs3hqECiXOK/",
-          yellowCards: 1
+          yellowCards: 1,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 4
         },
         {
           id: 24513360,
@@ -535,10 +679,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 1,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 23,
           imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 23818598,
@@ -549,11 +697,15 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 3,
           goals: 0,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/",
-          hideImage: true,
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0,
+          hideImage: true
         }
       ],
       staff: [
@@ -630,10 +782,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 25,
           imageUrl: "https://image.fupa.net/player/1FzEc8cJ5nbe/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918351,
@@ -644,10 +800,14 @@ window.tsvSquadData = {
           jerseyNumber: 22,
           matches: 1,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 34,
           imageUrl: "https://image.fupa.net/player/7RGg4VAzVof5/",
-          yellowCards: 1
+          yellowCards: 1,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 1
         },
         {
           id: 22918374,
@@ -658,10 +818,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/UwoPq0Eo8950/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918361,
@@ -672,10 +836,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 35,
           imageUrl: "https://image.fupa.net/player/pzGb0PGI24aM/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918364,
@@ -686,10 +854,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 20,
           imageUrl: "https://image.fupa.net/player/tgn1Zjs4AiPh/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918363,
@@ -700,10 +872,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 1,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 20,
           imageUrl: "https://image.fupa.net/player/f9p8kcYelk8b/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918372,
@@ -714,10 +890,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 34,
           imageUrl: "https://image.fupa.net/player/2lJhGKIJi51y/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918355,
@@ -728,10 +908,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 37,
           imageUrl: "https://image.fupa.net/player/xsLtdyId1huZ/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918377,
@@ -742,10 +926,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 3,
           goals: 1,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/PVoBA3Y0y8ix/",
-          yellowCards: 2
+          yellowCards: 2,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918350,
@@ -756,10 +944,14 @@ window.tsvSquadData = {
           jerseyNumber: 13,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 29,
           imageUrl: "https://image.fupa.net/player/K1kBuOat6XFS/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918367,
@@ -770,10 +962,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 28,
           imageUrl: "https://image.fupa.net/player/VEEUAj0mMeo3/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918376,
@@ -784,10 +980,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/3FcWKCuQ3oSk/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 24217078,
@@ -798,12 +998,16 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 1,
           goals: 0,
+          assists: 0,
           flags: [
             "new"
           ],
           age: 23,
           imageUrl: "https://image.fupa.net/player/edroiFk1cyLu/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918356,
@@ -814,10 +1018,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 29,
           imageUrl: "https://image.fupa.net/player/rdu8ocLq0xrB/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918357,
@@ -828,10 +1036,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 1,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 24,
           imageUrl: "https://image.fupa.net/player/sWpostsVsvgB/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918366,
@@ -842,10 +1054,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 34,
           imageUrl: "https://image.fupa.net/player/UvsX5ItV5EjK/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918349,
@@ -856,10 +1072,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 1,
+          assists: 0,
           flags: [],
           age: 41,
           imageUrl: "https://image.fupa.net/player/xioCZmDrN9Ry/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918371,
@@ -870,10 +1090,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/2XXzSq8yq06t/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918375,
@@ -884,10 +1108,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 30,
           imageUrl: "https://image.fupa.net/player/yATiDSchGz4n/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918379,
@@ -898,10 +1126,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 31,
           imageUrl: "https://image.fupa.net/player/NHGZwWK7iTIZ/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918380,
@@ -912,10 +1144,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 25,
           imageUrl: "https://image.fupa.net/player/1ythLl3TRhE4/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918360,
@@ -926,10 +1162,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/tltkA3rh9xOJ/",
-          yellowCards: 1
+          yellowCards: 1,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 1
         },
         {
           id: 22918354,
@@ -940,10 +1180,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 38,
           imageUrl: "https://image.fupa.net/player/GYLDnPyJEvgm/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918358,
@@ -954,10 +1198,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 35,
           imageUrl: "https://image.fupa.net/player/OWGsZeMRx9fC/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918353,
@@ -968,10 +1216,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 27,
           imageUrl: "https://image.fupa.net/player/AYVVnG7hPQJW/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918373,
@@ -982,10 +1234,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918368,
@@ -996,10 +1252,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 28,
           imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918362,
@@ -1010,10 +1270,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 27,
           imageUrl: "https://image.fupa.net/player/oyp9R2gd1iXL/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918352,
@@ -1024,10 +1288,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 1,
           goals: 1,
+          assists: 0,
           flags: [],
           age: 30,
           imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918369,
@@ -1038,10 +1306,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 22,
           imageUrl: "https://image.fupa.net/player/kEhGlJIy7VaA/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 1
         },
         {
           id: 22918370,
@@ -1052,10 +1324,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 34,
           imageUrl: "https://image.fupa.net/player/RZs3hqECiXOK/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 22918378,
@@ -1066,10 +1342,14 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 1,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 23,
           imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         },
         {
           id: 24181783,
@@ -1080,13 +1360,17 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 1,
           goals: 0,
+          assists: 0,
           flags: [
             "new"
           ],
           age: null,
           imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/",
-          hideImage: true,
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0,
+          hideImage: true
         },
         {
           id: 22918359,
@@ -1097,10 +1381,14 @@ window.tsvSquadData = {
           jerseyNumber: 14,
           matches: 2,
           goals: 0,
+          assists: 0,
           flags: [],
           age: 33,
           imageUrl: "https://image.fupa.net/player/9Y7qdRHRTSTj/",
-          yellowCards: 0
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
         }
       ],
       staff: [

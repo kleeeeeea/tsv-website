@@ -2249,6 +2249,38 @@ h3 {
     0 8px 18px rgba(12, 124, 207, 0.3);
 }
 
+.squad-spotlight--assists .squad-spotlight-arrow {
+  background: linear-gradient(180deg, #44d6b0, #159a78);
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 8px 18px rgba(21, 154, 120, 0.28);
+}
+
+.squad-spotlight--team-of-week .squad-spotlight-arrow {
+  background: linear-gradient(180deg, #8b6bff, #5e43d6);
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 8px 18px rgba(94, 67, 214, 0.28);
+}
+
+.squad-spotlight--yellow-red .squad-spotlight-arrow {
+  background: linear-gradient(135deg, #f4d33f 0%, #f4d33f 50%, #db5348 50%, #db5348 100%);
+  color: #4a2100;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    0 8px 18px rgba(219, 83, 72, 0.26);
+}
+
+.squad-spotlight--red .squad-spotlight-arrow {
+  background: linear-gradient(180deg, #f16666, #c63b3b);
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 8px 18px rgba(198, 59, 59, 0.28);
+}
+
 .squad-spotlight-badge {
   display: grid;
   gap: 2px;
@@ -2273,6 +2305,26 @@ h3 {
   border: 1px solid rgba(12, 124, 207, 0.24);
 }
 
+.squad-spotlight--assists .squad-spotlight-badge {
+  background: rgba(241, 255, 251, 0.97);
+  border: 1px solid rgba(21, 154, 120, 0.22);
+}
+
+.squad-spotlight--team-of-week .squad-spotlight-badge {
+  background: rgba(247, 244, 255, 0.97);
+  border: 1px solid rgba(94, 67, 214, 0.22);
+}
+
+.squad-spotlight--yellow-red .squad-spotlight-badge {
+  background: rgba(255, 248, 240, 0.97);
+  border: 1px solid rgba(219, 83, 72, 0.22);
+}
+
+.squad-spotlight--red .squad-spotlight-badge {
+  background: rgba(255, 243, 243, 0.97);
+  border: 1px solid rgba(198, 59, 59, 0.24);
+}
+
 .squad-spotlight-badge strong {
   font-size: 0.74rem;
   line-height: 1.15;
@@ -2291,6 +2343,22 @@ h3 {
 
 .squad-card--goal-leader .squad-card-media::after {
   background: radial-gradient(circle, rgba(48, 169, 255, 0.26) 0%, rgba(7, 34, 58, 0) 72%);
+}
+
+.squad-card--assist-leader .squad-card-media::after {
+  background: radial-gradient(circle, rgba(68, 214, 176, 0.24) 0%, rgba(7, 34, 58, 0) 72%);
+}
+
+.squad-card--team-of-week-leader .squad-card-media::after {
+  background: radial-gradient(circle, rgba(139, 107, 255, 0.24) 0%, rgba(7, 34, 58, 0) 72%);
+}
+
+.squad-card--yellow-red-leader .squad-card-media::after {
+  background: radial-gradient(circle, rgba(235, 136, 84, 0.26) 0%, rgba(7, 34, 58, 0) 72%);
+}
+
+.squad-card--red-leader .squad-card-media::after {
+  background: radial-gradient(circle, rgba(241, 102, 102, 0.26) 0%, rgba(7, 34, 58, 0) 72%);
 }
 
 .squad-card-media::before,

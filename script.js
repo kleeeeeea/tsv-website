@@ -964,7 +964,52 @@ if (squadData?.teams) {
     };
   };
 
-  const renderSquad = (players, activeFilter, yellowCardLeaders, goalLeaders) => {
+  const leaderDefinitions = [
+    {
+      key: "goals",
+      className: "goals",
+      title: "Meiste Tore",
+      countLabel: "Tore",
+      leaderClass: "squad-card--goal-leader",
+    },
+    {
+      key: "assists",
+      className: "assists",
+      title: "Meiste Assists",
+      countLabel: "Assists",
+      leaderClass: "squad-card--assist-leader",
+    },
+    {
+      key: "teamOfWeek",
+      className: "team-of-week",
+      title: "Elf der Woche",
+      countLabel: "Nominierungen",
+      leaderClass: "squad-card--team-of-week-leader",
+    },
+    {
+      key: "yellowCards",
+      className: "yellow",
+      title: "Meiste gelbe Karten",
+      countLabel: "Gelbe",
+      leaderClass: "squad-card--yellow-leader",
+    },
+    {
+      key: "yellowRedCards",
+      className: "yellow-red",
+      title: "Meiste gelb-rote Karten",
+      countLabel: "Gelb-Rote",
+      leaderClass: "squad-card--yellow-red-leader",
+    },
+    {
+      key: "redCards",
+      className: "red",
+      title: "Meiste rote Karten",
+      countLabel: "Rote",
+      leaderClass: "squad-card--red-leader",
+    },
+  ];
+
+  const renderSquad = (players, activeFilter, statLeaders) => {
     if (!squadGrid) {
       return;
     }
@@ -978,39 +1023,32 @@ if (squadData?.teams) {
           .join("");
         const playerImage = `<img src="${resolveDisplayImageUrl(player)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>`;
         const playerMediaStyle = ` ${asCssImage(player)}`;
-        const spotlightBadges = [];
+        const spotlightBadges = leaderDefinitions
+          .map((definition) => {
+            const leader = statLeaders[definition.key];
 
-        if (goalLeaders.ids.has(player.id)) {
-          spotlightBadges.push(`
-            <span class="squad-spotlight squad-spotlight--goals" aria-label="Meiste Tore laut FuPa: ${goalLeaders.count}" title="Meiste Tore laut FuPa: ${goalLeaders.count}">
-              <span class="squad-spotlight-arrow" aria-hidden="true">➜</span>
-              <span class="squad-spotlight-badge">
-                <strong>Meiste Tore</strong>
-                <span>${goalLeaders.count} Tore</span>
-              </span>
-            </span>
-          `);
-        }
+            if (!leader?.ids?.has(player.id) || !leader.count) {
+              return "";
+            }
 
-        if (yellowCardLeaders.ids.has(player.id)) {
-          spotlightBadges.push(`
-            <span class="squad-spotlight squad-spotlight--yellow" aria-label="Meiste gelbe Karten laut FuPa: ${yellowCardLeaders.count}" title="Meiste gelbe Karten laut FuPa: ${yellowCardLeaders.count}">
-              <span class="squad-spotlight-arrow" aria-hidden="true">➜</span>
-              <span class="squad-spotlight-badge">
-                <strong>Meiste gelbe Karten</strong>
-                <span>${yellowCardLeaders.count} Gelbe</span>
+            return `
+              <span class="squad-spotlight squad-spotlight--${definition.className}" aria-label="${definition.title} laut FuPa: ${leader.count}" title="${definition.title} laut FuPa: ${leader.count}">
+                <span class="squad-spotlight-arrow" aria-hidden="true">➜</span>
+                <span class="squad-spotlight-badge">
+                  <strong>${definition.title}</strong>
+                  <span>${leader.count} ${definition.countLabel}</span>
+                </span>
               </span>
-            </span>
-          `);
-        }
+            `;
+          })
+          .filter(Boolean);
 
         const spotlightMarkup = spotlightBadges.length
           ? `<div class="squad-spotlights">${spotlightBadges.join("")}</div>`
           : "";
-        const leaderClasses = [
-          goalLeaders.ids.has(player.id) ? "squad-card--goal-leader" : "",
-          yellowCardLeaders.ids.has(player.id) ? "squad-card--yellow-leader" : "",
-        ]
+        const leaderClasses = leaderDefinitions
+          .filter((definition) => statLeaders[definition.key]?.ids?.has(player.id) && statLeaders[definition.key]?.count)
+          .map((definition) => definition.leaderClass)
           .filter(Boolean)
           .join(" ");
 
@@ -1082,8 +1120,9 @@ if (squadData?.teams) {
     }
 
     const players = sortPlayers(team.players);
-    const yellowCardLeaders = getStatLeaders(players, "yellowCards");
-    const goalLeaders = getStatLeaders(players, "goals");
+    const statLeaders = Object.fromEntries(
+      leaderDefinitions.map((definition) => [definition.key, getStatLeaders(players, definition.key)])
+    );
 
     if (teamEyebrow) teamEyebrow.textContent = team.eyebrow;
     if (teamHeroTitle) teamHeroTitle.textContent = team.heroTitle;
@@ -1103,7 +1142,7 @@ if (squadData?.teams) {
       button.classList.toggle("is-active", button.dataset.teamKey === activeTeamKey);
     });
 
-    renderSquad(players, activeFilter, yellowCardLeaders, goalLeaders);
+    renderSquad(players, activeFilter, statLeaders);
     renderStaff(team.staff);
   };
 
