@@ -1,7 +1,10 @@
 import { readFile, writeFile } from "node:fs/promises";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 import vm from "node:vm";
 
 const OUTPUT_PATH = "team-data.js";
+const execFileAsync = promisify(execFile);
 const CLUB_NAME = "TSV Hainsfarth";
 const TODAY = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Europe/Vienna",
@@ -338,6 +341,7 @@ const main = async () => {
 
   const fileContents = `window.tsvSquadData = ${serialize(output)};\n`;
   await writeFile(OUTPUT_PATH, fileContents);
+  await execFileAsync("python3", ["scripts/generate_player_cutouts.py"]);
   if (fallbackWarnings.length) {
     console.warn(
       `FuPa voruebergehend nicht erreichbar, bestehende Daten weiterverwendet: ${fallbackWarnings.join(

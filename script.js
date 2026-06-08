@@ -945,6 +945,7 @@ if (penaltyGameRoot) {
 }
 
 const squadData = window.tsvSquadData;
+const cutoutManifest = window.tsvCutoutManifest || {};
 
 if (squadData?.teams) {
   const squadGrid = document.querySelector("[data-squad-grid]");
@@ -992,7 +993,7 @@ if (squadData?.teams) {
     const match = value?.match(/\/player\/([^/]+)/i);
     return match?.[1] || null;
   };
-  const cutoutOverrides = {};
+  const cutoutOverrides = { ...cutoutManifest };
   const placeholderCutoutUrl = "images/kader/cutouts/Y1NfDiFUnwcn.png?v=20260407a";
   const placeholderPlayers = new Set(["Felix Schmidt"]);
 
