@@ -2249,8 +2249,8 @@ h3 {
 .squad-spotlights {
   position: absolute;
   top: 12px;
-  left: 12px;
-  right: auto;
+  left: 12px !important;
+  right: auto !important;
   width: max-content;
   max-width: calc(100% - 24px);
   display: grid;
@@ -2262,6 +2262,7 @@ h3 {
 
 .squad-spotlight {
   display: block;
+  justify-self: start;
   max-width: min(100%, 178px);
   animation: squadYellowSpotlightFlyIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) 1 both;
 }
@@ -2274,6 +2275,7 @@ h3 {
   background: rgba(255, 255, 255, 0.58);
   border: 1px solid rgba(255, 255, 255, 0.42);
   color: var(--primary-dark);
+  text-align: left;
   backdrop-filter: blur(7px) saturate(1.02);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -3076,8 +3078,8 @@ h3 {
 
   .squad-spotlights {
     top: 10px;
-    left: 10px;
-    right: auto;
+    left: 10px !important;
+    right: auto !important;
     max-width: calc(100% - 20px);
   }
 
