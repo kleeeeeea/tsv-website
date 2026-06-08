@@ -1055,6 +1055,7 @@ if (squadData?.teams) {
           <article class="squad-card${leaderClasses ? ` ${leaderClasses}` : ""}">
             <div class="squad-card-media"${playerMediaStyle}>
               <span class="squad-card-logo" aria-hidden="true"></span>
+              ${spotlightMarkup}
               ${playerImage}
             </div>
             <div class="squad-card-body">
@@ -1066,7 +1067,6 @@ if (squadData?.teams) {
                 <span class="squad-number-badge">${formatNumber(player.jerseyNumber)}</span>
               </div>
               ${tags}
-              ${spotlightMarkup}
               <div class="squad-meta">
                 <span>${formatAge(player.age)}</span>
                 <span>${player.matches} Spiele</span>
