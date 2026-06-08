@@ -425,25 +425,28 @@ h3 {
   width: min(220px, 52%);
   margin-top: auto;
   align-self: flex-end;
-  padding: 8px;
-  border-radius: 24px;
+  padding: 6px;
+  border-radius: 26px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow:
-    0 12px 24px rgba(9, 45, 78, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    0 16px 28px rgba(9, 45, 78, 0.12),
+    0 2px 8px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .hero-logo {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 8px 18px rgba(9, 45, 78, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow:
+    0 10px 20px rgba(9, 45, 78, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.42);
   filter: none;
 }
 
@@ -2520,8 +2523,8 @@ h3 {
 
   .hero-logo-shell {
     width: min(148px, 44%);
-    padding: 6px;
-    border-radius: 18px;
+    padding: 5px;
+    border-radius: 20px;
   }
 
   .lead {
@@ -3083,8 +3086,8 @@ h3 {
 
   .hero-logo-shell {
     width: min(122px, 42%);
-    padding: 5px;
-    border-radius: 16px;
+    padding: 4px;
+    border-radius: 18px;
   }
 
   .matchday-shell,
