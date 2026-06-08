@@ -422,28 +422,28 @@ h3 {
 }
 
 .hero-logo-shell {
-  width: min(236px, 62%);
+  width: min(220px, 52%);
   margin-top: auto;
-  align-self: center;
-  padding: 16px;
-  border-radius: 32px;
+  align-self: flex-end;
+  padding: 8px;
+  border-radius: 24px;
   overflow: hidden;
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.24), transparent 58%),
-    linear-gradient(180deg, rgba(236, 246, 255, 0.96), rgba(212, 233, 252, 0.94));
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow:
-    0 22px 40px rgba(9, 45, 78, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.52);
+    0 12px 24px rgba(9, 45, 78, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .hero-logo {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 10px 22px rgba(9, 45, 78, 0.14);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(9, 45, 78, 0.12);
   filter: none;
 }
 
@@ -2518,13 +2518,10 @@ h3 {
     font-size: 0.88rem;
   }
 
-  .hero-logo {
-    width: min(148px, 44%);
-  }
-
   .hero-logo-shell {
-    padding: 12px;
-    border-radius: 24px;
+    width: min(148px, 44%);
+    padding: 6px;
+    border-radius: 18px;
   }
 
   .lead {
@@ -3084,13 +3081,10 @@ h3 {
     padding: 12px;
   }
 
-  .hero-logo {
-    width: min(122px, 42%);
-  }
-
   .hero-logo-shell {
-    padding: 8px;
-    border-radius: 20px;
+    width: min(122px, 42%);
+    padding: 5px;
+    border-radius: 16px;
   }
 
   .matchday-shell,
