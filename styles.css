@@ -27,7 +27,7 @@ body {
   margin: 0;
   font-family: "Trebuchet MS", "Segoe UI", sans-serif;
   color: var(--text);
-  padding-bottom: 132px;
+  padding-bottom: 108px;
   background:
     linear-gradient(rgba(17, 130, 198, 0.05), rgba(17, 130, 198, 0.05)),
     repeating-linear-gradient(
@@ -310,15 +310,15 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  min-width: 220px;
-  max-width: min(260px, calc(100vw - 24px));
-  padding: 12px 14px 12px 16px;
-  border-radius: 22px;
+  gap: 10px;
+  min-width: 186px;
+  max-width: min(212px, calc(100vw - 20px));
+  padding: 10px 12px 10px 14px;
+  border-radius: 20px;
   background: rgba(250, 247, 242, 0.98);
-  border: 1px solid rgba(17, 130, 198, 0.18);
+  border: 1px solid rgba(193, 53, 132, 0.16);
   box-shadow:
-    0 16px 28px rgba(19, 36, 58, 0.14),
+    0 12px 22px rgba(19, 36, 58, 0.12),
     0 0 0 1px rgba(255, 255, 255, 0.55) inset;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -340,21 +340,22 @@ h3 {
 
 .floating-instagram-ball {
   flex: 0 0 auto;
-  font-size: 3.15rem;
+  font-size: 2.65rem;
   line-height: 1;
   opacity: 1;
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.22)) saturate(1.05) contrast(1.05);
   margin-right: -2px;
+  animation: floating-instagram-ball-spin 9s linear infinite;
 }
 
 .floating-instagram-link strong {
-  font-size: 0.84rem;
+  font-size: 0.74rem;
   line-height: 1.2;
   color: var(--primary-dark);
 }
 
 .floating-instagram-kicker {
-  font-size: 1.2rem;
+  font-size: 0.96rem;
   font-weight: 800;
   letter-spacing: 0.01em;
   color: #833ab4;
@@ -362,6 +363,16 @@ h3 {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes floating-instagram-ball-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .button,
@@ -3236,24 +3247,24 @@ h3 {
   }
 
   .floating-instagram-link {
-    right: 10px;
-    bottom: 10px;
-    gap: 10px;
+    right: 8px;
+    bottom: 8px;
+    gap: 8px;
     min-width: 0;
-    max-width: min(220px, calc(100vw - 24px));
-    padding: 10px 12px 10px 14px;
-    border-radius: 20px;
+    max-width: min(184px, calc(100vw - 16px));
+    padding: 8px 10px 8px 12px;
+    border-radius: 18px;
   }
 
   .floating-instagram-link strong {
-    font-size: 0.8rem;
+    font-size: 0.66rem;
   }
 
   .floating-instagram-kicker {
-    font-size: 0.88rem;
+    font-size: 0.78rem;
   }
 
   .floating-instagram-ball {
-    font-size: 2.45rem;
+    font-size: 2rem;
   }
 }
