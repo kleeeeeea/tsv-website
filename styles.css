@@ -422,25 +422,29 @@ h3 {
 }
 
 .hero-logo-shell {
-  width: min(232px, 60%);
+  width: min(236px, 62%);
   margin-top: auto;
   align-self: center;
-  padding: 14px;
-  border-radius: 28px;
+  padding: 16px;
+  border-radius: 32px;
+  overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(240, 247, 255, 0.92));
-  border: 1px solid rgba(255, 255, 255, 0.38);
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.24), transparent 58%),
+    linear-gradient(180deg, rgba(236, 246, 255, 0.96), rgba(212, 233, 252, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.32);
   box-shadow:
-    0 18px 36px rgba(9, 45, 78, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 22px 40px rgba(9, 45, 78, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.52);
 }
 
 .hero-logo {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 20px;
-  filter: drop-shadow(0 14px 24px rgba(9, 45, 78, 0.18));
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 22px rgba(9, 45, 78, 0.14);
+  filter: none;
 }
 
 .hero-side h3,
@@ -2519,8 +2523,8 @@ h3 {
   }
 
   .hero-logo-shell {
-    padding: 10px;
-    border-radius: 22px;
+    padding: 12px;
+    border-radius: 24px;
   }
 
   .lead {
@@ -3086,7 +3090,7 @@ h3 {
 
   .hero-logo-shell {
     padding: 8px;
-    border-radius: 18px;
+    border-radius: 20px;
   }
 
   .matchday-shell,
