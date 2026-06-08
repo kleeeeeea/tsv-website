@@ -425,28 +425,22 @@ h3 {
   width: min(220px, 52%);
   margin-top: auto;
   align-self: flex-end;
-  padding: 6px;
-  border-radius: 26px;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow:
-    0 16px 28px rgba(9, 45, 78, 0.12),
-    0 2px 8px rgba(255, 255, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .hero-logo {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 20px;
+  border-radius: 26px;
   background: rgba(255, 255, 255, 0.98);
   box-shadow:
-    0 10px 20px rgba(9, 45, 78, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.42);
+    0 18px 30px rgba(9, 45, 78, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.32);
   filter: none;
 }
 
@@ -2523,8 +2517,10 @@ h3 {
 
   .hero-logo-shell {
     width: min(148px, 44%);
-    padding: 5px;
-    border-radius: 20px;
+  }
+
+  .hero-logo {
+    border-radius: 22px;
   }
 
   .lead {
@@ -3086,7 +3082,9 @@ h3 {
 
   .hero-logo-shell {
     width: min(122px, 42%);
-    padding: 4px;
+  }
+
+  .hero-logo {
     border-radius: 18px;
   }
 
