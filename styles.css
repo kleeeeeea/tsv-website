@@ -2250,7 +2250,9 @@ h3 {
   position: absolute;
   top: 12px;
   left: 12px;
-  right: 16px;
+  right: auto;
+  width: max-content;
+  max-width: calc(100% - 24px);
   display: grid;
   justify-items: start;
   gap: 6px;
@@ -3075,7 +3077,8 @@ h3 {
   .squad-spotlights {
     top: 10px;
     left: 10px;
-    right: 12px;
+    right: auto;
+    max-width: calc(100% - 20px);
   }
 
   .squad-spotlight-badge {
