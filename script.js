@@ -890,7 +890,6 @@ if (squadData?.teams) {
   };
   const cutoutOverrides = { ...cutoutManifest };
   const placeholderCutoutUrl = "images/kader/cutouts/Y1NfDiFUnwcn.png?v=20260407a";
-  const yellowCardLeaderIds = new Set([22912513]);
   const placeholderPlayers = new Set(["Felix Schmidt"]);
 
   const resolveImageUrl = (value) => {
@@ -942,7 +941,30 @@ if (squadData?.teams) {
       return flag;
     });
 
-  const renderSquad = (players, activeFilter) => {
+  const getYellowCardLeaders = (players) => {
+    const maxYellowCards = players.reduce((max, player) => {
+      const value = Number.isFinite(player?.yellowCards) ? player.yellowCards : 0;
+      return Math.max(max, value);
+    }, 0);
+
+    if (maxYellowCards <= 0) {
+      return {
+        ids: new Set(),
+        count: 0,
+      };
+    }
+
+    return {
+      ids: new Set(
+        players
+          .filter((player) => (Number.isFinite(player?.yellowCards) ? player.yellowCards : 0) === maxYellowCards)
+          .map((player) => player.id)
+      ),
+      count: maxYellowCards,
+    };
+  };
+
+  const renderSquad = (players, activeFilter, yellowCardLeaders) => {
     if (!squadGrid) {
       return;
     }
@@ -956,15 +978,23 @@ if (squadData?.teams) {
           .join("");
         const playerImage = `<img src="${resolveDisplayImageUrl(player)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>`;
         const playerMediaStyle = ` ${asCssImage(player)}`;
-        const yellowCard = yellowCardLeaderIds.has(player.id)
-          ? '<span class="squad-yellow-card" aria-label="Meiste gelbe Karten laut FuPa" title="Meiste gelbe Karten laut FuPa">🟨</span>'
+        const yellowCardSpotlight = yellowCardLeaders.ids.has(player.id)
+          ? `
+              <span class="squad-yellow-spotlight" aria-label="Meiste gelbe Karten laut FuPa: ${yellowCardLeaders.count}" title="Meiste gelbe Karten laut FuPa: ${yellowCardLeaders.count}">
+                <span class="squad-yellow-spotlight-arrow" aria-hidden="true">➜</span>
+                <span class="squad-yellow-spotlight-badge">
+                  <strong>Meiste gelbe Karten</strong>
+                  <span>${yellowCardLeaders.count} Gelbe</span>
+                </span>
+              </span>
+            `
           : "";
 
         return `
-          <article class="squad-card${yellowCard ? " squad-card--yellow-leader" : ""}">
+          <article class="squad-card${yellowCardSpotlight ? " squad-card--yellow-leader" : ""}">
             <div class="squad-card-media"${playerMediaStyle}>
               <span class="squad-card-logo" aria-hidden="true"></span>
-              ${yellowCard}
+              ${yellowCardSpotlight}
               ${playerImage}
             </div>
             <div class="squad-card-body">
@@ -1028,6 +1058,7 @@ if (squadData?.teams) {
     }
 
     const players = sortPlayers(team.players);
+    const yellowCardLeaders = getYellowCardLeaders(players);
 
     if (teamEyebrow) teamEyebrow.textContent = team.eyebrow;
     if (teamHeroTitle) teamHeroTitle.textContent = team.heroTitle;
@@ -1047,7 +1078,7 @@ if (squadData?.teams) {
       button.classList.toggle("is-active", button.dataset.teamKey === activeTeamKey);
     });
 
-    renderSquad(players, activeFilter);
+    renderSquad(players, activeFilter, yellowCardLeaders);
     renderStaff(team.staff);
   };
 

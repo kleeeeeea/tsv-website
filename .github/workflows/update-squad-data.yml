@@ -3,7 +3,7 @@ name: Update Squad Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 4,10,16,22 * * *"
+    - cron: "17 * * * *"
 
 permissions:
   contents: write

@@ -20,6 +20,7 @@ window.tsvSquadData = {
       players: [
         {
           id: 22912537,
+          slug: "nv-yannic-bederke-1578512",
           firstName: "Yannic",
           lastName: "Bederke",
           position: "Torwart",
@@ -28,10 +29,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 25,
-          imageUrl: "https://image.fupa.net/player/1FzEc8cJ5nbe/"
+          imageUrl: "https://image.fupa.net/player/1FzEc8cJ5nbe/",
+          yellowCards: 0
         },
         {
           id: 23876282,
+          slug: "nv-thomas-grygar-446455",
           firstName: "Thomas",
           lastName: "Grygar",
           position: "Torwart",
@@ -40,10 +43,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 39,
-          imageUrl: "https://image.fupa.net/player/xucF1UJHPUr0/"
+          imageUrl: "https://image.fupa.net/player/xucF1UJHPUr0/",
+          yellowCards: 1
         },
         {
           id: 22912517,
+          slug: "timo-haffelt-446462",
           firstName: "Timo",
           lastName: "Haffelt",
           position: "Torwart",
@@ -52,10 +57,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 33,
-          imageUrl: "https://image.fupa.net/player/GHQMtdXIjctS/"
+          imageUrl: "https://image.fupa.net/player/GHQMtdXIjctS/",
+          yellowCards: 0
         },
         {
           id: 22912526,
+          slug: "tobias-hoffmann-446453",
           firstName: "Tobias",
           lastName: "Hoffmann",
           position: "Torwart",
@@ -64,10 +71,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 34,
-          imageUrl: "https://image.fupa.net/player/7RGg4VAzVof5/"
+          imageUrl: "https://image.fupa.net/player/7RGg4VAzVof5/",
+          yellowCards: 0
         },
         {
           id: 22912531,
+          slug: "christoph-kolitsch-686023",
           firstName: "Christoph",
           lastName: "Kolitsch",
           position: "Torwart",
@@ -76,10 +85,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 27,
-          imageUrl: "https://image.fupa.net/player/NcjbGLOfeOno/"
+          imageUrl: "https://image.fupa.net/player/NcjbGLOfeOno/",
+          yellowCards: 3
         },
         {
           id: 22912518,
+          slug: "florian-angerer-490737",
           firstName: "Florian",
           lastName: "Angerer",
           position: "Abwehr",
@@ -88,10 +99,12 @@ window.tsvSquadData = {
           goals: 1,
           flags: [],
           age: 31,
-          imageUrl: "https://image.fupa.net/player/B6MovWSTWNfA/"
+          imageUrl: "https://image.fupa.net/player/B6MovWSTWNfA/",
+          yellowCards: 0
         },
         {
           id: 23876549,
+          slug: "martin-bauer-25332",
           firstName: "Martin",
           lastName: "Bauer",
           position: "Abwehr",
@@ -100,10 +113,12 @@ window.tsvSquadData = {
           goals: 1,
           flags: [],
           age: 35,
-          imageUrl: "https://image.fupa.net/player/pzGb0PGI24aM/"
+          imageUrl: "https://image.fupa.net/player/pzGb0PGI24aM/",
+          yellowCards: 1
         },
         {
           id: 24158742,
+          slug: "sven-grosshauser-2188489",
           firstName: "Sven",
           lastName: "Großhauser",
           position: "Abwehr",
@@ -114,10 +129,12 @@ window.tsvSquadData = {
             "new"
           ],
           age: 20,
-          imageUrl: "https://image.fupa.net/player/f9p8kcYelk8b/"
+          imageUrl: "https://image.fupa.net/player/f9p8kcYelk8b/",
+          yellowCards: 0
         },
         {
           id: 23930560,
+          slug: "florian-hensolt-446456",
           firstName: "Florian",
           lastName: "Hensolt",
           position: "Abwehr",
@@ -126,10 +143,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 32,
-          imageUrl: "https://image.fupa.net/player/OKKsunKvilgu/"
+          imageUrl: "https://image.fupa.net/player/OKKsunKvilgu/",
+          yellowCards: 0
         },
         {
           id: 22912522,
+          slug: "jonas-meyer-1272329",
           firstName: "Jonas",
           lastName: "Meyer",
           position: "Abwehr",
@@ -138,10 +157,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 25,
-          imageUrl: "https://image.fupa.net/player/87Uybr9gtyRb/"
+          imageUrl: "https://image.fupa.net/player/87Uybr9gtyRb/",
+          yellowCards: 0
         },
         {
           id: 24263645,
+          slug: "felix-schmidt-379378",
           firstName: "Felix",
           lastName: "Schmidt",
           position: "Abwehr",
@@ -152,10 +173,12 @@ window.tsvSquadData = {
             "new"
           ],
           age: 34,
-          imageUrl: "https://image.fupa.net/player/psCGs1GRIaJU/"
+          imageUrl: "https://image.fupa.net/player/psCGs1GRIaJU/",
+          yellowCards: 0
         },
         {
           id: 22912515,
+          slug: "dennis-schroeppel-446476",
           firstName: "Dennis",
           lastName: "Schröppel",
           position: "Abwehr",
@@ -164,10 +187,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 30,
-          imageUrl: "https://image.fupa.net/player/i2V87gpRuRu4/"
+          imageUrl: "https://image.fupa.net/player/i2V87gpRuRu4/",
+          yellowCards: 7
         },
         {
           id: 23766306,
+          slug: "michael-seitz-179998",
           firstName: "Michael",
           lastName: "Seitz",
           position: "Abwehr",
@@ -176,10 +201,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 37,
-          imageUrl: "https://image.fupa.net/player/xsLtdyId1huZ/"
+          imageUrl: "https://image.fupa.net/player/xsLtdyId1huZ/",
+          yellowCards: 0
         },
         {
           id: 22912519,
+          slug: "hannes-sitta-490765",
           firstName: "Hannes",
           lastName: "Sitta",
           position: "Abwehr",
@@ -188,10 +215,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 29,
-          imageUrl: "https://image.fupa.net/player/XNq2qEv3xKj0/"
+          imageUrl: "https://image.fupa.net/player/XNq2qEv3xKj0/",
+          yellowCards: 0
         },
         {
           id: 23876554,
+          slug: "reinhard-steinhoff-2426849",
           firstName: "Reinhard",
           lastName: "Steinhoff",
           position: "Abwehr",
@@ -200,10 +229,12 @@ window.tsvSquadData = {
           goals: 2,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/PVoBA3Y0y8ix/"
+          imageUrl: "https://image.fupa.net/player/PVoBA3Y0y8ix/",
+          yellowCards: 0
         },
         {
           id: 23766320,
+          slug: "markus-strassner-979156",
           firstName: "Markus",
           lastName: "Straßner",
           position: "Abwehr",
@@ -212,10 +243,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 29,
-          imageUrl: "https://image.fupa.net/player/K1kBuOat6XFS/"
+          imageUrl: "https://image.fupa.net/player/K1kBuOat6XFS/",
+          yellowCards: 0
         },
         {
           id: 22912527,
+          slug: "benjamin-taglieber-1484000",
           firstName: "Benjamin",
           lastName: "Taglieber",
           position: "Abwehr",
@@ -224,10 +257,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 26,
-          imageUrl: "https://image.fupa.net/player/U8YOFMSas8PA/"
+          imageUrl: "https://image.fupa.net/player/U8YOFMSas8PA/",
+          yellowCards: 6
         },
         {
           id: 23888201,
+          slug: "luis-tremmel-2365356",
           firstName: "Luis",
           lastName: "Tremmel",
           position: "Abwehr",
@@ -236,10 +271,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/3FcWKCuQ3oSk/"
+          imageUrl: "https://image.fupa.net/player/3FcWKCuQ3oSk/",
+          yellowCards: 1
         },
         {
           id: 22912525,
+          slug: "simon-wiedemann-1913958",
           firstName: "Simon",
           lastName: "Wiedemann",
           position: "Abwehr",
@@ -248,10 +285,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 23,
-          imageUrl: "https://image.fupa.net/player/edroiFk1cyLu/"
+          imageUrl: "https://image.fupa.net/player/edroiFk1cyLu/",
+          yellowCards: 0
         },
         {
           id: 23793846,
+          slug: "thomas-eberle-446465",
           firstName: "Thomas",
           lastName: "Eberle",
           position: "Mittelfeld",
@@ -260,10 +299,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 38,
-          imageUrl: "https://image.fupa.net/player/r7H9hLPYRN9t/"
+          imageUrl: "https://image.fupa.net/player/r7H9hLPYRN9t/",
+          yellowCards: 0
         },
         {
           id: 22912532,
+          slug: "silvan-egner-485772",
           firstName: "Silvan",
           lastName: "Egner",
           position: "Mittelfeld",
@@ -272,10 +313,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 29,
-          imageUrl: "https://image.fupa.net/player/rdu8ocLq0xrB/"
+          imageUrl: "https://image.fupa.net/player/rdu8ocLq0xrB/",
+          yellowCards: 0
         },
         {
           id: 24158750,
+          slug: "maximilian-haas-1788604",
           firstName: "Maximilian",
           lastName: "Haas",
           position: "Mittelfeld",
@@ -284,10 +327,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 24,
-          imageUrl: "https://image.fupa.net/player/sWpostsVsvgB/"
+          imageUrl: "https://image.fupa.net/player/sWpostsVsvgB/",
+          yellowCards: 0
         },
         {
           id: 22912520,
+          slug: "nico-hensolt-108824",
           firstName: "Nico",
           lastName: "Hensolt",
           position: "Mittelfeld",
@@ -296,10 +341,12 @@ window.tsvSquadData = {
           goals: 11,
           flags: [],
           age: 34,
-          imageUrl: "https://image.fupa.net/player/UvsX5ItV5EjK/"
+          imageUrl: "https://image.fupa.net/player/UvsX5ItV5EjK/",
+          yellowCards: 3
         },
         {
           id: 22912533,
+          slug: "david-hertle-196590",
           firstName: "David",
           lastName: "Hertle",
           position: "Mittelfeld",
@@ -308,10 +355,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 34,
-          imageUrl: "https://image.fupa.net/player/2T8fRkQ9qpdU/"
+          imageUrl: "https://image.fupa.net/player/2T8fRkQ9qpdU/",
+          yellowCards: 0
         },
         {
           id: 22912536,
+          slug: "silvan-hertle-179994",
           firstName: "Silvan",
           lastName: "Hertle",
           position: "Mittelfeld",
@@ -320,10 +369,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 41,
-          imageUrl: "https://image.fupa.net/player/xioCZmDrN9Ry/"
+          imageUrl: "https://image.fupa.net/player/xioCZmDrN9Ry/",
+          yellowCards: 0
         },
         {
           id: 22912514,
+          slug: "martin-hoffmann-350462",
           firstName: "Martin",
           lastName: "Hoffmann",
           position: "Mittelfeld",
@@ -332,10 +383,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 32,
-          imageUrl: "https://image.fupa.net/player/t5rand7jG9Of/"
+          imageUrl: "https://image.fupa.net/player/t5rand7jG9Of/",
+          yellowCards: 3
         },
         {
           id: 22912528,
+          slug: "tolga-kahveci-78585",
           firstName: "Tolga",
           lastName: "Kahveci",
           position: "Mittelfeld",
@@ -344,10 +397,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 30,
-          imageUrl: "https://image.fupa.net/player/yATiDSchGz4n/"
+          imageUrl: "https://image.fupa.net/player/yATiDSchGz4n/",
+          yellowCards: 0
         },
         {
           id: 22912513,
+          slug: "nico-leister-179995",
           firstName: "Nico",
           lastName: "Leister",
           position: "Mittelfeld",
@@ -356,10 +411,12 @@ window.tsvSquadData = {
           goals: 10,
           flags: [],
           age: 31,
-          imageUrl: "https://image.fupa.net/player/NHGZwWK7iTIZ/"
+          imageUrl: "https://image.fupa.net/player/NHGZwWK7iTIZ/",
+          yellowCards: 10
         },
         {
           id: 24196503,
+          slug: "hannes-meyer-2071267",
           firstName: "Hannes",
           lastName: "Meyer",
           position: "Mittelfeld",
@@ -368,10 +425,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/tltkA3rh9xOJ/"
+          imageUrl: "https://image.fupa.net/player/tltkA3rh9xOJ/",
+          yellowCards: 0
         },
         {
           id: 23832562,
+          slug: "jannick-schwemmer-977973",
           firstName: "Jannick",
           lastName: "Schwemmer",
           position: "Mittelfeld",
@@ -380,10 +439,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 29,
-          imageUrl: "https://image.fupa.net/player/nBvZ9D2lXxnG/"
+          imageUrl: "https://image.fupa.net/player/nBvZ9D2lXxnG/",
+          yellowCards: 0
         },
         {
           id: 22912521,
+          slug: "luca-stropek-1518313",
           firstName: "Luca",
           lastName: "Stropek",
           position: "Mittelfeld",
@@ -392,10 +453,12 @@ window.tsvSquadData = {
           goals: 13,
           flags: [],
           age: 26,
-          imageUrl: "https://image.fupa.net/player/ia55QkyqCBVS/"
+          imageUrl: "https://image.fupa.net/player/ia55QkyqCBVS/",
+          yellowCards: 3
         },
         {
           id: 22912534,
+          slug: "garibaldi-ueschner-2346918",
           firstName: "Garibaldi",
           lastName: "Üschner",
           position: "Mittelfeld",
@@ -404,10 +467,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/"
+          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
+          yellowCards: 0
         },
         {
           id: 22912529,
+          slug: "nv-jonas-babel-2188485",
           firstName: "Jonas",
           lastName: "Babel",
           position: "Angriff",
@@ -416,10 +481,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 27,
-          imageUrl: "https://image.fupa.net/player/oyp9R2gd1iXL/"
+          imageUrl: "https://image.fupa.net/player/oyp9R2gd1iXL/",
+          yellowCards: 0
         },
         {
           id: 22912516,
+          slug: "jannik-gramm-497501",
           firstName: "Jannik",
           lastName: "Gramm",
           position: "Angriff",
@@ -428,10 +495,12 @@ window.tsvSquadData = {
           goals: 1,
           flags: [],
           age: 30,
-          imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/"
+          imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/",
+          yellowCards: 6
         },
         {
           id: 23766317,
+          slug: "johannes-gruen-2240299",
           firstName: "Johannes",
           lastName: "Grün",
           position: "Angriff",
@@ -440,10 +509,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 22,
-          imageUrl: "https://image.fupa.net/player/kEhGlJIy7VaA/"
+          imageUrl: "https://image.fupa.net/player/kEhGlJIy7VaA/",
+          yellowCards: 0
         },
         {
           id: 22912530,
+          slug: "daniel-hensolt-112807",
           firstName: "Daniel",
           lastName: "Hensolt",
           position: "Angriff",
@@ -452,10 +523,12 @@ window.tsvSquadData = {
           goals: 7,
           flags: [],
           age: 34,
-          imageUrl: "https://image.fupa.net/player/RZs3hqECiXOK/"
+          imageUrl: "https://image.fupa.net/player/RZs3hqECiXOK/",
+          yellowCards: 1
         },
         {
           id: 24513360,
+          slug: "simon-meyer-2438423",
           firstName: "Simon",
           lastName: "Meyer",
           position: "Angriff",
@@ -464,10 +537,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 23,
-          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/"
+          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
+          yellowCards: 0
         },
         {
           id: 23818598,
+          slug: "milos-pesut-1130534",
           firstName: "Milos",
           lastName: "Pesut",
           position: "Angriff",
@@ -477,12 +552,14 @@ window.tsvSquadData = {
           flags: [],
           age: null,
           imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/",
-          hideImage: true
+          hideImage: true,
+          yellowCards: 0
         }
       ],
       staff: [
         {
           id: 22912511,
+          slug: "hans-golder-532156",
           firstName: "Hans",
           lastName: "Golder",
           role: "Trainer",
@@ -491,6 +568,7 @@ window.tsvSquadData = {
         },
         {
           id: 22912512,
+          slug: "hannes-sitta-490765",
           firstName: "Hannes",
           lastName: "Sitta",
           role: "Spielender Co-Trainer",
@@ -499,6 +577,7 @@ window.tsvSquadData = {
         },
         {
           id: 22912510,
+          slug: "nv-antonio-aglieri-rinella-362054",
           firstName: "Antonio",
           lastName: "Aglieri Rinella",
           role: "Physiotherapeut",
@@ -507,6 +586,7 @@ window.tsvSquadData = {
         },
         {
           id: 22912508,
+          slug: "timo-haffelt-446462",
           firstName: "Timo",
           lastName: "Haffelt",
           role: "Sportlicher Leiter",
@@ -515,6 +595,7 @@ window.tsvSquadData = {
         },
         {
           id: 22912509,
+          slug: "nv-holger-meyr-446469",
           firstName: "Holger",
           lastName: "Meyr",
           role: "Sportlicher Leiter",
@@ -542,6 +623,7 @@ window.tsvSquadData = {
       players: [
         {
           id: 22918365,
+          slug: "nv-yannic-bederke-1578512",
           firstName: "Yannic",
           lastName: "Bederke",
           position: "Torwart",
@@ -550,10 +632,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 25,
-          imageUrl: "https://image.fupa.net/player/1FzEc8cJ5nbe/"
+          imageUrl: "https://image.fupa.net/player/1FzEc8cJ5nbe/",
+          yellowCards: 0
         },
         {
           id: 22918351,
+          slug: "tobias-hoffmann-446453",
           firstName: "Tobias",
           lastName: "Hoffmann",
           position: "Torwart",
@@ -562,10 +646,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 34,
-          imageUrl: "https://image.fupa.net/player/7RGg4VAzVof5/"
+          imageUrl: "https://image.fupa.net/player/7RGg4VAzVof5/",
+          yellowCards: 1
         },
         {
           id: 22918374,
+          slug: "nv-daniel-neuf-2013794",
           firstName: "Daniel",
           lastName: "Neuf",
           position: "Torwart",
@@ -574,10 +660,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/UwoPq0Eo8950/"
+          imageUrl: "https://image.fupa.net/player/UwoPq0Eo8950/",
+          yellowCards: 0
         },
         {
           id: 22918361,
+          slug: "martin-bauer-25332",
           firstName: "Martin",
           lastName: "Bauer",
           position: "Abwehr",
@@ -586,10 +674,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 35,
-          imageUrl: "https://image.fupa.net/player/pzGb0PGI24aM/"
+          imageUrl: "https://image.fupa.net/player/pzGb0PGI24aM/",
+          yellowCards: 0
         },
         {
           id: 22918364,
+          slug: "nv-jakob-friedel-2188491",
           firstName: "Jakob",
           lastName: "Friedel",
           position: "Abwehr",
@@ -598,10 +688,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 20,
-          imageUrl: "https://image.fupa.net/player/tgn1Zjs4AiPh/"
+          imageUrl: "https://image.fupa.net/player/tgn1Zjs4AiPh/",
+          yellowCards: 0
         },
         {
           id: 22918363,
+          slug: "sven-grosshauser-2188489",
           firstName: "Sven",
           lastName: "Großhauser",
           position: "Abwehr",
@@ -610,10 +702,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 20,
-          imageUrl: "https://image.fupa.net/player/f9p8kcYelk8b/"
+          imageUrl: "https://image.fupa.net/player/f9p8kcYelk8b/",
+          yellowCards: 0
         },
         {
           id: 22918372,
+          slug: "stefan-randi-180196",
           firstName: "Stefan",
           lastName: "Randi",
           position: "Abwehr",
@@ -622,10 +716,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 34,
-          imageUrl: "https://image.fupa.net/player/2lJhGKIJi51y/"
+          imageUrl: "https://image.fupa.net/player/2lJhGKIJi51y/",
+          yellowCards: 0
         },
         {
           id: 22918355,
+          slug: "michael-seitz-179998",
           firstName: "Michael",
           lastName: "Seitz",
           position: "Abwehr",
@@ -634,10 +730,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 37,
-          imageUrl: "https://image.fupa.net/player/xsLtdyId1huZ/"
+          imageUrl: "https://image.fupa.net/player/xsLtdyId1huZ/",
+          yellowCards: 0
         },
         {
           id: 22918377,
+          slug: "reinhard-steinhoff-2426849",
           firstName: "Reinhard",
           lastName: "Steinhoff",
           position: "Abwehr",
@@ -646,10 +744,12 @@ window.tsvSquadData = {
           goals: 1,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/PVoBA3Y0y8ix/"
+          imageUrl: "https://image.fupa.net/player/PVoBA3Y0y8ix/",
+          yellowCards: 2
         },
         {
           id: 22918350,
+          slug: "markus-strassner-979156",
           firstName: "Markus",
           lastName: "Straßner",
           position: "Abwehr",
@@ -658,10 +758,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 29,
-          imageUrl: "https://image.fupa.net/player/K1kBuOat6XFS/"
+          imageUrl: "https://image.fupa.net/player/K1kBuOat6XFS/",
+          yellowCards: 0
         },
         {
           id: 22918367,
+          slug: "nv-daniel-taglieber-955583",
           firstName: "Daniel",
           lastName: "Taglieber",
           position: "Abwehr",
@@ -670,10 +772,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 28,
-          imageUrl: "https://image.fupa.net/player/VEEUAj0mMeo3/"
+          imageUrl: "https://image.fupa.net/player/VEEUAj0mMeo3/",
+          yellowCards: 0
         },
         {
           id: 22918376,
+          slug: "luis-tremmel-2365356",
           firstName: "Luis",
           lastName: "Tremmel",
           position: "Abwehr",
@@ -682,10 +786,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/3FcWKCuQ3oSk/"
+          imageUrl: "https://image.fupa.net/player/3FcWKCuQ3oSk/",
+          yellowCards: 0
         },
         {
           id: 24217078,
+          slug: "simon-wiedemann-1913958",
           firstName: "Simon",
           lastName: "Wiedemann",
           position: "Abwehr",
@@ -696,10 +802,12 @@ window.tsvSquadData = {
             "new"
           ],
           age: 23,
-          imageUrl: "https://image.fupa.net/player/edroiFk1cyLu/"
+          imageUrl: "https://image.fupa.net/player/edroiFk1cyLu/",
+          yellowCards: 0
         },
         {
           id: 22918356,
+          slug: "silvan-egner-485772",
           firstName: "Silvan",
           lastName: "Egner",
           position: "Mittelfeld",
@@ -708,10 +816,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 29,
-          imageUrl: "https://image.fupa.net/player/rdu8ocLq0xrB/"
+          imageUrl: "https://image.fupa.net/player/rdu8ocLq0xrB/",
+          yellowCards: 0
         },
         {
           id: 22918357,
+          slug: "maximilian-haas-1788604",
           firstName: "Maximilian",
           lastName: "Haas",
           position: "Mittelfeld",
@@ -720,10 +830,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 24,
-          imageUrl: "https://image.fupa.net/player/sWpostsVsvgB/"
+          imageUrl: "https://image.fupa.net/player/sWpostsVsvgB/",
+          yellowCards: 0
         },
         {
           id: 22918366,
+          slug: "nico-hensolt-108824",
           firstName: "Nico",
           lastName: "Hensolt",
           position: "Mittelfeld",
@@ -732,10 +844,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 34,
-          imageUrl: "https://image.fupa.net/player/UvsX5ItV5EjK/"
+          imageUrl: "https://image.fupa.net/player/UvsX5ItV5EjK/",
+          yellowCards: 0
         },
         {
           id: 22918349,
+          slug: "silvan-hertle-179994",
           firstName: "Silvan",
           lastName: "Hertle",
           position: "Mittelfeld",
@@ -744,10 +858,12 @@ window.tsvSquadData = {
           goals: 1,
           flags: [],
           age: 41,
-          imageUrl: "https://image.fupa.net/player/xioCZmDrN9Ry/"
+          imageUrl: "https://image.fupa.net/player/xioCZmDrN9Ry/",
+          yellowCards: 0
         },
         {
           id: 22918371,
+          slug: "nv-enrike-just-2193316",
           firstName: "Enrike",
           lastName: "Just",
           position: "Mittelfeld",
@@ -756,10 +872,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/2XXzSq8yq06t/"
+          imageUrl: "https://image.fupa.net/player/2XXzSq8yq06t/",
+          yellowCards: 0
         },
         {
           id: 22918375,
+          slug: "tolga-kahveci-78585",
           firstName: "Tolga",
           lastName: "Kahveci",
           position: "Mittelfeld",
@@ -768,10 +886,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 30,
-          imageUrl: "https://image.fupa.net/player/yATiDSchGz4n/"
+          imageUrl: "https://image.fupa.net/player/yATiDSchGz4n/",
+          yellowCards: 0
         },
         {
           id: 22918379,
+          slug: "nico-leister-179995",
           firstName: "Nico",
           lastName: "Leister",
           position: "Mittelfeld",
@@ -780,10 +900,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 31,
-          imageUrl: "https://image.fupa.net/player/NHGZwWK7iTIZ/"
+          imageUrl: "https://image.fupa.net/player/NHGZwWK7iTIZ/",
+          yellowCards: 0
         },
         {
           id: 22918380,
+          slug: "matthias-marx-1639593",
           firstName: "Matthias",
           lastName: "Marx",
           position: "Mittelfeld",
@@ -792,10 +914,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 25,
-          imageUrl: "https://image.fupa.net/player/1ythLl3TRhE4/"
+          imageUrl: "https://image.fupa.net/player/1ythLl3TRhE4/",
+          yellowCards: 0
         },
         {
           id: 22918360,
+          slug: "hannes-meyer-2071267",
           firstName: "Hannes",
           lastName: "Meyer",
           position: "Mittelfeld",
@@ -804,10 +928,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/tltkA3rh9xOJ/"
+          imageUrl: "https://image.fupa.net/player/tltkA3rh9xOJ/",
+          yellowCards: 1
         },
         {
           id: 22918354,
+          slug: "nv-daniel-oesterle-175821",
           firstName: "Daniel",
           lastName: "Oesterle",
           position: "Mittelfeld",
@@ -816,10 +942,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 38,
-          imageUrl: "https://image.fupa.net/player/GYLDnPyJEvgm/"
+          imageUrl: "https://image.fupa.net/player/GYLDnPyJEvgm/",
+          yellowCards: 0
         },
         {
           id: 22918358,
+          slug: "nv-stefan-reichert-490745",
           firstName: "Stefan",
           lastName: "Reichert",
           position: "Mittelfeld",
@@ -828,10 +956,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 35,
-          imageUrl: "https://image.fupa.net/player/OWGsZeMRx9fC/"
+          imageUrl: "https://image.fupa.net/player/OWGsZeMRx9fC/",
+          yellowCards: 0
         },
         {
           id: 22918353,
+          slug: "leon-seefried-1310773",
           firstName: "Leon",
           lastName: "Seefried",
           position: "Mittelfeld",
@@ -840,10 +970,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 27,
-          imageUrl: "https://image.fupa.net/player/AYVVnG7hPQJW/"
+          imageUrl: "https://image.fupa.net/player/AYVVnG7hPQJW/",
+          yellowCards: 0
         },
         {
           id: 22918373,
+          slug: "garibaldi-ueschner-2346918",
           firstName: "Garibaldi",
           lastName: "Üschner",
           position: "Mittelfeld",
@@ -852,10 +984,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: null,
-          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/"
+          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
+          yellowCards: 0
         },
         {
           id: 22918368,
+          slug: "nv-daniel-wiedemann-2240298",
           firstName: "Daniel",
           lastName: "Wiedemann",
           position: "Mittelfeld",
@@ -864,10 +998,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 28,
-          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/"
+          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
+          yellowCards: 0
         },
         {
           id: 22918362,
+          slug: "nv-jonas-babel-2188485",
           firstName: "Jonas",
           lastName: "Babel",
           position: "Angriff",
@@ -876,10 +1012,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 27,
-          imageUrl: "https://image.fupa.net/player/oyp9R2gd1iXL/"
+          imageUrl: "https://image.fupa.net/player/oyp9R2gd1iXL/",
+          yellowCards: 0
         },
         {
           id: 22918352,
+          slug: "jannik-gramm-497501",
           firstName: "Jannik",
           lastName: "Gramm",
           position: "Angriff",
@@ -888,10 +1026,12 @@ window.tsvSquadData = {
           goals: 1,
           flags: [],
           age: 30,
-          imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/"
+          imageUrl: "https://image.fupa.net/player/96zo0sWPSF2n/",
+          yellowCards: 0
         },
         {
           id: 22918369,
+          slug: "johannes-gruen-2240299",
           firstName: "Johannes",
           lastName: "Grün",
           position: "Angriff",
@@ -900,10 +1040,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 22,
-          imageUrl: "https://image.fupa.net/player/kEhGlJIy7VaA/"
+          imageUrl: "https://image.fupa.net/player/kEhGlJIy7VaA/",
+          yellowCards: 0
         },
         {
           id: 22918370,
+          slug: "daniel-hensolt-112807",
           firstName: "Daniel",
           lastName: "Hensolt",
           position: "Angriff",
@@ -912,10 +1054,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 34,
-          imageUrl: "https://image.fupa.net/player/RZs3hqECiXOK/"
+          imageUrl: "https://image.fupa.net/player/RZs3hqECiXOK/",
+          yellowCards: 0
         },
         {
           id: 22918378,
+          slug: "simon-meyer-2438423",
           firstName: "Simon",
           lastName: "Meyer",
           position: "Angriff",
@@ -924,10 +1068,12 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 23,
-          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/"
+          imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
+          yellowCards: 0
         },
         {
           id: 24181783,
+          slug: "milos-pesut-1130534",
           firstName: "Milos",
           lastName: "Pesut",
           position: "Angriff",
@@ -939,10 +1085,12 @@ window.tsvSquadData = {
           ],
           age: null,
           imageUrl: "https://image.fupa.net/player/6pxKXYYOFU0I/",
-          hideImage: true
+          hideImage: true,
+          yellowCards: 0
         },
         {
           id: 22918359,
+          slug: "christoph-seitz-293972",
           firstName: "Christoph",
           lastName: "Seitz",
           position: "Angriff",
@@ -951,12 +1099,14 @@ window.tsvSquadData = {
           goals: 0,
           flags: [],
           age: 33,
-          imageUrl: "https://image.fupa.net/player/9Y7qdRHRTSTj/"
+          imageUrl: "https://image.fupa.net/player/9Y7qdRHRTSTj/",
+          yellowCards: 0
         }
       ],
       staff: [
         {
           id: 22918346,
+          slug: "daniel-fackler-446463",
           firstName: "Daniel",
           lastName: "Fackler",
           role: "Trainer",
@@ -965,6 +1115,7 @@ window.tsvSquadData = {
         },
         {
           id: 22918347,
+          slug: "stefan-randi-180196",
           firstName: "Stefan",
           lastName: "Randi",
           role: "Trainer",
@@ -973,6 +1124,7 @@ window.tsvSquadData = {
         },
         {
           id: 22918348,
+          slug: "nv-antonio-aglieri-rinella-362054",
           firstName: "Antonio",
           lastName: "Aglieri Rinella",
           role: "Physiotherapeut",

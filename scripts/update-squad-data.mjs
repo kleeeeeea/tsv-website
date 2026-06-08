@@ -48,6 +48,9 @@ const TEAM_CONFIG = {
   },
 };
 
+const PLAYER_PAGE_BASE = "https://www.fupa.net/player/";
+const PLAYER_FETCH_CONCURRENCY = 5;
+
 const parseExistingSquadData = async () => {
   const source = await readFile(OUTPUT_PATH, "utf8");
   const sandbox = { window: {} };
@@ -187,6 +190,7 @@ const personExtrasById = (entries = []) =>
       .map((entry) => {
         const extras = { ...entry };
         delete extras.id;
+        delete extras.slug;
         delete extras.firstName;
         delete extras.lastName;
         delete extras.position;
@@ -194,6 +198,7 @@ const personExtrasById = (entries = []) =>
         delete extras.jerseyNumber;
         delete extras.matches;
         delete extras.goals;
+        delete extras.yellowCards;
         delete extras.flags;
         delete extras.age;
         delete extras.imageUrl;
@@ -206,7 +211,78 @@ const mergeExtras = (baseEntry, extrasMap) => {
   return extras && Object.keys(extras).length ? { ...baseEntry, ...extras } : baseEntry;
 };
 
-const buildTeam = ({ config, reduxData, existingTeam }) => {
+const playerProfileCache = new Map();
+
+const fetchPlayerPayloadSafe = async (slug) => {
+  if (!slug) {
+    return { reduxData: null, error: new Error("Missing player slug") };
+  }
+
+  if (playerProfileCache.has(slug)) {
+    return playerProfileCache.get(slug);
+  }
+
+  const request = fetchTeamPayloadSafe({
+    sourceUrl: `${PLAYER_PAGE_BASE}${slug}`,
+  });
+
+  playerProfileCache.set(slug, request);
+  return request;
+};
+
+const getPlayerSeasonEntries = (reduxData) => {
+  const playerPage = findDataHistoryEntry(reduxData, "PlayerPage");
+  return playerPage?.data?.playerRole?.seasons || [];
+};
+
+const findSeasonStatisticsForTeam = (seasonEntries, teamSlug) => {
+  const matchingSeason = seasonEntries.find((season) => season?.team?.slug === teamSlug);
+  return matchingSeason?.statistics || null;
+};
+
+const mapWithConcurrency = async (items, limit, mapper) => {
+  const results = new Array(items.length);
+  let index = 0;
+
+  const workers = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (index < items.length) {
+      const currentIndex = index;
+      index += 1;
+      results[currentIndex] = await mapper(items[currentIndex], currentIndex);
+    }
+  });
+
+  await Promise.all(workers);
+  return results;
+};
+
+const attachLiveYellowCards = async ({ players, teamSlug }) => {
+  return mapWithConcurrency(players, PLAYER_FETCH_CONCURRENCY, async (player) => {
+    if (!player?.slug) {
+      return player;
+    }
+
+    const { reduxData } = await fetchPlayerPayloadSafe(player.slug);
+
+    if (!reduxData) {
+      return player;
+    }
+
+    const seasonEntries = getPlayerSeasonEntries(reduxData);
+    const statistics = findSeasonStatisticsForTeam(seasonEntries, teamSlug);
+
+    if (!statistics || typeof statistics.yellowCard !== "number") {
+      return player;
+    }
+
+    return {
+      ...player,
+      yellowCards: statistics.yellowCard,
+    };
+  });
+};
+
+const buildTeam = async ({ config, reduxData, existingTeam }) => {
   const playersPage = findDataHistoryEntry(reduxData, config.sourceKey);
   const teamPage = findDataHistoryEntry(reduxData, config.teamPageKey);
 
@@ -222,6 +298,29 @@ const buildTeam = ({ config, reduxData, existingTeam }) => {
   const heroLead =
     `Der Kader basiert auf der FuPa-Teamseite ${heroLeadTeamName}, Stand ${TODAY}. ` +
     `Hier sieht man Spieler, Trainerteam und alle Daten gesammelt auf einer eigenen Seite.`;
+  const teamSlug = teamPage.slug;
+  const basePlayers = playersPage.data.players.map((player) =>
+    mergeExtras(
+      {
+        id: player.id,
+        slug: player.slug,
+        firstName: player.firstName,
+        lastName: player.lastName,
+        position: player.position,
+        jerseyNumber: player.jerseyNumber ?? null,
+        matches: player.matches ?? 0,
+        goals: player.goals ?? 0,
+        flags: Array.isArray(player.flags) ? player.flags : [],
+        age: player.age ?? null,
+        imageUrl: toImageUrl(player.image),
+      },
+      playerExtras
+    )
+  );
+  const players = await attachLiveYellowCards({
+    players: basePlayers,
+    teamSlug,
+  });
 
   return {
     key: config.key,
@@ -239,27 +338,12 @@ const buildTeam = ({ config, reduxData, existingTeam }) => {
     sectionTitle: config.sectionTitle,
     sectionLead: config.sectionLead,
     competition: competitionName,
-    players: playersPage.data.players.map((player) =>
-      mergeExtras(
-        {
-          id: player.id,
-          firstName: player.firstName,
-          lastName: player.lastName,
-          position: player.position,
-          jerseyNumber: player.jerseyNumber ?? null,
-          matches: player.matches ?? 0,
-          goals: player.goals ?? 0,
-          flags: Array.isArray(player.flags) ? player.flags : [],
-          age: player.age ?? null,
-          imageUrl: toImageUrl(player.image),
-        },
-        playerExtras
-      )
-    ),
+    players,
     staff: (playersPage.data.coaches || []).map((coach) =>
       mergeExtras(
         {
           id: coach.id,
+          slug: coach.slug,
           firstName: coach.firstName,
           lastName: coach.lastName,
           role: normalizeRole(coach.role),
@@ -304,7 +388,7 @@ const main = async () => {
   ]);
 
   const fallbackWarnings = [];
-  const buildTeamWithFallback = (config, result, existingTeam) => {
+  const buildTeamWithFallback = async (config, result, existingTeam) => {
     if (result.reduxData) {
       return buildTeam({
         config,
@@ -326,12 +410,12 @@ const main = async () => {
   const output = {
     defaultTeam: existingData?.defaultTeam || "team1",
     teams: {
-      team1: buildTeamWithFallback(
+      team1: await buildTeamWithFallback(
         TEAM_CONFIG.team1,
         team1Result,
         existingData?.teams?.team1
       ),
-      team2: buildTeamWithFallback(
+      team2: await buildTeamWithFallback(
         TEAM_CONFIG.team2,
         team2Result,
         existingData?.teams?.team2
