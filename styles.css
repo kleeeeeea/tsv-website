@@ -304,16 +304,16 @@ h3 {
 
 .floating-instagram-link {
   position: fixed;
-  right: 12px;
-  bottom: 12px;
+  right: 18px;
+  bottom: 18px;
   z-index: 30;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  min-width: 186px;
-  max-width: min(212px, calc(100vw - 20px));
-  padding: 10px 12px 10px 14px;
+  gap: 6px;
+  min-width: 172px;
+  max-width: min(194px, calc(100vw - 28px));
+  padding: 9px 10px 9px 12px;
   border-radius: 20px;
   background: rgba(250, 247, 242, 0.98);
   border: 1px solid rgba(193, 53, 132, 0.16);
@@ -328,7 +328,7 @@ h3 {
 
 .floating-instagram-copy {
   display: grid;
-  gap: 4px;
+  gap: 2px;
   position: relative;
   z-index: 1;
 }
@@ -340,22 +340,23 @@ h3 {
 
 .floating-instagram-ball {
   flex: 0 0 auto;
-  font-size: 2.65rem;
+  font-size: 2.4rem;
   line-height: 1;
   opacity: 1;
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.22)) saturate(1.05) contrast(1.05);
-  margin-right: -2px;
+  margin-right: -4px;
+  margin-left: -2px;
   animation: floating-instagram-ball-spin 9s linear infinite;
 }
 
 .floating-instagram-link strong {
-  font-size: 0.74rem;
+  font-size: 0.68rem;
   line-height: 1.2;
   color: var(--primary-dark);
 }
 
 .floating-instagram-kicker {
-  font-size: 0.96rem;
+  font-size: 0.88rem;
   font-weight: 800;
   letter-spacing: 0.01em;
   color: #833ab4;
@@ -3247,24 +3248,24 @@ h3 {
   }
 
   .floating-instagram-link {
-    right: 8px;
-    bottom: 8px;
-    gap: 8px;
+    right: 10px;
+    bottom: 10px;
+    gap: 6px;
     min-width: 0;
-    max-width: min(184px, calc(100vw - 16px));
-    padding: 8px 10px 8px 12px;
+    max-width: min(168px, calc(100vw - 20px));
+    padding: 7px 8px 7px 10px;
     border-radius: 18px;
   }
 
   .floating-instagram-link strong {
-    font-size: 0.66rem;
+    font-size: 0.6rem;
   }
 
   .floating-instagram-kicker {
-    font-size: 0.78rem;
+    font-size: 0.7rem;
   }
 
   .floating-instagram-ball {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }
