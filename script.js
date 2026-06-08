@@ -10,6 +10,27 @@ if (navToggle && nav) {
 
 const audioStateKey = "tsv-club-audio-state";
 
+const ensureInstagramNoticeUi = () => {
+  let link = document.querySelector("[data-instagram-floating-link]");
+
+  if (!link) {
+    link = document.createElement("a");
+    link.className = "floating-instagram-link";
+    link.href = "https://www.instagram.com/tsv_hainsfarth/";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.setAttribute("data-instagram-floating-link", "");
+    link.setAttribute("aria-label", "Instagram des TSV Hainsfarth mit aktuellen Infos öffnen");
+    link.innerHTML = `
+      <span class="floating-instagram-kicker">Instagram</span>
+      <strong>Neueste Infos immer aktuell</strong>
+    `;
+    document.body.appendChild(link);
+  }
+
+  return link;
+};
+
 const ensureClubAudioUi = () => {
   let audio = document.querySelector("[data-club-audio]");
   let toggle = document.querySelector("[data-audio-toggle]");
@@ -39,6 +60,7 @@ const ensureClubAudioUi = () => {
   return { audio, toggle };
 };
 
+ensureInstagramNoticeUi();
 const { audio: clubAudio, toggle: audioToggle } = ensureClubAudioUi();
 
 if (audioToggle && clubAudio) {
