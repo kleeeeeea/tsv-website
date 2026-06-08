@@ -422,25 +422,48 @@ h3 {
 }
 
 .hero-logo-shell {
-  width: min(220px, 52%);
+  width: min(236px, 56%);
   margin-top: auto;
   align-self: flex-end;
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+  position: relative;
+  padding: 18px 18px 30px;
+  border-radius: 26px 26px 34px 34px;
+  background: linear-gradient(180deg, rgba(117, 190, 239, 0.98), rgba(49, 138, 205, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  clip-path: polygon(0 0, 100% 0, 100% 82%, 66% 82%, 50% 100%, 34% 82%, 0 82%);
+  box-shadow:
+    0 20px 34px rgba(9, 45, 78, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26);
+}
+
+.hero-logo-shell::before {
+  content: "";
+  position: absolute;
+  inset: 12px 18px auto;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.18));
+}
+
+.hero-logo-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 42%, rgba(9, 45, 78, 0.08));
+  pointer-events: none;
 }
 
 .hero-logo {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 26px;
+  position: relative;
+  z-index: 1;
+  border-radius: 22px;
   background: rgba(255, 255, 255, 0.98);
   box-shadow:
-    0 18px 30px rgba(9, 45, 78, 0.12),
-    0 0 0 1px rgba(255, 255, 255, 0.32);
+    0 14px 24px rgba(9, 45, 78, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.34);
   filter: none;
 }
 
@@ -2516,11 +2539,13 @@ h3 {
   }
 
   .hero-logo-shell {
-    width: min(148px, 44%);
+    width: min(164px, 46%);
+    padding: 12px 12px 20px;
+    border-radius: 22px 22px 28px 28px;
   }
 
   .hero-logo {
-    border-radius: 22px;
+    border-radius: 18px;
   }
 
   .lead {
@@ -3081,11 +3106,13 @@ h3 {
   }
 
   .hero-logo-shell {
-    width: min(122px, 42%);
+    width: min(136px, 44%);
+    padding: 10px 10px 16px;
+    border-radius: 18px 18px 24px 24px;
   }
 
   .hero-logo {
-    border-radius: 18px;
+    border-radius: 14px;
   }
 
   .matchday-shell,
