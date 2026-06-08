@@ -2495,12 +2495,12 @@ h3 {
 
   48% {
     opacity: 1;
-    transform: translate(84px, 0) scale(1);
+    transform: translate(10px, 0) scale(1);
   }
 
   100% {
     opacity: 1;
-    transform: translate(138px, 0) scale(1);
+    transform: translate(0, 0) scale(1);
   }
 }
 
