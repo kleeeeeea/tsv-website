@@ -304,8 +304,8 @@ h3 {
 
 .floating-instagram-link {
   position: fixed;
-  right: max(16px, calc((100vw - var(--max-width)) / 2 + 12px));
-  bottom: 18px;
+  right: 12px;
+  bottom: 12px;
   z-index: 30;
   display: inline-flex;
   align-items: center;
@@ -315,12 +315,10 @@ h3 {
   max-width: min(260px, calc(100vw - 24px));
   padding: 12px 14px 12px 16px;
   border-radius: 22px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(255, 236, 247, 0.98) 45%, rgba(244, 232, 255, 0.98)),
-    linear-gradient(135deg, rgba(245, 133, 41, 0.16), rgba(253, 29, 29, 0.18), rgba(193, 53, 132, 0.22), rgba(131, 58, 180, 0.22));
-  border: 1px solid rgba(193, 53, 132, 0.24);
+  background: rgba(250, 247, 242, 0.98);
+  border: 1px solid rgba(17, 130, 198, 0.18);
   box-shadow:
-    0 16px 28px rgba(19, 36, 58, 0.13),
+    0 16px 28px rgba(19, 36, 58, 0.14),
     0 0 0 1px rgba(255, 255, 255, 0.55) inset;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -344,8 +342,8 @@ h3 {
   flex: 0 0 auto;
   font-size: 3.15rem;
   line-height: 1;
-  opacity: 0.74;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.16));
+  opacity: 1;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.22)) saturate(1.05) contrast(1.05);
   margin-right: -2px;
 }
 
@@ -3238,8 +3236,8 @@ h3 {
   }
 
   .floating-instagram-link {
-    right: 12px;
-    bottom: 12px;
+    right: 10px;
+    bottom: 10px;
     gap: 10px;
     min-width: 0;
     max-width: min(220px, calc(100vw - 24px));
