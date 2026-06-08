@@ -2201,9 +2201,11 @@ h3 {
 .squad-spotlights {
   position: absolute;
   top: 14px;
-  left: -170px;
+  left: 12px;
+  right: 12px;
   display: grid;
-  gap: 10px;
+  justify-items: start;
+  gap: 8px;
   z-index: 4;
   pointer-events: none;
 }
@@ -2212,6 +2214,7 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  max-width: min(100%, 204px);
   filter: drop-shadow(0 10px 18px rgba(7, 34, 58, 0.18));
   transform-origin: left center;
   animation: squadYellowSpotlightFlyIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) 1 both;
@@ -2284,8 +2287,8 @@ h3 {
 .squad-spotlight-badge {
   display: grid;
   gap: 2px;
-  min-width: 156px;
-  padding: 10px 14px;
+  min-width: 0;
+  padding: 9px 12px;
   border-radius: 16px;
   background: rgba(255, 252, 240, 0.96);
   border: 1px solid rgba(231, 181, 32, 0.36);
@@ -2326,15 +2329,16 @@ h3 {
 }
 
 .squad-spotlight-badge strong {
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   line-height: 1.15;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .squad-spotlight-badge span {
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 900;
+  line-height: 1.2;
 }
 
 .squad-card--yellow-leader .squad-card-media::after {
