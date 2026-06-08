@@ -425,6 +425,10 @@ h3 {
   width: min(188px, 46%);
   margin-top: auto;
   align-self: flex-end;
+  padding: 10px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 28px rgba(9, 45, 78, 0.14);
   line-height: 0;
 }
 
@@ -433,7 +437,7 @@ h3 {
   height: auto;
   display: block;
   background: transparent;
-  box-shadow: 0 10px 22px rgba(9, 45, 78, 0.16);
+  box-shadow: none;
 }
 
 .hero-side h3,
@@ -2509,6 +2513,8 @@ h3 {
 
   .hero-logo-shell {
     width: min(138px, 42%);
+    padding: 8px;
+    border-radius: 18px;
   }
 
   .lead {
@@ -3070,6 +3076,8 @@ h3 {
 
   .hero-logo-shell {
     width: min(112px, 40%);
+    padding: 6px;
+    border-radius: 16px;
   }
 
   .matchday-shell,
