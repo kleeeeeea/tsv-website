@@ -304,8 +304,8 @@ h3 {
 
 .floating-instagram-link {
   position: fixed;
-  right: 18px;
-  bottom: 18px;
+  right: 28px;
+  bottom: 24px;
   z-index: 30;
   display: inline-flex;
   align-items: center;
@@ -3248,8 +3248,8 @@ h3 {
   }
 
   .floating-instagram-link {
-    right: 10px;
-    bottom: 10px;
+    right: 16px;
+    bottom: 16px;
     gap: 6px;
     min-width: 0;
     max-width: min(168px, calc(100vw - 20px));
