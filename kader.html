@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>TSV Hainsfarth | Kader</title>
-  <link rel="stylesheet" href="styles.css?v=202606082320">
+  <link rel="stylesheet" href="styles.css?v=202606082327">
 </head>
 <body>
   <div class="site-shell">
@@ -105,7 +105,7 @@
     const squadDataVersion = new Date().toISOString().slice(0, 13).replace(/[-:T]/g, "");
 
     loadKaderScript(`team-data.js?v=${squadDataVersion}`)
-      .then(() => loadKaderScript("script.js?v=202606082320"))
+      .then(() => loadKaderScript("script.js?v=202606082327"))
       .catch((error) => {
         console.error("Kaderdaten konnten nicht geladen werden.", error);
       });

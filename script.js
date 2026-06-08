@@ -1033,7 +1033,6 @@ if (squadData?.teams) {
 
             return `
               <span class="squad-spotlight squad-spotlight--${definition.className}" aria-label="${definition.title} laut FuPa: ${leader.count}" title="${definition.title} laut FuPa: ${leader.count}">
-                <span class="squad-spotlight-arrow" aria-hidden="true">➜</span>
                 <span class="squad-spotlight-badge">
                   <strong>${definition.title}</strong>
                   <span>${leader.count} ${definition.countLabel}</span>
@@ -1056,7 +1055,6 @@ if (squadData?.teams) {
           <article class="squad-card${leaderClasses ? ` ${leaderClasses}` : ""}">
             <div class="squad-card-media"${playerMediaStyle}>
               <span class="squad-card-logo" aria-hidden="true"></span>
-              ${spotlightMarkup}
               ${playerImage}
             </div>
             <div class="squad-card-body">
@@ -1068,6 +1066,7 @@ if (squadData?.teams) {
                 <span class="squad-number-badge">${formatNumber(player.jerseyNumber)}</span>
               </div>
               ${tags}
+              ${spotlightMarkup}
               <div class="squad-meta">
                 <span>${formatAge(player.age)}</span>
                 <span>${player.matches} Spiele</span>
