@@ -1034,8 +1034,7 @@ if (squadData?.teams) {
             return `
               <span class="squad-spotlight squad-spotlight--${definition.className}" aria-label="${definition.title} laut FuPa: ${leader.count}" title="${definition.title} laut FuPa: ${leader.count}">
                 <span class="squad-spotlight-badge">
-                  <strong>${definition.title}</strong>
-                  <span>${leader.count} ${definition.countLabel}</span>
+                  <span><strong>${definition.title}:</strong> ${leader.count}</span>
                 </span>
               </span>
             `;

@@ -2248,35 +2248,34 @@ h3 {
 
 .squad-spotlights {
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 12px;
+  left: 12px;
   right: 16px;
   display: grid;
   justify-items: start;
-  gap: 8px;
+  gap: 6px;
   z-index: 4;
   pointer-events: none;
 }
 
 .squad-spotlight {
   display: block;
-  max-width: min(100%, 188px);
+  max-width: min(100%, 178px);
   animation: squadYellowSpotlightFlyIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) 1 both;
 }
 
 .squad-spotlight-badge {
-  display: grid;
-  gap: 2px;
+  display: block;
   min-width: 0;
-  padding: 8px 11px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.68);
+  padding: 6px 9px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.58);
   border: 1px solid rgba(255, 255, 255, 0.42);
   color: var(--primary-dark);
-  backdrop-filter: blur(9px) saturate(1.02);
+  backdrop-filter: blur(7px) saturate(1.02);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    0 8px 18px rgba(7, 34, 58, 0.08);
+    0 6px 14px rgba(7, 34, 58, 0.07);
 }
 
 .squad-spotlight--yellow .squad-spotlight-badge {
@@ -2310,16 +2309,16 @@ h3 {
 }
 
 .squad-spotlight-badge strong {
-  font-size: 0.7rem;
-  line-height: 1.15;
-  letter-spacing: 0.06em;
+  font-size: 0.64rem;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .squad-spotlight-badge span {
-  font-size: 0.86rem;
+  font-size: 0.76rem;
   font-weight: 900;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .squad-card--yellow-leader .squad-card-media::after {
@@ -3074,13 +3073,13 @@ h3 {
   }
 
   .squad-spotlights {
-    top: 12px;
-    left: 12px;
+    top: 10px;
+    left: 10px;
     right: 12px;
   }
 
   .squad-spotlight-badge {
-    padding: 7px 10px;
+    padding: 5px 8px;
   }
 
   .squad-pitch {
