@@ -2198,6 +2198,25 @@ h3 {
   pointer-events: none;
 }
 
+.squad-yellow-card {
+  position: absolute;
+  top: 8px;
+  left: -18px;
+  z-index: 4;
+  font-size: 2rem;
+  line-height: 1;
+  filter:
+    drop-shadow(0 8px 16px rgba(246, 190, 37, 0.42))
+    drop-shadow(0 3px 6px rgba(7, 34, 58, 0.18));
+  transform-origin: center;
+  animation: squadYellowCardFlyIn 3.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  pointer-events: none;
+}
+
+.squad-card--yellow-leader .squad-card-media::after {
+  background: radial-gradient(circle, rgba(246, 190, 37, 0.24) 0%, rgba(7, 34, 58, 0) 74%);
+}
+
 .squad-card-media::before,
 .staff-card-media::before {
   content: "";
@@ -2240,6 +2259,13 @@ h3 {
   filter:
     drop-shadow(0 12px 16px rgba(255, 255, 255, 0.44))
     drop-shadow(0 24px 24px rgba(7, 34, 58, 0.18));
+}
+
+.squad-card--yellow-leader .squad-card-media img {
+  filter:
+    drop-shadow(0 12px 16px rgba(255, 255, 255, 0.44))
+    drop-shadow(0 24px 24px rgba(7, 34, 58, 0.18))
+    drop-shadow(0 0 14px rgba(246, 190, 37, 0.14));
 }
 
 .squad-card-body,
@@ -2327,6 +2353,43 @@ h3 {
 
 .staff-meta {
   margin-top: 16px;
+}
+
+@keyframes squadYellowCardFlyIn {
+  0% {
+    opacity: 0;
+    transform: translate(-26px, -18px) rotate(-28deg) scale(0.7);
+  }
+
+  14% {
+    opacity: 1;
+    transform: translate(18px, 10px) rotate(-8deg) scale(1.02);
+  }
+
+  28% {
+    opacity: 1;
+    transform: translate(92px, 56px) rotate(8deg) scale(1);
+  }
+
+  42% {
+    opacity: 1;
+    transform: translate(108px, 70px) rotate(2deg) scale(0.96);
+  }
+
+  58% {
+    opacity: 0.96;
+    transform: translate(104px, 66px) rotate(-1deg) scale(0.94);
+  }
+
+  76% {
+    opacity: 0;
+    transform: translate(136px, 102px) rotate(12deg) scale(0.74);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-26px, -18px) rotate(-28deg) scale(0.7);
+  }
 }
 
 @media (max-width: 960px) {

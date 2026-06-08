@@ -890,6 +890,7 @@ if (squadData?.teams) {
   };
   const cutoutOverrides = { ...cutoutManifest };
   const placeholderCutoutUrl = "images/kader/cutouts/Y1NfDiFUnwcn.png?v=20260407a";
+  const yellowCardLeaderIds = new Set([22912513]);
   const placeholderPlayers = new Set(["Felix Schmidt"]);
 
   const resolveImageUrl = (value) => {
@@ -955,11 +956,15 @@ if (squadData?.teams) {
           .join("");
         const playerImage = `<img src="${resolveDisplayImageUrl(player)}" alt="${formatName(player)}" loading="lazy" ${fallbackImageAttributes(player.imageUrl)}>`;
         const playerMediaStyle = ` ${asCssImage(player)}`;
+        const yellowCard = yellowCardLeaderIds.has(player.id)
+          ? '<span class="squad-yellow-card" aria-label="Meiste gelbe Karten laut FuPa" title="Meiste gelbe Karten laut FuPa">🟨</span>'
+          : "";
 
         return `
-          <article class="squad-card">
+          <article class="squad-card${yellowCard ? " squad-card--yellow-leader" : ""}">
             <div class="squad-card-media"${playerMediaStyle}>
               <span class="squad-card-logo" aria-hidden="true"></span>
+              ${yellowCard}
               ${playerImage}
             </div>
             <div class="squad-card-body">
