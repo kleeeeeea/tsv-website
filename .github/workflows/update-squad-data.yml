@@ -24,15 +24,18 @@ jobs:
       - name: Update FuPa squad snapshot
         run: node scripts/update-squad-data.mjs
 
+      - name: Update FuPa season statistics
+        run: node scripts/update-season-stats.mjs
+
       - name: Commit changes
         run: |
-          if git diff --quiet -- team-data.js; then
-            echo "No squad changes"
+          if git diff --quiet -- team-data.js verein.html; then
+            echo "No squad or season statistics changes"
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add team-data.js
-          git commit -m "chore: update squad data"
+          git add team-data.js verein.html
+          git commit -m "chore: update FuPa data"
           git push
