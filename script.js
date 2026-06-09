@@ -1011,14 +1011,12 @@ if (squadData?.teams) {
       key: "goals",
       className: "goals",
       title: "Meiste Tore",
-      countLabel: "Tore",
       leaderClass: "squad-card--goal-leader",
     },
     {
       key: "lowGoalsPerGame",
       className: "low-goals",
       title: "Wenigste Tore/Spiel",
-      countLabel: "",
       leaderClass: "squad-card--low-goals-leader",
       valueText: (leader) => leader.valueText,
     },
@@ -1026,35 +1024,30 @@ if (squadData?.teams) {
       key: "assists",
       className: "assists",
       title: "Meiste Assists",
-      countLabel: "Assists",
       leaderClass: "squad-card--assist-leader",
     },
     {
       key: "teamOfWeek",
       className: "team-of-week",
       title: "Elf der Woche",
-      countLabel: "Nominierungen",
       leaderClass: "squad-card--team-of-week-leader",
     },
     {
       key: "yellowCards",
       className: "yellow",
       title: "Meiste gelbe Karten",
-      countLabel: "Gelbe",
       leaderClass: "squad-card--yellow-leader",
     },
     {
       key: "yellowRedCards",
       className: "yellow-red",
       title: "Meiste gelb-rote Karten",
-      countLabel: "Gelb-Rote",
       leaderClass: "squad-card--yellow-red-leader",
     },
     {
       key: "redCards",
       className: "red",
       title: "Meiste rote Karten",
-      countLabel: "Rote",
       leaderClass: "squad-card--red-leader",
     },
   ];
@@ -1083,7 +1076,7 @@ if (squadData?.teams) {
 
             const valueText = typeof definition.valueText === "function"
               ? definition.valueText(leader, player)
-              : `${leader.count} ${definition.countLabel}`.trim();
+              : `${leader.count}`;
 
             return `
               <span class="squad-spotlight squad-spotlight--${definition.className}" aria-label="${definition.title} laut FuPa: ${leader.count}" title="${definition.title} laut FuPa: ${leader.count}">
