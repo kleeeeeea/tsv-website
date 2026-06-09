@@ -1019,6 +1019,7 @@ if (squadData?.teams) {
       title: "Wenigste Tore/Spiel",
       leaderClass: "squad-card--low-goals-leader",
       valueText: (leader) => leader.valueText,
+      allowZero: true,
     },
     {
       key: "assists",
@@ -1069,8 +1070,9 @@ if (squadData?.teams) {
         const spotlightBadges = leaderDefinitions
           .map((definition) => {
             const leader = statLeaders[definition.key];
+            const hasLeader = leader?.ids?.has(player.id) && (leader.count || definition.allowZero);
 
-            if (!leader?.ids?.has(player.id) || !leader.count) {
+            if (!hasLeader) {
               return "";
             }
 
@@ -1092,7 +1094,10 @@ if (squadData?.teams) {
           ? `<div class="squad-spotlights">${spotlightBadges.join("")}</div>`
           : "";
         const leaderClasses = leaderDefinitions
-          .filter((definition) => statLeaders[definition.key]?.ids?.has(player.id) && statLeaders[definition.key]?.count)
+          .filter((definition) => {
+            const leader = statLeaders[definition.key];
+            return leader?.ids?.has(player.id) && (leader.count || definition.allowZero);
+          })
           .map((definition) => definition.leaderClass)
           .filter(Boolean)
           .join(" ");
