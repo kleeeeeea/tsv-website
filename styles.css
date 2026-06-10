@@ -219,9 +219,9 @@ img {
 }
 
 .squad-hero-card .lead {
-  margin-top: 6px;
+  margin-top: 4px;
   font-size: 0.98rem;
-  line-height: 1.45;
+  line-height: 1.4;
   white-space: normal;
 }
 
@@ -232,7 +232,7 @@ img {
 .squad-hero-actions {
   align-items: center;
   gap: 14px 16px;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .squad-hero-switcher {
@@ -240,7 +240,7 @@ img {
 }
 
 .squad-hero-switcher .team-switcher-button {
-  min-height: 54px;
+  min-height: 52px;
   min-width: 172px;
   border-radius: 18px;
 }
