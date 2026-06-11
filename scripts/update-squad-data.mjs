@@ -438,7 +438,15 @@ const main = async () => {
 
   const fileContents = `window.tsvSquadData = ${serialize(output)};\n`;
   await writeFile(OUTPUT_PATH, fileContents);
-  await execFileAsync("python3", ["scripts/generate_player_cutouts.py"]);
+  try {
+    await execFileAsync("python3", ["scripts/generate_player_cutouts.py"]);
+  } catch (error) {
+    console.warn(
+      `Spieler-Cutouts konnten nicht aktualisiert werden, Squad-Daten bleiben trotzdem aktuell: ${
+        error?.message || error
+      }`
+    );
+  }
   if (fallbackWarnings.length) {
     console.warn(
       `FuPa voruebergehend nicht erreichbar, bestehende Daten weiterverwendet: ${fallbackWarnings.join(
