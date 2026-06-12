@@ -270,15 +270,25 @@ const renderRowsHtml = (rows) =>
 const updateVereinHtml = async () => {
   const { vereinSource, rows } = await buildRows();
   const rowsHtml = renderRowsHtml(rows);
+  const tablePattern =
+    /(<table class="stats-table">[\s\S]*?<tbody>)([\s\S]*?)(<\/tbody>[\s\S]*?<\/table>)/u;
+  const tableMatch = vereinSource.match(tablePattern);
 
-  const nextSource = vereinSource.replace(
-    /(<table class="stats-table">[\s\S]*?<tbody>)([\s\S]*?)(<\/tbody>[\s\S]*?<\/table>)/u,
-    `$1\n${rowsHtml}\n              $3`
-  );
-
-  if (nextSource === vereinSource) {
+  if (!tableMatch) {
     throw new Error("Could not replace season statistics rows in verein.html");
   }
+
+  const currentRowsMarkup = tableMatch[2].trim();
+
+  if (currentRowsMarkup === rowsHtml.trim()) {
+    console.log(`Season statistics already up to date with ${rows.length} FuPa seasons.`);
+    return;
+  }
+
+  const nextSource = vereinSource.replace(
+    tablePattern,
+    `$1\n${rowsHtml}\n              $3`
+  );
 
   await writeFile(VEREIN_PATH, nextSource);
   console.log(`Updated season statistics with ${rows.length} FuPa seasons.`);
