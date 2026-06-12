@@ -1076,6 +1076,10 @@ h3 {
   margin-top: 4px;
 }
 
+.countdown-timer.is-message {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .countdown-timer span {
   padding: 12px 14px;
   border-radius: 14px;
@@ -1086,12 +1090,22 @@ h3 {
   text-align: center;
 }
 
+.countdown-timer.is-message span {
+  padding: 16px 18px;
+  text-align: left;
+  line-height: 1.6;
+}
+
 .match-weather {
   grid-column: 1 / -1;
   padding: 14px 16px;
   border-radius: 16px;
   background: rgba(17, 130, 198, 0.05);
   border: 1px solid rgba(17, 130, 198, 0.12);
+}
+
+.match-weather[hidden] {
+  display: none;
 }
 
 .tip-game-card {

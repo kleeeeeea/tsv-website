@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
@@ -26,13 +26,13 @@ jobs:
 
       - name: Commit changes
         run: |
-          if git diff --quiet -- matchday-live.json; then
-            echo "No matchday changes"
+          if git diff --quiet -- matchday-live.json spielplan-tsv-hainsfarth.ics; then
+            echo "No matchday or calendar changes"
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add matchday-live.json
+          git add matchday-live.json spielplan-tsv-hainsfarth.ics
           git commit -m "chore: update matchday live data"
           git push

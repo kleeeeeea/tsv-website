@@ -48,6 +48,9 @@ if (countdownRoot) {
   const spotlightCompetitionNode = spotlightRoot?.querySelector("[data-matchday-competition]");
   const spotlightOpponentNode = spotlightRoot?.querySelector("[data-matchday-opponent]");
   const spotlightRouteNode = spotlightRoot?.querySelector("[data-matchday-route]");
+  const defaultRouteLabel = spotlightRouteNode?.textContent?.trim() || "Anfahrt";
+  const bfvScheduleHref =
+    "https://www.bfv.de/mannschaften/tsv-hainsfarth/016PHCS5TO000000VV0AG80NVUT1FLRU";
   const matchResultRoot = spotlightRoot?.querySelector("[data-match-result]");
   const matchResultLabelNode = spotlightRoot?.querySelector("[data-match-result-label]");
   const matchResultTextNode = spotlightRoot?.querySelector("[data-match-result-text]");
@@ -181,6 +184,21 @@ if (countdownRoot) {
     return `https://www.google.com/maps/dir/?api=1&destination=${routeQuery}&travelmode=driving&dir_action=navigate`;
   };
 
+  const setRouteAction = (href, label = defaultRouteLabel) => {
+    if (!spotlightRouteNode) {
+      return;
+    }
+
+    spotlightRouteNode.href = href;
+    spotlightRouteNode.textContent = label;
+  };
+
+  const setWeatherVisibility = (isVisible) => {
+    if (weatherRoot) {
+      weatherRoot.hidden = !isVisible;
+    }
+  };
+
   const weatherCodeMap = {
     0: "Klar",
     1: "Meist klar",
@@ -282,7 +300,7 @@ if (countdownRoot) {
     }
 
     if (spotlightRouteNode) {
-      spotlightRouteNode.href = buildRouteHref(event.location);
+      setRouteAction(buildRouteHref(event.location), defaultRouteLabel);
     }
   };
 
@@ -368,7 +386,9 @@ if (countdownRoot) {
     }
 
     if (timerNode) {
-      timerNode.innerHTML = "<span>Kein Countdown verfügbar</span>";
+      timerNode.classList.add("is-message");
+      timerNode.innerHTML =
+        "<span>Kalender derzeit nicht verfügbar. Bitte direkt den BFV-Spielplan prüfen.</span>";
     }
 
     if (spotlightBadgeNode) {
@@ -376,18 +396,17 @@ if (countdownRoot) {
     }
 
     if (spotlightCompetitionNode) {
-      spotlightCompetitionNode.textContent = "Kalender";
+      spotlightCompetitionNode.textContent = "BFV-Spielplan";
     }
 
     if (spotlightOpponentNode) {
-      spotlightOpponentNode.textContent = "TSV Hainsfarth vs. Gegner";
+      spotlightOpponentNode.textContent = "Spieltermine aktuell nicht geladen";
     }
 
-    if (spotlightRouteNode) {
-      spotlightRouteNode.href = buildRouteHref("Am Sportplatz 2, 86744 Hainsfarth");
-    }
+    setRouteAction(bfvScheduleHref, "Zum Spielplan");
 
     showPendingMatchResult();
+    setWeatherVisibility(false);
 
     if (weatherTempNode) {
       weatherTempNode.textContent = "--°";
@@ -403,6 +422,62 @@ if (countdownRoot) {
 
     if (weatherWindNode) {
       weatherWindNode.textContent = "Wind: --";
+    }
+  };
+
+  const renderOffseasonState = (events) => {
+    const latestPastEvent = [...events]
+      .filter((event) => event.start.getTime() <= Date.now())
+      .sort((left, right) => right.start - left.start)[0];
+
+    if (dateNode) {
+      dateNode.textContent = latestPastEvent
+        ? `Saisonpause seit ${formatShortDate(latestPastEvent.start)}`
+        : "Saisonpause";
+    }
+
+    if (locationNode) {
+      locationNode.textContent = "Der neue BFV-Spielplan wird automatisch eingebunden.";
+    }
+
+    if (timerNode) {
+      timerNode.classList.add("is-message");
+      timerNode.innerHTML =
+        "<span>Aktuell ist kein kommendes Pflichtspiel im Kalender. Sobald BFV die neue Staffel veröffentlicht, erscheint hier automatisch wieder der nächste Termin.</span>";
+    }
+
+    if (spotlightBadgeNode) {
+      spotlightBadgeNode.textContent = "Saisonpause";
+    }
+
+    if (spotlightCompetitionNode) {
+      spotlightCompetitionNode.textContent = "BFV · neuer Spielplan folgt";
+    }
+
+    if (spotlightOpponentNode) {
+      spotlightOpponentNode.textContent = "Aktuell kein angesetztes Spiel";
+    }
+
+    setRouteAction(bfvScheduleHref, "Zum Spielplan");
+    setWeatherVisibility(false);
+
+    if (matchResultRoot) {
+      matchResultRoot.hidden = false;
+      matchResultRoot.classList.remove("is-live");
+      matchResultRoot.classList.add("is-pending");
+    }
+
+    if (matchResultLabelNode) {
+      matchResultLabelNode.textContent = "Nächster Pflichtspieltermin";
+    }
+
+    if (matchResultTextNode) {
+      matchResultTextNode.textContent = "folgt";
+      matchResultTextNode.style.fontFamily = "";
+    }
+
+    if (matchResultNoteNode) {
+      matchResultNoteNode.textContent = "BFV";
     }
   };
 
@@ -586,6 +661,7 @@ if (countdownRoot) {
     }
 
     if (event.start.getTime() - Date.now() > weatherForecastHorizonMs) {
+      setWeatherVisibility(true);
       renderWeatherWaiting(event.start);
       return;
     }
@@ -658,6 +734,7 @@ if (countdownRoot) {
         },
         event.start
       );
+      setWeatherVisibility(true);
     } catch (error) {
       console.warn("Weather widget fallback", {
         location: event.location,
@@ -665,6 +742,7 @@ if (countdownRoot) {
         error,
       });
       renderWeatherFallback();
+      setWeatherVisibility(true);
     }
   };
 
@@ -689,6 +767,7 @@ if (countdownRoot) {
       `;
     };
 
+    timerNode.classList.remove("is-message");
     render();
     window.setInterval(render, 60000);
   };
@@ -707,10 +786,12 @@ if (countdownRoot) {
         const nextEvent = getCurrentOrNextEvent(events);
 
         if (!nextEvent) {
-          renderFallback();
+          renderOffseasonState(events);
           return;
         }
 
+        timerNode.classList.remove("is-message");
+        setWeatherVisibility(true);
         dateNode.textContent = formatDate(nextEvent.start);
         locationNode.textContent = nextEvent.location;
         renderSpotlight(nextEvent);

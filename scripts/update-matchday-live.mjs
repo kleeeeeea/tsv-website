@@ -4,7 +4,10 @@ const ICS_PATH = "spielplan-tsv-hainsfarth.ics";
 const OUTPUT_PATH = "matchday-live.json";
 const CLUB_NAME = "TSV Hainsfarth";
 const BFV_MATCH_BASE = "https://www.bfv.de/ergebnisse/spiel/-/";
+const BFV_TEAM_PAGE_URL =
+  "https://www.bfv.de/mannschaften/tsv-hainsfarth/016PHCS5TO000000VV0AG80NVUT1FLRU";
 const ACTIVE_MATCH_WINDOW_MS = 4 * 60 * 60 * 1000;
+const USER_AGENT = "Mozilla/5.0 (compatible; TSVHainsfarthBot/1.0)";
 
 const parseIcsDate = (rawValue) => {
   const match = rawValue.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z?$/);
@@ -41,6 +44,30 @@ const parseSummary = (summary) => {
 
 const buildFixtureText = (event) =>
   event.isHome ? `${CLUB_NAME} vs. ${event.opponent}` : `${event.opponent} vs. ${CLUB_NAME}`;
+
+const fetchText = async (url) => {
+  const response = await fetch(url, {
+    headers: {
+      "user-agent": USER_AGENT,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed for ${url}: ${response.status}`);
+  }
+
+  return response.text();
+};
+
+const extractIcsExportUrl = (html) => {
+  const pathMatch = html.match(/\/rest\/icsexport\/Spielplan\?staffel=[^"'&\s]+&id=[^"'\s]+/u);
+
+  if (!pathMatch) {
+    throw new Error("Could not find BFV iCal export link");
+  }
+
+  return new URL(pathMatch[0], "https://www.bfv.de").toString();
+};
 
 const parseEvents = (icsText) => {
   const normalized = icsText.replace(/\r\n[ \t]/g, "").replace(/\r/g, "");
@@ -82,6 +109,12 @@ const getCurrentOrNextEvent = (events) => {
   }
 
   return events.find((event) => event.start.getTime() > now) || null;
+};
+
+const loadCurrentCalendar = async () => {
+  const teamPageHtml = await fetchText(BFV_TEAM_PAGE_URL);
+  const exportUrl = extractIcsExportUrl(teamPageHtml);
+  return fetchText(exportUrl);
 };
 
 const extractValue = (html, pattern) => {
@@ -130,7 +163,38 @@ const buildResultPayload = ({ html, event }) => {
 };
 
 const main = async () => {
-  const icsText = await readFile(ICS_PATH, "utf8");
+  let existingIcsText = "";
+
+  try {
+    existingIcsText = await readFile(ICS_PATH, "utf8");
+  } catch {
+    existingIcsText = "";
+  }
+
+  let icsText = existingIcsText;
+
+  try {
+    const liveIcsText = await loadCurrentCalendar();
+
+    if (liveIcsText.trim()) {
+      icsText = liveIcsText;
+    }
+  } catch (error) {
+    console.warn(
+      `BFV-Kalender konnte nicht live aktualisiert werden, vorhandene ICS wird weiterverwendet: ${
+        error?.message || error
+      }`
+    );
+  }
+
+  if (!icsText.trim()) {
+    throw new Error("No BFV calendar data available");
+  }
+
+  if (icsText !== existingIcsText) {
+    await writeFile(ICS_PATH, icsText);
+  }
+
   const nextEvent = getCurrentOrNextEvent(parseEvents(icsText));
 
   if (!nextEvent) {
