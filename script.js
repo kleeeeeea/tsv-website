@@ -426,24 +426,18 @@ if (countdownRoot) {
   };
 
   const renderOffseasonState = (events) => {
-    const latestPastEvent = [...events]
-      .filter((event) => event.start.getTime() <= Date.now())
-      .sort((left, right) => right.start - left.start)[0];
-
     if (dateNode) {
-      dateNode.textContent = latestPastEvent
-        ? `Saisonpause seit ${formatShortDate(latestPastEvent.start)}`
-        : "Saisonpause";
+      dateNode.textContent = "Saisonpause";
     }
 
     if (locationNode) {
-      locationNode.textContent = "Sobald der BFV den neuen Spielplan veröffentlicht, erscheint er hier automatisch.";
+      locationNode.textContent = "Neuer BFV-Spielplan folgt automatisch";
     }
 
     if (timerNode) {
       timerNode.classList.add("is-message");
       timerNode.innerHTML =
-        "<span>Der Pflichtspielbetrieb pausiert aktuell. Sobald der BFV die neue Staffel freischaltet, wird hier automatisch wieder das nächste Spiel mit Countdown angezeigt.</span>";
+        "<span>Countdown und Termin springen automatisch zurück, sobald der Kalender wieder aktuell ist.</span>";
     }
 
     if (spotlightBadgeNode) {
@@ -451,11 +445,11 @@ if (countdownRoot) {
     }
 
     if (spotlightCompetitionNode) {
-      spotlightCompetitionNode.textContent = "BFV · neuer Spielplan folgt automatisch";
+      spotlightCompetitionNode.textContent = "BFV · automatische Aktualisierung";
     }
 
     if (spotlightOpponentNode) {
-      spotlightOpponentNode.textContent = "Aktuell ist kein Pflichtspiel angesetzt";
+      spotlightOpponentNode.textContent = "Aktuell ist Saisonpause";
     }
 
     setRouteAction(bfvScheduleHref, "Zum Spielplan");
@@ -468,16 +462,16 @@ if (countdownRoot) {
     }
 
     if (matchResultLabelNode) {
-      matchResultLabelNode.textContent = "Nächster Pflichtspieltermin folgt";
+      matchResultLabelNode.textContent = "Status";
     }
 
     if (matchResultTextNode) {
-      matchResultTextNode.textContent = "folgt";
+      matchResultTextNode.textContent = "Pause";
       matchResultTextNode.style.fontFamily = "";
     }
 
     if (matchResultNoteNode) {
-      matchResultNoteNode.textContent = "BFV";
+      matchResultNoteNode.textContent = "TSV";
     }
   };
 
