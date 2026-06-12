@@ -431,13 +431,13 @@ if (countdownRoot) {
     }
 
     if (locationNode) {
-      locationNode.textContent = "Neuer BFV-Spielplan folgt automatisch";
+      locationNode.textContent = "Wir freuen uns schon, wenn es wieder losgeht.";
     }
 
     if (timerNode) {
       timerNode.classList.add("is-message");
       timerNode.innerHTML =
-        "<span>Countdown und Termin springen automatisch zurück, sobald der Kalender wieder aktuell ist.</span>";
+        "<span>Bis dahin ist hier Saisonpause. Sobald der neue Spielplan online ist, läuft alles automatisch wieder wie gewohnt.</span>";
     }
 
     if (spotlightBadgeNode) {
@@ -445,7 +445,7 @@ if (countdownRoot) {
     }
 
     if (spotlightCompetitionNode) {
-      spotlightCompetitionNode.textContent = "BFV · automatische Aktualisierung";
+      spotlightCompetitionNode.textContent = "Bis bald am Burschel";
     }
 
     if (spotlightOpponentNode) {
