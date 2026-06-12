@@ -400,7 +400,7 @@ if (countdownRoot) {
     }
 
     if (spotlightOpponentNode) {
-      spotlightOpponentNode.textContent = "Spieltermine aktuell nicht geladen";
+      spotlightOpponentNode.textContent = "Aktuelle Spieltermine werden geladen";
     }
 
     setRouteAction(bfvScheduleHref, "Zum Spielplan");
@@ -437,13 +437,13 @@ if (countdownRoot) {
     }
 
     if (locationNode) {
-      locationNode.textContent = "Der neue BFV-Spielplan wird automatisch eingebunden.";
+      locationNode.textContent = "Sobald der BFV den neuen Spielplan veröffentlicht, erscheint er hier automatisch.";
     }
 
     if (timerNode) {
       timerNode.classList.add("is-message");
       timerNode.innerHTML =
-        "<span>Aktuell ist kein kommendes Pflichtspiel im Kalender. Sobald BFV die neue Staffel veröffentlicht, erscheint hier automatisch wieder der nächste Termin.</span>";
+        "<span>Der Pflichtspielbetrieb pausiert aktuell. Sobald der BFV die neue Staffel freischaltet, wird hier automatisch wieder das nächste Spiel mit Countdown angezeigt.</span>";
     }
 
     if (spotlightBadgeNode) {
@@ -451,11 +451,11 @@ if (countdownRoot) {
     }
 
     if (spotlightCompetitionNode) {
-      spotlightCompetitionNode.textContent = "BFV · neuer Spielplan folgt";
+      spotlightCompetitionNode.textContent = "BFV · neuer Spielplan folgt automatisch";
     }
 
     if (spotlightOpponentNode) {
-      spotlightOpponentNode.textContent = "Aktuell kein angesetztes Spiel";
+      spotlightOpponentNode.textContent = "Aktuell ist kein Pflichtspiel angesetzt";
     }
 
     setRouteAction(bfvScheduleHref, "Zum Spielplan");
@@ -468,7 +468,7 @@ if (countdownRoot) {
     }
 
     if (matchResultLabelNode) {
-      matchResultLabelNode.textContent = "Nächster Pflichtspieltermin";
+      matchResultLabelNode.textContent = "Nächster Pflichtspieltermin folgt";
     }
 
     if (matchResultTextNode) {
