@@ -10,7 +10,13 @@ if (navToggle && nav) {
 
 document.querySelectorAll("[data-audio-toggle], [data-club-audio]").forEach((node) => node.remove());
 
+const shouldShowInstagramNotice = document.body?.dataset.page === "start";
+
 const ensureInstagramNoticeUi = () => {
+  if (!shouldShowInstagramNotice) {
+    return null;
+  }
+
   let link = document.querySelector("[data-instagram-floating-link]");
 
   if (!link) {
@@ -33,30 +39,7 @@ const ensureInstagramNoticeUi = () => {
   return link;
 };
 
-const syncInstagramNoticeLayout = (link) => {
-  if (!link) {
-    return;
-  }
-
-  const width = Math.ceil(link.offsetWidth);
-  const height = Math.ceil(link.offsetHeight);
-  const shouldReserveInlineSpace = window.innerWidth >= 1180 && window.innerHeight >= 760;
-
-  document.body.classList.add("has-instagram-float");
-  document.body.classList.toggle("is-instagram-inline-reserved", shouldReserveInlineSpace);
-  document.body.style.setProperty("--instagram-float-width", `${width}px`);
-  document.body.style.setProperty("--instagram-float-height", `${height}px`);
-};
-
-const instagramNoticeLink = ensureInstagramNoticeUi();
-syncInstagramNoticeLayout(instagramNoticeLink);
-
-window.addEventListener("resize", () => syncInstagramNoticeLayout(instagramNoticeLink));
-
-if (typeof ResizeObserver !== "undefined") {
-  const instagramResizeObserver = new ResizeObserver(() => syncInstagramNoticeLayout(instagramNoticeLink));
-  instagramResizeObserver.observe(instagramNoticeLink);
-}
+ensureInstagramNoticeUi();
 
 const countdownRoot = document.querySelector("[data-countdown]");
 
