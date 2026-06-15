@@ -44,6 +44,7 @@ if (countdownRoot) {
   const timerNode = countdownRoot.querySelector("[data-countdown-timer]");
   const countdownSrc = countdownRoot.getAttribute("data-countdown-src");
   const spotlightRoot = document.querySelector("[data-matchday-spotlight]");
+  const offseasonRoot = document.querySelector("[data-matchday-offseason]");
   const spotlightBadgeNode = spotlightRoot?.querySelector("[data-matchday-badge]");
   const spotlightCompetitionNode = spotlightRoot?.querySelector("[data-matchday-competition]");
   const spotlightOpponentNode = spotlightRoot?.querySelector("[data-matchday-opponent]");
@@ -94,6 +95,16 @@ if (countdownRoot) {
       { latitude: 48.59217, longitude: 10.51169, name: "Schretzheim" },
     ],
   ]);
+
+  const setMatchdayMode = (mode) => {
+    if (spotlightRoot) {
+      spotlightRoot.hidden = mode === "offseason";
+    }
+
+    if (offseasonRoot) {
+      offseasonRoot.hidden = mode !== "offseason";
+    }
+  };
 
   const formatDate = (date) =>
     new Intl.DateTimeFormat("de-DE", {
@@ -382,6 +393,8 @@ if (countdownRoot) {
   };
 
   const renderFallback = () => {
+    setMatchdayMode("default");
+
     if (dateNode) {
       dateNode.textContent = "Kalender nicht verfügbar";
     }
@@ -431,53 +444,8 @@ if (countdownRoot) {
   };
 
   const renderOffseasonState = (events) => {
-    if (dateNode) {
-      dateNode.textContent = "Saisonpause";
-    }
-
-    if (locationNode) {
-      locationNode.textContent = "Wir freuen uns schon, wenn es wieder losgeht.";
-    }
-
-    if (timerNode) {
-      timerNode.classList.add("is-message");
-      timerNode.innerHTML =
-        "<span>Bis dahin ist hier Saisonpause. Sobald der neue Spielplan online ist, läuft alles automatisch wieder wie gewohnt.</span>";
-    }
-
-    if (spotlightBadgeNode) {
-      spotlightBadgeNode.textContent = "Saisonpause";
-    }
-
-    if (spotlightCompetitionNode) {
-      spotlightCompetitionNode.textContent = "Bis bald am Burschel";
-    }
-
-    if (spotlightOpponentNode) {
-      spotlightOpponentNode.textContent = "Aktuell ist Saisonpause";
-    }
-
-    setRouteAction(bfvScheduleHref, "Zum Spielplan");
+    setMatchdayMode("offseason");
     setWeatherVisibility(false);
-
-    if (matchResultRoot) {
-      matchResultRoot.hidden = false;
-      matchResultRoot.classList.remove("is-live");
-      matchResultRoot.classList.add("is-pending");
-    }
-
-    if (matchResultLabelNode) {
-      matchResultLabelNode.textContent = "Status";
-    }
-
-    if (matchResultTextNode) {
-      matchResultTextNode.textContent = "Pause";
-      matchResultTextNode.style.fontFamily = "";
-    }
-
-    if (matchResultNoteNode) {
-      matchResultNoteNode.textContent = "TSV";
-    }
   };
 
   const renderWeatherFallback = () => {
@@ -789,6 +757,7 @@ if (countdownRoot) {
           return;
         }
 
+        setMatchdayMode("default");
         timerNode.classList.remove("is-message");
         setWeatherVisibility(true);
         dateNode.textContent = formatDate(nextEvent.start);
