@@ -1509,32 +1509,80 @@ h3 {
 }
 
 .tippspiel-table-wrap {
-  overflow: auto;
+  max-height: 26rem;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-top: 12px;
+  padding-right: 6px;
   border-radius: 16px;
   border: 1px solid rgba(17, 130, 198, 0.12);
   background: rgba(255, 255, 255, 0.85);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(17, 130, 198, 0.7) rgba(17, 130, 198, 0.1);
 }
 
 .tippspiel-table {
   width: 100%;
-  min-width: 520px;
   border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tippspiel-table-wrap::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tippspiel-table-wrap::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(17, 130, 198, 0.1);
+}
+
+.tippspiel-table-wrap::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(17, 130, 198, 0.72);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+}
+
+.tippspiel-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: rgba(13, 96, 154, 0.82);
 }
 
 .tippspiel-table th,
 .tippspiel-table td {
-  padding: 14px 16px;
+  padding: 12px 14px;
   text-align: left;
   border-bottom: 1px solid rgba(17, 130, 198, 0.1);
+  word-break: break-word;
 }
 
 .tippspiel-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.96);
   color: rgba(22, 37, 58, 0.72);
   font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.tippspiel-table th:nth-child(1),
+.tippspiel-table td:nth-child(1) {
+  width: 12%;
+}
+
+.tippspiel-table th:nth-child(2),
+.tippspiel-table td:nth-child(2) {
+  width: 38%;
+}
+
+.tippspiel-table th:nth-child(3),
+.tippspiel-table td:nth-child(3),
+.tippspiel-table th:nth-child(4),
+.tippspiel-table td:nth-child(4),
+.tippspiel-table th:nth-child(5),
+.tippspiel-table td:nth-child(5) {
+  width: 16.5%;
 }
 
 .tippspiel-table tbody tr:last-child td {
@@ -2597,6 +2645,11 @@ h3 {
   .tippspiel-list-scroll {
     max-height: 30rem;
     padding-right: 6px;
+  }
+
+  .tippspiel-table-wrap {
+    max-height: 22rem;
+    padding-right: 4px;
   }
 
   .page-hero {
