@@ -1545,33 +1545,33 @@ h3 {
 .tippspiel-result-list {
   display: grid;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
-.tippspiel-result-list-scroll {
-  max-height: 42rem;
+.tippspiel-list-scroll {
+  max-height: 34rem;
   overflow-y: auto;
   padding-right: 10px;
   scrollbar-width: thin;
   scrollbar-color: rgba(17, 130, 198, 0.7) rgba(17, 130, 198, 0.1);
 }
 
-.tippspiel-result-list-scroll::-webkit-scrollbar {
+.tippspiel-list-scroll::-webkit-scrollbar {
   width: 10px;
 }
 
-.tippspiel-result-list-scroll::-webkit-scrollbar-track {
+.tippspiel-list-scroll::-webkit-scrollbar-track {
   border-radius: 999px;
   background: rgba(17, 130, 198, 0.1);
 }
 
-.tippspiel-result-list-scroll::-webkit-scrollbar-thumb {
+.tippspiel-list-scroll::-webkit-scrollbar-thumb {
   border-radius: 999px;
   background: rgba(17, 130, 198, 0.72);
   border: 2px solid rgba(255, 255, 255, 0.85);
 }
 
-.tippspiel-result-list-scroll::-webkit-scrollbar-thumb:hover {
+.tippspiel-list-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(13, 96, 154, 0.82);
 }
 
@@ -2594,7 +2594,7 @@ h3 {
     border-radius: 18px;
   }
 
-  .tippspiel-result-list-scroll {
+  .tippspiel-list-scroll {
     max-height: 30rem;
     padding-right: 6px;
   }
