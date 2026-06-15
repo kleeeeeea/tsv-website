@@ -99,11 +99,15 @@ if (countdownRoot) {
 
   const setMatchdayMode = (mode) => {
     if (matchdayShell) {
-      matchdayShell.hidden = mode === "offseason";
+      const hideShell = mode === "offseason";
+      matchdayShell.hidden = hideShell;
+      matchdayShell.style.display = hideShell ? "none" : "";
     }
 
     if (offseasonRoot) {
-      offseasonRoot.hidden = mode !== "offseason";
+      const showOffseason = mode === "offseason";
+      offseasonRoot.hidden = !showOffseason;
+      offseasonRoot.style.display = showOffseason ? "" : "none";
     }
   };
 

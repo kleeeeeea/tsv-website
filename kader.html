@@ -105,7 +105,7 @@
     const squadDataVersion = new Date().toISOString().slice(0, 13).replace(/[-:T]/g, "");
 
     loadKaderScript(`team-data.js?v=${squadDataVersion}`)
-      .then(() => loadKaderScript("script.js?v=202606151240"))
+      .then(() => loadKaderScript("script.js?v=202606151255"))
       .catch((error) => {
         console.error("Kaderdaten konnten nicht geladen werden.", error);
       });
