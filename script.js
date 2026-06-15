@@ -26,7 +26,9 @@ const ensureInstagramNoticeUi = () => {
         <span class="floating-instagram-kicker">Instagram</span>
         <strong>Neueste Infos immer aktuell!!</strong>
       </span>
-      <span class="floating-instagram-ball" aria-hidden="true">⚽</span>
+      <span class="floating-instagram-ball" aria-hidden="true">
+        <img src="football-ball.webp?v=20260615a" alt="" loading="lazy" decoding="async">
+      </span>
     `;
     document.body.appendChild(link);
   }
