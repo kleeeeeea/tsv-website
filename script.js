@@ -44,6 +44,7 @@ if (countdownRoot) {
   const timerNode = countdownRoot.querySelector("[data-countdown-timer]");
   const countdownSrc = countdownRoot.getAttribute("data-countdown-src");
   const spotlightRoot = document.querySelector("[data-matchday-spotlight]");
+  const matchdayShell = spotlightRoot?.closest(".matchday-shell");
   const offseasonRoot = document.querySelector("[data-matchday-offseason]");
   const spotlightBadgeNode = spotlightRoot?.querySelector("[data-matchday-badge]");
   const spotlightCompetitionNode = spotlightRoot?.querySelector("[data-matchday-competition]");
@@ -97,8 +98,8 @@ if (countdownRoot) {
   ]);
 
   const setMatchdayMode = (mode) => {
-    if (spotlightRoot) {
-      spotlightRoot.hidden = mode === "offseason";
+    if (matchdayShell) {
+      matchdayShell.hidden = mode === "offseason";
     }
 
     if (offseasonRoot) {

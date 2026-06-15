@@ -661,25 +661,15 @@ h3 {
 }
 
 .matchday-offseason-copy {
-  max-width: 54rem;
+  max-width: none;
 }
 
 .matchday-offseason-title {
   display: block;
-  margin-top: 4px;
   font-size: clamp(2rem, 4vw, 3.4rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
   font-family: Georgia, "Times New Roman", serif;
-}
-
-.matchday-offseason-text {
-  max-width: 44rem;
-  margin: 16px 0 0;
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 1.06rem;
-  line-height: 1.6;
-  font-weight: 700;
 }
 
 .matchday-spotlight {
@@ -2604,10 +2594,6 @@ h3 {
     border-radius: 18px;
   }
 
-  .matchday-offseason-text {
-    font-size: 0.98rem;
-  }
-
   .tippspiel-result-list-scroll {
     max-height: 30rem;
     padding-right: 6px;
@@ -2932,12 +2918,6 @@ h3 {
 
   .matchday-offseason-title {
     font-size: clamp(1.6rem, 8vw, 2.3rem);
-  }
-
-  .matchday-offseason-text {
-    margin-top: 12px;
-    font-size: 0.94rem;
-    line-height: 1.5;
   }
 
   .matchday-status-row {
