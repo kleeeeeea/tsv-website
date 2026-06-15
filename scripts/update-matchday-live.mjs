@@ -8,6 +8,7 @@ const BFV_TEAM_PAGE_URL =
   "https://www.bfv.de/mannschaften/tsv-hainsfarth/016PHCS5TO000000VV0AG80NVUT1FLRU";
 const ACTIVE_MATCH_WINDOW_MS = 4 * 60 * 60 * 1000;
 const USER_AGENT = "Mozilla/5.0 (compatible; TSVHainsfarthBot/1.0)";
+const FINISHED_STATUSES = new Set(["acknowledged", "finished", "played"]);
 
 const parseIcsDate = (rawValue) => {
   const match = rawValue.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z?$/);
@@ -122,6 +123,34 @@ const extractValue = (html, pattern) => {
   return match ? match[1] : "";
 };
 
+const countGoalsBySide = (html) => {
+  const markers = [...html.matchAll(/Time_partialScore__xFjLz/g)];
+  let homeGoals = 0;
+  let awayGoals = 0;
+
+  for (const marker of markers) {
+    const markerIndex = marker.index ?? -1;
+    const segment = html.slice(Math.max(0, markerIndex - 1600), markerIndex);
+    const homeIndex = segment.lastIndexOf("EventList_eventHome__");
+    const guestIndex = segment.lastIndexOf("EventList_eventGuest__");
+
+    if (homeIndex === -1 && guestIndex === -1) {
+      continue;
+    }
+
+    if (homeIndex > guestIndex) {
+      homeGoals += 1;
+    } else {
+      awayGoals += 1;
+    }
+  }
+
+  return {
+    awayGoals,
+    homeGoals,
+  };
+};
+
 const buildResultPayload = ({ html, event }) => {
   const status = extractValue(html, /\\?"status\\?":\\?"([^"\\]+)\\?"/);
   const live = extractValue(html, /\\?"live\\?":(true|false)/) === "true";
@@ -134,15 +163,22 @@ const buildResultPayload = ({ html, event }) => {
       )
   );
   const fontId = extractValue(html, /\\?"obfuscatedFont\\?":\\?"([^"\\]+)\\?"/);
+  const { homeGoals, awayGoals } = countGoalsBySide(html);
 
-  const hasResult = Boolean(resultText) && status !== "scheduled";
+  const sanitizedLiveMinute = liveMinute && liveMinute !== "$undefined" ? liveMinute : "";
+  const hasNumericResult = live || FINISHED_STATUSES.has(status);
+  const plainText = hasNumericResult ? `${homeGoals}:${awayGoals}` : "";
+  const hasResult = hasNumericResult || (Boolean(resultText) && status !== "scheduled");
   let label = "BFV-Ergebnis";
   let note = "BFV";
 
   if (live) {
     label = "Live-Ergebnis";
-    note = liveMinute ? `${liveMinute}'. Minute` : "Live";
+    note = sanitizedLiveMinute ? `${sanitizedLiveMinute}'. Minute` : "Live";
   } else if (status === "played" || status === "finished") {
+    label = "Endstand";
+    note = "BFV";
+  } else if (status === "acknowledged") {
     label = "Endstand";
     note = "BFV";
   } else if (status === "postponed") {
@@ -153,9 +189,12 @@ const buildResultPayload = ({ html, event }) => {
   return {
     available: hasResult,
     fontId: hasResult ? fontId : "",
+    homeGoals,
     label,
     live,
+    awayGoals,
     note,
+    plainText,
     specialResult,
     status,
     text: hasResult ? resultText : "",

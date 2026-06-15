@@ -352,7 +352,7 @@ if (countdownRoot) {
   };
 
   const renderMatchResult = (resultData) => {
-    if (!matchResultRoot || !matchResultTextNode || !resultData?.available || !resultData?.text) {
+    if (!matchResultRoot || !matchResultTextNode || !resultData?.available) {
       showPendingMatchResult();
       return;
     }
@@ -366,9 +366,14 @@ if (countdownRoot) {
     }
 
     if (matchResultTextNode) {
-      matchResultTextNode.textContent = resultData.text;
-      const fontName = ensureBfvFont(resultData.fontId);
-      matchResultTextNode.style.fontFamily = fontName ? `"${fontName}"` : "";
+      if (resultData.plainText) {
+        matchResultTextNode.textContent = resultData.plainText;
+        matchResultTextNode.style.fontFamily = "";
+      } else {
+        matchResultTextNode.textContent = resultData.text || "--:--";
+        const fontName = ensureBfvFont(resultData.fontId);
+        matchResultTextNode.style.fontFamily = fontName ? `"${fontName}"` : "";
+      }
     }
 
     if (matchResultNoteNode) {
