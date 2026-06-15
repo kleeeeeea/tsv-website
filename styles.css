@@ -24,10 +24,14 @@ html {
 }
 
 body {
+  --instagram-float-width: 0px;
+  --instagram-float-height: 0px;
+  --instagram-float-gap: 24px;
+  --instagram-inline-reserve: 0px;
   margin: 0;
   font-family: "Trebuchet MS", "Segoe UI", sans-serif;
   color: var(--text);
-  padding-bottom: 108px;
+  padding-bottom: calc(var(--instagram-float-height) + var(--instagram-float-gap) + 20px);
   background:
     linear-gradient(rgba(17, 130, 198, 0.05), rgba(17, 130, 198, 0.05)),
     repeating-linear-gradient(
@@ -52,6 +56,7 @@ img {
 
 .site-shell {
   min-height: 100vh;
+  padding-right: var(--instagram-inline-reserve);
 }
 
 .container {
@@ -324,6 +329,10 @@ h3 {
   -webkit-backdrop-filter: blur(10px);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   overflow: hidden;
+}
+
+body.has-instagram-float.is-instagram-inline-reserved {
+  --instagram-inline-reserve: calc(var(--instagram-float-width) + var(--instagram-float-gap) + 10px);
 }
 
 .floating-instagram-copy {
