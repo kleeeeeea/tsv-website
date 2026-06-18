@@ -1288,7 +1288,7 @@ window.tsvSquadData = {
           goals: 0,
           assists: 0,
           flags: [],
-          age: 27,
+          age: 28,
           imageUrl: "https://image.fupa.net/player/oyp9R2gd1iXL/",
           yellowCards: 0,
           yellowRedCards: 0,
@@ -1414,7 +1414,7 @@ window.tsvSquadData = {
           firstName: "Daniel",
           lastName: "Fackler",
           role: "Trainer",
-          age: 33,
+          age: 34,
           imageUrl: "https://image.fupa.net/player/Ge1tFpMwYc6M/"
         },
         {
