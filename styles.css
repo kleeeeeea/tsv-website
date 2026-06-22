@@ -6,9 +6,11 @@
   --text-rgb: 35, 31, 32;
   --muted: #4b5c76;
   --line: rgba(var(--text-rgb), 0.12);
-  --primary: #3360ac;
-  --primary-rgb: 51, 96, 172;
-  --primary-dark: #223f73;
+  --primary: #3d66b1;
+  --primary-rgb: 61, 102, 177;
+  --primary-dark: #233f72;
+  --primary-deep: #2b4f91;
+  --primary-soft: #e7eef9;
   --accent: #dbe5f5;
   --shadow: 0 18px 38px rgba(35, 31, 32, 0.09);
   --radius-lg: 24px;
@@ -133,13 +135,14 @@ img {
   border-radius: 12px;
   color: var(--muted);
   font-weight: 700;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .site-nav a:hover,
 .site-nav a[aria-current="page"] {
   color: var(--primary-dark);
-  background: rgba(var(--primary-rgb), 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(var(--primary-rgb), 0.1));
+  box-shadow: inset 0 0 0 1px rgba(var(--primary-rgb), 0.08);
   transform: translateY(-1px);
 }
 
@@ -154,7 +157,9 @@ img {
 .hero-card,
 .panel,
 .cta-band {
-  background: var(--surface);
+  background:
+    radial-gradient(circle at top left, rgba(var(--primary-rgb), 0.05), transparent 30%),
+    var(--surface);
   border: 1px solid rgba(var(--text-rgb), 0.08);
   box-shadow: var(--shadow);
 }
@@ -253,7 +258,7 @@ img {
   position: absolute;
   inset: 0 auto 0 0;
   width: 14px;
-  background: var(--primary);
+  background: linear-gradient(180deg, var(--primary), var(--primary-deep));
 }
 
 .eyebrow {
@@ -376,13 +381,13 @@ h3 {
 }
 
 .button {
-  background: var(--primary);
+  background: linear-gradient(180deg, var(--primary), var(--primary-deep));
   color: #fff;
   box-shadow: 0 12px 24px rgba(var(--primary-rgb), 0.22);
 }
 
 .button-secondary {
-  background: var(--primary);
+  background: linear-gradient(180deg, var(--primary), var(--primary-deep));
   border: 1px solid transparent;
   color: #fff;
   box-shadow: 0 12px 24px rgba(var(--primary-rgb), 0.22);
@@ -397,7 +402,9 @@ h3 {
   min-height: 380px;
   border-radius: 22px;
   padding: 26px;
-  background: var(--primary);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 32%),
+    linear-gradient(165deg, var(--primary) 0%, var(--primary-deep) 72%);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -414,7 +421,7 @@ h3 {
   align-self: flex-end;
   padding: 10px;
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.92);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(232, 238, 248, 0.96));
   box-shadow: 0 14px 28px rgba(9, 45, 78, 0.14);
   line-height: 0;
 }
@@ -447,7 +454,8 @@ h3 {
   padding: 8px 12px;
   margin-bottom: 20px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   font-weight: 700;
 }
 
@@ -627,7 +635,7 @@ h3 {
   gap: 0;
   padding: 16px;
   border-radius: 24px;
-  background: var(--primary);
+  background: linear-gradient(160deg, var(--primary) 0%, var(--primary-deep) 82%);
   overflow: hidden;
 }
 
@@ -635,7 +643,7 @@ h3 {
   padding: 22px 24px;
   border-radius: 22px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 249, 253, 0.88)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(236, 242, 250, 0.9)),
     var(--surface);
   color: var(--text);
   border: 1px solid rgba(var(--primary-rgb), 0.1);
@@ -779,11 +787,11 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06)),
-    rgba(7, 55, 88, 0.34);
+    rgba(43, 79, 145, 0.34);
   color: #fff;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 14px 24px rgba(5, 31, 53, 0.2);
+    0 14px 24px rgba(var(--text-rgb), 0.2);
   backdrop-filter: blur(4px);
 }
 
@@ -798,7 +806,7 @@ h3 {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(216, 240, 255, 0.9);
+  color: rgba(239, 245, 255, 0.92);
 }
 
 .matchday-tippspiel-button strong {
@@ -810,10 +818,10 @@ h3 {
 .matchday-tippspiel-button:hover {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08)),
-    rgba(8, 66, 106, 0.45);
+    rgba(43, 79, 145, 0.48);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.24),
-    0 18px 28px rgba(5, 31, 53, 0.24);
+    0 18px 28px rgba(var(--text-rgb), 0.24);
 }
 
 @keyframes matchday-ball-run {
@@ -868,7 +876,7 @@ h3 {
   min-height: 420px;
   border-radius: 24px;
   overflow: hidden;
-  background: linear-gradient(180deg, #d9ecfb 0 42%, #2ba15f 42% 100%);
+  background: linear-gradient(180deg, #dbe7f5 0 42%, #2f8f56 42% 100%);
   border: 1px solid rgba(var(--text-rgb), 0.08);
 }
 
@@ -1063,7 +1071,7 @@ h3 {
 
 .countdown-meta {
   font-size: 1rem;
-  color: #18273a;
+  color: var(--text);
   font-weight: 700;
 }
 
@@ -1268,7 +1276,7 @@ h3 {
 
 .match-weather-main span,
 .match-weather-meta span {
-  color: #30445a;
+  color: var(--muted);
 }
 
 .match-weather-meta {
@@ -1518,7 +1526,7 @@ h3 {
 }
 
 .tippspiel-table-wrap::-webkit-scrollbar-thumb:hover {
-  background: rgba(13, 96, 154, 0.82);
+  background: rgba(43, 79, 145, 0.82);
 }
 
 .tippspiel-table th,
@@ -1595,7 +1603,7 @@ h3 {
 }
 
 .tippspiel-list-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(13, 96, 154, 0.82);
+  background: rgba(43, 79, 145, 0.82);
 }
 
 .tippspiel-tip-item,
@@ -1964,7 +1972,7 @@ h3 {
   display: block;
   border-radius: 16px;
   border: 1px solid rgba(var(--text-rgb), 0.08);
-  box-shadow: 0 12px 22px rgba(9, 45, 78, 0.1);
+  box-shadow: 0 12px 22px rgba(var(--text-rgb), 0.1);
   background: #f4f6f8;
 }
 
@@ -1997,11 +2005,11 @@ h3 {
   z-index: 1;
   text-align: left;
   padding: 0.8rem 1rem;
-  border-bottom: 2px solid rgba(0, 51, 102, 0.22);
-  color: #003366;
+  border-bottom: 2px solid rgba(var(--primary-rgb), 0.22);
+  color: var(--primary-dark);
   font-weight: 700;
   white-space: nowrap;
-  background: rgba(232, 242, 251, 0.76);
+  background: rgba(232, 239, 249, 0.82);
 }
 
 .stats-table td {
@@ -2162,7 +2170,7 @@ h3 {
   position: relative;
   border: 1px solid rgba(var(--primary-rgb), 0.2);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(220, 236, 248, 0.92));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(231, 238, 248, 0.94));
   color: var(--primary-dark);
   min-height: 60px;
   min-width: 188px;
@@ -2178,9 +2186,9 @@ h3 {
 
 .team-switcher-button:hover,
 .team-switcher-button.is-active {
-  background: linear-gradient(180deg, var(--primary), #0a6aa5);
+  background: linear-gradient(180deg, var(--primary), var(--primary-deep));
   color: #fff;
-  border-color: rgba(10, 79, 124, 0.4);
+  border-color: rgba(var(--primary-rgb), 0.34);
   box-shadow: 0 16px 30px rgba(var(--primary-rgb), 0.28);
   transform: translateY(-2px);
 }
@@ -2195,7 +2203,7 @@ h3 {
   border-radius: 28px;
   background:
     radial-gradient(circle at top, rgba(var(--primary-rgb), 0.14), transparent 48%),
-    linear-gradient(180deg, rgba(236, 244, 250, 0.9), rgba(250, 247, 240, 0.96));
+    linear-gradient(180deg, rgba(238, 243, 250, 0.94), rgba(248, 250, 254, 0.98));
   border: 1px solid rgba(var(--text-rgb), 0.08);
   overflow: hidden;
 }
@@ -2486,7 +2494,7 @@ h3 {
 .squad-position,
 .staff-role {
   margin: 0;
-  color: rgba(18, 43, 72, 0.72);
+  color: rgba(var(--text-rgb), 0.66);
   font-size: 0.82rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -2515,7 +2523,7 @@ h3 {
   min-width: 52px;
   min-height: 52px;
   padding: 0;
-  background: linear-gradient(180deg, #0b5f92, #08476d);
+  background: linear-gradient(180deg, var(--primary), var(--primary-deep));
   color: #fff;
   box-shadow: 0 10px 20px rgba(var(--text-rgb), 0.18);
   font-size: 1.35rem;
@@ -2542,7 +2550,7 @@ h3 {
   display: block;
   padding: 12px 12px;
   border-radius: 14px;
-  background: linear-gradient(180deg, rgba(233, 241, 248, 0.9), rgba(226, 237, 247, 0.72));
+  background: linear-gradient(180deg, rgba(236, 242, 250, 0.96), rgba(229, 236, 247, 0.76));
   color: var(--muted);
   text-align: center;
   font-size: 0.92rem;
