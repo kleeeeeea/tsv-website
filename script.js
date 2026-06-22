@@ -953,7 +953,7 @@ if (squadData?.teams) {
 
   const resolveImageUrl = (value) => {
     if (!value) {
-      return "logo.png?v=20260527d";
+      return "logo-brand-2026.svg?v=20260622a";
     }
 
     if (/\.(?:avif|webp|png|jpe?g|svg)$/i.test(value)) {
@@ -987,7 +987,7 @@ if (squadData?.teams) {
   const fallbackImageAttributes = (value) => {
     const remoteImage = resolveImageUrl(value);
     const escapedRemote = remoteImage.replace(/'/g, "\\'");
-    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo.png?v=20260527d';}"`;
+    return `data-fallback-src="${escapedRemote}" onerror="if(!this.dataset.fallbackApplied){this.dataset.fallbackApplied='true';this.src=this.dataset.fallbackSrc;}else{this.onerror=null;this.src='logo-brand-2026.svg?v=20260622a';}"`;
   };
   const resolveDisplayImageUrl = (person) => resolveCutoutUrl(person) || resolveImageUrl(person?.imageUrl);
   const asCssImage = (person) => `style="--player-image: url('${resolveDisplayImageUrl(person)}');"`;
