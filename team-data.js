@@ -1108,7 +1108,7 @@ window.tsvSquadData = {
           goals: 0,
           assists: 0,
           flags: [],
-          age: null,
+          age: 20,
           imageUrl: "https://image.fupa.net/player/2XXzSq8yq06t/",
           yellowCards: 0,
           yellowRedCards: 0,
