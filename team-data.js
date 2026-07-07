@@ -1099,7 +1099,7 @@ window.tsvSquadData = {
         },
         {
           id: 22918371,
-          slug: "nv-enrike-just-2193316",
+          slug: "enrike-just-2193316",
           firstName: "Enrike",
           lastName: "Just",
           position: "Mittelfeld",
