@@ -2,9 +2,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
+import shutil
 import subprocess
 from pathlib import Path
+
+from PIL import Image
 
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -13,8 +17,15 @@ DOWNLOAD_DIR = ROOT_DIR / ".tmp" / "player-cutouts" / "downloads"
 OUTPUT_DIR = ROOT_DIR / "images" / "kader" / "cutouts"
 MANIFEST_FILE = OUTPUT_DIR / "manifest.js"
 STATE_FILE = ROOT_DIR / ".tmp" / "player-cutouts" / "cutout-state.json"
-REMBG_BIN = Path("/Users/leakleemann/Library/Python/3.13/bin/rembg")
+REMBG_BIN = os.environ.get("REMBG_BIN") or shutil.which("rembg")
 REMBG_MODEL = "u2net_human_seg"
+PROCESSING_VERSION = "20260713a"
+TARGET_WIDTH = 480
+TARGET_HEIGHT = 600
+SUBJECT_MAX_WIDTH = 430
+SUBJECT_MAX_HEIGHT = 560
+BOTTOM_PADDING = 0
+ALPHA_THRESHOLD = 12
 
 
 def normalize_image_url(value: str) -> str:
@@ -58,7 +69,40 @@ def write_manifest(state: dict[str, dict[str, str]]) -> None:
     MANIFEST_FILE.write_text(manifest_js, encoding="utf-8")
 
 
+def normalize_cutout(source_file: Path, output_file: Path) -> None:
+    with Image.open(source_file).convert("RGBA") as image:
+        alpha = image.getchannel("A").point(lambda value: 255 if value >= ALPHA_THRESHOLD else 0)
+        bbox = alpha.getbbox()
+
+        if bbox is None:
+            image = image.resize((TARGET_WIDTH, TARGET_HEIGHT), Image.Resampling.LANCZOS)
+            image.save(output_file)
+            return
+
+        subject = image.crop(bbox)
+        subject_width, subject_height = subject.size
+        scale = min(SUBJECT_MAX_WIDTH / subject_width, SUBJECT_MAX_HEIGHT / subject_height)
+        resized = subject.resize(
+            (
+                max(1, round(subject_width * scale)),
+                max(1, round(subject_height * scale)),
+            ),
+            Image.Resampling.LANCZOS,
+        )
+
+        canvas = Image.new("RGBA", (TARGET_WIDTH, TARGET_HEIGHT), (0, 0, 0, 0))
+        x = (TARGET_WIDTH - resized.width) // 2
+        y = TARGET_HEIGHT - resized.height - BOTTOM_PADDING
+        canvas.alpha_composite(resized, (x, max(0, y)))
+        canvas.save(output_file)
+
+
 def main() -> None:
+    if not REMBG_BIN:
+        raise RuntimeError(
+            "rembg wurde nicht gefunden. Bitte rembg installieren oder REMBG_BIN setzen."
+        )
+
     source = SOURCE_FILE.read_text(encoding="utf-8")
     image_urls = re.findall(r'imageUrl:\s*"([^"]+)"', source)
     unique_images: dict[str, str] = {}
@@ -81,6 +125,7 @@ def main() -> None:
 
     for token, remote_url in unique_images.items():
         download_file = DOWNLOAD_DIR / f"{token}.webp"
+        rembg_file = DOWNLOAD_DIR / f"{token}-raw.png"
         output_file = OUTPUT_DIR / f"{token}.png"
         token_state = state.get(token, {})
 
@@ -91,20 +136,23 @@ def main() -> None:
             output_file.exists()
             and output_file.stat().st_size > 1024
             and token_state.get("source_hash") == source_hash
+            and token_state.get("processing_version") == PROCESSING_VERSION
         ):
             skipped += 1
             continue
 
         subprocess.run(
-            [str(REMBG_BIN), "i", "-m", REMBG_MODEL, str(download_file), str(output_file)],
+            [REMBG_BIN, "i", "-m", REMBG_MODEL, str(download_file), str(rembg_file)],
             cwd=ROOT_DIR,
             check=True,
         )
+        normalize_cutout(rembg_file, output_file)
         cutout_hash = sha256_file(output_file)
         state[token] = {
             "remote_url": remote_url,
             "source_hash": source_hash,
             "cutout_version": cutout_hash[:12],
+            "processing_version": PROCESSING_VERSION,
         }
         if token_state:
             refreshed += 1
