@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>TSV Hainsfarth | Start</title>
-  <link rel="stylesheet" href="styles.css?v=202607221945">
+  <link rel="stylesheet" href="styles.css?v=202607222030">
   <script src="https://widget-prod.bfv.de/widget/widgetresource/widgetjs"></script>
 </head>
 <body data-page="start">
@@ -139,7 +139,7 @@
               </div>
             </div>
           </div>
-          <div class="matchcenter-overview">
+          <div class="matchcenter-overview matchcenter-overview-grid">
             <div class="panel widget-panel">
               <div class="panel-topline">
                 <div>
@@ -151,6 +151,18 @@
               <p class="panel-note">Keine Spiele mehr verpassen und alle Termine des TSV direkt in den eigenen Kalender importieren.</p>
               <div class="widget-frame">
                 <div id="bfv-club-games">Laden...</div>
+              </div>
+            </div>
+            <div class="panel widget-panel">
+              <div class="panel-topline">
+                <div>
+                  <span class="eyebrow">Herren I</span>
+                  <h3>Liveticker</h3>
+                </div>
+              </div>
+              <p class="panel-note">Der BFV-Liveticker zum aktuellsten Liga-Spiel der 1. Mannschaft.</p>
+              <div class="widget-frame">
+                <div id="bfv-team1-liveticker">Laden...</div>
               </div>
             </div>
           </div>
@@ -285,6 +297,16 @@
         selectedTab: BFVWidget.HTML5.vereinTabs.spiele
       });
 
+      BFVWidget.HTML5.zeigeMannschaftsLiveticker(
+        "00ES8GNJGK00000SVV0AG08LVUPGND5I",
+        "016PHCS5TO000000VV0AG80NVUT1FLRU",
+        "bfv-team1-liveticker",
+        {
+          height: "550",
+          width: "300"
+        }
+      );
+
       BFVWidget.HTML5.zeigeMannschaftKomplett("016PHCS5TO000000VV0AG80NVUT1FLRU", "bfv-team1-games", {
         height: "600",
         width: "350",
@@ -317,6 +339,11 @@
       renderWidgetFallback(
         "bfv-team1-games",
         "Spielplan Herren I",
+        "https://www.bfv.de/mannschaften/tsv-hainsfarth/016PHCS5TO000000VV0AG80NVUT1FLRU"
+      );
+      renderWidgetFallback(
+        "bfv-team1-liveticker",
+        "Liveticker Herren I",
         "https://www.bfv.de/mannschaften/tsv-hainsfarth/016PHCS5TO000000VV0AG80NVUT1FLRU"
       );
       renderWidgetFallback(
