@@ -740,6 +740,7 @@ h3 {
   line-height: 1.04;
   letter-spacing: -0.03em;
   font-family: Georgia, "Times New Roman", serif;
+  white-space: pre-line;
 }
 
 .matchday-live {

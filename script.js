@@ -302,10 +302,11 @@ if (countdownRoot) {
     return events.find((event) => event.start.getTime() > now) || null;
   };
 
-  const buildFixtureText = (event) =>
-    event.isHome
-      ? `TSV Hainsfarth vs. ${event.opponent}`
-      : `${event.opponent} vs. TSV Hainsfarth`;
+  const buildFixtureText = (event) => {
+    const homeTeam = event.isHome ? "TSV Hainsfarth" : event.opponent;
+    const awayTeam = event.isHome ? event.opponent : "TSV Hainsfarth";
+    return `${homeTeam}\nvs.\n${awayTeam}`;
+  };
 
   const renderSpotlight = (event) => {
     if (!spotlightRoot) {
@@ -345,7 +346,8 @@ if (countdownRoot) {
     matchResultRoot.classList.add("is-pending");
 
     if (matchResultLabelNode) {
-      matchResultLabelNode.textContent = "Ergebnis folgt ab Anpfiff";
+      matchResultLabelNode.textContent = "";
+      matchResultLabelNode.hidden = true;
     }
 
     if (matchResultTextNode) {
@@ -393,7 +395,8 @@ if (countdownRoot) {
     matchResultRoot.classList.toggle("is-live", Boolean(resultData.live));
 
     if (matchResultLabelNode) {
-      matchResultLabelNode.textContent = resultData.label || "BFV-Ergebnis";
+      matchResultLabelNode.textContent = "";
+      matchResultLabelNode.hidden = true;
     }
 
     if (matchResultTextNode) {
