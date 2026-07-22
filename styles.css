@@ -1957,16 +1957,17 @@ h3 {
 }
 
 .chronicle-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 240px));
-  justify-content: start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 16px;
   margin: 14px 0 20px;
 }
 
 .chronicle-gallery-anniversary {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  justify-content: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-content: start;
   gap: 18px;
 }
 
@@ -1974,6 +1975,11 @@ h3 {
   margin: 0;
   display: grid;
   gap: 10px;
+  width: 240px;
+}
+
+.chronicle-gallery-anniversary .chronicle-figure {
+  width: auto;
 }
 
 .chronicle-figure img {
@@ -3130,7 +3136,6 @@ h3 {
   }
 
   .chronicle-gallery {
-    grid-template-columns: 1fr;
     gap: 14px;
   }
 
