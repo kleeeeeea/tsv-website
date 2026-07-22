@@ -155,15 +155,18 @@ const fetchTeamPayload = async (url) => {
   }
 
   const html = await response.text();
-  return extractReduxData(html);
+  return {
+    html,
+    reduxData: extractReduxData(html),
+  };
 };
 
 const fetchTeamPayloadSafe = async (config) => {
   try {
-    const reduxData = await fetchTeamPayload(config.sourceUrl);
-    return { reduxData, error: null };
+    const payload = await fetchTeamPayload(config.sourceUrl);
+    return { ...payload, error: null };
   } catch (error) {
-    return { reduxData: null, error };
+    return { html: null, reduxData: null, error };
   }
 };
 
@@ -217,6 +220,46 @@ const mergeExtras = (baseEntry, extrasMap) => {
 
 const playerProfileCache = new Map();
 
+const extractBirthDateFromHtml = (html) => {
+  if (!html) {
+    return null;
+  }
+
+  const match = html.match(/"birthDate":"(\d{4}-\d{2}-\d{2})"/);
+  return match ? match[1] : null;
+};
+
+const calculateAgeFromBirthDate = (birthDate) => {
+  if (!birthDate) {
+    return null;
+  }
+
+  const match = birthDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const [, year, month, day] = match;
+  const today = new Date(`${TODAY}T00:00:00+02:00`);
+  const birth = new Date(`${birthDate}T00:00:00+02:00`);
+
+  if (Number.isNaN(today.getTime()) || Number.isNaN(birth.getTime())) {
+    return null;
+  }
+
+  let age = today.getFullYear() - birth.getFullYear();
+  const hasHadBirthday =
+    today.getMonth() > birth.getMonth() ||
+    (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
+
+  if (!hasHadBirthday) {
+    age -= 1;
+  }
+
+  return age >= 0 ? age : null;
+};
+
 const fetchPlayerPayloadSafe = async (slug) => {
   if (!slug) {
     return { reduxData: null, error: new Error("Missing player slug") };
@@ -266,26 +309,56 @@ const attachLiveSeasonStats = async ({ players, teamSlug }) => {
       return player;
     }
 
-    const { reduxData } = await fetchPlayerPayloadSafe(player.slug);
+    const { reduxData, html } = await fetchPlayerPayloadSafe(player.slug);
+    const birthDate = extractBirthDateFromHtml(html);
+    const liveAge = calculateAgeFromBirthDate(birthDate);
 
     if (!reduxData) {
-      return player;
+      return {
+        ...player,
+        birthDate: birthDate || player.birthDate || null,
+        age: liveAge ?? player.age ?? null,
+      };
     }
 
     const seasonEntries = getPlayerSeasonEntries(reduxData);
     const statistics = findSeasonStatisticsForTeam(seasonEntries, teamSlug);
 
     if (!statistics) {
-      return player;
+      return {
+        ...player,
+        birthDate: birthDate || player.birthDate || null,
+        age: liveAge ?? player.age ?? null,
+      };
     }
 
     return {
       ...player,
+      birthDate: birthDate || player.birthDate || null,
+      age: liveAge ?? player.age ?? null,
       assists: typeof statistics.assists === "number" ? statistics.assists : 0,
       yellowCards: typeof statistics.yellowCard === "number" ? statistics.yellowCard : 0,
       yellowRedCards: typeof statistics.yellowRedCard === "number" ? statistics.yellowRedCard : 0,
       redCards: typeof statistics.redCard === "number" ? statistics.redCard : 0,
       teamOfWeek: typeof statistics.topEleven === "number" ? statistics.topEleven : 0,
+    };
+  });
+};
+
+const attachLiveProfileAges = async (people) => {
+  return mapWithConcurrency(people, PLAYER_FETCH_CONCURRENCY, async (person) => {
+    if (!person?.slug) {
+      return person;
+    }
+
+    const { html } = await fetchPlayerPayloadSafe(person.slug);
+    const birthDate = extractBirthDateFromHtml(html);
+    const liveAge = calculateAgeFromBirthDate(birthDate);
+
+    return {
+      ...person,
+      birthDate: birthDate || person.birthDate || null,
+      age: liveAge ?? person.age ?? null,
     };
   });
 };
@@ -321,6 +394,7 @@ const buildTeam = async ({ config, reduxData, existingTeam }) => {
         assists: 0,
         flags: Array.isArray(player.flags) ? player.flags : [],
         age: player.age ?? null,
+        birthDate: player.birthDate ?? null,
         imageUrl: toImageUrl(player.image),
         yellowCards: 0,
         yellowRedCards: 0,
@@ -334,6 +408,23 @@ const buildTeam = async ({ config, reduxData, existingTeam }) => {
     players: basePlayers,
     teamSlug,
   });
+  const staff = await attachLiveProfileAges(
+    (playersPage.data.coaches || []).map((coach) =>
+      mergeExtras(
+        {
+          id: coach.id,
+          slug: coach.slug,
+          firstName: coach.firstName,
+          lastName: coach.lastName,
+          role: normalizeRole(coach.role),
+          age: coach.age ?? null,
+          birthDate: coach.birthDate ?? null,
+          imageUrl: toImageUrl(coach.image),
+        },
+        staffExtras
+      )
+    )
+  );
 
   return {
     key: config.key,
@@ -352,20 +443,7 @@ const buildTeam = async ({ config, reduxData, existingTeam }) => {
     sectionLead: config.sectionLead,
     competition: competitionName,
     players,
-    staff: (playersPage.data.coaches || []).map((coach) =>
-      mergeExtras(
-        {
-          id: coach.id,
-          slug: coach.slug,
-          firstName: coach.firstName,
-          lastName: coach.lastName,
-          role: normalizeRole(coach.role),
-          age: coach.age ?? null,
-          imageUrl: toImageUrl(coach.image),
-        },
-        staffExtras
-      )
-    ),
+    staff,
   };
 };
 

@@ -960,7 +960,36 @@ if (squadData?.teams) {
     });
   const formatName = (person) => `${person.firstName} ${person.lastName}`;
   const formatNumber = (value) => (typeof value === "number" ? value : "--");
-  const formatAge = (value) => (typeof value === "number" ? `${value} J.` : "Alter offen");
+  const calculateAgeFromBirthDate = (birthDate) => {
+    if (typeof birthDate !== "string") {
+      return null;
+    }
+
+    const match = birthDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+    if (!match) {
+      return null;
+    }
+
+    const [, year, month, day] = match;
+    const today = new Date();
+    let age = today.getFullYear() - Number(year);
+    const hasHadBirthday =
+      today.getMonth() + 1 > Number(month) ||
+      (today.getMonth() + 1 === Number(month) && today.getDate() >= Number(day));
+
+    if (!hasHadBirthday) {
+      age -= 1;
+    }
+
+    return age >= 0 ? age : null;
+  };
+
+  const formatAge = (person) => {
+    const liveAge = calculateAgeFromBirthDate(person?.birthDate);
+    const age = typeof liveAge === "number" ? liveAge : person?.age;
+    return typeof age === "number" ? `${age} J.` : "Alter offen";
+  };
   const getImageToken = (value) => {
     const match = value?.match(/\/player\/([^/]+)/i);
     return match?.[1] || null;
@@ -1146,7 +1175,7 @@ if (squadData?.teams) {
               </div>
               ${tags}
               <div class="squad-meta">
-                <span>${formatAge(player.age)}</span>
+                <span>${formatAge(player)}</span>
                 <span>${player.matches} Spiele</span>
                 <span>${player.goals} Tore</span>
               </div>
@@ -1177,7 +1206,7 @@ if (squadData?.teams) {
               <p class="staff-role">${member.role}</p>
               <h3>${formatName(member)}</h3>
               <div class="staff-meta">
-                <span>${formatAge(member.age)}</span>
+                <span>${formatAge(member)}</span>
               </div>
             </div>
           </article>
