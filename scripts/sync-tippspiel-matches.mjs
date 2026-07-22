@@ -48,6 +48,11 @@ const parseSummary = (summary) => {
   };
 };
 
+const isTippspielLeagueMatch = (event) => {
+  const haystack = [event?.competition, event?.league].filter(Boolean).join(" ");
+  return /\b(KL|Kreisliga)\b/i.test(haystack);
+};
+
 const parseEvents = (icsText) => {
   const normalized = icsText.replace(/\r\n[ \t]/g, "").replace(/\r/g, "");
 
@@ -91,21 +96,23 @@ const syncMatches = async (rows) => {
 
 const main = async () => {
   const icsText = await readFile(ICS_PATH, "utf8");
-  const rows = parseEvents(icsText).map((event) => ({
-    match_uid: event.uid,
-    season: SEASON_LABEL,
-    starts_at: event.start.toISOString(),
-    competition: event.competition || null,
-    league: event.league || null,
-    is_home: event.isHome,
-    opponent: event.opponent,
-    location: event.location || null,
-    home_team: event.isHome ? CLUB_NAME : event.opponent,
-    away_team: event.isHome ? event.opponent : CLUB_NAME,
-  }));
+  const rows = parseEvents(icsText)
+    .filter(isTippspielLeagueMatch)
+    .map((event) => ({
+      match_uid: event.uid,
+      season: SEASON_LABEL,
+      starts_at: event.start.toISOString(),
+      competition: event.competition || null,
+      league: event.league || null,
+      is_home: event.isHome,
+      opponent: event.opponent,
+      location: event.location || null,
+      home_team: event.isHome ? CLUB_NAME : event.opponent,
+      away_team: event.isHome ? event.opponent : CLUB_NAME,
+    }));
 
   if (!rows.length) {
-    console.log("No tippspiel matches found in ICS.");
+    console.log("No KL tippspiel matches found in ICS.");
     return;
   }
 

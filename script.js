@@ -55,6 +55,7 @@ if (countdownRoot) {
   const spotlightCompetitionNode = spotlightRoot?.querySelector("[data-matchday-competition]");
   const spotlightOpponentNode = spotlightRoot?.querySelector("[data-matchday-opponent]");
   const spotlightRouteNode = spotlightRoot?.querySelector("[data-matchday-route]");
+  const spotlightTippspielNode = spotlightRoot?.querySelector(".matchday-tippspiel-button");
   const defaultRouteLabel = spotlightRouteNode?.textContent?.trim() || "Anfahrt";
   const bfvScheduleHref =
     "https://www.bfv.de/mannschaften/tsv-hainsfarth/016PHCS5TO000000VV0AG80NVUT1FLRU";
@@ -158,6 +159,11 @@ if (countdownRoot) {
       opponent: opponent.trim() || clubName,
       isHome,
     };
+  };
+
+  const isTippspielLeagueMatch = (event) => {
+    const haystack = [event?.competition, event?.league].filter(Boolean).join(" ");
+    return /\b(KL|Kreisliga)\b/i.test(haystack);
   };
 
   const getRouteAddress = (location) => {
@@ -323,6 +329,10 @@ if (countdownRoot) {
     if (spotlightRouteNode) {
       setRouteAction(buildRouteHref(event.location), defaultRouteLabel);
     }
+
+    if (spotlightTippspielNode) {
+      spotlightTippspielNode.hidden = !isTippspielLeagueMatch(event);
+    }
   };
 
   const showPendingMatchResult = () => {
@@ -405,6 +415,10 @@ if (countdownRoot) {
   const renderFallback = () => {
     setMatchdayMode("default");
 
+    if (spotlightTippspielNode) {
+      spotlightTippspielNode.hidden = true;
+    }
+
     if (dateNode) {
       dateNode.textContent = "Kalender nicht verfügbar";
     }
@@ -456,6 +470,10 @@ if (countdownRoot) {
   const renderOffseasonState = (events) => {
     setMatchdayMode("offseason");
     setWeatherVisibility(false);
+
+    if (spotlightTippspielNode) {
+      spotlightTippspielNode.hidden = true;
+    }
   };
 
   const renderWeatherFallback = () => {

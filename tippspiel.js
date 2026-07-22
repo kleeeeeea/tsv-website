@@ -60,6 +60,11 @@
       minute: "2-digit",
     }).format(new Date(value));
 
+  const isTippspielLeagueMatch = (match) => {
+    const haystack = [match?.competition, match?.league].filter(Boolean).join(" ");
+    return /\b(KL|Kreisliga)\b/i.test(haystack);
+  };
+
   const normalizePlayerName = (value) =>
     value
       .normalize("NFD")
@@ -178,7 +183,7 @@
   const renderNextMatch = () => {
     if (!selectedMatch) {
       if (nextTitleNode) {
-        nextTitleNode.textContent = "Aktuell kein kommendes Spiel";
+        nextTitleNode.textContent = "Aktuell kein kommendes Kreisliga-Spiel";
       }
 
       if (nextBadgeNode) {
@@ -417,7 +422,7 @@
       throw matchError;
     }
 
-    matches = matchRows || [];
+    matches = (matchRows || []).filter(isTippspielLeagueMatch);
     const now = Date.now();
     const liveWindowMatch =
       matches.find((match) => {
