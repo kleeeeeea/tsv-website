@@ -1,4 +1,27 @@
 {
-  "generatedAt": "2026-07-22T15:10:26.297Z",
-  "match": null
+  "generatedAt": "2026-07-22T15:26:33.569Z",
+  "match": {
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031FCJNHH0000000VS5489BTVUS470OH",
+    "competition": "Freundschaftsspiele",
+    "fixtureText": "TSV Hainsfarth vs. (SG 1) Niederhofen/Hausen",
+    "isHome": true,
+    "league": "FS/H/K-FS/D/1",
+    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
+    "opponent": "(SG 1) Niederhofen/Hausen",
+    "result": {
+      "available": false,
+      "fontId": "",
+      "homeGoals": 0,
+      "label": "BFV-Ergebnis",
+      "live": false,
+      "awayGoals": 0,
+      "note": "BFV",
+      "plainText": "",
+      "specialResult": false,
+      "status": "scheduled",
+      "text": ""
+    },
+    "start": "2026-07-24T16:00:00.000Z",
+    "uid": "031FCJNHH0000000VS5489BTVUS470OH"
+  }
 }

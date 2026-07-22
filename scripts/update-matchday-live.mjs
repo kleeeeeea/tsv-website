@@ -60,14 +60,42 @@ const fetchText = async (url) => {
   return response.text();
 };
 
-const extractIcsExportUrl = (html) => {
-  const pathMatch = html.match(/\/rest\/icsexport\/Spielplan\?staffel=[^"'&\s]+&id=[^"'\s]+/u);
+const decodeHtmlAttribute = (value) => value.replace(/&amp;/g, "&");
 
-  if (!pathMatch) {
-    throw new Error("Could not find BFV iCal export link");
+const extractCustomParameterValue = (html, key) => {
+  const escapedKey = String(key).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = html.match(new RegExp(`${escapedKey}:\\s*"([^"]+)"`));
+  return match ? match[1].trim() : "";
+};
+
+const extractIcsExportUrl = (html) => {
+  const absoluteMatch = html.match(
+    /https:\/\/service\.bfv\.de\/rest\/icsexport\/Spielplan\?staffel=[^"'&\s]+(?:&amp;|&)id=[^"'\s]+/u
+  );
+
+  if (absoluteMatch) {
+    return decodeHtmlAttribute(absoluteMatch[0]);
   }
 
-  return new URL(pathMatch[0], "https://www.bfv.de").toString();
+  const relativeMatch = html.match(/\/rest\/icsexport\/Spielplan\?staffel=[^"'&\s]+(?:&amp;|&)id=[^"'\s]+/u);
+
+  if (relativeMatch) {
+    return new URL(decodeHtmlAttribute(relativeMatch[0]), "https://service.bfv.de").toString();
+  }
+
+  const staffelId = extractCustomParameterValue(html, 7);
+  const clubId = extractCustomParameterValue(html, 8);
+
+  if (staffelId && clubId) {
+    const params = new URLSearchParams({
+      staffel: staffelId,
+      id: clubId,
+    });
+
+    return `https://service.bfv.de/rest/icsexport/Spielplan?${params.toString()}`;
+  }
+
+  throw new Error("Could not find BFV iCal export link");
 };
 
 const parseEvents = (icsText) => {
