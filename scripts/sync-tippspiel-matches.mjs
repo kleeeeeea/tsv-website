@@ -5,7 +5,7 @@ const SUPABASE_URL =
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 const ICS_PATH = "spielplan-tsv-hainsfarth.ics";
 const CLUB_NAME = "TSV Hainsfarth";
-const SEASON_LABEL = process.env.TSV_TIPPSPIEL_SEASON_LABEL?.trim() || "2025/2026";
+const SEASON_LABEL_OVERRIDE = process.env.TSV_TIPPSPIEL_SEASON_LABEL?.trim() || "";
 
 if (!SUPABASE_SERVICE_ROLE_KEY) {
   throw new Error("SUPABASE_SERVICE_ROLE_KEY fehlt. Fuer sichere Schreibzugriffe wird der Service-Role-Key benoetigt.");
@@ -25,6 +25,13 @@ const parseIcsDate = (rawValue) => {
 
   const [, year, month, day, hour, minute, second] = match;
   return new Date(Date.UTC(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(second)));
+};
+
+const getSeasonLabelForDate = (value) => {
+  const date = value instanceof Date ? value : new Date(value);
+  const year = date.getUTCFullYear();
+  const seasonStartYear = date.getUTCMonth() >= 6 ? year : year - 1;
+  return `${seasonStartYear}/${seasonStartYear + 1}`;
 };
 
 const parseSummary = (summary) => {
@@ -100,7 +107,7 @@ const main = async () => {
     .filter(isTippspielLeagueMatch)
     .map((event) => ({
       match_uid: event.uid,
-      season: SEASON_LABEL,
+      season: SEASON_LABEL_OVERRIDE || getSeasonLabelForDate(event.start),
       starts_at: event.start.toISOString(),
       competition: event.competition || null,
       league: event.league || null,

@@ -37,7 +37,6 @@
   const clearButton = root.querySelector("[data-tip-clear]");
   const feedbackNode = root.querySelector("[data-tip-feedback]");
   const clubName = config.clubName || "TSV Hainsfarth";
-  const seasonLabel = config.seasonLabel || "2025/2026";
   const savedNameKey = "tsv-tippspiel-name";
   const activeMatchWindowMs = 12 * 60 * 60 * 1000;
   let supabaseClient = null;
@@ -45,6 +44,15 @@
   let nextOpenMatch = null;
   let matches = [];
   let predictions = [];
+
+  const getSeasonLabelForDate = (value) => {
+    const date = value instanceof Date ? value : new Date(value);
+    const year = date.getFullYear();
+    const seasonStartYear = date.getMonth() >= 6 ? year : year - 1;
+    return `${seasonStartYear}/${seasonStartYear + 1}`;
+  };
+
+  const seasonLabel = config.seasonLabel || getSeasonLabelForDate(new Date());
 
   if (seasonNode) {
     seasonNode.textContent = seasonLabel;
