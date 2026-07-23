@@ -53,6 +53,36 @@ create table public.tippspiel_predictions (
   unique (match_id, player_id)
 );
 
+create table if not exists public.tippspiel_passkeys (
+  id uuid primary key default gen_random_uuid(),
+  player_id uuid not null references public.tippspiel_players(id) on delete cascade,
+  credential_id text not null unique,
+  public_key text not null,
+  counter bigint not null default 0,
+  transports text[] not null default '{}',
+  device_type text,
+  backed_up boolean not null default false,
+  created_at timestamptz not null default now(),
+  last_used_at timestamptz,
+  friendly_name text
+);
+
+create index if not exists tippspiel_passkeys_player_id_idx
+  on public.tippspiel_passkeys(player_id);
+
+create table if not exists public.tippspiel_passkey_challenges (
+  id uuid primary key default gen_random_uuid(),
+  player_id uuid not null references public.tippspiel_players(id) on delete cascade,
+  flow text not null check (flow in ('register', 'submit')),
+  challenge text not null,
+  payload jsonb not null default '{}'::jsonb,
+  expires_at timestamptz not null,
+  created_at timestamptz not null default now()
+);
+
+create unique index if not exists tippspiel_passkey_challenges_player_flow_idx
+  on public.tippspiel_passkey_challenges(player_id, flow);
+
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql
@@ -166,6 +196,51 @@ begin
 end;
 $$;
 
+create or replace function public.authenticate_tippspiel_player(
+  p_player_name text,
+  p_pin text
+)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  player_record public.tippspiel_players;
+  normalized_name text;
+begin
+  normalized_name := public.normalize_tippspiel_name(p_player_name);
+
+  if normalized_name = '' then
+    raise exception 'Name fehlt.';
+  end if;
+
+  if trim(coalesce(p_pin, '')) !~ '^\d{4}$' then
+    raise exception 'PIN ungueltig.';
+  end if;
+
+  select *
+    into player_record
+    from public.tippspiel_players
+   where display_name_key = normalized_name
+     and is_active = true;
+
+  if not found then
+    raise exception 'Name nicht gefunden.';
+  end if;
+
+  if crypt(p_pin, player_record.pin_hash) <> player_record.pin_hash then
+    raise exception 'PIN falsch.';
+  end if;
+
+  return jsonb_build_object(
+    'player_id', player_record.id,
+    'player_name', player_record.display_name,
+    'player_key', player_record.display_name_key
+  );
+end;
+$$;
+
 create or replace function public.register_tippspiel_player(
   p_player_name text,
   p_pin text
@@ -185,7 +260,7 @@ begin
     raise exception 'Name fehlt.';
   end if;
 
-  if coalesce(length(trim(p_pin)), 0) < 4 then
+  if trim(coalesce(p_pin, '')) !~ '^\d{4}$' then
     raise exception 'PIN ungueltig.';
   end if;
 
@@ -234,6 +309,8 @@ for each row execute function public.set_updated_at();
 alter table public.tippspiel_matches enable row level security;
 alter table public.tippspiel_players enable row level security;
 alter table public.tippspiel_predictions enable row level security;
+alter table public.tippspiel_passkeys enable row level security;
+alter table public.tippspiel_passkey_challenges enable row level security;
 
 drop policy if exists "Tippspiel matches are readable" on public.tippspiel_matches;
 create policy "Tippspiel matches are readable"
@@ -259,6 +336,8 @@ drop policy if exists "Tippspiel predictions are deletable by owner" on public.t
 
 revoke all on public.tippspiel_players from anon, authenticated;
 revoke all on public.tippspiel_predictions from anon, authenticated;
+revoke all on public.tippspiel_passkeys from anon, authenticated;
+revoke all on public.tippspiel_passkey_challenges from anon, authenticated;
 grant select on public.tippspiel_matches to anon, authenticated;
 grant select on public.tippspiel_predictions to anon, authenticated;
 grant execute on function public.submit_tippspiel_prediction(uuid, text, text, integer, integer) to anon, authenticated;
