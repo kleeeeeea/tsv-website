@@ -6,6 +6,7 @@ import os
 import re
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 from PIL import Image
@@ -97,12 +98,14 @@ def normalize_cutout(source_file: Path, output_file: Path) -> None:
         canvas.save(output_file)
 
 
-def main() -> None:
-    if not REMBG_BIN:
-        raise RuntimeError(
-            "rembg wurde nicht gefunden. Bitte rembg installieren oder REMBG_BIN setzen."
-        )
+def build_rembg_command(input_file: Path, output_file: Path) -> list[str]:
+    if REMBG_BIN:
+        return [REMBG_BIN, "i", "-m", REMBG_MODEL, str(input_file), str(output_file)]
 
+    return [sys.executable, "-m", "rembg", "i", "-m", REMBG_MODEL, str(input_file), str(output_file)]
+
+
+def main() -> None:
     source = SOURCE_FILE.read_text(encoding="utf-8")
     image_urls = re.findall(r'imageUrl:\s*"([^"]+)"', source)
     unique_images: dict[str, str] = {}
@@ -141,11 +144,7 @@ def main() -> None:
             skipped += 1
             continue
 
-        subprocess.run(
-            [REMBG_BIN, "i", "-m", REMBG_MODEL, str(download_file), str(rembg_file)],
-            cwd=ROOT_DIR,
-            check=True,
-        )
+        subprocess.run(build_rembg_command(download_file, rembg_file), cwd=ROOT_DIR, check=True)
         normalize_cutout(rembg_file, output_file)
         cutout_hash = sha256_file(output_file)
         state[token] = {

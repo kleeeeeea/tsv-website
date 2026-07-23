@@ -522,6 +522,14 @@ const main = async () => {
   try {
     await execFileAsync("python3", ["scripts/generate_player_cutouts.py"]);
   } catch (error) {
+    if (process.env.CI) {
+      throw new Error(
+        `Spieler-Cutouts konnten in der Automatisierung nicht aktualisiert werden: ${
+          error?.message || error
+        }`
+      );
+    }
+
     console.warn(
       `Spieler-Cutouts konnten nicht aktualisiert werden, Squad-Daten bleiben trotzdem aktuell: ${
         error?.message || error
