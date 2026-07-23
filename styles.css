@@ -2184,7 +2184,7 @@ h3 {
 
 .squad-panel,
 .squad-staff-panel {
-  background: var(--surface-strong);
+  background: var(--bg);
 }
 
 .squad-count {
@@ -2591,8 +2591,8 @@ h3 {
 .staff-meta span {
   display: block;
   padding: 12px 12px;
-  border-radius: 8px;
-  background: linear-gradient(180deg, rgba(240, 238, 232, 0.96), rgba(232, 236, 241, 0.76));
+  border-radius: 16px;
+  background: var(--bg);
   color: var(--muted);
   text-align: center;
   font-size: 0.92rem;
