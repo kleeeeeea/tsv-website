@@ -1,30 +1,10 @@
 import { readFile, writeFile } from "node:fs/promises";
+import { getCurrentSeason } from "./lib/current-season.mjs";
 
 const VEREIN_PATH = "verein.html";
 const USER_AGENT = "Mozilla/5.0 (compatible; TSVHainsfarthBot/1.0)";
-
-const getCurrentSeasonStartYear = () => {
-  const now = new Date();
-  const viennaMonth = Number(
-    new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Europe/Vienna",
-      month: "2-digit",
-    }).format(now)
-  );
-  const viennaYear = Number(
-    new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Europe/Vienna",
-      year: "numeric",
-    }).format(now)
-  );
-
-  return viennaMonth >= 7 ? viennaYear : viennaYear - 1;
-};
-
-const CURRENT_SEASON_START_YEAR = getCurrentSeasonStartYear();
-const CURRENT_SEASON_END_YEAR = CURRENT_SEASON_START_YEAR + 1;
-const CURRENT_SEASON_SLUG = `${CURRENT_SEASON_START_YEAR}-${String(CURRENT_SEASON_END_YEAR).slice(-2)}`;
-const HISTORY_URL = `https://www.fupa.net/team/tsv-hainsfarth-m1-${CURRENT_SEASON_SLUG}/history`;
+const CURRENT_SEASON = getCurrentSeason();
+const HISTORY_URL = `https://www.fupa.net/team/tsv-hainsfarth-m1-${CURRENT_SEASON.slug}/history`;
 
 const extractScriptJson = (scriptContent) => {
   const jsonStart = scriptContent.indexOf("{");

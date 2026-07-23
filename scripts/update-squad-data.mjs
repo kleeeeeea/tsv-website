@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import vm from "node:vm";
+import { getCurrentSeason } from "./lib/current-season.mjs";
 
 const OUTPUT_PATH = "team-data.js";
 const execFileAsync = promisify(execFile);
@@ -13,28 +14,7 @@ const TODAY = new Intl.DateTimeFormat("en-CA", {
   day: "2-digit",
 }).format(new Date());
 
-const getCurrentSeasonStartYear = () => {
-  const now = new Date();
-  const viennaMonth = Number(
-    new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Europe/Vienna",
-      month: "2-digit",
-    }).format(now)
-  );
-  const viennaYear = Number(
-    new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Europe/Vienna",
-      year: "numeric",
-    }).format(now)
-  );
-
-  return viennaMonth >= 7 ? viennaYear : viennaYear - 1;
-};
-
-const CURRENT_SEASON_START_YEAR = getCurrentSeasonStartYear();
-const CURRENT_SEASON_END_YEAR = CURRENT_SEASON_START_YEAR + 1;
-const CURRENT_SEASON_LABEL = `${CURRENT_SEASON_START_YEAR}/${CURRENT_SEASON_END_YEAR}`;
-const CURRENT_SEASON_SLUG = `${CURRENT_SEASON_START_YEAR}-${String(CURRENT_SEASON_END_YEAR).slice(-2)}`;
+const CURRENT_SEASON = getCurrentSeason();
 
 const TEAM_CONFIG = {
   team1: {
@@ -43,10 +23,10 @@ const TEAM_CONFIG = {
     eyebrow: "Herren I",
     heroTitle: "Spielerkarten und Aufstellung.",
     heroBadge: "Herren I",
-    seasonLabel: `Kader ${CURRENT_SEASON_LABEL}`,
+    seasonLabel: `Kader ${CURRENT_SEASON.label}`,
     seasonNote: "Mit Spielerkarten und Staff der ersten Mannschaft.",
     sourceLabel: "FuPa-Teamseite TSV Hainsfarth",
-    sourceUrl: `https://www.fupa.net/team/tsv-hainsfarth-m1-${CURRENT_SEASON_SLUG}`,
+    sourceUrl: `https://www.fupa.net/team/tsv-hainsfarth-m1-${CURRENT_SEASON.slug}`,
     sectionEyebrow: "Herren I Kader",
     sectionTitle: "Alle Spieler auf einen Blick",
     sectionLead: "Alle Spielerkarten der ersten Mannschaft auf einen Blick mit Foto, Position und Leistungsdaten.",
@@ -59,10 +39,10 @@ const TEAM_CONFIG = {
     eyebrow: "Herren II",
     heroTitle: "Spielerkarten und Aufstellung.",
     heroBadge: "Herren II",
-    seasonLabel: `Kader ${CURRENT_SEASON_LABEL}`,
+    seasonLabel: `Kader ${CURRENT_SEASON.label}`,
     seasonNote: "Mit Spielerkarten und Staff der zweiten Mannschaft.",
     sourceLabel: "FuPa-Teamseite TSV Hainsfarth II",
-    sourceUrl: `https://www.fupa.net/team/tsv-hainsfarth-m2-${CURRENT_SEASON_SLUG}`,
+    sourceUrl: `https://www.fupa.net/team/tsv-hainsfarth-m2-${CURRENT_SEASON.slug}`,
     sectionEyebrow: "Herren II Kader",
     sectionTitle: "Alle Spieler auf einen Blick",
     sectionLead: "Alle Spielerkarten der zweiten Mannschaft auf einen Blick mit Foto, Position und Leistungsdaten.",
