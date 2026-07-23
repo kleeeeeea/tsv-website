@@ -2184,7 +2184,7 @@ h3 {
 
 .squad-panel,
 .squad-staff-panel {
-  background: var(--bg);
+  background: var(--surface-strong);
 }
 
 .squad-count {
