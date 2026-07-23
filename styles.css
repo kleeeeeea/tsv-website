@@ -32,16 +32,7 @@ body {
   font-family: "Trebuchet MS", "Segoe UI", sans-serif;
   color: var(--text);
   padding-bottom: 108px;
-  background:
-    linear-gradient(rgba(var(--primary-rgb), 0.03), rgba(var(--primary-rgb), 0.03)),
-    repeating-linear-gradient(
-      90deg,
-      rgba(var(--primary-rgb), 0.022) 0,
-      rgba(var(--primary-rgb), 0.022) 1px,
-      transparent 1px,
-      transparent 138px
-    ),
-    linear-gradient(180deg, #f8f4ec 0%, var(--bg) 100%);
+  background: var(--bg);
 }
 
 a {
@@ -664,9 +655,7 @@ h3 {
 .matchday-offseason-panel {
   padding: 22px 24px;
   border-radius: 10px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(240, 244, 249, 0.9)),
-    var(--surface-strong);
+  background: var(--surface-strong);
   color: var(--text);
   border: 1px solid rgba(31, 36, 48, 0.12);
   box-shadow:
@@ -1339,9 +1328,7 @@ h3 {
 
 .tippspiel-panel,
 .tippspiel-card {
-  background:
-    linear-gradient(180deg, rgba(var(--primary-rgb), 0.05), rgba(var(--primary-rgb), 0)),
-    var(--surface);
+  background: var(--surface-strong);
 }
 
 .tippspiel-setup-panel {
@@ -1871,9 +1858,7 @@ h3 {
 }
 
 .story-panel {
-  background:
-    linear-gradient(180deg, rgba(var(--primary-rgb), 0.05), rgba(var(--primary-rgb), 0)),
-    var(--surface);
+  background: var(--surface-strong);
 }
 
 .story-timeline {
@@ -1941,9 +1926,7 @@ h3 {
 }
 
 .club-intro-panel {
-  background:
-    linear-gradient(180deg, rgba(var(--primary-rgb), 0.07), rgba(var(--primary-rgb), 0)),
-    var(--surface);
+  background: var(--surface-strong);
 }
 
 .club-intro-panel .lead {
@@ -2094,9 +2077,7 @@ h3 {
 }
 
 .club-copy-card {
-  background:
-    linear-gradient(180deg, rgba(var(--primary-rgb), 0.05), rgba(var(--primary-rgb), 0)),
-    var(--surface-strong);
+  background: var(--surface-strong);
 }
 
 .club-copy-card p {
@@ -2190,7 +2171,7 @@ h3 {
 
 .squad-panel,
 .squad-staff-panel {
-  background: var(--surface);
+  background: var(--surface-strong);
 }
 
 .squad-count {
@@ -2319,8 +2300,7 @@ h3 {
   overflow: hidden;
   border-radius: 12px;
   border: 1px solid rgba(31, 36, 48, 0.12);
-  background:
-    linear-gradient(180deg, rgba(251, 247, 240, 0.98), rgba(237, 242, 248, 0.92) 24%, rgba(251, 249, 244, 0.99) 58%);
+  background: var(--surface-strong);
   box-shadow:
     0 10px 20px rgba(var(--text-rgb), 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.65);
