@@ -97,12 +97,12 @@
                 <div class="tippspiel-score-grid">
                   <label class="tippspiel-score-card">
                     <span>PIN</span>
-                    <input type="password" maxlength="20" inputmode="numeric" placeholder="Mindestens 4 Zeichen" data-tip-register-pin>
+                    <input type="password" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" placeholder="Genau 4 Ziffern" data-tip-register-pin>
                   </label>
                   <div class="tippspiel-score-divider" aria-hidden="true"></div>
                   <label class="tippspiel-score-card">
                     <span>PIN wiederholen</span>
-                    <input type="password" maxlength="20" inputmode="numeric" placeholder="Zur Sicherheit nochmal" data-tip-register-pin-confirm>
+                    <input type="password" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" placeholder="Nochmal 4 Ziffern" data-tip-register-pin-confirm>
                   </label>
                 </div>
                 <div class="tippspiel-form-actions">
@@ -244,6 +244,6 @@
   <script src="script.js?v=202607221955"></script>
   <script src="tippspiel-config.js?v=20260323c"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="tippspiel.js?v=20260406d"></script>
+  <script src="tippspiel.js?v=202607232145"></script>
 </body>
 </html>

@@ -102,7 +102,7 @@ begin
     raise exception 'Name fehlt.';
   end if;
 
-  if coalesce(length(trim(p_pin)), 0) < 4 then
+  if trim(coalesce(p_pin, '')) !~ '^\d{4}$' then
     raise exception 'PIN ungueltig.';
   end if;
 

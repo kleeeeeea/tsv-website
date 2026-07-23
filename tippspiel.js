@@ -81,6 +81,8 @@
       .trim()
       .toLowerCase();
 
+  const isFourDigitPin = (value) => /^\d{4}$/.test(value);
+
   const escapeHtml = (value) =>
     String(value)
       .replace(/&/g, "&amp;")
@@ -500,8 +502,8 @@
       return;
     }
 
-    if (pin.length < 4) {
-      setRegisterFeedback("Bitte wähle eine PIN mit mindestens 4 Zeichen.", true);
+    if (!isFourDigitPin(pin)) {
+      setRegisterFeedback("Bitte wähle genau 4 Ziffern als PIN.", true);
       return;
     }
 
