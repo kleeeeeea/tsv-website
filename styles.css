@@ -791,19 +791,24 @@ h3 {
 .matchday-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
   margin-top: 16px;
 }
 
 .matchday-route-button {
   min-width: 150px;
+  min-height: 108px;
   justify-content: center;
+  align-items: center;
 }
 
 .matchday-tippspiel-button {
   min-width: 172px;
+  min-height: 108px;
   padding: 10px 20px;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 2px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -821,6 +826,7 @@ h3 {
 .matchday-tippspiel-button strong {
   display: block;
   line-height: 1.15;
+  text-align: center;
 }
 
 .matchday-tippspiel-button span {
@@ -3026,6 +3032,7 @@ h3 {
   }
 
   .matchday-tippspiel-button {
+    min-height: 92px;
     padding: 8px 14px;
   }
 
