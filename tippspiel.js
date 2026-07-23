@@ -486,6 +486,12 @@
     registerPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
+  [registerPinInput, registerPinConfirmInput].forEach((input) => {
+    input?.addEventListener("input", () => {
+      input.value = input.value.replace(/\D/g, "").slice(0, 4);
+    });
+  });
+
   registerForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
