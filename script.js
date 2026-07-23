@@ -308,6 +308,31 @@ if (countdownRoot) {
     return `${homeTeam}\nvs.\n${awayTeam}`;
   };
 
+  const applySpotlightOpponentLayout = (fixtureText) => {
+    if (!spotlightOpponentNode) {
+      return;
+    }
+
+    spotlightOpponentNode.classList.remove(
+      "matchday-opponent--tight",
+      "matchday-opponent--ultra-tight"
+    );
+
+    const lineLengths = fixtureText
+      .split("\n")
+      .map((line) => line.trim().length);
+    const longestLine = Math.max(...lineLengths, 0);
+
+    if (longestLine >= 24) {
+      spotlightOpponentNode.classList.add("matchday-opponent--ultra-tight");
+      return;
+    }
+
+    if (longestLine >= 18) {
+      spotlightOpponentNode.classList.add("matchday-opponent--tight");
+    }
+  };
+
   const renderSpotlight = (event) => {
     if (!spotlightRoot) {
       return;
@@ -325,6 +350,7 @@ if (countdownRoot) {
 
     if (spotlightOpponentNode) {
       spotlightOpponentNode.textContent = fixtureText;
+      applySpotlightOpponentLayout(fixtureText);
     }
 
     if (spotlightRouteNode) {
@@ -446,6 +472,7 @@ if (countdownRoot) {
 
     if (spotlightOpponentNode) {
       spotlightOpponentNode.textContent = "Aktuelle Spieltermine werden geladen";
+      applySpotlightOpponentLayout("Aktuelle Spieltermine werden geladen");
     }
 
     setRouteAction(bfvScheduleHref, "Zum Spielplan");
