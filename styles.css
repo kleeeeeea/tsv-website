@@ -2213,8 +2213,7 @@ h3 {
 .team-switcher-button {
   position: relative;
   border: 1px solid rgba(var(--primary-rgb), 0.2);
-  background:
-    linear-gradient(180deg, rgba(251, 247, 240, 0.98), rgba(230, 236, 245, 0.92));
+  background: var(--bg);
   color: var(--primary-dark);
   min-height: 60px;
   min-width: 188px;
