@@ -798,14 +798,12 @@ h3 {
 
 .matchday-route-button {
   min-width: 150px;
-  min-height: 108px;
   justify-content: center;
   align-items: center;
 }
 
 .matchday-tippspiel-button {
   min-width: 172px;
-  min-height: 108px;
   padding: 10px 20px;
   align-items: center;
   justify-content: center;
@@ -3032,7 +3030,6 @@ h3 {
   }
 
   .matchday-tippspiel-button {
-    min-height: 92px;
     padding: 8px 14px;
   }
 
