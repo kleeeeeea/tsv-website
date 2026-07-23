@@ -2311,7 +2311,7 @@ h3 {
 .staff-card {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 18px;
   border: 1px solid rgba(31, 36, 48, 0.12);
   background: var(--surface-strong);
   box-shadow:
@@ -3272,7 +3272,7 @@ h3 {
 
   .squad-card,
   .staff-card {
-    border-radius: 22px;
+    border-radius: 24px;
   }
 
   .squad-card-media,

@@ -1203,7 +1203,6 @@ if (squadData?.teams) {
                 </div>
                 <span class="squad-number-badge">${formatNumber(player.jerseyNumber)}</span>
               </div>
-              ${tags}
               <div class="squad-meta">
                 <span>${formatAge(player)}</span>
                 <span>${player.matches} Spiele</span>
