@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>TSV Hainsfarth | Tippspiel</title>
-  <link rel="stylesheet" href="styles.css?v=202607231905">
+  <link rel="stylesheet" href="styles.css?v=202607221945">
 </head>
 <body>
   <div class="site-shell">
@@ -97,20 +97,20 @@
                 <div class="tippspiel-score-grid">
                   <label class="tippspiel-score-card">
                     <span>PIN</span>
-                    <input type="password" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" placeholder="Nur vier Zahlen" data-tip-register-pin>
+                    <input type="password" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" placeholder="Genau 4 Zahlen" data-tip-register-pin>
                   </label>
                   <div class="tippspiel-score-divider" aria-hidden="true"></div>
                   <label class="tippspiel-score-card">
                     <span>PIN wiederholen</span>
-                    <input type="password" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" placeholder="Nochmal nur vier Zahlen" data-tip-register-pin-confirm>
+                    <input type="password" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" placeholder="Nochmal 4 Zahlen" data-tip-register-pin-confirm>
                   </label>
                 </div>
                 <div class="tippspiel-form-actions">
                   <button class="button" type="submit" data-tip-register-submit>Name + PIN anlegen</button>
                 </div>
-                <p class="tippspiel-register-note">Achtung!! Passwort kann nicht wiederhergestellt werden. Es sind nur vier Zahlen erlaubt.</p>
-                <p class="tippspiel-feedback" data-tip-register-feedback></p>
-                <p class="tippspiel-passkey-note">Face ID oder Fingerabdruck kannst du danach unten optional zusaetzlich aktivieren.</p>
+                <p class="tippspiel-feedback" data-tip-register-feedback>
+                  Achtung!! Passwort kann nicht wiederhergestellt werden.
+                </p>
               </form>
           </section>
 
@@ -166,13 +166,6 @@
                   <button class="button" type="submit" data-tip-submit>Tipp speichern</button>
                   <button class="button-secondary" type="button" data-tip-clear>Felder leeren</button>
                 </div>
-                <div class="tippspiel-form-actions tippspiel-passkey-actions">
-                  <button class="button-secondary" type="button" data-tip-register-passkey>Face ID / Fingerabdruck aktivieren</button>
-                  <button class="button-secondary" type="button" data-tip-submit-passkey>Mit Face ID / Fingerabdruck speichern</button>
-                </div>
-                <p class="tippspiel-passkey-note" data-tip-passkey-hint>
-                  PIN bleibt immer als Fallback. Face ID, Fingerabdruck oder Geraete-Code kannst du optional zusaetzlich nutzen.
-                </p>
                 <p class="tippspiel-feedback" data-tip-feedback>Dein Name und dein Tipp werden für dieses Spiel zentral gespeichert.</p>
               </form>
             </section>
@@ -251,6 +244,6 @@
   <script src="script.js?v=202607221955"></script>
   <script src="tippspiel-config.js?v=20260323c"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="tippspiel.js?v=202607232255"></script>
+  <script src="tippspiel.js?v=202607241005"></script>
 </body>
 </html>

@@ -29,9 +29,6 @@
   const registerPinConfirmInput = root.querySelector("[data-tip-register-pin-confirm]");
   const registerSubmitButton = root.querySelector("[data-tip-register-submit]");
   const registerFeedbackNode = root.querySelector("[data-tip-register-feedback]");
-  const registerPasskeyButton = root.querySelector("[data-tip-register-passkey]");
-  const submitPasskeyButton = root.querySelector("[data-tip-submit-passkey]");
-  const passkeyHintNode = root.querySelector("[data-tip-passkey-hint]");
   const nameInput = root.querySelector("[data-tip-name]");
   const pinInput = root.querySelector("[data-tip-pin]");
   const homeInput = root.querySelector("[data-tip-home-score]");
@@ -42,10 +39,6 @@
   const clubName = config.clubName || "TSV Hainsfarth";
   const savedNameKey = "tsv-tippspiel-name";
   const activeMatchWindowMs = 12 * 60 * 60 * 1000;
-  const supabaseUrl = config.supabaseUrl?.trim() || "";
-  const supabaseAnonKey = config.supabaseAnonKey?.trim() || "";
-  const passkeyFunctionName = config.passkeyFunctionName || "tippspiel-passkey";
-  const passkeyBaseUrl = supabaseUrl ? `${supabaseUrl}/functions/v1/${passkeyFunctionName}` : "";
   let supabaseClient = null;
   let selectedMatch = null;
   let nextOpenMatch = null;
@@ -90,6 +83,16 @@
 
   const isFourDigitPin = (value) => /^\d{4}$/.test(value);
 
+  const enforceFourDigitPinInput = (input) => {
+    if (!input) {
+      return;
+    }
+
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/\D/g, "").slice(0, 4);
+    });
+  };
+
   const escapeHtml = (value) =>
     String(value)
       .replace(/&/g, "&amp;")
@@ -97,100 +100,6 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
-
-  const base64UrlToBuffer = (value) => {
-    const base64 = value.replace(/-/g, "+").replace(/_/g, "/");
-    const paddingLength = (4 - (base64.length % 4 || 4)) % 4;
-    const binary = window.atob(`${base64}${"=".repeat(paddingLength)}`);
-    return Uint8Array.from(binary, (char) => char.charCodeAt(0)).buffer;
-  };
-
-  const bufferToBase64Url = (buffer) => {
-    const bytes = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
-    let binary = "";
-
-    bytes.forEach((byte) => {
-      binary += String.fromCharCode(byte);
-    });
-
-    return window.btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
-  };
-
-  const mapCredentialDescriptor = (descriptor) => ({
-    ...descriptor,
-    id: base64UrlToBuffer(descriptor.id),
-  });
-
-  const mapCreationOptions = (options) => ({
-    ...options,
-    challenge: base64UrlToBuffer(options.challenge),
-    user: {
-      ...options.user,
-      id: base64UrlToBuffer(options.user.id),
-    },
-    excludeCredentials: (options.excludeCredentials || []).map(mapCredentialDescriptor),
-  });
-
-  const mapRequestOptions = (options) => ({
-    ...options,
-    challenge: base64UrlToBuffer(options.challenge),
-    allowCredentials: (options.allowCredentials || []).map(mapCredentialDescriptor),
-  });
-
-  const serializeRegistrationCredential = (credential) => ({
-    id: credential.id,
-    rawId: bufferToBase64Url(credential.rawId),
-    response: {
-      attestationObject: bufferToBase64Url(credential.response.attestationObject),
-      clientDataJSON: bufferToBase64Url(credential.response.clientDataJSON),
-      transports: typeof credential.response.getTransports === "function" ? credential.response.getTransports() : [],
-      publicKeyAlgorithm: credential.response.getPublicKeyAlgorithm?.() ?? undefined,
-    },
-    type: credential.type,
-    clientExtensionResults: credential.getClientExtensionResults?.() || {},
-    authenticatorAttachment: credential.authenticatorAttachment || undefined,
-  });
-
-  const serializeAuthenticationCredential = (credential) => ({
-    id: credential.id,
-    rawId: bufferToBase64Url(credential.rawId),
-    response: {
-      authenticatorData: bufferToBase64Url(credential.response.authenticatorData),
-      clientDataJSON: bufferToBase64Url(credential.response.clientDataJSON),
-      signature: bufferToBase64Url(credential.response.signature),
-      userHandle: credential.response.userHandle ? bufferToBase64Url(credential.response.userHandle) : null,
-    },
-    type: credential.type,
-    clientExtensionResults: credential.getClientExtensionResults?.() || {},
-    authenticatorAttachment: credential.authenticatorAttachment || undefined,
-  });
-
-  const browserSupportsPasskeys = () =>
-    Boolean(window.PublicKeyCredential && navigator.credentials && passkeyBaseUrl);
-
-  const startPasskeyRegistration = async (optionsJSON) => {
-    const credential = await navigator.credentials.create({
-      publicKey: mapCreationOptions(optionsJSON),
-    });
-
-    if (!credential) {
-      throw new Error("Die Passkey-Registrierung wurde abgebrochen.");
-    }
-
-    return serializeRegistrationCredential(credential);
-  };
-
-  const startPasskeyAuthentication = async (optionsJSON) => {
-    const credential = await navigator.credentials.get({
-      publicKey: mapRequestOptions(optionsJSON),
-    });
-
-    if (!credential) {
-      throw new Error("Die Passkey-Anmeldung wurde abgebrochen.");
-    }
-
-    return serializeAuthenticationCredential(credential);
-  };
 
   const getPoints = (prediction, match) => {
     if (!Number.isInteger(match.home_score) || !Number.isInteger(match.away_score)) {
@@ -283,37 +192,12 @@
     awayInput?.toggleAttribute("disabled", isDisabled);
     submitButton?.toggleAttribute("disabled", isDisabled);
     clearButton?.toggleAttribute("disabled", isDisabled);
-    registerPasskeyButton?.toggleAttribute("disabled", isDisabled);
-    submitPasskeyButton?.toggleAttribute("disabled", isDisabled);
-  };
-
-  const setPasskeyButtonsDisabled = (isDisabled) => {
-    registerPasskeyButton?.toggleAttribute("disabled", isDisabled);
-    submitPasskeyButton?.toggleAttribute("disabled", isDisabled);
   };
 
   const renderSetupState = (message) => {
     setupPanel.hidden = false;
     setFormDisabled(true);
     setFeedback(message, true);
-  };
-
-  const updatePasskeyAvailability = () => {
-    if (!browserSupportsPasskeys()) {
-      setPasskeyButtonsDisabled(true);
-
-      if (passkeyHintNode) {
-        passkeyHintNode.textContent =
-          "Face ID / Fingerabdruck ist in diesem Browser oder auf dieser Verbindung gerade nicht verfuegbar. Die PIN funktioniert weiterhin.";
-      }
-
-      return;
-    }
-
-    if (passkeyHintNode) {
-      passkeyHintNode.textContent =
-        "PIN bleibt immer als Fallback. Face ID, Fingerabdruck oder Geraete-Code kannst du optional zusaetzlich nutzen.";
-    }
   };
 
   const renderNextMatch = () => {
@@ -373,7 +257,6 @@
     }
 
     setFormDisabled(kickoffPassed || !supabaseClient || !nextOpenMatch || nextOpenMatch.id !== selectedMatch.id);
-    updatePasskeyAvailability();
   };
 
   const renderNextPredictions = () => {
@@ -603,64 +486,6 @@
     hydrateSavedNameTip();
   };
 
-  const getCurrentTipValues = () => {
-    if (!supabaseClient || !selectedMatch || !nextOpenMatch || selectedMatch.id !== nextOpenMatch.id) {
-      throw new Error("Das Tippspiel ist gerade noch nicht bereit.");
-    }
-
-    const playerName = nameInput?.value?.replace(/\s+/g, " ").trim() || "";
-    const homeScore = Math.max(0, Math.min(20, Number.parseInt(homeInput?.value || "0", 10) || 0));
-    const awayScore = Math.max(0, Math.min(20, Number.parseInt(awayInput?.value || "0", 10) || 0));
-
-    if (playerName.length < 2) {
-      throw new Error("Bitte gib deinen Namen ein.");
-    }
-
-    if (Date.now() >= new Date(nextOpenMatch.starts_at).getTime()) {
-      renderNextMatch();
-      throw new Error("Der Anpfiff ist erreicht. Fuer dieses Spiel ist kein neuer Tipp mehr moeglich.");
-    }
-
-    return {
-      playerName,
-      matchId: nextOpenMatch.id,
-      homeScore,
-      awayScore,
-    };
-  };
-
-  const invokePasskeyRoute = async (route, body) => {
-    const response = await fetch(`${passkeyBaseUrl}${route}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        apikey: supabaseAnonKey?.trim() || "",
-        Authorization: `Bearer ${supabaseAnonKey?.trim() || ""}`,
-      },
-      body: JSON.stringify(body),
-    });
-
-    let payload = {};
-
-    try {
-      payload = await response.json();
-    } catch (_error) {
-      payload = {};
-    }
-
-    if (!response.ok) {
-      throw new Error(payload?.error || "Passkey-Aktion fehlgeschlagen.");
-    }
-
-    return payload;
-  };
-
-  const requirePasskeySupport = () => {
-    if (!browserSupportsPasskeys()) {
-      throw new Error("Face ID / Fingerabdruck ist in diesem Browser oder auf dieser Verbindung nicht verfuegbar.");
-    }
-  };
-
   registerToggleButton?.addEventListener("click", () => {
     const isOpen = registerToggleButton.getAttribute("aria-expanded") === "true";
     setRegisterPanelOpen(!isOpen);
@@ -671,11 +496,8 @@
     registerPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
-  [registerPinInput, registerPinConfirmInput].forEach((input) => {
-    input?.addEventListener("input", () => {
-      input.value = input.value.replace(/\D/g, "").slice(0, 4);
-    });
-  });
+  enforceFourDigitPinInput(registerPinInput);
+  enforceFourDigitPinInput(registerPinConfirmInput);
 
   registerForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -694,7 +516,7 @@
     }
 
     if (!isFourDigitPin(pin)) {
-      setRegisterFeedback("Bitte wähle genau 4 Ziffern als PIN.", true);
+      setRegisterFeedback("Bitte wähle genau 4 Zahlen als PIN.", true);
       return;
     }
 
@@ -730,7 +552,7 @@
         registerPinConfirmInput.value = "";
       }
       setRegisterFeedback(`Registrierung erfolgreich. ${savedName} kann jetzt mit dieser PIN tippen.`);
-      setFeedback("Name angelegt. Du kannst jetzt direkt deinen Tipp speichern oder unten Face ID / Fingerabdruck aktivieren.");
+      setFeedback("Name angelegt. Du kannst jetzt direkt deinen Tipp speichern.");
       setRegisterPanelOpen(false);
       await refreshBoard();
     } catch (error) {
@@ -739,46 +561,6 @@
       setRegisterPanelOpen(true);
     } finally {
       registerSubmitButton?.toggleAttribute("disabled", false);
-    }
-  });
-
-  registerPasskeyButton?.addEventListener("click", async () => {
-    try {
-      requirePasskeySupport();
-
-      const playerName = nameInput?.value?.replace(/\s+/g, " ").trim() || "";
-      const pin = pinInput?.value?.trim() || "";
-
-      if (playerName.length < 2) {
-        throw new Error("Bitte gib zuerst deinen Namen ein.");
-      }
-
-      if (!isFourDigitPin(pin)) {
-        throw new Error("Bitte gib deine vierstellige PIN ein, um Face ID / Fingerabdruck zu aktivieren.");
-      }
-
-      setPasskeyButtonsDisabled(true);
-      setFeedback("Face ID / Fingerabdruck wird eingerichtet ...");
-
-      const optionsPayload = await invokePasskeyRoute("/register/options", {
-        playerName,
-        pin,
-      });
-
-      const credential = await startPasskeyRegistration(optionsPayload.options);
-
-      const verifyPayload = await invokePasskeyRoute("/register/verify", {
-        playerName,
-        pin,
-        credential,
-      });
-
-      setFeedback(`Face ID / Fingerabdruck ist jetzt fuer ${verifyPayload.player_name || playerName} aktiviert.`);
-    } catch (error) {
-      const message = getReadableErrorMessage(error, "Face ID / Fingerabdruck konnte nicht aktiviert werden.");
-      setFeedback(message, true);
-    } finally {
-      updatePasskeyAvailability();
     }
   });
 
@@ -837,43 +619,6 @@
     }
   });
 
-  submitPasskeyButton?.addEventListener("click", async () => {
-    try {
-      requirePasskeySupport();
-      const { playerName, matchId, homeScore, awayScore } = getCurrentTipValues();
-
-      setPasskeyButtonsDisabled(true);
-      setFeedback("Bestaetige den Tipp mit Face ID / Fingerabdruck ...");
-
-      const optionsPayload = await invokePasskeyRoute("/submit/options", {
-        playerName,
-        matchId,
-        predictedHomeScore: homeScore,
-        predictedAwayScore: awayScore,
-      });
-
-      const credential = await startPasskeyAuthentication(optionsPayload.options);
-
-      const verifyPayload = await invokePasskeyRoute("/submit/verify", {
-        playerName,
-        credential,
-      });
-
-      window.localStorage.setItem(savedNameKey, playerName);
-      setFeedback(
-        `Tipp gespeichert: ${verifyPayload.predicted_home_score}:${verifyPayload.predicted_away_score} fuer ${
-          verifyPayload.player_name || playerName
-        }.`
-      );
-      await refreshBoard();
-    } catch (error) {
-      const message = getReadableErrorMessage(error, "Der Tipp per Face ID / Fingerabdruck konnte nicht gespeichert werden.");
-      setFeedback(message, true);
-    } finally {
-      updatePasskeyAvailability();
-    }
-  });
-
   clearButton?.addEventListener("click", () => {
     if (pinInput) {
       pinInput.value = "";
@@ -908,7 +653,6 @@
     });
 
     setupPanel.hidden = true;
-    updatePasskeyAvailability();
 
     try {
       await refreshBoard();
@@ -916,7 +660,7 @@
       if (!selectedMatch) {
         setFeedback("Aktuell ist kein kommendes Spiel im Kalender hinterlegt.");
       } else {
-        setFeedback("Tippspiel bereit. Speichern geht mit PIN oder optional per Face ID / Fingerabdruck.");
+        setFeedback("Tippspiel bereit. Speichern geht nur mit dem passenden Namen und der richtigen PIN.");
       }
     } catch (error) {
       renderSetupState(
