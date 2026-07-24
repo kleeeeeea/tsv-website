@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-24T15:56:22.499Z",
+  "generatedAt": "2026-07-24T17:37:44.189Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031FCJNHH0000000VS5489BTVUS470OH",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031I88UPFG000000VS5489BUVVKNMR0J",
     "competition": "Freundschaftsspiele",
-    "fixtureText": "TSV Hainsfarth vs. (SG 1) Niederhofen/Hausen",
-    "isHome": true,
-    "league": "FS/H/K-FS/D/1",
-    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
-    "opponent": "(SG 1) Niederhofen/Hausen",
+    "fixtureText": "SG Burk / Beyerberg vs. TSV Hainsfarth",
+    "isHome": false,
+    "league": "FS/H/K-FS/N/AN/1",
+    "location": "Sportanlage Burk Meierndorfer Str., Platz 1,Meierndorfer Str.,91596 Burk",
+    "opponent": "SG Burk / Beyerberg",
     "result": {
       "available": false,
       "fontId": "",
@@ -21,7 +21,7 @@
       "status": "scheduled",
       "text": ""
     },
-    "start": "2026-07-24T16:00:00.000Z",
-    "uid": "031FCJNHH0000000VS5489BTVUS470OH"
+    "start": "2026-07-28T17:00:00.000Z",
+    "uid": "031I88UPFG000000VS5489BUVVKNMR0J"
   }
 }
