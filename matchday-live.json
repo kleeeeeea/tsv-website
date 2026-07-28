@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-07-28T17:03:44.385Z",
+  "generatedAt": "2026-07-28T18:24:25.000Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031I88UPFG000000VS5489BUVVKNMR0J",
-    "competition": "Freundschaftsspiele",
-    "fixtureText": "SG Burk / Beyerberg vs. TSV Hainsfarth",
-    "isHome": false,
-    "league": "FS/H/K-FS/N/AN/1",
-    "location": "Sportanlage Burk Meierndorfer Str., Platz 1,Meierndorfer Str.,91596 Burk",
-    "opponent": "SG Burk / Beyerberg",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7CVC000000VS5489BUVUR5FS5A",
+    "competition": "Meisterschaften",
+    "fixtureText": "TSV Hainsfarth vs. TSV Oettingen",
+    "isHome": true,
+    "league": "KL Nord",
+    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
+    "opponent": "TSV Oettingen",
     "result": {
-      "available": true,
-      "fontId": "ts49yhp7",
+      "available": false,
+      "fontId": "",
       "homeGoals": 0,
-      "label": "Live-Ergebnis",
-      "live": true,
+      "label": "BFV-Ergebnis",
+      "live": false,
       "awayGoals": 0,
-      "note": "Live",
-      "plainText": "0:0",
+      "note": "BFV",
+      "plainText": "",
       "specialResult": false,
-      "status": "live",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-07-28T17:00:00.000Z",
-    "uid": "031I88UPFG000000VS5489BUVVKNMR0J"
+    "start": "2026-08-02T13:00:00.000Z",
+    "uid": "031BSI7CVC000000VS5489BUVUR5FS5A"
   }
 }
