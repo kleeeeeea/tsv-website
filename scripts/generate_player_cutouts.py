@@ -6,7 +6,6 @@ import os
 import re
 import shutil
 import subprocess
-import sys
 from pathlib import Path
 
 from PIL import Image
@@ -98,14 +97,12 @@ def normalize_cutout(source_file: Path, output_file: Path) -> None:
         canvas.save(output_file)
 
 
-def build_rembg_command(input_file: Path, output_file: Path) -> list[str]:
-    if REMBG_BIN:
-        return [REMBG_BIN, "i", "-m", REMBG_MODEL, str(input_file), str(output_file)]
-
-    return [sys.executable, "-m", "rembg", "i", "-m", REMBG_MODEL, str(input_file), str(output_file)]
-
-
 def main() -> None:
+    if not REMBG_BIN:
+        raise RuntimeError(
+            "rembg wurde nicht gefunden. Bitte rembg installieren oder REMBG_BIN setzen."
+        )
+
     source = SOURCE_FILE.read_text(encoding="utf-8")
     image_urls = re.findall(r'imageUrl:\s*"([^"]+)"', source)
     unique_images: dict[str, str] = {}
@@ -125,6 +122,7 @@ def main() -> None:
     created = 0
     refreshed = 0
     skipped = 0
+    failed = 0
 
     for token, remote_url in unique_images.items():
         download_file = DOWNLOAD_DIR / f"{token}.webp"
@@ -144,19 +142,30 @@ def main() -> None:
             skipped += 1
             continue
 
-        subprocess.run(build_rembg_command(download_file, rembg_file), cwd=ROOT_DIR, check=True)
-        normalize_cutout(rembg_file, output_file)
-        cutout_hash = sha256_file(output_file)
-        state[token] = {
-            "remote_url": remote_url,
-            "source_hash": source_hash,
-            "cutout_version": cutout_hash[:12],
-            "processing_version": PROCESSING_VERSION,
-        }
-        if token_state:
-            refreshed += 1
-        else:
-            created += 1
+        try:
+            subprocess.run(
+                [REMBG_BIN, "i", "-m", REMBG_MODEL, str(download_file), str(rembg_file)],
+                cwd=ROOT_DIR,
+                check=True,
+            )
+            normalize_cutout(rembg_file, output_file)
+            cutout_hash = sha256_file(output_file)
+            state[token] = {
+                "remote_url": remote_url,
+                "source_hash": source_hash,
+                "cutout_version": cutout_hash[:12],
+                "processing_version": PROCESSING_VERSION,
+            }
+            if token_state:
+                refreshed += 1
+            else:
+                created += 1
+        except Exception as error:
+            failed += 1
+            print(
+                f"WARNUNG: Cutout fuer {token} konnte nicht aktualisiert werden, "
+                f"bestehendes Bild bleibt erhalten. Grund: {error}"
+            )
 
     stale_tokens = [token for token in state if token not in unique_images]
     for token in stale_tokens:
@@ -167,7 +176,8 @@ def main() -> None:
     print(
         "Cutouts fertig. "
         f"Neu erstellt: {created}, aktualisiert: {refreshed}, "
-        f"uebersprungen: {skipped}, gesamt: {len(unique_images)}"
+        f"uebersprungen: {skipped}, fehlgeschlagen: {failed}, "
+        f"gesamt: {len(unique_images)}"
     )
 
 
