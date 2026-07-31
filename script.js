@@ -1027,6 +1027,9 @@ if (squadData?.teams) {
   const cutoutOverrides = { ...cutoutManifest };
   const placeholderCutoutUrl = "images/kader/cutouts/Y1NfDiFUnwcn.png?v=20260407a";
   const placeholderPlayers = new Set(["Felix Schmidt"]);
+  const namedCutoutOverrides = {
+    "Dario Hertle": "images/kader/cutouts/2lJhGKIJi51y.png?v=e3ae463d7658",
+  };
 
   const resolveImageUrl = (value) => {
     if (!value) {
@@ -1042,6 +1045,12 @@ if (squadData?.teams) {
   const resolveCutoutUrl = (person) => {
     if (person?.hideImage || placeholderPlayers.has(formatName(person))) {
       return placeholderCutoutUrl;
+    }
+
+    const fullName = formatName(person);
+
+    if (namedCutoutOverrides[fullName]) {
+      return namedCutoutOverrides[fullName];
     }
 
     if (person?.customCutoutUrl) {
@@ -1203,6 +1212,7 @@ if (squadData?.teams) {
                 </div>
                 <span class="squad-number-badge">${formatNumber(player.jerseyNumber)}</span>
               </div>
+              ${tags}
               <div class="squad-meta">
                 <span>${formatAge(player)}</span>
                 <span>${player.matches} Spiele</span>
