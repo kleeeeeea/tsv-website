@@ -1028,7 +1028,7 @@ if (squadData?.teams) {
   const placeholderCutoutUrl = "images/kader/cutouts/Y1NfDiFUnwcn.png?v=20260407a";
   const placeholderPlayers = new Set(["Felix Schmidt"]);
   const namedCutoutOverrides = {
-    "Dario Hertle": "images/kader/cutouts/2lJhGKIJi51y.png?v=e3ae463d7658",
+    "Dario Hertle": "images/kader/cutouts/AO2HJEdQeVSn.png?v=202608011040",
   };
 
   const resolveImageUrl = (value) => {
