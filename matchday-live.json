@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-08-02T14:51:00.073Z",
+  "generatedAt": "2026-08-02T15:48:40.618Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7CE4000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7CVC000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "FSV Buchdorf vs. TSV Hainsfarth",
-    "isHome": false,
+    "fixtureText": "TSV Hainsfarth vs. TSV Oettingen",
+    "isHome": true,
     "league": "KL Nord",
-    "location": "Hauptplatz SpVgg Daiting,Natterholzer Str. 30,86653 Daiting",
-    "opponent": "FSV Buchdorf",
+    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
+    "opponent": "TSV Oettingen",
     "result": {
-      "available": false,
-      "fontId": "",
-      "homeGoals": 0,
-      "label": "BFV-Ergebnis",
+      "available": true,
+      "fontId": "2pdj21vp",
+      "homeGoals": 3,
+      "label": "Endstand",
       "live": false,
       "awayGoals": 0,
       "note": "BFV",
-      "plainText": "",
+      "plainText": "3:0",
       "specialResult": false,
-      "status": "",
+      "status": "acknowledged",
       "text": ""
     },
-    "start": "2026-08-09T13:00:00.000Z",
-    "uid": "031BSI7CE4000000VS5489BUVUR5FS5A"
+    "start": "2026-08-02T13:00:00.000Z",
+    "uid": "031BSI7CVC000000VS5489BUVUR5FS5A"
   }
 }
