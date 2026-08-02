@@ -19,6 +19,27 @@ window.tsvSquadData = {
       competition: "Kreisliga Donau Nord",
       players: [
         {
+          id: 25361283,
+          slug: "manuel-eisen-242823",
+          firstName: "Manuel",
+          lastName: "Eisen",
+          position: "Torwart",
+          jerseyNumber: null,
+          matches: 1,
+          goals: 0,
+          assists: 0,
+          flags: [
+            "new"
+          ],
+          age: 31,
+          birthDate: "1995-02-09",
+          imageUrl: "https://image.fupa.net/player/1IY7wGgmqwdr/",
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
+        },
+        {
           id: 24493639,
           slug: "timo-haffelt-446462",
           firstName: "Timo",
@@ -95,6 +116,27 @@ window.tsvSquadData = {
           teamOfWeek: 0
         },
         {
+          id: 25361292,
+          slug: "christian-knoll-1542207",
+          firstName: "Christian",
+          lastName: "Knoll",
+          position: "Abwehr",
+          jerseyNumber: null,
+          matches: 1,
+          goals: 0,
+          assists: 0,
+          flags: [
+            "new"
+          ],
+          age: 26,
+          birthDate: "2000-05-29",
+          imageUrl: "https://image.fupa.net/player/DmQ4gSs4BvTU/",
+          yellowCards: 0,
+          yellowRedCards: 0,
+          redCards: 0,
+          teamOfWeek: 0
+        },
+        {
           id: 24493644,
           slug: "jonas-meyer-1272329",
           firstName: "Jonas",
@@ -139,7 +181,7 @@ window.tsvSquadData = {
           lastName: "Schröppel",
           position: "Abwehr",
           jerseyNumber: 3,
-          matches: 0,
+          matches: 1,
           goals: 0,
           assists: 0,
           flags: [],
@@ -310,8 +352,8 @@ window.tsvSquadData = {
           lastName: "Hensolt",
           position: "Mittelfeld",
           jerseyNumber: 21,
-          matches: 0,
-          goals: 0,
+          matches: 1,
+          goals: 2,
           assists: 0,
           flags: [],
           age: 34,
@@ -443,8 +485,8 @@ window.tsvSquadData = {
           lastName: "Stropek",
           position: "Mittelfeld",
           jerseyNumber: 9,
-          matches: 0,
-          goals: 0,
+          matches: 1,
+          goals: 1,
           assists: 0,
           flags: [],
           age: 26,
