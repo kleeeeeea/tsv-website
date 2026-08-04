@@ -1077,14 +1077,7 @@ if (squadData?.teams) {
   };
   const resolveDisplayImageUrl = (person) => resolveCutoutUrl(person) || resolveImageUrl(person?.imageUrl);
   const asCssImage = (person) => `style="--player-image: url('${resolveDisplayImageUrl(person)}');"`;
-  const formatFlags = (flags = []) =>
-    flags.map((flag) => {
-      if (flag === "new") {
-        return "Neuzugang";
-      }
-
-      return flag;
-    });
+  const formatFlags = (flags = []) => flags.filter((flag) => flag && flag !== "new");
 
   const getStatLeaders = (players, key) => {
     const maxValue = players.reduce((max, player) => {

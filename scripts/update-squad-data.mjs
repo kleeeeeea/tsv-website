@@ -395,7 +395,7 @@ const buildTeam = async ({ config, reduxData, existingTeam }) => {
         matches: player.matches ?? 0,
         goals: player.goals ?? 0,
         assists: 0,
-        flags: Array.isArray(player.flags) ? player.flags : [],
+        flags: [],
         age: player.age ?? null,
         birthDate: player.birthDate ?? null,
         imageUrl: toImageUrl(player.image),
