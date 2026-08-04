@@ -37,7 +37,7 @@ window.tsvSquadData = {
           yellowCards: 0,
           yellowRedCards: 0,
           redCards: 0,
-          teamOfWeek: 0
+          teamOfWeek: 1
         },
         {
           id: 24493639,
@@ -362,7 +362,7 @@ window.tsvSquadData = {
           yellowCards: 0,
           yellowRedCards: 0,
           redCards: 0,
-          teamOfWeek: 0
+          teamOfWeek: 1
         },
         {
           id: 24493651,
