@@ -28,9 +28,7 @@ window.tsvSquadData = {
           matches: 1,
           goals: 0,
           assists: 0,
-          flags: [
-            "new"
-          ],
+          flags: [],
           age: 31,
           birthDate: "1995-02-09",
           imageUrl: "https://image.fupa.net/player/1IY7wGgmqwdr/",
@@ -106,9 +104,7 @@ window.tsvSquadData = {
           matches: 1,
           goals: 0,
           assists: 0,
-          flags: [
-            "new"
-          ],
+          flags: [],
           age: null,
           birthDate: null,
           imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
@@ -146,9 +142,7 @@ window.tsvSquadData = {
           matches: 1,
           goals: 0,
           assists: 0,
-          flags: [
-            "new"
-          ],
+          flags: [],
           age: 26,
           birthDate: "2000-05-29",
           imageUrl: "https://image.fupa.net/player/DmQ4gSs4BvTU/",
@@ -471,9 +465,7 @@ window.tsvSquadData = {
           matches: 1,
           goals: 0,
           assists: 0,
-          flags: [
-            "new"
-          ],
+          flags: [],
           age: 28,
           birthDate: "1997-10-13",
           imageUrl: "https://image.fupa.net/player/GyD52oisckT7/",
