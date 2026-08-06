@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T03:31:45.171Z",
+  "generatedAt": "2026-08-06T06:12:51.264Z",
   "match": {
     "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7CE4000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
@@ -18,7 +18,7 @@
       "note": "BFV",
       "plainText": "",
       "specialResult": false,
-      "status": "scheduled",
+      "status": "",
       "text": ""
     },
     "start": "2026-08-09T13:00:00.000Z",
