@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-08-09T14:35:16.390Z",
+  "generatedAt": "2026-08-09T15:04:18.783Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7C40000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7CE4000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Hainsfarth vs. SV Donaumünster-Erlingshofen",
-    "isHome": true,
+    "fixtureText": "FSV Buchdorf vs. TSV Hainsfarth",
+    "isHome": false,
     "league": "KL Nord",
-    "location": "Sportanlage Westheim, Platz 1,Auhausener Str.,91747 Westheim",
-    "opponent": "SV Donaumünster-Erlingshofen",
+    "location": "Hauptplatz SpVgg Daiting,Natterholzer Str. 30,86653 Daiting",
+    "opponent": "FSV Buchdorf",
     "result": {
-      "available": false,
-      "fontId": "",
+      "available": true,
+      "fontId": "jqwhl5cb",
       "homeGoals": 0,
-      "label": "BFV-Ergebnis",
-      "live": false,
+      "label": "Live-Ergebnis",
+      "live": true,
       "awayGoals": 0,
-      "note": "BFV",
-      "plainText": "",
+      "note": "Live",
+      "plainText": "0:0",
       "specialResult": false,
-      "status": "scheduled",
+      "status": "live",
       "text": ""
     },
-    "start": "2026-08-16T13:00:00.000Z",
-    "uid": "031BSI7C40000000VS5489BUVUR5FS5A"
+    "start": "2026-08-09T13:00:00.000Z",
+    "uid": "031BSI7CE4000000VS5489BUVUR5FS5A"
   }
 }
