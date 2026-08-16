@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-08-16T15:27:54.134Z",
+  "generatedAt": "2026-08-16T15:47:54.302Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7C40000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7BF4000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Hainsfarth vs. SV Donaumünster-Erlingshofen",
-    "isHome": true,
+    "fixtureText": "(SG 1) Ebermergen/Mündling-Sulzdorf n.a. vs. TSV Hainsfarth",
+    "isHome": false,
     "league": "KL Nord",
-    "location": "Sportanlage Westheim, Platz 1,Auhausener Str.,91747 Westheim",
-    "opponent": "SV Donaumünster-Erlingshofen",
+    "location": "Sportplatz TSV Ebermergen,Am Gschlatt 1,86655 Ebermergen",
+    "opponent": "(SG 1) Ebermergen/Mündling-Sulzdorf n.a.",
     "result": {
-      "available": true,
-      "fontId": "f04ny1tq",
+      "available": false,
+      "fontId": "",
       "homeGoals": 0,
-      "label": "Endstand",
+      "label": "BFV-Ergebnis",
       "live": false,
       "awayGoals": 0,
       "note": "BFV",
-      "plainText": "0:0",
+      "plainText": "",
       "specialResult": false,
-      "status": "finished",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-08-16T13:00:00.000Z",
-    "uid": "031BSI7C40000000VS5489BUVUR5FS5A"
+    "start": "2026-08-23T13:00:00.000Z",
+    "uid": "031BSI7BF4000000VS5489BUVUR5FS5A"
   }
 }
