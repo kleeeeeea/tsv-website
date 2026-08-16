@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T14:40:34.409Z",
+  "generatedAt": "2026-08-16T14:58:39.196Z",
   "match": {
     "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7C40000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
@@ -10,15 +10,15 @@
     "opponent": "SV Donaumünster-Erlingshofen",
     "result": {
       "available": true,
-      "fontId": "zzij0gsf",
+      "fontId": "r4krlnrq",
       "homeGoals": 0,
-      "label": "Live-Ergebnis",
-      "live": true,
+      "label": "Endstand",
+      "live": false,
       "awayGoals": 0,
-      "note": "Live",
+      "note": "BFV",
       "plainText": "0:0",
       "specialResult": false,
-      "status": "live",
+      "status": "finished",
       "text": ""
     },
     "start": "2026-08-16T13:00:00.000Z",
