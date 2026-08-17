@@ -463,7 +463,7 @@ window.tsvSquadData = {
           position: "Angriff",
           jerseyNumber: null,
           matches: 3,
-          goals: 1,
+          goals: 2,
           assists: 1,
           flags: [],
           age: 19,
