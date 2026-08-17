@@ -203,7 +203,7 @@ window.tsvSquadData = {
           age: 30,
           birthDate: "1996-06-23",
           imageUrl: "https://image.fupa.net/player/XNq2qEv3xKj0/",
-          yellowCards: 0,
+          yellowCards: 1,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 0
@@ -502,7 +502,7 @@ window.tsvSquadData = {
           jerseyNumber: null,
           matches: 0,
           goals: 0,
-          assists: 0,
+          assists: 1,
           flags: [],
           age: null,
           birthDate: null,
