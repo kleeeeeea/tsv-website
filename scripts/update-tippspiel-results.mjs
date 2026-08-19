@@ -113,6 +113,7 @@ const main = async () => {
   const matches = await fetchMatches();
   const now = Date.now();
   let updatedMatches = 0;
+  let skippedMatches = 0;
 
   for (const match of matches) {
     if (!match?.match_uid || !match?.starts_at) {
@@ -125,33 +126,41 @@ const main = async () => {
       continue;
     }
 
-    const html = await fetchMatchHtml(match.match_uid);
-    const result = parseFinishedResult(html);
+    try {
+      const html = await fetchMatchHtml(match.match_uid);
+      const result = parseFinishedResult(html);
 
-    if (!result) {
-      continue;
+      if (!result) {
+        continue;
+      }
+
+      const unchanged =
+        match.home_score === result.homeScore && match.away_score === result.awayScore;
+
+      if (unchanged) {
+        continue;
+      }
+
+      await updateMatchResult({
+        awayScore: result.awayScore,
+        homeScore: result.homeScore,
+        matchUid: match.match_uid,
+      });
+
+      updatedMatches += 1;
+      console.log(
+        `Updated ${match.match_uid} to ${result.homeScore}:${result.awayScore} (${result.status}).`
+      );
+    } catch (error) {
+      skippedMatches += 1;
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`Skipped ${match.match_uid}: ${message}`);
     }
-
-    const unchanged =
-      match.home_score === result.homeScore && match.away_score === result.awayScore;
-
-    if (unchanged) {
-      continue;
-    }
-
-    await updateMatchResult({
-      awayScore: result.awayScore,
-      homeScore: result.homeScore,
-      matchUid: match.match_uid,
-    });
-
-    updatedMatches += 1;
-    console.log(
-      `Updated ${match.match_uid} to ${result.homeScore}:${result.awayScore} (${result.status}).`
-    );
   }
 
-  console.log(`Tippspiel result sync finished. Updated matches: ${updatedMatches}.`);
+  console.log(
+    `Tippspiel result sync finished. Updated matches: ${updatedMatches}. Skipped matches: ${skippedMatches}.`
+  );
 };
 
 main().catch((error) => {
