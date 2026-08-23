@@ -146,7 +146,7 @@ window.tsvSquadData = {
           age: null,
           birthDate: null,
           imageUrl: "https://image.fupa.net/player/Y1NfDiFUnwcn/",
-          yellowCards: 0,
+          yellowCards: 1,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 0
