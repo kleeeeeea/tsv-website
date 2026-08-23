@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T14:28:28.371Z",
+  "generatedAt": "2026-08-23T14:51:30.075Z",
   "match": {
     "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7BF4000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
@@ -10,7 +10,7 @@
     "opponent": "(SG 1) Ebermergen/Mündling-Sulzdorf n.a.",
     "result": {
       "available": true,
-      "fontId": "0w3wv04u",
+      "fontId": "7q1nrjq0",
       "homeGoals": 0,
       "label": "Live-Ergebnis",
       "live": true,
