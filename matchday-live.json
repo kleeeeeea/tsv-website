@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-08-23T14:51:30.075Z",
+  "generatedAt": "2026-08-23T15:09:40.068Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7BF4000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7B8O000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "(SG 1) Ebermergen/Mündling-Sulzdorf n.a. vs. TSV Hainsfarth",
+    "fixtureText": "SV Holzkirchen vs. TSV Hainsfarth",
     "isHome": false,
     "league": "KL Nord",
-    "location": "Sportplatz TSV Ebermergen,Am Gschlatt 1,86655 Ebermergen",
-    "opponent": "(SG 1) Ebermergen/Mündling-Sulzdorf n.a.",
+    "location": "Wörnitzstadion Holzkirchen,Hirtenweg 4,86759 Wechingen",
+    "opponent": "SV Holzkirchen",
     "result": {
-      "available": true,
-      "fontId": "7q1nrjq0",
+      "available": false,
+      "fontId": "",
       "homeGoals": 0,
-      "label": "Live-Ergebnis",
-      "live": true,
+      "label": "BFV-Ergebnis",
+      "live": false,
       "awayGoals": 0,
-      "note": "Live",
-      "plainText": "0:0",
+      "note": "BFV",
+      "plainText": "",
       "specialResult": false,
-      "status": "live",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-08-23T13:00:00.000Z",
-    "uid": "031BSI7BF4000000VS5489BUVUR5FS5A"
+    "start": "2026-08-26T16:15:00.000Z",
+    "uid": "031BSI7B8O000000VS5489BUVUR5FS5A"
   }
 }
