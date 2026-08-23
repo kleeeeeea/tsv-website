@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T13:01:27.505Z",
+  "generatedAt": "2026-08-23T13:39:09.758Z",
   "match": {
     "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7BF4000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
@@ -9,16 +9,16 @@
     "location": "Sportplatz TSV Ebermergen,Am Gschlatt 1,86655 Ebermergen",
     "opponent": "(SG 1) Ebermergen/Mündling-Sulzdorf n.a.",
     "result": {
-      "available": false,
-      "fontId": "",
+      "available": true,
+      "fontId": "cari0o2k",
       "homeGoals": 0,
-      "label": "BFV-Ergebnis",
-      "live": false,
+      "label": "Live-Ergebnis",
+      "live": true,
       "awayGoals": 0,
-      "note": "BFV",
-      "plainText": "",
+      "note": "Live",
+      "plainText": "0:0",
       "specialResult": false,
-      "status": "scheduled",
+      "status": "live",
       "text": ""
     },
     "start": "2026-08-23T13:00:00.000Z",
