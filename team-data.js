@@ -65,7 +65,7 @@ window.tsvSquadData = {
           jerseyNumber: 1,
           matches: 2,
           goals: 0,
-          assists: 0,
+          assists: 1,
           flags: [],
           age: 27,
           birthDate: "1999-03-12",
