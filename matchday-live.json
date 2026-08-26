@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T15:55:20.209Z",
+  "generatedAt": "2026-08-26T16:45:33.048Z",
   "match": {
     "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7B8O000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
@@ -9,16 +9,16 @@
     "location": "Wörnitzstadion Holzkirchen,Hirtenweg 4,86759 Wechingen",
     "opponent": "SV Holzkirchen",
     "result": {
-      "available": false,
-      "fontId": "",
+      "available": true,
+      "fontId": "nf55x6ao",
       "homeGoals": 0,
-      "label": "BFV-Ergebnis",
-      "live": false,
+      "label": "Live-Ergebnis",
+      "live": true,
       "awayGoals": 0,
-      "note": "BFV",
-      "plainText": "",
+      "note": "Live",
+      "plainText": "0:0",
       "specialResult": false,
-      "status": "scheduled",
+      "status": "live",
       "text": ""
     },
     "start": "2026-08-26T16:15:00.000Z",
