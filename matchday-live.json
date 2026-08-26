@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-08-26T16:45:33.048Z",
+  "generatedAt": "2026-08-26T18:27:11.072Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7B8O000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7AJ0000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "SV Holzkirchen vs. TSV Hainsfarth",
+    "fixtureText": "FC Maihingen vs. TSV Hainsfarth",
     "isHome": false,
     "league": "KL Nord",
-    "location": "Wörnitzstadion Holzkirchen,Hirtenweg 4,86759 Wechingen",
-    "opponent": "SV Holzkirchen",
+    "location": "FC Maihingen Hauptplatz,Römerweg,86747 Maihingen",
+    "opponent": "FC Maihingen",
     "result": {
-      "available": true,
-      "fontId": "nf55x6ao",
+      "available": false,
+      "fontId": "",
       "homeGoals": 0,
-      "label": "Live-Ergebnis",
-      "live": true,
+      "label": "BFV-Ergebnis",
+      "live": false,
       "awayGoals": 0,
-      "note": "Live",
-      "plainText": "0:0",
+      "note": "BFV",
+      "plainText": "",
       "specialResult": false,
-      "status": "live",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-08-26T16:15:00.000Z",
-    "uid": "031BSI7B8O000000VS5489BUVUR5FS5A"
+    "start": "2026-09-06T13:00:00.000Z",
+    "uid": "031BSI7AJ0000000VS5489BUVUR5FS5A"
   }
 }
