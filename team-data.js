@@ -424,7 +424,7 @@ window.tsvSquadData = {
           lastName: "Meyer",
           position: "Mittelfeld",
           jerseyNumber: null,
-          matches: 1,
+          matches: 0,
           goals: 0,
           assists: 0,
           flags: [],
