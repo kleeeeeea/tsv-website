@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-06T09:42:31.241Z",
+  "generatedAt": "2026-09-06T13:09:56.889Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7AJ0000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7AG8000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "FC Maihingen vs. TSV Hainsfarth",
-    "isHome": false,
+    "fixtureText": "TSV Hainsfarth vs. SPIELFREI",
+    "isHome": true,
     "league": "KL Nord",
-    "location": "FC Maihingen Hauptplatz,Römerweg,86747 Maihingen",
-    "opponent": "FC Maihingen",
+    "location": "",
+    "opponent": "SPIELFREI",
     "result": {
       "available": false,
       "fontId": "",
@@ -18,10 +18,10 @@
       "note": "BFV",
       "plainText": "",
       "specialResult": false,
-      "status": "scheduled",
+      "status": "",
       "text": ""
     },
-    "start": "2026-09-06T13:00:00.000Z",
-    "uid": "031BSI7AJ0000000VS5489BUVUR5FS5A"
+    "start": "2026-09-13T21:59:00.000Z",
+    "uid": "031BSI7AG8000000VS5489BUVUR5FS5A"
   }
 }
