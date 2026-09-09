@@ -4,6 +4,7 @@ const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 const BFV_MATCH_BASE = "https://www.bfv.de/ergebnisse/spiel/-/";
 const FINISHED_STATUSES = new Set(["acknowledged", "finished", "played"]);
 const GOAL_MARKER = "Time_partialScore__xFjLz";
+const FREE_MATCH_PATTERN = /\bspiel\s*frei\b|\bspielfrei\b/i;
 
 if (!SUPABASE_SERVICE_ROLE_KEY) {
   throw new Error("SUPABASE_SERVICE_ROLE_KEY fehlt. Fuer sichere Schreibzugriffe wird der Service-Role-Key benoetigt.");
@@ -32,6 +33,13 @@ const fetchMatches = async () => {
   }
 
   return response.json();
+};
+
+const isFreeMatch = (match) => {
+  const haystack = [match?.opponent, match?.home_team, match?.away_team]
+    .filter(Boolean)
+    .join(" ");
+  return FREE_MATCH_PATTERN.test(haystack);
 };
 
 const fetchMatchHtml = async (matchUid) => {
@@ -116,7 +124,7 @@ const main = async () => {
   let skippedMatches = 0;
 
   for (const match of matches) {
-    if (!match?.match_uid || !match?.starts_at) {
+    if (!match?.match_uid || !match?.starts_at || isFreeMatch(match)) {
       continue;
     }
 

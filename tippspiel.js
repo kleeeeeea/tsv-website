@@ -73,6 +73,13 @@
     return /\b(KL|Kreisliga)\b/i.test(haystack);
   };
 
+  const isFreeMatch = (match) => {
+    const haystack = [match?.opponent, match?.home_team, match?.away_team]
+      .filter(Boolean)
+      .join(" ");
+    return /\bspiel\s*frei\b|\bspielfrei\b/i.test(haystack);
+  };
+
   const normalizePlayerName = (value) =>
     value
       .normalize("NFD")
@@ -442,7 +449,7 @@
       throw matchError;
     }
 
-    matches = (matchRows || []).filter(isTippspielLeagueMatch);
+    matches = (matchRows || []).filter((match) => isTippspielLeagueMatch(match) && !isFreeMatch(match));
     const now = Date.now();
     const liveWindowMatch =
       matches.find((match) => {

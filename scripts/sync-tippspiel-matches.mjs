@@ -6,6 +6,7 @@ const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 const ICS_PATH = "spielplan-tsv-hainsfarth.ics";
 const CLUB_NAME = "TSV Hainsfarth";
 const SEASON_LABEL_OVERRIDE = process.env.TSV_TIPPSPIEL_SEASON_LABEL?.trim() || "";
+const FREE_MATCH_PATTERN = /\bspiel\s*frei\b|\bspielfrei\b/i;
 
 if (!SUPABASE_SERVICE_ROLE_KEY) {
   throw new Error("SUPABASE_SERVICE_ROLE_KEY fehlt. Fuer sichere Schreibzugriffe wird der Service-Role-Key benoetigt.");
@@ -60,6 +61,13 @@ const isTippspielLeagueMatch = (event) => {
   return /\b(KL|Kreisliga)\b/i.test(haystack);
 };
 
+const isFreeMatch = (event) => {
+  const haystack = [event?.summary, event?.opponent, event?.home_team, event?.away_team]
+    .filter(Boolean)
+    .join(" ");
+  return FREE_MATCH_PATTERN.test(haystack);
+};
+
 const parseEvents = (icsText) => {
   const normalized = icsText.replace(/\r\n[ \t]/g, "").replace(/\r/g, "");
 
@@ -101,10 +109,37 @@ const syncMatches = async (rows) => {
   }
 };
 
+const deleteFreeMatches = async () => {
+  const filters = [
+    "opponent.ilike.*spielfrei*",
+    "home_team.ilike.*spielfrei*",
+    "away_team.ilike.*spielfrei*",
+    "opponent.ilike.*spiel frei*",
+    "home_team.ilike.*spiel frei*",
+    "away_team.ilike.*spiel frei*",
+  ].join(",");
+  const params = new URLSearchParams({
+    or: `(${filters})`,
+  });
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/tippspiel_matches?${params}`, {
+    method: "DELETE",
+    headers: {
+      ...supabaseHeaders,
+      Prefer: "return=minimal",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Supabase free match cleanup failed: ${response.status}`);
+  }
+};
+
 const main = async () => {
   const icsText = await readFile(ICS_PATH, "utf8");
-  const rows = parseEvents(icsText)
-    .filter(isTippspielLeagueMatch)
+  const leagueEvents = parseEvents(icsText).filter(isTippspielLeagueMatch);
+  const freeMatches = leagueEvents.filter(isFreeMatch);
+  const rows = leagueEvents
+    .filter((event) => !freeMatches.includes(event))
     .map((event) => ({
       match_uid: event.uid,
       season: SEASON_LABEL_OVERRIDE || getSeasonLabelForDate(event.start),
@@ -118,13 +153,17 @@ const main = async () => {
       away_team: event.isHome ? event.opponent : CLUB_NAME,
     }));
 
+  await deleteFreeMatches();
+
   if (!rows.length) {
     console.log("No KL tippspiel matches found in ICS.");
     return;
   }
 
   await syncMatches(rows);
-  console.log(`Tippspiel match sync finished. Processed matches: ${rows.length}.`);
+  console.log(
+    `Tippspiel match sync finished. Processed matches: ${rows.length}. Ignored free matches: ${freeMatches.length}.`
+  );
 };
 
 main().catch((error) => {
