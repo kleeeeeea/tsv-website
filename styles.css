@@ -2642,6 +2642,7 @@ h3 {
   .info-grid,
   .club-copy-grid,
   .contact-grid,
+  .matchcenter-grid,
   .penalty-panel,
   .social-grid,
   .legal-grid,
@@ -2916,12 +2917,7 @@ h3 {
   }
 
   .matchcenter-overview-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .matchcenter-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 10px;
   }
 
@@ -3053,34 +3049,15 @@ h3 {
   }
 
   .widget-frame {
-    padding: 6px;
+    padding: 8px;
   }
 
   .widget-frame > div {
-    min-width: 0;
+    min-width: 220px;
   }
 
   .widget-panel {
-    min-width: 0;
     padding-bottom: 14px;
-  }
-
-  .widget-panel .panel-topline {
-    gap: 4px;
-  }
-
-  .widget-panel .eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.11em;
-  }
-
-  .widget-panel h3 {
-    font-size: clamp(1rem, 4vw, 1.18rem);
-    line-height: 1.12;
-  }
-
-  .widget-panel .panel-note {
-    display: none;
   }
 
   .shop-frame {
@@ -3519,20 +3496,6 @@ h3 {
   .widget-frame,
   .tip-game-card {
     padding: 8px;
-  }
-
-  body[data-page="start"] .matchcenter-overview-grid,
-  body[data-page="start"] .matchcenter-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-  }
-
-  body[data-page="start"] .widget-panel {
-    padding: 10px 8px 12px;
-  }
-
-  body[data-page="start"] .widget-frame {
-    padding: 5px;
   }
 
   .section {
