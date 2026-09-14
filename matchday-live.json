@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-13T23:39:48.105Z",
+  "generatedAt": "2026-09-14T01:40:05.802Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7AG8000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7A4G000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Hainsfarth vs. SPIELFREI",
+    "fixtureText": "TSV Hainsfarth vs. FSV Reimlingen",
     "isHome": true,
     "league": "KL Nord",
-    "location": "",
-    "opponent": "SPIELFREI",
+    "location": "Sportanlage Westheim, Platz 1,Auhausener Str.,91747 Westheim",
+    "opponent": "FSV Reimlingen",
     "result": {
       "available": false,
       "fontId": "",
@@ -18,10 +18,10 @@
       "note": "BFV",
       "plainText": "",
       "specialResult": false,
-      "status": "",
+      "status": "scheduled",
       "text": ""
     },
-    "start": "2026-09-13T21:59:00.000Z",
-    "uid": "031BSI7AG8000000VS5489BUVUR5FS5A"
+    "start": "2026-09-20T13:00:00.000Z",
+    "uid": "031BSI7A4G000000VS5489BUVUR5FS5A"
   }
 }
