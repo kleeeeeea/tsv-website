@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-27T12:23:11.435Z",
+  "generatedAt": "2026-09-27T17:06:32.575Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI79PO000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI79DG000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Hainsfarth vs. BC Schretzheim",
-    "isHome": true,
+    "fixtureText": "SSV Dillingen vs. TSV Hainsfarth",
+    "isHome": false,
     "league": "KL Nord",
-    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
-    "opponent": "BC Schretzheim",
+    "location": "Donaustadion,Georg-Schmid-Ring 20,89407 Dillingen a.d.Donau",
+    "opponent": "SSV Dillingen",
     "result": {
       "available": false,
       "fontId": "",
@@ -21,7 +21,7 @@
       "status": "scheduled",
       "text": ""
     },
-    "start": "2026-09-27T13:00:00.000Z",
-    "uid": "031BSI79PO000000VS5489BUVUR5FS5A"
+    "start": "2026-10-04T13:00:00.000Z",
+    "uid": "031BSI79DG000000VS5489BUVUR5FS5A"
   }
 }
