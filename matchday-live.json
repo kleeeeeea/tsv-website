@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-04T11:17:10.038Z",
+  "generatedAt": "2026-10-04T15:50:24.370Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI79DG000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7950000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "SSV Dillingen vs. TSV Hainsfarth",
-    "isHome": false,
+    "fixtureText": "TSV Hainsfarth vs. Sportclub D.L.P.",
+    "isHome": true,
     "league": "KL Nord",
-    "location": "Donaustadion,Georg-Schmid-Ring 20,89407 Dillingen a.d.Donau",
-    "opponent": "SSV Dillingen",
+    "location": "Sportanlage Westheim, Platz 1,Auhausener Str.,91747 Westheim",
+    "opponent": "Sportclub D.L.P.",
     "result": {
       "available": false,
       "fontId": "",
@@ -21,7 +21,7 @@
       "status": "scheduled",
       "text": ""
     },
-    "start": "2026-10-04T13:00:00.000Z",
-    "uid": "031BSI79DG000000VS5489BUVUR5FS5A"
+    "start": "2026-10-11T13:00:00.000Z",
+    "uid": "031BSI7950000000VS5489BUVUR5FS5A"
   }
 }
