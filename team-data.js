@@ -336,7 +336,7 @@ window.tsvSquadData = {
           age: 30,
           birthDate: "1996-07-16",
           imageUrl: "https://image.fupa.net/player/rdu8ocLq0xrB/",
-          yellowCards: 0,
+          yellowCards: 1,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 0
@@ -500,7 +500,7 @@ window.tsvSquadData = {
           lastName: "Gramm",
           position: "Angriff",
           jerseyNumber: 19,
-          matches: 7,
+          matches: 8,
           goals: 0,
           assists: 2,
           flags: [],
