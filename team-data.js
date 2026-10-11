@@ -184,7 +184,7 @@ window.tsvSquadData = {
           age: 25,
           birthDate: "2001-06-04",
           imageUrl: "https://image.fupa.net/player/87Uybr9gtyRb/",
-          yellowCards: 1,
+          yellowCards: 2,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 0
@@ -279,7 +279,7 @@ window.tsvSquadData = {
           age: 26,
           birthDate: "1999-12-17",
           imageUrl: "https://image.fupa.net/player/U8YOFMSas8PA/",
-          yellowCards: 1,
+          yellowCards: 2,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 0
