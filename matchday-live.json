@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-18T11:08:13.213Z",
+  "generatedAt": "2026-10-18T14:32:46.076Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI78O8000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI78KC000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Wertingen vs. TSV Hainsfarth",
-    "isHome": false,
+    "fixtureText": "TSV Hainsfarth vs. TSV 1895 Monheim",
+    "isHome": true,
     "league": "KL Nord",
-    "location": "TSV Wertingen Stadion,Am Judenberg,86637 Wertingen",
-    "opponent": "TSV Wertingen",
+    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
+    "opponent": "TSV 1895 Monheim",
     "result": {
       "available": false,
       "fontId": "",
@@ -21,7 +21,7 @@
       "status": "scheduled",
       "text": ""
     },
-    "start": "2026-10-18T13:00:00.000Z",
-    "uid": "031BSI78O8000000VS5489BUVUR5FS5A"
+    "start": "2026-10-25T14:00:00.000Z",
+    "uid": "031BSI78KC000000VS5489BUVUR5FS5A"
   }
 }
