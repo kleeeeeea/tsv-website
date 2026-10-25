@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-25T12:04:48.845Z",
+  "generatedAt": "2026-10-25T16:05:39.703Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI78KC000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI786K000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Hainsfarth vs. TSV 1895 Monheim",
-    "isHome": true,
+    "fixtureText": "SV Mauren vs. TSV Hainsfarth",
+    "isHome": false,
     "league": "KL Nord",
-    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
-    "opponent": "TSV 1895 Monheim",
+    "location": "Hauptplatz SV Mauren,Reinbergstr. 1,86655 Harburg (Schwaben)",
+    "opponent": "SV Mauren",
     "result": {
       "available": false,
       "fontId": "",
@@ -21,7 +21,7 @@
       "status": "scheduled",
       "text": ""
     },
-    "start": "2026-10-25T14:00:00.000Z",
-    "uid": "031BSI78KC000000VS5489BUVUR5FS5A"
+    "start": "2026-11-01T13:00:00.000Z",
+    "uid": "031BSI786K000000VS5489BUVUR5FS5A"
   }
 }
