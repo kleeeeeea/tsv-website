@@ -274,7 +274,7 @@ window.tsvSquadData = {
           jerseyNumber: 4,
           matches: 12,
           goals: 0,
-          assists: 0,
+          assists: 1,
           flags: [],
           age: 26,
           birthDate: "1999-12-17",
@@ -507,7 +507,7 @@ window.tsvSquadData = {
           age: 30,
           birthDate: "1996-06-08",
           imageUrl: "https://image.fupa.net/player/mnAFucSnqkRr/",
-          yellowCards: 3,
+          yellowCards: 2,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 0
