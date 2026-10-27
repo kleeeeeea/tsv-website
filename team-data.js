@@ -187,7 +187,7 @@ window.tsvSquadData = {
           yellowCards: 2,
           yellowRedCards: 0,
           redCards: 0,
-          teamOfWeek: 0
+          teamOfWeek: 1
         },
         {
           id: 24493668,
