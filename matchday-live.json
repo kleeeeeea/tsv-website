@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-01T06:53:37.563Z",
+  "generatedAt": "2026-11-01T13:57:17.187Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI786K000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI784O000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "SV Mauren vs. TSV Hainsfarth",
-    "isHome": false,
+    "fixtureText": "TSV Hainsfarth vs. SpVgg Riedlingen",
+    "isHome": true,
     "league": "KL Nord",
-    "location": "Hauptplatz SV Mauren,Reinbergstr. 1,86655 Harburg (Schwaben)",
-    "opponent": "SV Mauren",
+    "location": "Sportanlage Westheim, Platz 1,Auhausener Str.,91747 Westheim",
+    "opponent": "SpVgg Riedlingen",
     "result": {
       "available": false,
       "fontId": "",
@@ -21,7 +21,7 @@
       "status": "scheduled",
       "text": ""
     },
-    "start": "2026-11-01T13:00:00.000Z",
-    "uid": "031BSI786K000000VS5489BUVUR5FS5A"
+    "start": "2026-11-08T13:00:00.000Z",
+    "uid": "031BSI784O000000VS5489BUVUR5FS5A"
   }
 }
