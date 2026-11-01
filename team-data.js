@@ -241,7 +241,7 @@ window.tsvSquadData = {
           age: 30,
           birthDate: "1996-06-23",
           imageUrl: "https://image.fupa.net/player/XNq2qEv3xKj0/",
-          yellowCards: 1,
+          yellowCards: 2,
           yellowRedCards: 1,
           redCards: 0,
           teamOfWeek: 1
