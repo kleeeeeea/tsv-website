@@ -92,7 +92,7 @@ window.tsvSquadData = {
           yellowCards: 1,
           yellowRedCards: 0,
           redCards: 0,
-          teamOfWeek: 1
+          teamOfWeek: 2
         },
         {
           id: 24493640,
@@ -377,7 +377,7 @@ window.tsvSquadData = {
           yellowCards: 0,
           yellowRedCards: 0,
           redCards: 0,
-          teamOfWeek: 1
+          teamOfWeek: 2
         },
         {
           id: 25455759,
@@ -491,7 +491,7 @@ window.tsvSquadData = {
           yellowCards: 2,
           yellowRedCards: 0,
           redCards: 0,
-          teamOfWeek: 0
+          teamOfWeek: 1
         },
         {
           id: 24493638,
@@ -529,7 +529,7 @@ window.tsvSquadData = {
           yellowCards: 2,
           yellowRedCards: 0,
           redCards: 0,
-          teamOfWeek: 1
+          teamOfWeek: 2
         },
         {
           id: 24493648,
