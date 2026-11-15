@@ -203,7 +203,7 @@ window.tsvSquadData = {
           age: 34,
           birthDate: "1992-05-03",
           imageUrl: "https://image.fupa.net/player/psCGs1GRIaJU/",
-          yellowCards: 1,
+          yellowCards: 2,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 0
@@ -317,7 +317,7 @@ window.tsvSquadData = {
           age: 23,
           birthDate: "2003-01-19",
           imageUrl: "https://image.fupa.net/player/edroiFk1cyLu/",
-          yellowCards: 1,
+          yellowCards: 2,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 1
@@ -431,7 +431,7 @@ window.tsvSquadData = {
           age: 32,
           birthDate: "1994-07-19",
           imageUrl: "https://image.fupa.net/player/NHGZwWK7iTIZ/",
-          yellowCards: 3,
+          yellowCards: 4,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 0
@@ -507,7 +507,7 @@ window.tsvSquadData = {
           age: 30,
           birthDate: "1996-06-08",
           imageUrl: "https://image.fupa.net/player/mnAFucSnqkRr/",
-          yellowCards: 2,
+          yellowCards: 3,
           yellowRedCards: 0,
           redCards: 0,
           teamOfWeek: 0
