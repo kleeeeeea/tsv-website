@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-15T06:36:51.465Z",
+  "generatedAt": "2026-11-15T14:17:02.463Z",
   "match": {
-    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7LG0000000VS5489BUVUR5FS5A",
+    "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7KLS000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
-    "fixtureText": "TSV Oettingen vs. TSV Hainsfarth",
-    "isHome": false,
+    "fixtureText": "TSV Hainsfarth vs. FSV Buchdorf",
+    "isHome": true,
     "league": "KL Nord",
-    "location": "Sportpark Oettingen i.Bay. (HF),Sportpark Weißes Kreuz 1,86732 Oettingen i. Bay.",
-    "opponent": "TSV Oettingen",
+    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
+    "opponent": "FSV Buchdorf",
     "result": {
       "available": false,
       "fontId": "",
@@ -21,7 +21,7 @@
       "status": "scheduled",
       "text": ""
     },
-    "start": "2026-11-15T13:00:00.000Z",
-    "uid": "031BSI7LG0000000VS5489BUVUR5FS5A"
+    "start": "2026-11-22T13:00:00.000Z",
+    "uid": "031BSI7KLS000000VS5489BUVUR5FS5A"
   }
 }
