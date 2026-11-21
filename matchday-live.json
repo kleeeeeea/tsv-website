@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-21T10:15:30.757Z",
+  "generatedAt": "2026-11-21T17:37:06.305Z",
   "match": {
     "bfvUrl": "https://www.bfv.de/ergebnisse/spiel/-/031BSI7KLS000000VS5489BUVUR5FS5A",
     "competition": "Meisterschaften",
     "fixtureText": "TSV Hainsfarth vs. FSV Buchdorf",
     "isHome": true,
     "league": "KL Nord",
-    "location": "Burschelstadion,Am Burschel,86744 Hainsfarth",
+    "location": "",
     "opponent": "FSV Buchdorf",
     "result": {
       "available": false,
@@ -18,7 +18,7 @@
       "note": "BFV",
       "plainText": "",
       "specialResult": false,
-      "status": "scheduled",
+      "status": "cancelled",
       "text": ""
     },
     "start": "2026-11-22T13:00:00.000Z",
